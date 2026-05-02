@@ -36,7 +36,7 @@ function selectDistractors(word, allWords, count, valueSelector) {
   const fallback = shuffleList(Object.keys(allWords))
     .filter((w) => w !== word)
     .map((w) => valueSelector(allWords[w], w))
-    .filter(Boolean && ((value) => !picked.includes(value)));
+    .filter((value) => Boolean(value) && !picked.includes(value));
 
   return [...picked, ...fallback].slice(0, count);
 }

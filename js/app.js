@@ -22,7 +22,9 @@ let AppState = {
     loading: false,
     selectedOption: null,
     selectedChips: [],
-    feedback: ''
+    feedback: '',
+    reveal: null,
+    locked: false
   }
 };
 
@@ -78,6 +80,12 @@ function updateState(currentState, action) {
     case 'SET_FEEDBACK':
       newState.ui.feedback = action.payload;
       break;
+    case 'SET_REVEAL':
+      newState.ui.reveal = action.payload;
+      break;
+    case 'SET_LOCKED':
+      newState.ui.locked = action.payload;
+      break;
     case 'INIT_SESSION':
       newState.session = action.payload;
       break;
@@ -86,6 +94,8 @@ function updateState(currentState, action) {
       newState.ui.selectedOption = null;
       newState.ui.selectedChips = [];
       newState.ui.feedback = '';
+      newState.ui.reveal = null;
+      newState.ui.locked = false;
       break;
     case 'SET_ROUND':
       newState.session.round = action.payload;
@@ -93,6 +103,8 @@ function updateState(currentState, action) {
       newState.ui.selectedOption = null;
       newState.ui.selectedChips = [];
       newState.ui.feedback = '';
+      newState.ui.reveal = null;
+      newState.ui.locked = false;
       break;
     case 'SET_CURRENT_EXERCISE':
       newState.session.currentExercise = action.payload;
@@ -266,7 +278,17 @@ function finalizeRoundAnswer(correct) {
   startRoundExercise();
 }
 
+function scheduleAdvance(isCorrect, delayMs) {
+  window.setTimeout(() => {
+    dispatch({ type: 'SET_REVEAL', payload: null });
+    dispatch({ type: 'SET_LOCKED', payload: false });
+    finalizeRoundAnswer(isCorrect);
+  }, delayMs);
+}
+
 async function submitExerciseAnswer() {
+  if (AppState.ui.locked) return;
+
   const exercise = AppState.session.currentExercise;
   if (!exercise) return;
 
@@ -279,7 +301,9 @@ async function submitExerciseAnswer() {
     const userAnswer = AppState.ui.selectedChips.join(' ');
     const expected = exercise.correct;
     const isCorrect = userAnswer.trim() === expected.trim();
-    finalizeRoundAnswer(isCorrect);
+    dispatch({ type: 'SET_FEEDBACK', payload: isCorrect ? 'Correct sentence.' : `Expected: ${expected}` });
+    dispatch({ type: 'SET_LOCKED', payload: true });
+    scheduleAdvance(isCorrect, 700);
     return;
   }
 
@@ -290,12 +314,16 @@ async function submitExerciseAnswer() {
       dispatch({ type: 'SET_FEEDBACK', payload: 'Please write a sentence first.' });
       return;
     }
+    dispatch({ type: 'SET_LOCKED', payload: true });
     dispatch({ type: 'SET_FEEDBACK', payload: 'Evaluating with Gemini...' });
     const result = await Production.evaluateProduction(exercise.word, userSentence, AllWords);
     dispatch({ type: 'SET_FEEDBACK', payload: result.feedback });
     if (result.correct) {
+      dispatch({ type: 'SET_LOCKED', payload: false });
       finalizeRoundAnswer(true);
+      return;
     }
+    dispatch({ type: 'SET_LOCKED', payload: false });
     return;
   }
 
@@ -306,7 +334,10 @@ async function submitExerciseAnswer() {
   }
 
   const isCorrect = selected === exercise.correct;
-  finalizeRoundAnswer(isCorrect);
+  dispatch({ type: 'SET_REVEAL', payload: { selected, correct: exercise.correct } });
+  dispatch({ type: 'SET_FEEDBACK', payload: isCorrect ? 'Correct.' : `Wrong. Correct answer: ${exercise.correct}` });
+  dispatch({ type: 'SET_LOCKED', payload: true });
+  scheduleAdvance(isCorrect, 800);
 }
 
 function renderHome(state) {
@@ -353,12 +384,16 @@ function renderGate(state) {
   `;
 }
 
-function renderOptions(options, selected) {
+function renderOptions(options, selected, reveal, locked) {
   return options.map((option, idx) => {
-    const cls = selected === option ? 'option selected' : 'option';
+    const classes = ['option'];
+    if (selected === option) classes.push('selected');
+    if (reveal && reveal.correct === option) classes.push('option-correct');
+    if (reveal && reveal.selected === option && reveal.selected !== reveal.correct) classes.push('option-wrong');
     const escaped = String(option).replace(/"/g, '&quot;');
     const isSelected = selected === option ? 'true' : 'false';
-    return `<button class="${cls}" role="option" aria-selected="${isSelected}" aria-label="Option ${idx + 1}: ${escaped}" data-action="select-option" data-value="${escaped}">${idx + 1}. ${option}</button>`;
+    const disabledAttr = locked ? 'disabled' : '';
+    return `<button class="${classes.join(' ')}" role="option" aria-selected="${isSelected}" aria-label="Option ${idx + 1}: ${escaped}" data-action="select-option-index" data-index="${idx}" ${disabledAttr}>${idx + 1}. ${option}</button>`;
   }).join('');
 }
 
@@ -380,40 +415,40 @@ function renderRound(state) {
   } else if (exercise.type === 'EN_TO_TR_MC') {
     body = `
       <h2>${exercise.prompt}</h2>
-      <div class="options">${renderOptions(exercise.options, state.ui.selectedOption)}</div>
-      <button class="btn" data-action="submit-answer">Submit</button>
+      <div class="options">${renderOptions(exercise.options, state.ui.selectedOption, state.ui.reveal, state.ui.locked)}</div>
+      <button class="btn" data-action="submit-answer" ${state.ui.locked ? 'disabled' : ''}>Submit</button>
     `;
   } else if (exercise.type === 'GAP_FILL') {
     body = `
       <h2>Fill the blank</h2>
       <p>${exercise.sentence}</p>
-      <div class="options">${renderOptions(exercise.options, state.ui.selectedOption)}</div>
-      <button class="btn" data-action="submit-answer">Submit</button>
+      <div class="options">${renderOptions(exercise.options, state.ui.selectedOption, state.ui.reveal, state.ui.locked)}</div>
+      <button class="btn" data-action="submit-answer" ${state.ui.locked ? 'disabled' : ''}>Submit</button>
     `;
   } else if (exercise.type === 'SENTENCE_BUILDER') {
-    const chips = exercise.chips.map((chip) => `<button class="option" data-action="add-chip" data-value="${chip}">${chip}</button>`).join('');
+    const chips = exercise.chips.map((chip) => `<button class="option" data-action="add-chip" data-value="${chip}" ${state.ui.locked ? 'disabled' : ''}>${chip}</button>`).join('');
     body = `
       <h2>Build the sentence</h2>
       <p>TR: ${exercise.trSentence}</p>
       <div class="answer-box">${state.ui.selectedChips.join(' ')}</div>
       <div class="options">${chips}</div>
       <div class="actions">
-        <button class="btn" data-action="remove-chip">Backspace</button>
-        <button class="btn" data-action="submit-answer">Submit</button>
+        <button class="btn" data-action="remove-chip" ${state.ui.locked ? 'disabled' : ''}>Backspace</button>
+        <button class="btn" data-action="submit-answer" ${state.ui.locked ? 'disabled' : ''}>Submit</button>
       </div>
     `;
   } else if (exercise.type === 'TRANSLATION_MC') {
     body = `
       <h2>Choose the correct English sentence</h2>
       <p>TR: ${exercise.trSentence}</p>
-      <div class="options">${renderOptions(exercise.options, state.ui.selectedOption)}</div>
-      <button class="btn" data-action="submit-answer">Submit</button>
+      <div class="options">${renderOptions(exercise.options, state.ui.selectedOption, state.ui.reveal, state.ui.locked)}</div>
+      <button class="btn" data-action="submit-answer" ${state.ui.locked ? 'disabled' : ''}>Submit</button>
     `;
   } else if (exercise.type === 'PRODUCTION') {
     body = `
       <h2>${exercise.prompt}</h2>
       <textarea id="productionTextarea" class="modal-input" rows="4" placeholder="Write your sentence..."></textarea>
-      <button class="btn" data-action="submit-answer">Submit</button>
+      <button class="btn" data-action="submit-answer" ${state.ui.locked ? 'disabled' : ''}>Submit</button>
     `;
   }
 
@@ -475,8 +510,13 @@ function handleAction(action, target) {
     gateLearn();
     return;
   }
-  if (action === 'select-option') {
-    dispatch({ type: 'SET_OPTION', payload: target.dataset.value });
+  if (action === 'select-option-index') {
+    if (AppState.ui.locked) return;
+    const exercise = AppState.session.currentExercise;
+    const index = Number(target.dataset.index);
+    if (!exercise || !Array.isArray(exercise.options) || Number.isNaN(index)) return;
+    if (exercise.options[index] === undefined) return;
+    dispatch({ type: 'SET_OPTION', payload: exercise.options[index] });
     return;
   }
   if (action === 'add-chip') {

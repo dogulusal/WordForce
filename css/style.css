@@ -117,6 +117,13 @@ button.card {
   transform: translateY(0);
 }
 
+.btn:disabled,
+.option:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .word-display {
   font-size: 2rem;
   font-family: 'Space Grotesk', 'Segoe UI', Tahoma, sans-serif;
@@ -149,6 +156,16 @@ button.card {
 .option.selected {
   border-color: var(--accent);
   background: rgba(243, 165, 49, 0.16);
+}
+
+.option.option-correct {
+  border-color: var(--success);
+  background: rgba(46, 207, 149, 0.2);
+}
+
+.option.option-wrong {
+  border-color: var(--error);
+  background: rgba(255, 110, 110, 0.18);
 }
 
 .answer-box {
