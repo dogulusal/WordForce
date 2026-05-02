@@ -12,7 +12,15 @@ function extractJsonObject(text) {
   const firstBrace = clean.indexOf('{');
   const lastBrace = clean.lastIndexOf('}');
   if (firstBrace === -1 || lastBrace === -1 || lastBrace <= firstBrace) return null;
-  return clean.slice(firstBrace, lastBrace + 1);
+  const jsonStr = clean.slice(firstBrace, lastBrace + 1);
+  
+  // Try to repair common JSON issues
+  let repaired = jsonStr
+    .replace(/:\s*'([^']*)'/g, ': "$1"')  // Replace single quotes with double quotes
+    .replace(/:\s*True/g, ': true')        // Replace True with true
+    .replace(/:\s*False/g, ': false');     // Replace False with false
+  
+  return repaired;
 }
 
 async function evaluateProduction(word, userSentence, allWords) {
@@ -33,8 +41,8 @@ async function evaluateProduction(word, userSentence, allWords) {
       }]
     }],
     generationConfig: {
-      temperature: 0.2,
-      maxOutputTokens: 300
+      temperature: 0.1,
+      maxOutputTokens: 200
     }
   };
 
@@ -47,18 +55,36 @@ async function evaluateProduction(word, userSentence, allWords) {
 
     if (!response.ok) {
       const errorText = await response.text();
-      return { correct: false, feedback: `API error (${response.status}): ${errorText}` };
+      return { correct: false, feedback: `API error (${response.status}): ${errorText.substring(0, 100)}` };
     }
 
     const data = await response.json();
     const raw = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-    const jsonText = extractJsonObject(raw);
-
+    
+    // Try multiple extraction strategies
+    let jsonText = extractJsonObject(raw);
+    
     if (!jsonText) {
-      return { correct: false, feedback: 'Could not parse model response. Please try again.' };
+      // Fallback: just look for "true" or "false" in response
+      const hasTrue = raw.toLowerCase().includes('"correct": true');
+      return {
+        correct: hasTrue,
+        feedback: 'Evaluation: ' + raw.substring(0, 150)
+      };
     }
 
-    const parsed = JSON.parse(jsonText);
+    let parsed;
+    try {
+      parsed = JSON.parse(jsonText);
+    } catch (parseError) {
+      // Last resort: try to extract just the boolean and craft feedback
+      const hasCorrect = jsonText.toLowerCase().includes('true');
+      return {
+        correct: hasCorrect,
+        feedback: 'Sentence evaluated. Keep practicing!'
+      };
+    }
+    
     return {
       correct: Boolean(parsed.correct),
       feedback: parsed.feedback || 'No feedback provided.'
