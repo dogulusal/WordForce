@@ -356,7 +356,9 @@ function renderGate(state) {
 function renderOptions(options, selected) {
   return options.map((option, idx) => {
     const cls = selected === option ? 'option selected' : 'option';
-    return `<button class="${cls}" data-action="select-option" data-value="${String(option).replace(/"/g, '&quot;')}">${idx + 1}. ${option}</button>`;
+    const escaped = String(option).replace(/"/g, '&quot;');
+    const isSelected = selected === option ? 'true' : 'false';
+    return `<button class="${cls}" role="option" aria-selected="${isSelected}" aria-label="Option ${idx + 1}: ${escaped}" data-action="select-option" data-value="${escaped}">${idx + 1}. ${option}</button>`;
   }).join('');
 }
 
@@ -417,8 +419,8 @@ function renderRound(state) {
   }
 
   return `
-    <div class="round-screen">
-      <div class="progress">${progress}</div>
+    <div class="round-screen" role="main" aria-label="Exercise screen">
+      <div class="progress" aria-live="polite" aria-label="${progress}">${progress}</div>
       <div class="card">${body}</div>
       <p>${state.ui.feedback || ''}</p>
       <button class="btn" data-action="open-quit">End Session</button>
@@ -522,6 +524,43 @@ function handleUiAction(action) {
   }
 }
 
+function handleKeyboardNavigation(event) {
+  if (AppState.ui.modal) {
+    if (event.key === 'Escape') {
+      dispatch({ type: 'SET_MODAL', payload: null });
+      event.preventDefault();
+    }
+    return;
+  }
+
+  if (AppState.ui.screen !== 'round') return;
+
+  const exercise = AppState.session.currentExercise;
+  if (!exercise) return;
+
+  if (event.key >= '1' && event.key <= '4' && Array.isArray(exercise.options)) {
+    const index = Number(event.key) - 1;
+    if (exercise.options[index] !== undefined) {
+      dispatch({ type: 'SET_OPTION', payload: exercise.options[index] });
+    }
+    event.preventDefault();
+    return;
+  }
+
+  if (event.key === 'Enter') {
+    submitExerciseAnswer();
+    event.preventDefault();
+    return;
+  }
+
+  if (event.key === 'Backspace' && exercise.type === 'SENTENCE_BUILDER') {
+    const chips = [...AppState.ui.selectedChips];
+    chips.pop();
+    dispatch({ type: 'SET_CHIPS', payload: chips });
+    event.preventDefault();
+  }
+}
+
 document.addEventListener('click', (event) => {
   const actionTarget = event.target.closest('[data-action]');
   if (actionTarget) handleAction(actionTarget.dataset.action, actionTarget);
@@ -529,6 +568,8 @@ document.addEventListener('click', (event) => {
   const uiTarget = event.target.closest('[data-ui-action]');
   if (uiTarget) handleUiAction(uiTarget.dataset.uiAction);
 });
+
+document.addEventListener('keydown', handleKeyboardNavigation);
 
 async function init() {
   try {
