@@ -11,13 +11,24 @@ if (!fs.existsSync(enrichedPath)) {
 const enriched = JSON.parse(fs.readFileSync(enrichedPath, 'utf-8'));
 const errors = [];
 
+function containsTargetForm(sentence, word) {
+  if (typeof sentence !== 'string') return false;
+  const normalizedSentence = sentence.toLowerCase();
+  const forms = [
+    word.toLowerCase(),
+    word.toLowerCase().replace(/_/g, ' '),
+    word.toLowerCase().replace(/_/g, "'"),
+  ];
+  return forms.some((form) => normalizedSentence.includes(form));
+}
+
 Object.entries(enriched).forEach(([word, data]) => {
   if (!data.def || data.def.trim() === '') errors.push(`MISSING def: ${word}`);
   if (!Array.isArray(data.ex) || data.ex.length < 2) errors.push(`MISSING ex: ${word}`);
   if (!Array.isArray(data.ex_tr) || data.ex_tr.length !== data.ex.length) {
     errors.push(`MISSING/MISMATCHED ex_tr: ${word}`);
   }
-  if (!data.ex?.some((s) => typeof s === 'string' && s.toLowerCase().includes(word.toLowerCase()))) {
+  if (!data.ex?.some((s) => containsTargetForm(s, word))) {
     errors.push(`ex missing target form: ${word}`);
   }
   if (!Array.isArray(data.ex_distractors) || data.ex_distractors.length !== data.ex.length) {
