@@ -140,6 +140,34 @@ function render(appState) {
   `;
 }
 
+// Helper function: shuffle array
+function shuffle(arr) {
+  return [...arr].sort(() => Math.random() - 0.5);
+}
+
+// Session Initiation Logic
+function initiateSession(sessionSize = 8) {
+  // Get review-due words first, then fill with practice words
+  const reviewDue = getReviewDue(AppState.progress);
+  const allPracticeWords = Object.keys(AppState.progress.words)
+    .filter(w => AppState.progress.words[w].status === 'practice');
+  
+  const sessionWords = [
+    ...reviewDue.slice(0, sessionSize),
+    ...allPracticeWords.slice(0, Math.max(0, sessionSize - reviewDue.length))
+  ].slice(0, sessionSize);
+  
+  AppState.session = {
+    words: sessionWords,
+    round: 1,
+    queue: shuffle(sessionWords),
+    current: 0,
+    results: {}
+  };
+  
+  dispatch({ type: 'INIT_SESSION', payload: AppState.session });
+}
+
 // Initialize app
 loadWords().then(() => {
   AppState.progress = loadProgress();
