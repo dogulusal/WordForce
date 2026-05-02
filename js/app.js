@@ -208,6 +208,7 @@ function checkGateComplete() {
   }
 
   dispatch({ type: 'SET_ROUND', payload: 1 });
+  startRoundExercise();
   dispatch({ type: 'SET_SCREEN', payload: 'round' });
 }
 
@@ -336,7 +337,6 @@ function renderHome(state) {
 function renderGate(state) {
   const word = currentWord();
   if (!word) {
-    checkGateComplete();
     return '<div class="card">Preparing next round...</div>';
   }
 
@@ -364,7 +364,6 @@ function renderOptions(options, selected) {
 
 function renderRound(state) {
   if (!state.session.currentExercise) {
-    startRoundExercise();
     return '<div class="card">Loading exercise...</div>';
   }
 
