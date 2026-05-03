@@ -5,7 +5,7 @@ function shuffleList(list) {
 }
 
 function normalizeToken(token) {
-  return String(token || '').toLowerCase().replace(/[.,!?;:]/g, '');
+  return String(token || '').toLowerCase().replace(/[.,!?;:'"]/g, '');
 }
 
 function buildDistractorPool(word, allWords) {

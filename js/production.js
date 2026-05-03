@@ -7,6 +7,14 @@ function renderProduction(word, allWords) {
   };
 }
 
+function toProductionResult(correct, feedback, correctedSentence = '') {
+  return {
+    correct: Boolean(correct),
+    feedback: feedback || '',
+    correctedSentence: correctedSentence || ''
+  };
+}
+
 function extractJsonObject(text) {
   const clean = String(text || '').replace(/```json|```/g, '').trim();
   const firstBrace = clean.indexOf('{');
@@ -23,10 +31,63 @@ function extractJsonObject(text) {
   return repaired;
 }
 
+async function fetchWithTimeout(url, options, timeoutMs) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const res = await fetch(url, { ...options, signal: controller.signal });
+    clearTimeout(timer);
+    return res;
+  } catch (err) {
+    clearTimeout(timer);
+    throw err;
+  }
+}
+
+async function callGeminiWithRetry(url, payload, maxAttempts = 3) {
+  const TIMEOUT_MS = 8000;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      const res = await fetchWithTimeout(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }, TIMEOUT_MS);
+
+      if (res.status === 429 || res.status >= 500) {
+        if (attempt < maxAttempts) {
+          await new Promise(r => setTimeout(r, Math.pow(2, attempt) * 500));
+          continue;
+        }
+        return { ok: false, error: `Server error (${res.status}). Please try again shortly.` };
+      }
+
+      if (!res.ok) {
+        const txt = await res.text().catch(() => '');
+        return { ok: false, error: `API error (${res.status}).` };
+      }
+
+      const data = await res.json();
+      return { ok: true, data };
+    } catch (err) {
+      if (err.name === 'AbortError') {
+        if (attempt < maxAttempts) continue;
+        return { ok: false, error: 'Request timed out. Check your connection and try again.' };
+      }
+      if (attempt < maxAttempts) {
+        await new Promise(r => setTimeout(r, Math.pow(2, attempt) * 500));
+        continue;
+      }
+      return { ok: false, error: 'Connection failed. Please try again.' };
+    }
+  }
+  return { ok: false, error: 'All attempts failed.' };
+}
+
 async function evaluateProduction(word, userSentence, allWords) {
   const apiKey = localStorage.getItem('wf_api_key') || window.ENV_API_KEY;
   if (!apiKey) {
-    return { correct: false, feedback: 'API key not configured in Settings.' };
+    return toProductionResult(false, 'No API key — go to Settings to add your Gemini key.');
   }
 
   const pos = allWords[word]?.pos || 'unknown';
@@ -37,61 +98,44 @@ async function evaluateProduction(word, userSentence, allWords) {
     contents: [{
       role: 'user',
       parts: [{
-        text: `Evaluate this sentence for correct use of the word "${word}" (${pos}).\nSentence: "${userSentence}"\nReply in JSON only: { "correct": true/false, "feedback": "one sentence explanation" }\nIf correct, feedback should confirm why it works.\nIf incorrect, explain the specific error clearly in one sentence.`
+        text: [
+          `Evaluate whether this English sentence uses the word "${word}" (${pos}) correctly.`,
+          `Sentence: "${userSentence}"`,
+          ``,
+          `Reply ONLY with valid JSON on a single line, no markdown:`,
+          `{"correct":true,"feedback":"one sentence"}`,
+          `or if wrong:`,
+          `{"correct":false,"feedback":"brief error description","correctedSentence":"improved version"}`
+        ].join('\n')
       }]
     }],
-    generationConfig: {
-      temperature: 0.1,
-      maxOutputTokens: 200
-    }
+    generationConfig: { temperature: 0.1, maxOutputTokens: 150 }
   };
 
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
+  const { ok, data, error } = await callGeminiWithRetry(url, payload);
+  if (!ok) return toProductionResult(false, error);
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      return { correct: false, feedback: `API error (${response.status}): ${errorText.substring(0, 100)}` };
-    }
+  const raw = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+  const jsonText = extractJsonObject(raw);
 
-    const data = await response.json();
-    const raw = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-    
-    // Try multiple extraction strategies
-    let jsonText = extractJsonObject(raw);
-    
-    if (!jsonText) {
-      // Fallback: just look for "true" or "false" in response
-      const hasTrue = raw.toLowerCase().includes('"correct": true');
-      return {
-        correct: hasTrue,
-        feedback: 'Evaluation: ' + raw.substring(0, 150)
-      };
-    }
-
-    let parsed;
-    try {
-      parsed = JSON.parse(jsonText);
-    } catch (parseError) {
-      // Last resort: try to extract just the boolean and craft feedback
-      const hasCorrect = jsonText.toLowerCase().includes('true');
-      return {
-        correct: hasCorrect,
-        feedback: 'Sentence evaluated. Keep practicing!'
-      };
-    }
-    
-    return {
-      correct: Boolean(parsed.correct),
-      feedback: parsed.feedback || 'No feedback provided.'
-    };
-  } catch (error) {
-    return { correct: false, feedback: `Network/API failure: ${error.message}` };
+  if (!jsonText) {
+    const strictCorrect = /"correct"\s*:\s*true/i.test(raw);
+    return toProductionResult(strictCorrect, strictCorrect ? 'Looks correct!' : 'Could not read the model response clearly. Please try again.');
   }
+
+  let parsed;
+  try {
+    parsed = JSON.parse(jsonText);
+  } catch (_) {
+    const strictCorrect = /"correct"\s*:\s*true/i.test(jsonText);
+    return toProductionResult(strictCorrect, strictCorrect ? 'Looks correct!' : 'Model response was unclear. Please try again.');
+  }
+
+  return toProductionResult(
+    Boolean(parsed.correct),
+    parsed.feedback || (parsed.correct ? 'Well done!' : 'Something seems off — try again.'),
+    parsed.correctedSentence || parsed.suggestion || ''
+  );
 }
 
 window.Production = {
