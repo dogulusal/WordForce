@@ -12,8 +12,8 @@ function renderSettingsModal() {
   const model = localStorage.getItem('wf_model') || 'gemma-4-31b-it';
 
   return `
-    <div class="modal-overlay" data-ui-action="close-modal">
-      <div class="modal" role="dialog" aria-label="Settings" onclick="event.stopPropagation()">
+    <div class="modal-overlay" onclick="if(event.target===this) handleUiAction('close-modal')">
+      <div class="modal" role="dialog" aria-label="Settings">
         <h2>Settings</h2>
         <label class="modal-label" for="apiKeyInput">Gemini API Key</label>
         <input id="apiKeyInput" type="password" value="${escapeHtml(apiKey)}" placeholder="AIza..." class="modal-input">
@@ -52,8 +52,8 @@ function renderWordListModal(state, allWords) {
     .join('') || '<p>No words in this list.</p>';
 
   return `
-    <div class="modal-overlay" data-ui-action="close-modal">
-      <div class="modal" role="dialog" aria-label="Word list" onclick="event.stopPropagation()">
+    <div class="modal-overlay" onclick="if(event.target===this) handleUiAction('close-modal')">
+      <div class="modal" role="dialog" aria-label="Word list">
         <h2>${escapeHtml(filter)} words</h2>
         <div class="word-list">${rows}</div>
         <div class="modal-actions">
@@ -66,8 +66,8 @@ function renderWordListModal(state, allWords) {
 
 function renderQuitConfirmModal() {
   return `
-    <div class="modal-overlay" data-ui-action="close-modal">
-      <div class="modal" role="dialog" aria-label="Quit session" onclick="event.stopPropagation()">
+    <div class="modal-overlay" onclick="if(event.target===this) handleUiAction('close-modal')">
+      <div class="modal" role="dialog" aria-label="Quit session">
         <h2>End this session?</h2>
         <p>Progress so far will be saved.</p>
         <div class="modal-actions">
