@@ -485,11 +485,20 @@ function renderHome(state) {
   const known = Object.keys(words).filter((w) => words[w].status === 'known').length;
   const practice = Object.keys(words).filter((w) => words[w].status === 'practice').length;
   const reviewDue = getReviewDue(state.progress).length;
+  const total = Object.keys(AllWords).length;
+  const knownOrLearned = known + learned;
+  const available = total - knownOrLearned;
 
   return `
     <div class="home-screen">
       <h1>WordForge</h1>
-      <p>Loaded words: ${Object.keys(AllWords).length}</p>
+      <div class="home-word-stats">
+        <span class="home-stat"><span class="home-stat-label">Total</span><span class="home-stat-value">${total}</span></span>
+        <span class="home-stat-sep">·</span>
+        <span class="home-stat"><span class="home-stat-label">Known</span><span class="home-stat-value home-stat-known">${knownOrLearned}</span></span>
+        <span class="home-stat-sep">·</span>
+        <span class="home-stat"><span class="home-stat-label">Available</span><span class="home-stat-value home-stat-available">${available}</span></span>
+      </div>
       <div class="stats-grid">
         <button class="card" data-action="open-list" data-filter="learned">Learned: ${learned}</button>
         <button class="card" data-action="open-list" data-filter="known">Known: ${known}</button>
@@ -498,7 +507,8 @@ function renderHome(state) {
       </div>
       <div class="actions">
         <button class="btn" data-action="start-session">Start Session (10 words)</button>
-        <button class="btn" data-action="open-settings">Settings</button>
+        <button class="btn btn-muted" data-action="open-manage-words">Manage Words</button>
+        <button class="btn btn-muted" data-action="open-settings">Settings</button>
       </div>
     </div>
   `;
@@ -527,13 +537,21 @@ function renderPrep(state) {
 
   const pageItems = candidates.slice(safePage * pageSize, safePage * pageSize + pageSize);
   const selected = new Set(state.ui.prepSelectedKnown || []);
+  const persistentKnownCount = Object.keys(state.progress.words).filter(
+    (w) => state.progress.words[w]?.status === 'known' || state.progress.words[w]?.status === 'learned'
+  ).length;
+  const totalMarked = persistentKnownCount + selected.size;
 
   const levelCounts = {};
   levels.forEach((l) => {
     if (l === 'ALL') {
-      levelCounts[l] = Object.keys(AllWords).length;
+      levelCounts[l] = candidates.length;
     } else {
-      levelCounts[l] = Object.keys(AllWords).filter((w) => AllWords[w]?.level === l).length;
+      levelCounts[l] = Object.keys(AllWords).filter((w) => {
+        if (AllWords[w]?.level !== l) return false;
+        const st = state.progress.words[w]?.status;
+        return st !== 'known' && st !== 'learned';
+      }).length;
     }
   });
 
@@ -550,7 +568,7 @@ function renderPrep(state) {
       <h2>Select words you already know</h2>
       <div class="prep-header">
         <button class="btn btn-muted" data-action="prep-back">← Back</button>
-        <span class="prep-count">✓ Known: ${selected.size}</span>
+        <span class="prep-count">✓ Known: ${totalMarked}</span>
       </div>
       <div class="prep-levels">${levelButtons}</div>
       <div class="prep-grid">${chips || '<p>No words for this filter.</p>'}</div>
@@ -560,7 +578,7 @@ function renderPrep(state) {
           <span>Page ${safePage + 1} / ${totalPages}</span>
           <button class="btn btn-muted" data-action="prep-next" ${safePage >= totalPages - 1 ? 'disabled' : ''}>Next →</button>
         </div>
-        <button class="btn prep-continue-btn" data-action="prep-start">Start Session →</button>
+        <button class="btn prep-continue-btn" data-action="prep-start">Save &amp; Start Session →</button>
       </div>
     </div>
   `;
@@ -728,6 +746,10 @@ function render(state) {
 
 function handleAction(action, target) {
   if (action === 'start-session') {
+    initiateSession(SESSION_SIZE, 'ALL', true);
+    return;
+  }
+  if (action === 'open-manage-words') {
     dispatch({ type: 'RESET_PREP' });
     dispatch({ type: 'SET_SCREEN', payload: 'preflight' });
     return;

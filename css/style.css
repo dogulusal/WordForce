@@ -61,6 +61,48 @@ p {
   animation: fade-in 220ms ease-out;
 }
 
+.home-word-stats {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  font-size: 0.9rem;
+}
+
+.home-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.home-stat-label {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.home-stat-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.home-stat-known {
+  color: var(--accent);
+}
+
+.home-stat-available {
+  color: var(--success);
+}
+
+.home-stat-sep {
+  color: var(--border);
+  font-size: 1.2rem;
+  margin-top: 8px;
+}
+
 .gate-screen,
 .summary-screen {
   max-width: 560px;
