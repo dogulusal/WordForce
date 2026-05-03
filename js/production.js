@@ -24,7 +24,7 @@ function extractJsonObject(text) {
 }
 
 async function evaluateProduction(word, userSentence, allWords) {
-  const apiKey = localStorage.getItem('wf_api_key');
+  const apiKey = localStorage.getItem('wf_api_key') || window.ENV_API_KEY;
   if (!apiKey) {
     return { correct: false, feedback: 'API key not configured in Settings.' };
   }

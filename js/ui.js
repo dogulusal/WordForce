@@ -10,12 +10,14 @@ function escapeHtml(text) {
 function renderSettingsModal() {
   const apiKey = localStorage.getItem('wf_api_key') || '';
   const model = localStorage.getItem('wf_model') || 'gemma-4-31b-it';
+  const envApiKey = window.ENV_API_KEY || '';
 
   return `
     <div class="modal-overlay" onclick="if(event.target===this) handleUiAction('close-modal')">
       <div class="modal" role="dialog" aria-label="Settings">
         <h2>Settings</h2>
-        <label class="modal-label" for="apiKeyInput">Gemini API Key</label>
+        ${envApiKey ? `<div style="padding: 8px; margin-bottom: 10px; background: rgba(46,207,149,0.15); border-radius: 8px; font-size: 0.85rem; color: var(--success);">✓ API key loaded from system</div>` : ''}
+        <label class="modal-label" for="apiKeyInput">Gemini API Key (optional)</label>
         <input id="apiKeyInput" type="password" value="${escapeHtml(apiKey)}" placeholder="AIza..." class="modal-input">
         <label class="modal-label" for="modelInput">Model</label>
         <input id="modelInput" type="text" value="${escapeHtml(model)}" class="modal-input">
@@ -42,10 +44,13 @@ function renderWordListModal(state, allWords) {
     })
     .map(([word, data]) => {
       const tr = allWords[word]?.tr || '';
+      const btnLabel = filter === 'known' ? '✕ Remove' : '+ Add';
+      const btnAction = filter === 'known' ? 'remove-from-known' : 'add-to-known';
       return `
         <div class="word-row">
-          <div><strong>${escapeHtml(word)}</strong> - ${escapeHtml(tr)}</div>
+          <div style="flex:1;"><strong>${escapeHtml(word)}</strong> - ${escapeHtml(tr)}</div>
           <div class="word-row-meta">${escapeHtml(data.status || '')}</div>
+          <button class="btn" style="padding: 6px 10px; min-height: 34px; font-size: 0.85rem; margin-left: 8px;" data-ui-action="${btnAction}" data-word="${escapeHtml(word)}">${btnLabel}</button>
         </div>
       `;
     })

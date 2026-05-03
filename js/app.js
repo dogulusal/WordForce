@@ -378,6 +378,7 @@ function renderGate(state) {
       <div class="actions">
         <button class="btn" data-action="gate-known">Yes, I know it</button>
         <button class="btn" data-action="gate-learn">No, teach me</button>
+        <button class="btn" data-action="gate-back" style="background: rgba(255,255,255,0.1); color: var(--text-secondary);">← Back</button>
       </div>
       <p>${state.session.current + 1} / ${state.session.queue.length}</p>
     </div>
@@ -544,7 +545,7 @@ function handleAction(action, target) {
   }
 }
 
-function handleUiAction(action) {
+function handleUiAction(action, element) {
   if (action === 'close-modal') {
     dispatch({ type: 'SET_MODAL', payload: null });
     return;
@@ -560,6 +561,13 @@ function handleUiAction(action) {
   if (action === 'quit-session') {
     dispatch({ type: 'SET_MODAL', payload: null });
     dispatch({ type: 'SET_SCREEN', payload: 'home' });
+  }
+  if (action === 'remove-from-known' || action === 'add-to-known') {
+    const word = element?.dataset?.word;
+    if (word) {
+      dispatch({ type: 'SET_WORD_STATUS', payload: { word, status: 'practice' } });
+      dispatch({ type: 'SET_MODAL', payload: null });
+    }
   }
 }
 
@@ -605,7 +613,7 @@ document.addEventListener('click', (event) => {
   if (actionTarget) handleAction(actionTarget.dataset.action, actionTarget);
 
   const uiTarget = event.target.closest('[data-ui-action]');
-  if (uiTarget) handleUiAction(uiTarget.dataset.uiAction);
+  if (uiTarget) handleUiAction(uiTarget.dataset.uiAction, uiTarget);
 });
 
 document.addEventListener('keydown', handleKeyboardNavigation);

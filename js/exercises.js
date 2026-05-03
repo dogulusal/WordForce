@@ -121,8 +121,11 @@ function renderTranslationMC(word, allWords) {
   const sentenceIndex = Math.floor(Math.random() * (wordData.ex?.length || 1));
   const trSentence = wordData.ex_tr?.[sentenceIndex] || wordData.tr;
   const correctEN = wordData.ex?.[sentenceIndex] || `${word} is useful.`;
-  const distractors = wordData.ex_distractors?.[sentenceIndex] || [];
-  const options = shuffleList([correctEN, ...distractors]).slice(0, 4);
+  
+  // Use English sentences from other words as distractors
+  const candidateWords = Object.keys(allWords).filter(w => w !== word && allWords[w].ex?.length > 0);
+  const enDisractors = shuffleList(candidateWords).slice(0, 10).map(w => allWords[w].ex[0]).filter(s => s && s !== correctEN).slice(0, 3);
+  const options = shuffleList([correctEN, ...enDisractors]).slice(0, 4);
 
   return {
     type: 'TRANSLATION_MC',

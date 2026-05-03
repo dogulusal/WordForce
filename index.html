@@ -9,6 +9,10 @@
 <body>
   <div id="app"></div>
   <div id="modal-container"></div>
+  <script>
+    // Load API key from environment (if available)
+    window.ENV_API_KEY = '${API_KEY}' !== '${API_KEY}' ? '${API_KEY}' : null;
+  </script>
   <script src="js/progress.js"></script>
   <script src="js/exercises.js"></script>
   <script src="js/production.js"></script>

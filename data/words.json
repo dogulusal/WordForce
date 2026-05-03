@@ -1,0 +1,4898 @@
+{
+  "a": {
+    "level": "A1",
+    "pos": "article",
+    "tr": "bir",
+    "def": "Used before a noun to refer to one thing (not specific)",
+    "ex": [
+      "I have a dog.",
+      "She wants a new book.",
+      "He is a teacher."
+    ]
+  },
+  "about": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "hakkında",
+    "def": "On the subject of; approximately",
+    "ex": [
+      "Tell me about your day.",
+      "There are about 50 people here.",
+      "What is this book about?"
+    ]
+  },
+  "above": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "üstünde",
+    "def": "In a higher position than something",
+    "ex": [
+      "The plane flew above the clouds.",
+      "The painting hangs above the door."
+    ]
+  },
+  "across": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "karşısında",
+    "def": "From one side to the other side of something",
+    "ex": [
+      "She walked across the street.",
+      "The bridge goes across the river."
+    ]
+  },
+  "act": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "hareket etmek",
+    "def": "To do something; to perform in a play or film",
+    "ex": [
+      "We must act quickly.",
+      "She can act very well.",
+      "He decided to act on the advice."
+    ]
+  },
+  "action": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "eylem",
+    "def": "The process of doing something to achieve a goal",
+    "ex": [
+      "We need to take action now.",
+      "The movie is full of action."
+    ]
+  },
+  "activity": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "aktivite",
+    "def": "Something that you do for enjoyment or a purpose",
+    "ex": [
+      "Swimming is a fun activity.",
+      "There are many activities for children here."
+    ]
+  },
+  "actor": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "aktör"
+  },
+  "actress": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "aktris"
+  },
+  "add": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "eklemek",
+    "def": "To put something together with something else",
+    "ex": [
+      "Please add sugar to my coffee.",
+      "Add these numbers together.",
+      "I want to add one more thing."
+    ]
+  },
+  "afraid": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "korkmuş",
+    "def": "Feeling fear; worried that something bad may happen",
+    "ex": [
+      "She is afraid of spiders.",
+      "Do not be afraid to ask questions."
+    ]
+  },
+  "after": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "sonra",
+    "def": "Later in time; following something",
+    "ex": [
+      "We had coffee after dinner.",
+      "I will call you after work.",
+      "What happened after that?"
+    ]
+  },
+  "afternoon": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "öğleden sonra",
+    "def": "The time between noon and evening",
+    "ex": [
+      "I will see you this afternoon.",
+      "She always sleeps in the afternoon."
+    ]
+  },
+  "again": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "tekrar",
+    "def": "One more time; once more",
+    "ex": [
+      "Can you say that again?",
+      "I want to go there again.",
+      "She smiled again."
+    ]
+  },
+  "age": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "yaş",
+    "def": "The number of years someone has lived",
+    "ex": [
+      "What is your age?",
+      "Children of all ages can play.",
+      "She started working at age 18."
+    ]
+  },
+  "ago": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "önce",
+    "def": "In the past; before now",
+    "ex": [
+      "I moved here two years ago.",
+      "A long time ago, there was a king."
+    ]
+  },
+  "agree": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "katılmak",
+    "def": "To have the same opinion as someone",
+    "ex": [
+      "I agree with you completely.",
+      "They could not agree on a plan.",
+      "Do you agree?"
+    ]
+  },
+  "air": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "hava",
+    "def": "The invisible gas that we breathe",
+    "ex": [
+      "Open the window for fresh air.",
+      "Birds fly through the air.",
+      "The air smells clean after rain."
+    ]
+  },
+  "airport": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "havaalanı",
+    "def": "A place where planes take off and land",
+    "ex": [
+      "We arrived at the airport early.",
+      "The airport is very busy today."
+    ]
+  },
+  "all": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "hepsi",
+    "def": "Every one of; the whole amount",
+    "ex": [
+      "All students must attend.",
+      "She ate all the cake.",
+      "We are all here now."
+    ]
+  },
+  "also": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "ayrıca",
+    "def": "In addition; too",
+    "ex": [
+      "He also speaks French.",
+      "I also want to come.",
+      "She is also a good singer."
+    ]
+  },
+  "always": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "her zaman",
+    "def": "At all times; every time",
+    "ex": [
+      "She always arrives on time.",
+      "I always drink water in the morning.",
+      "He is always happy."
+    ]
+  },
+  "amazing": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "harika",
+    "def": "Very surprising and impressive; wonderful",
+    "ex": [
+      "The view from here is amazing.",
+      "She is an amazing cook.",
+      "What an amazing day!"
+    ]
+  },
+  "and": {
+    "level": "A1",
+    "pos": "conj",
+    "tr": "ve"
+  },
+  "angry": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "kızgın",
+    "def": "Feeling strong displeasure about something unfair",
+    "ex": [
+      "He was angry about the decision.",
+      "Do not be angry with me.",
+      "She looked angry."
+    ]
+  },
+  "animal": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "hayvan",
+    "def": "A living creature that is not a plant or human",
+    "ex": [
+      "A dog is a popular animal.",
+      "Wild animals live in the forest.",
+      "What is your favorite animal?"
+    ]
+  },
+  "another": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "başka bir",
+    "def": "One more; a different one",
+    "ex": [
+      "Would you like another cup of tea?",
+      "Let us try another way.",
+      "She moved to another city."
+    ]
+  },
+  "answer": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "cevap",
+    "def": "Something you say or write in reply to a question",
+    "ex": [
+      "What is the answer to this question?",
+      "She did not answer my call.",
+      "Please answer the door."
+    ]
+  },
+  "any": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "herhangi bir",
+    "def": "Some; no matter which",
+    "ex": [
+      "Do you have any questions?",
+      "I do not have any money.",
+      "Any student can join."
+    ]
+  },
+  "anyone": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "herhangi biri",
+    "def": "Any person; it does not matter who",
+    "ex": [
+      "Is anyone home?",
+      "Anyone can learn to cook.",
+      "I did not see anyone there."
+    ]
+  },
+  "anything": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "herhangi bir şey",
+    "def": "Any thing; it does not matter what",
+    "ex": [
+      "Is there anything I can do?",
+      "She can eat anything.",
+      "I do not want anything."
+    ]
+  },
+  "apartment": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "daire",
+    "def": "A set of rooms for living in, inside a building",
+    "ex": [
+      "They live in a small apartment.",
+      "I am looking for a new apartment."
+    ]
+  },
+  "apple": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "elma",
+    "def": "A round fruit that is red, green, or yellow",
+    "ex": [
+      "I eat an apple every day.",
+      "She bought some apples from the market."
+    ]
+  },
+  "April": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Nisan"
+  },
+  "area": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "alan",
+    "def": "A part of a place, city, or country",
+    "ex": [
+      "This area is very quiet.",
+      "We searched the whole area.",
+      "There is a park in this area."
+    ]
+  },
+  "arm": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kol",
+    "def": "The body part between your shoulder and your hand",
+    "ex": [
+      "She broke her arm last week.",
+      "He put his arm around her."
+    ]
+  },
+  "around": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "etrafında",
+    "def": "On all sides of; in the area near",
+    "ex": [
+      "There are trees around the house.",
+      "She looked around the room.",
+      "Is there a bank around here?"
+    ]
+  },
+  "arrive": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "varmak",
+    "def": "To reach a place, especially at the end of a journey",
+    "ex": [
+      "We will arrive at 6 pm.",
+      "The train arrived on time.",
+      "When did you arrive?"
+    ]
+  },
+  "art": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "sanat",
+    "def": "Paintings, drawings, music, or other creative works",
+    "ex": [
+      "She studies art at school.",
+      "This museum has beautiful art.",
+      "Art makes life more interesting."
+    ]
+  },
+  "article": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "makale"
+  },
+  "artist": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "sanatçı",
+    "def": "A person who creates art, such as paintings or music",
+    "ex": [
+      "He is a famous artist.",
+      "The artist painted this picture."
+    ]
+  },
+  "as": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "olarak"
+  },
+  "ask": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "sormak",
+    "def": "To say something to get an answer or information",
+    "ex": [
+      "Can I ask you a question?",
+      "She asked for help.",
+      "Ask him where he lives."
+    ]
+  },
+  "at": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "-de/-da",
+    "def": "Used to show a place, time, or direction",
+    "ex": [
+      "I am at home now.",
+      "The meeting is at 3 pm.",
+      "Look at this!"
+    ]
+  },
+  "August": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Ağustos"
+  },
+  "aunt": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "teyze/hala"
+  },
+  "autumn": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "sonbahar"
+  },
+  "away": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "uzakta",
+    "def": "To or at a distance from here",
+    "ex": [
+      "She walked away quickly.",
+      "The beach is far away.",
+      "Go away!"
+    ]
+  },
+  "awesome": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "harika"
+  },
+  "baby": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "bebek",
+    "def": "A very young child who cannot yet walk or talk",
+    "ex": [
+      "The baby is sleeping.",
+      "She had a baby last month.",
+      "What a cute baby!"
+    ]
+  },
+  "back": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "arka",
+    "def": "The part of your body behind you; returning",
+    "ex": [
+      "My back hurts today.",
+      "She came back from work.",
+      "I will be back soon."
+    ]
+  },
+  "bad": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "kötü",
+    "def": "Not good; of low quality or harmful",
+    "ex": [
+      "That was a bad idea.",
+      "The weather is bad today.",
+      "I feel bad about it."
+    ]
+  },
+  "bag": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "çanta",
+    "def": "A container made of paper, plastic, or leather",
+    "ex": [
+      "She put the books in her bag.",
+      "I need a shopping bag."
+    ]
+  },
+  "ball": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "top",
+    "def": "A round object used in games and sports",
+    "ex": [
+      "Throw the ball to me.",
+      "The children played with a ball."
+    ]
+  },
+  "banana": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "muz"
+  },
+  "band": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "grup/bant"
+  },
+  "bank": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "banka",
+    "def": "A place where you keep your money safely",
+    "ex": [
+      "I need to go to the bank.",
+      "She works at a bank.",
+      "The bank closes at 5 pm."
+    ]
+  },
+  "baseball": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "beyzbol"
+  },
+  "basketball": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "basketbol"
+  },
+  "bath": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "banyo",
+    "def": "Washing your whole body in water",
+    "ex": [
+      "I take a bath every evening.",
+      "The baby loves bath time."
+    ]
+  },
+  "bathroom": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "banyo"
+  },
+  "be": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "olmak",
+    "def": "To exist; to have a quality or state",
+    "ex": [
+      "I want to be a doctor.",
+      "She will be here soon.",
+      "To be or not to be."
+    ]
+  },
+  "beach": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "plaj",
+    "def": "An area of sand next to the sea",
+    "ex": [
+      "We went to the beach yesterday.",
+      "The beach was very crowded.",
+      "Let us build a sandcastle on the beach."
+    ]
+  },
+  "beautiful": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "güzel",
+    "def": "Very pleasing to look at or hear",
+    "ex": [
+      "What a beautiful day!",
+      "She has a beautiful voice.",
+      "The garden is beautiful in spring."
+    ]
+  },
+  "because": {
+    "level": "A1",
+    "pos": "conj",
+    "tr": "çünkü",
+    "def": "For the reason that",
+    "ex": [
+      "I stayed home because I was sick.",
+      "She is happy because she passed the exam."
+    ]
+  },
+  "become": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "olmak/haline gelmek",
+    "def": "To start to be something; to grow into",
+    "ex": [
+      "He wants to become a pilot.",
+      "It became very cold at night.",
+      "She became famous."
+    ]
+  },
+  "bed": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "yatak",
+    "def": "A piece of furniture for sleeping on",
+    "ex": [
+      "I go to bed at 10 pm.",
+      "The bed is very comfortable.",
+      "Time for bed!"
+    ]
+  },
+  "bedroom": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "yatak odası"
+  },
+  "beer": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "bira"
+  },
+  "before": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "önce",
+    "def": "Earlier in time; in front of",
+    "ex": [
+      "Wash your hands before eating.",
+      "I have seen this movie before.",
+      "She arrived before me."
+    ]
+  },
+  "begin": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "başlamak",
+    "def": "To start doing something",
+    "ex": [
+      "The movie will begin at 8 pm.",
+      "Let us begin the lesson.",
+      "It began to rain."
+    ]
+  },
+  "beginning": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "başlangıç"
+  },
+  "behind": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "arkasında",
+    "def": "At the back of something",
+    "ex": [
+      "The garden is behind the house.",
+      "She hid behind the door.",
+      "I left my bag behind."
+    ]
+  },
+  "believe": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "inanmak",
+    "def": "To think that something is true or real",
+    "ex": [
+      "I believe you.",
+      "She does not believe in ghosts.",
+      "I believe we can win."
+    ]
+  },
+  "below": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "aşağıda"
+  },
+  "best": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "en iyi",
+    "def": "Of the highest quality; better than all others",
+    "ex": [
+      "She is my best friend.",
+      "This is the best pizza I have ever eaten.",
+      "Do your best!"
+    ]
+  },
+  "better": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "daha iyi",
+    "def": "Of a higher quality than something else",
+    "ex": [
+      "This one is better than that one.",
+      "I feel better today.",
+      "She is a better cook than me."
+    ]
+  },
+  "between": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "arasında",
+    "def": "In the space separating two things",
+    "ex": [
+      "The park is between the school and the hospital.",
+      "Choose between these two."
+    ]
+  },
+  "bicycle": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "bisiklet"
+  },
+  "big": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "büyük",
+    "def": "Large in size, amount, or importance",
+    "ex": [
+      "They live in a big house.",
+      "It was a big mistake.",
+      "She has big brown eyes."
+    ]
+  },
+  "bike": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "bisiklet"
+  },
+  "bird": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kuş",
+    "def": "An animal with wings and feathers that can usually fly",
+    "ex": [
+      "A bird is singing in the tree.",
+      "I saw a beautiful bird today."
+    ]
+  },
+  "birthday": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "doğum günü"
+  },
+  "black": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "siyah",
+    "def": "The darkest color, like the night sky",
+    "ex": [
+      "She wore a black dress.",
+      "The cat is black.",
+      "I drink black coffee."
+    ]
+  },
+  "blog": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "blog"
+  },
+  "blue": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "mavi",
+    "def": "The color of the sky on a clear day",
+    "ex": [
+      "The sky is blue today.",
+      "She has blue eyes.",
+      "I bought a blue shirt."
+    ]
+  },
+  "board": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "tahta"
+  },
+  "boat": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "tekne"
+  },
+  "body": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "vücut",
+    "def": "The physical form of a person or animal",
+    "ex": [
+      "Exercise is good for your body.",
+      "The human body needs water."
+    ]
+  },
+  "book": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kitap",
+    "def": "A set of pages with writing or pictures, inside a cover",
+    "ex": [
+      "I am reading a good book.",
+      "She wrote a book about cooking.",
+      "This book has 200 pages."
+    ]
+  },
+  "boot": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "çizme/bot"
+  },
+  "bored": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "sıkılmış"
+  },
+  "boring": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "sıkıcı"
+  },
+  "born": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "doğmak",
+    "def": "Coming into life; starting to exist",
+    "ex": [
+      "She was born in 1990.",
+      "I was born in Istanbul.",
+      "A star is born."
+    ]
+  },
+  "both": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "her ikisi",
+    "def": "Two people or things together",
+    "ex": [
+      "Both children are happy.",
+      "I like both of them.",
+      "She speaks both English and French."
+    ]
+  },
+  "bottle": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "şişe"
+  },
+  "box": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kutu"
+  },
+  "boy": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "erkek çocuk",
+    "def": "A male child or young man",
+    "ex": [
+      "The boy is playing in the park.",
+      "He was a quiet boy."
+    ]
+  },
+  "bread": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ekmek",
+    "def": "A common food made from flour and water, baked in an oven",
+    "ex": [
+      "I bought some bread from the bakery.",
+      "Would you like some bread?"
+    ]
+  },
+  "break": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "kırmak",
+    "def": "To damage something so it separates into pieces; a rest",
+    "ex": [
+      "Be careful not to break the glass.",
+      "Let us take a short break.",
+      "She broke her leg."
+    ]
+  },
+  "breakfast": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kahvaltı",
+    "def": "The first meal of the day, eaten in the morning",
+    "ex": [
+      "What did you have for breakfast?",
+      "I always eat breakfast at 8 am."
+    ]
+  },
+  "bring": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "getirmek",
+    "def": "To carry something or someone to a place",
+    "ex": [
+      "Please bring your book to class.",
+      "She brought flowers for me.",
+      "Bring your friends!"
+    ]
+  },
+  "brother": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "erkek kardeş",
+    "def": "A male who has the same parents as you",
+    "ex": [
+      "My brother is older than me.",
+      "She has two brothers.",
+      "He and his brother look alike."
+    ]
+  },
+  "brown": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "kahverengi",
+    "def": "The color of wood, earth, or chocolate",
+    "ex": [
+      "She has brown hair.",
+      "The dog is brown.",
+      "I like brown shoes."
+    ]
+  },
+  "build": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "inşa etmek",
+    "def": "To make something by putting parts together",
+    "ex": [
+      "They want to build a new house.",
+      "He built a table from wood."
+    ]
+  },
+  "building": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "bina"
+  },
+  "bus": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "otobüs",
+    "def": "A large vehicle that carries many passengers",
+    "ex": [
+      "I take the bus to work.",
+      "The bus arrives every 10 minutes.",
+      "She missed the bus."
+    ]
+  },
+  "business": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "iş",
+    "def": "The activity of buying and selling; a company",
+    "ex": [
+      "He started his own business.",
+      "Business is good this year.",
+      "She studies business at university."
+    ]
+  },
+  "busy": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "meşgul",
+    "def": "Having a lot of things to do; not free",
+    "ex": [
+      "I am very busy today.",
+      "The street is always busy.",
+      "She is too busy to come."
+    ]
+  },
+  "but": {
+    "level": "A1",
+    "pos": "conj",
+    "tr": "ama",
+    "def": "Used to introduce something different or opposite",
+    "ex": [
+      "I want to go, but I am tired.",
+      "She is small but strong.",
+      "It is cheap but good."
+    ]
+  },
+  "butter": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "tereyağı"
+  },
+  "buy": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "satın almak",
+    "def": "To get something by paying money for it",
+    "ex": [
+      "I want to buy a new phone.",
+      "She buys groceries every Saturday.",
+      "Where did you buy this?"
+    ]
+  },
+  "by": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "tarafından",
+    "def": "Near; through the action of; before a time",
+    "ex": [
+      "Sit by the window.",
+      "This book was written by her.",
+      "I will finish by Friday."
+    ]
+  },
+  "bye": {
+    "level": "A1",
+    "pos": "exclam",
+    "tr": "hoşçakal"
+  },
+  "cafe": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kafe"
+  },
+  "cake": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "pasta"
+  },
+  "call": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "aramak",
+    "def": "To use a phone to speak to someone; to give a name",
+    "ex": [
+      "I will call you tonight.",
+      "They call him Tom.",
+      "She called a taxi."
+    ]
+  },
+  "camera": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kamera"
+  },
+  "can": {
+    "level": "A1",
+    "pos": "modal",
+    "tr": "-ebilmek",
+    "def": "To be able to do something; to have permission",
+    "ex": [
+      "I can swim.",
+      "Can you help me?",
+      "She can speak three languages."
+    ]
+  },
+  "cannot": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "-ememek"
+  },
+  "car": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "araba",
+    "def": "A vehicle with four wheels and an engine",
+    "ex": [
+      "He drives a red car.",
+      "I go to work by car.",
+      "She bought a new car."
+    ]
+  },
+  "card": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kart",
+    "def": "A small piece of stiff paper for writing or playing games",
+    "ex": [
+      "She sent me a birthday card.",
+      "Do you accept credit cards?"
+    ]
+  },
+  "career": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kariyer"
+  },
+  "carry": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "taşımak",
+    "def": "To hold something and move it to another place",
+    "ex": [
+      "Can you carry this bag for me?",
+      "She always carries her phone."
+    ]
+  },
+  "carrot": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "havuç"
+  },
+  "cat": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kedi",
+    "def": "A small animal with fur that people keep as a pet",
+    "ex": [
+      "The cat is sleeping on the sofa.",
+      "She has two cats.",
+      "I love cats."
+    ]
+  },
+  "CD": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "CD"
+  },
+  "cent": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "sent"
+  },
+  "center": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "merkez"
+  },
+  "chair": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "sandalye"
+  },
+  "change": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "değiştirmek",
+    "def": "To become different; to make something different",
+    "ex": [
+      "Things can change quickly.",
+      "I need to change my clothes.",
+      "She changed her mind."
+    ]
+  },
+  "channel": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kanal"
+  },
+  "cheap": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "ucuz",
+    "def": "Not costing a lot of money",
+    "ex": [
+      "This restaurant is cheap.",
+      "I found a cheap flight.",
+      "It looks cheap but it is good quality."
+    ]
+  },
+  "cheese": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "peynir"
+  },
+  "chicken": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "tavuk"
+  },
+  "child": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "çocuk",
+    "def": "A young person who is not yet an adult",
+    "ex": [
+      "She was a happy child.",
+      "Every child needs love.",
+      "The child is playing outside."
+    ]
+  },
+  "chocolate": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "çikolata"
+  },
+  "choose": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "seçmek"
+  },
+  "city": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "şehir",
+    "def": "A large town where many people live and work",
+    "ex": [
+      "Istanbul is a big city.",
+      "I live in the city center.",
+      "The city is beautiful at night."
+    ]
+  },
+  "class": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "sınıf",
+    "def": "A group of students who learn together; a lesson",
+    "ex": [
+      "I have class at 9 am.",
+      "She is the best in her class.",
+      "English class is fun."
+    ]
+  },
+  "classroom": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "sınıf"
+  },
+  "clean": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "temiz",
+    "def": "Free from dirt; to remove dirt from something",
+    "ex": [
+      "The house is very clean.",
+      "Please clean your room.",
+      "I need clean clothes."
+    ]
+  },
+  "clock": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "saat"
+  },
+  "close": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "kapatmak",
+    "def": "To shut; near in distance",
+    "ex": [
+      "Please close the door.",
+      "The shop is close to my house.",
+      "She closed her eyes."
+    ]
+  },
+  "clothes": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kıyafetler",
+    "def": "Things that you wear on your body",
+    "ex": [
+      "She bought new clothes.",
+      "Put on warm clothes.",
+      "I need to wash my clothes."
+    ]
+  },
+  "club": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kulüp"
+  },
+  "coat": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "mont/palto"
+  },
+  "coffee": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kahve"
+  },
+  "cold": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "soğuk",
+    "def": "Having a low temperature; not warm",
+    "ex": [
+      "It is very cold today.",
+      "The water is cold.",
+      "I have a cold."
+    ]
+  },
+  "college": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kolej"
+  },
+  "color": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "renk"
+  },
+  "come": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "gelmek",
+    "def": "To move toward or arrive at a place",
+    "ex": [
+      "Come here, please.",
+      "She came home late.",
+      "Can you come to my party?"
+    ]
+  },
+  "common": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "yaygın"
+  },
+  "company": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "şirket"
+  },
+  "computer": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "bilgisayar",
+    "def": "An electronic machine that stores and processes information",
+    "ex": [
+      "I work on a computer all day.",
+      "She bought a new computer."
+    ]
+  },
+  "concert": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "konser"
+  },
+  "cook": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "pişirmek",
+    "def": "To prepare food by heating it",
+    "ex": [
+      "I like to cook dinner.",
+      "She cooks very well.",
+      "Who will cook tonight?"
+    ]
+  },
+  "cooking": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "yemek yapma"
+  },
+  "cool": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "havalı/serin",
+    "def": "Slightly cold; impressive or fashionable",
+    "ex": [
+      "The weather is cool today.",
+      "That is a cool idea!",
+      "She thinks she is very cool."
+    ]
+  },
+  "corn": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "mısır"
+  },
+  "correct": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "doğru"
+  },
+  "cost": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "maliyet"
+  },
+  "could": {
+    "level": "A1",
+    "pos": "modal",
+    "tr": "-ebilirdi"
+  },
+  "country": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ülke",
+    "def": "A nation with its own government; rural area",
+    "ex": [
+      "Turkey is a beautiful country.",
+      "Which country are you from?",
+      "I prefer the country to the city."
+    ]
+  },
+  "course": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kurs",
+    "def": "A series of lessons; naturally, of course",
+    "ex": [
+      "I am taking an English course.",
+      "Of course you can come!"
+    ]
+  },
+  "cousin": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kuzen"
+  },
+  "cow": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "inek"
+  },
+  "create": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "yaratmak"
+  },
+  "culture": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kültür"
+  },
+  "cup": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "fincan"
+  },
+  "customer": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "müşteri"
+  },
+  "cut": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "kesmek",
+    "def": "To use a knife or scissors to divide something",
+    "ex": [
+      "She cut the bread.",
+      "I cut my finger.",
+      "Cut the paper in half."
+    ]
+  },
+  "dad": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "baba",
+    "def": "Father (informal)",
+    "ex": [
+      "My dad works in a hospital.",
+      "Dad, can I go out?",
+      "She looks like her dad."
+    ]
+  },
+  "dance": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "dans etmek",
+    "def": "To move your body to music",
+    "ex": [
+      "She loves to dance.",
+      "They danced all night.",
+      "Can you dance?"
+    ]
+  },
+  "dancer": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "dansçı"
+  },
+  "dancing": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "dans"
+  },
+  "dangerous": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "tehlikeli"
+  },
+  "dark": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "karanlık"
+  },
+  "daughter": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kız çocuk",
+    "def": "A female child of a parent",
+    "ex": [
+      "She is my daughter.",
+      "Their daughter is 10 years old."
+    ]
+  },
+  "day": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "gün",
+    "def": "A period of 24 hours; the time when it is light",
+    "ex": [
+      "What day is it today?",
+      "Have a nice day!",
+      "I work five days a week."
+    ]
+  },
+  "dear": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "sevgili"
+  },
+  "December": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Aralık"
+  },
+  "decide": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "karar vermek",
+    "def": "To choose something after thinking about it",
+    "ex": [
+      "I cannot decide what to eat.",
+      "She decided to stay home.",
+      "Have you decided yet?"
+    ]
+  },
+  "delicious": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "lezzetli"
+  },
+  "describe": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "tanımlamak"
+  },
+  "description": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "tanım"
+  },
+  "design": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "tasarım"
+  },
+  "desk": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "masa"
+  },
+  "dialogue": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "diyalog"
+  },
+  "dictionary": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "sözlük"
+  },
+  "die": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "ölmek"
+  },
+  "diet": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "diyet"
+  },
+  "different": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "farklı"
+  },
+  "difficult": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "zor",
+    "def": "Not easy; hard to do or understand",
+    "ex": [
+      "This question is difficult.",
+      "Learning a new language is difficult.",
+      "It was a difficult day."
+    ]
+  },
+  "dinner": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "akşam yemeği",
+    "def": "The main meal of the day, usually in the evening",
+    "ex": [
+      "What is for dinner tonight?",
+      "We had dinner at a restaurant.",
+      "Dinner is ready!"
+    ]
+  },
+  "dirty": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "kirli"
+  },
+  "dish": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "tabak/yemek"
+  },
+  "do": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "yapmak",
+    "def": "To perform an action; to complete a task",
+    "ex": [
+      "What do you do?",
+      "I do my homework after school.",
+      "She did a great job."
+    ]
+  },
+  "doctor": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "doktor",
+    "def": "A person whose job is to treat sick people",
+    "ex": [
+      "I need to see a doctor.",
+      "She is a doctor at the hospital.",
+      "The doctor said I am fine."
+    ]
+  },
+  "dog": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "köpek",
+    "def": "A common animal that people keep as a pet",
+    "ex": [
+      "I have a big dog.",
+      "The dog is barking.",
+      "She walks her dog every morning."
+    ]
+  },
+  "dollar": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "dolar"
+  },
+  "door": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kapı",
+    "def": "A flat piece of wood or glass that you open to enter",
+    "ex": [
+      "Please open the door.",
+      "Someone is at the door.",
+      "She closed the door quietly."
+    ]
+  },
+  "down": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "aşağı",
+    "def": "Toward a lower place; from high to low",
+    "ex": [
+      "Sit down, please.",
+      "She walked down the stairs.",
+      "The sun is going down."
+    ]
+  },
+  "draw": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "çizmek",
+    "def": "To make a picture using a pen or pencil",
+    "ex": [
+      "She likes to draw flowers.",
+      "Can you draw a map?",
+      "The child drew a house."
+    ]
+  },
+  "drink": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "içmek",
+    "def": "To take liquid into your mouth and swallow it",
+    "ex": [
+      "I drink coffee every morning.",
+      "Would you like something to drink?",
+      "She drank all the water."
+    ]
+  },
+  "drive": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "sürmek",
+    "def": "To control and move a car or vehicle",
+    "ex": [
+      "Can you drive?",
+      "She drives to work.",
+      "I learned to drive at 18."
+    ]
+  },
+  "driver": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "sürücü"
+  },
+  "during": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "sırasında",
+    "def": "Through the whole time of something",
+    "ex": [
+      "It rained during the night.",
+      "She fell asleep during the movie.",
+      "I lived in London during 2020."
+    ]
+  },
+  "DVD": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "DVD"
+  },
+  "each": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "her bir"
+  },
+  "ear": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kulak"
+  },
+  "early": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "erken"
+  },
+  "east": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "doğu"
+  },
+  "easy": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "kolay"
+  },
+  "eat": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "yemek"
+  },
+  "egg": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "yumurta"
+  },
+  "eight": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "sekiz"
+  },
+  "eighteen": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "on sekiz"
+  },
+  "eighty": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "seksen"
+  },
+  "elephant": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "fil"
+  },
+  "eleven": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "on bir"
+  },
+  "else": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "başka"
+  },
+  "email": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "e-posta"
+  },
+  "end": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "son"
+  },
+  "enjoy": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "zevk almak"
+  },
+  "enough": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "yeterli"
+  },
+  "euro": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "euro"
+  },
+  "evening": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "akşam"
+  },
+  "event": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "etkinlik"
+  },
+  "ever": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "hiç"
+  },
+  "every": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "her"
+  },
+  "everybody": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "herkes"
+  },
+  "everyone": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "herkes"
+  },
+  "everything": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "her şey"
+  },
+  "exam": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "sınav"
+  },
+  "example": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "örnek"
+  },
+  "excited": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "heyecanlı"
+  },
+  "exciting": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "heyecan verici"
+  },
+  "excuse": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "bahane"
+  },
+  "exercise": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "egzersiz"
+  },
+  "expensive": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "pahalı"
+  },
+  "explain": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "açıklamak"
+  },
+  "eye": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "göz"
+  },
+  "face": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "yüz"
+  },
+  "fact": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "gerçek"
+  },
+  "fall": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "düşmek"
+  },
+  "family": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "aile"
+  },
+  "famous": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "ünlü"
+  },
+  "fan": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "fan/hayran"
+  },
+  "far": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "uzak"
+  },
+  "farm": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "çiftlik"
+  },
+  "farmer": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "çiftçi"
+  },
+  "fast": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "hızlı"
+  },
+  "fat": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "şişman"
+  },
+  "father": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "baba"
+  },
+  "favorite": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "favori"
+  },
+  "February": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Şubat"
+  },
+  "feel": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "hissetmek"
+  },
+  "feeling": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "duygu"
+  },
+  "festival": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "festival"
+  },
+  "few": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "birkaç"
+  },
+  "fifteen": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "on beş"
+  },
+  "fifty": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "elli"
+  },
+  "fill": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "doldurmak"
+  },
+  "film": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "film"
+  },
+  "final": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "son"
+  },
+  "find": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "bulmak"
+  },
+  "fine": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "iyi"
+  },
+  "finish": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "bitirmek"
+  },
+  "fire": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ateş"
+  },
+  "first": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "ilk"
+  },
+  "fish": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "balık"
+  },
+  "five": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "beş"
+  },
+  "floor": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "zemin/kat"
+  },
+  "flower": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "çiçek"
+  },
+  "fly": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "uçmak"
+  },
+  "follow": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "takip etmek"
+  },
+  "food": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "yiyecek"
+  },
+  "foot": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ayak"
+  },
+  "football": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "futbol"
+  },
+  "for": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "için"
+  },
+  "forget": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "unutmak"
+  },
+  "form": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "form/biçim"
+  },
+  "forty": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "kırk"
+  },
+  "four": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "dört"
+  },
+  "fourteen": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "on dört"
+  },
+  "fourth": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "dördüncü"
+  },
+  "free": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "ücretsiz/serbest"
+  },
+  "Friday": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Cuma"
+  },
+  "friend": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "arkadaş"
+  },
+  "friendly": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "arkadaş canlısı"
+  },
+  "from": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "-den/-dan"
+  },
+  "front": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ön"
+  },
+  "fruit": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "meyve"
+  },
+  "full": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "dolu"
+  },
+  "fun": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "eğlence"
+  },
+  "funny": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "komik"
+  },
+  "future": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "gelecek"
+  },
+  "game": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "oyun"
+  },
+  "garden": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "bahçe"
+  },
+  "geography": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "coğrafya"
+  },
+  "get": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "almak/elde etmek"
+  },
+  "girl": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kız"
+  },
+  "give": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "vermek"
+  },
+  "glad": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "memnun"
+  },
+  "glass": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "bardak/cam"
+  },
+  "glove": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "eldiven"
+  },
+  "go": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "gitmek"
+  },
+  "good": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "iyi"
+  },
+  "goodbye": {
+    "level": "A1",
+    "pos": "exclam",
+    "tr": "hoşçakal"
+  },
+  "grandparent": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "büyük ebeveyn"
+  },
+  "grandmother": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "büyükanne"
+  },
+  "grandfather": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "büyükbaba"
+  },
+  "gray": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "gri"
+  },
+  "great": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "harika/büyük"
+  },
+  "green": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "yeşil"
+  },
+  "group": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "grup"
+  },
+  "grow": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "büyümek"
+  },
+  "guess": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "tahmin etmek"
+  },
+  "guitar": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "gitar"
+  },
+  "gym": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "spor salonu"
+  },
+  "hair": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "saç"
+  },
+  "half": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "yarım"
+  },
+  "hand": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "el"
+  },
+  "happen": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "olmak/gerçekleşmek"
+  },
+  "happy": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "mutlu"
+  },
+  "hard": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "zor/sert"
+  },
+  "hat": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "şapka"
+  },
+  "hate": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "nefret etmek"
+  },
+  "have": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "sahip olmak"
+  },
+  "have_to": {
+    "level": "A1",
+    "pos": "modal",
+    "tr": "-meli/-malı"
+  },
+  "he": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "o (erkek)"
+  },
+  "head": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "baş/kafa"
+  },
+  "health": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "sağlık"
+  },
+  "healthy": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "sağlıklı"
+  },
+  "hear": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "duymak"
+  },
+  "hello": {
+    "level": "A1",
+    "pos": "exclam",
+    "tr": "merhaba"
+  },
+  "help": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "yardım etmek"
+  },
+  "her": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "onun (kadın)"
+  },
+  "here": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "burada"
+  },
+  "hey": {
+    "level": "A1",
+    "pos": "exclam",
+    "tr": "hey"
+  },
+  "hi": {
+    "level": "A1",
+    "pos": "exclam",
+    "tr": "selam"
+  },
+  "high": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "yüksek"
+  },
+  "him": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "onu (erkek)"
+  },
+  "his": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "onun (erkek)"
+  },
+  "history": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "tarih"
+  },
+  "hobby": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "hobi"
+  },
+  "holiday": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "tatil"
+  },
+  "home": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ev"
+  },
+  "homework": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ödev"
+  },
+  "hope": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "ummak"
+  },
+  "horse": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "at"
+  },
+  "hospital": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "hastane"
+  },
+  "hot": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "sıcak"
+  },
+  "hotel": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "otel"
+  },
+  "hour": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "saat"
+  },
+  "house": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ev"
+  },
+  "how": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "nasıl"
+  },
+  "however": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "ancak"
+  },
+  "hundred": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "yüz"
+  },
+  "hungry": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "aç"
+  },
+  "husband": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "koca"
+  },
+  "I": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "ben"
+  },
+  "ice": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "buz"
+  },
+  "ice_cream": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "dondurma"
+  },
+  "idea": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "fikir"
+  },
+  "if": {
+    "level": "A1",
+    "pos": "conj",
+    "tr": "eğer"
+  },
+  "important": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "önemli"
+  },
+  "in": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "içinde"
+  },
+  "information": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "bilgi"
+  },
+  "interesting": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "ilginç"
+  },
+  "interested": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "ilgili"
+  },
+  "internet": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "internet"
+  },
+  "into": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "içine"
+  },
+  "introduce": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "tanıtmak"
+  },
+  "island": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ada"
+  },
+  "it": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "o (nesne)"
+  },
+  "its": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "onun (nesne)"
+  },
+  "jacket": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ceket"
+  },
+  "January": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Ocak"
+  },
+  "jeans": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kot pantolon"
+  },
+  "job": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "iş"
+  },
+  "join": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "katılmak"
+  },
+  "juice": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "meyve suyu"
+  },
+  "July": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Temmuz"
+  },
+  "June": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Haziran"
+  },
+  "just": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "sadece"
+  },
+  "keep": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "tutmak"
+  },
+  "key": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "anahtar"
+  },
+  "kind": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "tür"
+  },
+  "kitchen": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "mutfak"
+  },
+  "know": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "bilmek"
+  },
+  "lake": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "göl"
+  },
+  "language": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "dil"
+  },
+  "large": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "büyük"
+  },
+  "last": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "son"
+  },
+  "late": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "geç"
+  },
+  "laugh": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "gülmek"
+  },
+  "learn": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "öğrenmek"
+  },
+  "leave": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "ayrılmak"
+  },
+  "left": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "sol"
+  },
+  "leg": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "bacak"
+  },
+  "lesson": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ders"
+  },
+  "let": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "izin vermek"
+  },
+  "letter": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "mektup/harf"
+  },
+  "library": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kütüphane"
+  },
+  "lie": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "yalan söylemek"
+  },
+  "life": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "hayat"
+  },
+  "light": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ışık"
+  },
+  "like": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "sevmek/beğenmek"
+  },
+  "line": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "çizgi/hat"
+  },
+  "lion": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "aslan"
+  },
+  "list": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "liste"
+  },
+  "listen": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "dinlemek"
+  },
+  "little": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "küçük"
+  },
+  "live": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "yaşamak"
+  },
+  "long": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "uzun"
+  },
+  "look": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "bakmak"
+  },
+  "lose": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "kaybetmek"
+  },
+  "lot": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "çok"
+  },
+  "love": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "sevmek"
+  },
+  "low": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "alçak/düşük"
+  },
+  "lunch": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "öğle yemeği"
+  },
+  "machine": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "makine"
+  },
+  "main": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "ana"
+  },
+  "make": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "yapmak"
+  },
+  "man": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "adam/erkek"
+  },
+  "many": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "çok"
+  },
+  "map": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "harita"
+  },
+  "March": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Mart"
+  },
+  "market": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "pazar/market"
+  },
+  "married": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "evli"
+  },
+  "match": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "eşleştirmek"
+  },
+  "math": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "matematik"
+  },
+  "May": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Mayıs"
+  },
+  "maybe": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "belki"
+  },
+  "me": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "beni/bana"
+  },
+  "meal": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "yemek"
+  },
+  "mean": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "anlamına gelmek"
+  },
+  "meaning": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "anlam"
+  },
+  "meat": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "et"
+  },
+  "meet": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "tanışmak/buluşmak"
+  },
+  "meeting": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "toplantı"
+  },
+  "member": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "üye"
+  },
+  "menu": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "menü"
+  },
+  "message": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "mesaj"
+  },
+  "meter": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "metre"
+  },
+  "middle": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "orta"
+  },
+  "midnight": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "gece yarısı"
+  },
+  "milk": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "süt"
+  },
+  "million": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "milyon"
+  },
+  "minute": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "dakika"
+  },
+  "miss": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "özlemek/kaçırmak"
+  },
+  "mom": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "anne"
+  },
+  "moment": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "an"
+  },
+  "Monday": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Pazartesi"
+  },
+  "money": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "para"
+  },
+  "month": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ay"
+  },
+  "more": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "daha fazla"
+  },
+  "morning": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "sabah"
+  },
+  "most": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "en çok"
+  },
+  "mother": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "anne"
+  },
+  "mountain": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "dağ"
+  },
+  "mouse": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "fare"
+  },
+  "mouth": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ağız"
+  },
+  "move": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "taşınmak/hareket etmek"
+  },
+  "movie": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "film"
+  },
+  "Mr": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Bay"
+  },
+  "Mrs": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Bayan"
+  },
+  "much": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "çok"
+  },
+  "museum": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "müze"
+  },
+  "music": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "müzik"
+  },
+  "must": {
+    "level": "A1",
+    "pos": "modal",
+    "tr": "-meli/-malı"
+  },
+  "my": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "benim"
+  },
+  "name": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "isim"
+  },
+  "near": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "yakın"
+  },
+  "need": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "ihtiyaç duymak"
+  },
+  "never": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "asla"
+  },
+  "new": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "yeni"
+  },
+  "news": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "haber"
+  },
+  "newspaper": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "gazete"
+  },
+  "next": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "sonraki"
+  },
+  "next_to": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "yanında"
+  },
+  "nice": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "güzel/hoş"
+  },
+  "night": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "gece"
+  },
+  "nine": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "dokuz"
+  },
+  "nineteen": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "on dokuz"
+  },
+  "ninety": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "doksan"
+  },
+  "no": {
+    "level": "A1",
+    "pos": "exclam",
+    "tr": "hayır"
+  },
+  "no_one": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "hiç kimse"
+  },
+  "nobody": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "hiç kimse"
+  },
+  "nor": {
+    "level": "A1",
+    "pos": "conj",
+    "tr": "ne de"
+  },
+  "north": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kuzey"
+  },
+  "nose": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "burun"
+  },
+  "not": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "değil"
+  },
+  "nothing": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "hiçbir şey"
+  },
+  "November": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Kasım"
+  },
+  "now": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "şimdi"
+  },
+  "number": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "numara/sayı"
+  },
+  "nurse": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "hemşire"
+  },
+  "ocean": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "okyanus"
+  },
+  "o_clock": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "saat (tam)"
+  },
+  "October": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Ekim"
+  },
+  "of": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "-nın/-nin"
+  },
+  "off": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "kapalı/uzakta"
+  },
+  "office": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ofis"
+  },
+  "often": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "sık sık"
+  },
+  "oh": {
+    "level": "A1",
+    "pos": "exclam",
+    "tr": "oh"
+  },
+  "OK": {
+    "level": "A1",
+    "pos": "exclam",
+    "tr": "tamam"
+  },
+  "old": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "eski/yaşlı"
+  },
+  "on": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "üzerinde"
+  },
+  "once": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "bir kez"
+  },
+  "one": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "bir"
+  },
+  "onion": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "soğan"
+  },
+  "only": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "sadece"
+  },
+  "open": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "açık"
+  },
+  "or": {
+    "level": "A1",
+    "pos": "conj",
+    "tr": "veya"
+  },
+  "orange": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "portakal/turuncu"
+  },
+  "order": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "sipariş/düzen"
+  },
+  "other": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "diğer"
+  },
+  "our": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "bizim"
+  },
+  "ours": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "bizimki"
+  },
+  "out": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "dışarı"
+  },
+  "outside": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "dışarıda"
+  },
+  "over": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "üzerinde"
+  },
+  "own": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "kendi"
+  },
+  "page": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "sayfa"
+  },
+  "paint": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "boyamak"
+  },
+  "painting": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "resim/tablo"
+  },
+  "pair": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "çift"
+  },
+  "pants": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "pantolon"
+  },
+  "paper": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kağıt"
+  },
+  "paragraph": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "paragraf"
+  },
+  "parent": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ebeveyn"
+  },
+  "park": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "park"
+  },
+  "part": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "parça/bölüm"
+  },
+  "party": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "parti"
+  },
+  "passport": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "pasaport"
+  },
+  "past": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "geçmiş"
+  },
+  "path": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "yol/patika"
+  },
+  "pay": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "ödemek"
+  },
+  "pen": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kalem"
+  },
+  "pencil": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kurşun kalem"
+  },
+  "people": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "insanlar"
+  },
+  "pepper": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "biber"
+  },
+  "perfect": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "mükemmel"
+  },
+  "person": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kişi"
+  },
+  "pet": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "evcil hayvan"
+  },
+  "phone": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "telefon"
+  },
+  "photo": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "fotoğraf"
+  },
+  "phrase": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ifade"
+  },
+  "piano": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "piyano"
+  },
+  "picture": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "resim"
+  },
+  "piece": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "parça"
+  },
+  "place": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "yer"
+  },
+  "plan": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "plan"
+  },
+  "plant": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "bitki"
+  },
+  "play": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "oynamak"
+  },
+  "player": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "oyuncu"
+  },
+  "please": {
+    "level": "A1",
+    "pos": "exclam",
+    "tr": "lütfen"
+  },
+  "plus": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "artı"
+  },
+  "point": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "nokta/puan"
+  },
+  "police": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "polis"
+  },
+  "poor": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "fakir"
+  },
+  "popular": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "popüler"
+  },
+  "possible": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "mümkün"
+  },
+  "post": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "gönderi/posta"
+  },
+  "potato": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "patates"
+  },
+  "pound": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "pound/sterlin"
+  },
+  "practice": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "pratik"
+  },
+  "prefer": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "tercih etmek"
+  },
+  "prepare": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "hazırlamak"
+  },
+  "present": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "mevcut/hediye"
+  },
+  "pretty": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "güzel"
+  },
+  "price": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "fiyat"
+  },
+  "problem": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "sorun"
+  },
+  "product": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ürün"
+  },
+  "program": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "program"
+  },
+  "project": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "proje"
+  },
+  "put": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "koymak"
+  },
+  "quarter": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "çeyrek"
+  },
+  "queen": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kraliçe"
+  },
+  "question": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "soru"
+  },
+  "quick": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "hızlı"
+  },
+  "quickly": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "hızlıca"
+  },
+  "quiet": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "sessiz"
+  },
+  "quite": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "oldukça"
+  },
+  "radio": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "radyo"
+  },
+  "rain": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "yağmur"
+  },
+  "read": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "okumak"
+  },
+  "ready": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "hazır"
+  },
+  "real": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "gerçek"
+  },
+  "really": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "gerçekten"
+  },
+  "reason": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "sebep"
+  },
+  "red": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "kırmızı"
+  },
+  "remember": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "hatırlamak"
+  },
+  "repeat": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "tekrarlamak"
+  },
+  "restaurant": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "restoran"
+  },
+  "result": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "sonuç"
+  },
+  "return": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "dönmek"
+  },
+  "rice": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "pirinç"
+  },
+  "rich": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "zengin"
+  },
+  "ride": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "sürmek/binmek"
+  },
+  "right": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "doğru/sağ"
+  },
+  "river": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "nehir"
+  },
+  "road": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "yol"
+  },
+  "room": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "oda"
+  },
+  "run": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "koşmak"
+  },
+  "sad": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "üzgün"
+  },
+  "salad": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "salata"
+  },
+  "salt": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "tuz"
+  },
+  "same": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "aynı"
+  },
+  "sandwich": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "sandviç"
+  },
+  "Saturday": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Cumartesi"
+  },
+  "say": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "söylemek"
+  },
+  "school": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "okul"
+  },
+  "science": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "bilim"
+  },
+  "sea": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "deniz"
+  },
+  "second": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "ikinci"
+  },
+  "section": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "bölüm"
+  },
+  "see": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "görmek"
+  },
+  "sell": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "satmak"
+  },
+  "send": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "göndermek"
+  },
+  "sentence": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "cümle"
+  },
+  "September": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Eylül"
+  },
+  "she": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "o (kadın)"
+  },
+  "shirt": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "gömlek"
+  },
+  "shoe": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ayakkabı"
+  },
+  "shop": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "dükkan"
+  },
+  "shopping": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "alışveriş"
+  },
+  "short": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "kısa"
+  },
+  "should": {
+    "level": "A1",
+    "pos": "modal",
+    "tr": "-meli/-malı"
+  },
+  "show": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "göstermek"
+  },
+  "sick": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "hasta"
+  },
+  "sing": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "şarkı söylemek"
+  },
+  "singer": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "şarkıcı"
+  },
+  "sister": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kız kardeş"
+  },
+  "sit": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "oturmak"
+  },
+  "six": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "altı"
+  },
+  "sixteen": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "on altı"
+  },
+  "sixty": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "altmış"
+  },
+  "ski": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "kayak yapmak"
+  },
+  "skirt": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "etek"
+  },
+  "sleep": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "uyumak"
+  },
+  "slow": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "yavaş"
+  },
+  "small": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "küçük"
+  },
+  "smart": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "akıllı"
+  },
+  "snake": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "yılan"
+  },
+  "snow": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kar"
+  },
+  "so": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "bu yüzden"
+  },
+  "soap": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "sabun"
+  },
+  "some": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "biraz/bazı"
+  },
+  "somebody": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "biri"
+  },
+  "someone": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "biri"
+  },
+  "something": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "bir şey"
+  },
+  "sometimes": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "bazen"
+  },
+  "son": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "oğul"
+  },
+  "song": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "şarkı"
+  },
+  "soon": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "yakında"
+  },
+  "sorry": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "üzgün"
+  },
+  "sound": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ses"
+  },
+  "soup": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "çorba"
+  },
+  "south": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "güney"
+  },
+  "space": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "uzay/alan"
+  },
+  "speak": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "konuşmak"
+  },
+  "special": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "özel"
+  },
+  "spell": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "hecelemek"
+  },
+  "spelling": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "yazım"
+  },
+  "spend": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "harcamak"
+  },
+  "sport": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "spor"
+  },
+  "spring": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ilkbahar"
+  },
+  "stand": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "ayakta durmak"
+  },
+  "star": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "yıldız"
+  },
+  "start": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "başlamak"
+  },
+  "station": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "istasyon"
+  },
+  "stay": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "kalmak"
+  },
+  "still": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "hâlâ"
+  },
+  "stop": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "durmak"
+  },
+  "store": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "mağaza"
+  },
+  "story": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "hikaye"
+  },
+  "street": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "sokak"
+  },
+  "strong": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "güçlü"
+  },
+  "student": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "öğrenci"
+  },
+  "study": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "çalışmak/öğrenmek"
+  },
+  "style": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "stil"
+  },
+  "sugar": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "şeker"
+  },
+  "summer": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "yaz"
+  },
+  "sun": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "güneş"
+  },
+  "Sunday": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Pazar"
+  },
+  "supermarket": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "süpermarket"
+  },
+  "sure": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "emin"
+  },
+  "sweater": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kazak"
+  },
+  "swim": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "yüzmek"
+  },
+  "swimming": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "yüzme"
+  },
+  "table": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "masa"
+  },
+  "take": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "almak"
+  },
+  "talk": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "konuşmak"
+  },
+  "tall": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "uzun (boylu)"
+  },
+  "taxi": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "taksi"
+  },
+  "tea": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "çay"
+  },
+  "teach": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "öğretmek"
+  },
+  "teacher": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "öğretmen"
+  },
+  "team": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "takım"
+  },
+  "telephone": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "telefon"
+  },
+  "television": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "televizyon"
+  },
+  "tell": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "söylemek/anlatmak"
+  },
+  "ten": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "on"
+  },
+  "tennis": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "tenis"
+  },
+  "terrible": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "korkunç"
+  },
+  "test": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "test/sınav"
+  },
+  "text": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "metin"
+  },
+  "than": {
+    "level": "A1",
+    "pos": "conj",
+    "tr": "-den/-dan"
+  },
+  "thank": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "teşekkür etmek"
+  },
+  "thanks": {
+    "level": "A1",
+    "pos": "exclam",
+    "tr": "teşekkürler"
+  },
+  "that": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "şu/o"
+  },
+  "the": {
+    "level": "A1",
+    "pos": "article",
+    "tr": "(belirli tanımlık)"
+  },
+  "theater": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "tiyatro"
+  },
+  "their": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "onların"
+  },
+  "theirs": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "onlarınki"
+  },
+  "them": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "onları"
+  },
+  "then": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "sonra/o zaman"
+  },
+  "there": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "orada"
+  },
+  "therefore": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "bu yüzden"
+  },
+  "these": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "bunlar"
+  },
+  "they": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "onlar"
+  },
+  "thing": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "şey"
+  },
+  "think": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "düşünmek"
+  },
+  "third": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "üçüncü"
+  },
+  "thirsty": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "susamış"
+  },
+  "thirteen": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "on üç"
+  },
+  "thirty": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "otuz"
+  },
+  "this": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "bu"
+  },
+  "those": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "şunlar"
+  },
+  "thousand": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "bin"
+  },
+  "three": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "üç"
+  },
+  "through": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "boyunca/içinden"
+  },
+  "Thursday": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Perşembe"
+  },
+  "ticket": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "bilet"
+  },
+  "time": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "zaman"
+  },
+  "tired": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "yorgun"
+  },
+  "to": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "-e/-a"
+  },
+  "today": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "bugün"
+  },
+  "toe": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ayak parmağı"
+  },
+  "together": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "birlikte"
+  },
+  "toilet": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "tuvalet"
+  },
+  "tomato": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "domates"
+  },
+  "tomorrow": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "yarın"
+  },
+  "tonight": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "bu gece"
+  },
+  "too": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "de/çok fazla"
+  },
+  "tooth": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "diş"
+  },
+  "top": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "üst/tepe"
+  },
+  "total": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "toplam"
+  },
+  "town": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kasaba"
+  },
+  "train": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "tren"
+  },
+  "travel": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "seyahat etmek"
+  },
+  "tree": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ağaç"
+  },
+  "trip": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "gezi"
+  },
+  "true": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "doğru"
+  },
+  "try": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "denemek"
+  },
+  "T-shirt": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "tişört"
+  },
+  "Tuesday": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Salı"
+  },
+  "turn": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "dönmek"
+  },
+  "TV": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "televizyon"
+  },
+  "twelve": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "on iki"
+  },
+  "twenty": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "yirmi"
+  },
+  "two": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "iki"
+  },
+  "type": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "tür"
+  },
+  "umbrella": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "şemsiye"
+  },
+  "uncle": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "amca/dayı"
+  },
+  "under": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "altında"
+  },
+  "understand": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "anlamak"
+  },
+  "university": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "üniversite"
+  },
+  "until": {
+    "level": "A1",
+    "pos": "conj",
+    "tr": "-e kadar"
+  },
+  "up": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "yukarı"
+  },
+  "us": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "bizi/bize"
+  },
+  "use": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "kullanmak"
+  },
+  "useful": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "faydalı"
+  },
+  "usually": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "genellikle"
+  },
+  "vacation": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "tatil"
+  },
+  "vegetable": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "sebze"
+  },
+  "very": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "çok"
+  },
+  "video": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "video"
+  },
+  "visit": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "ziyaret etmek"
+  },
+  "visitor": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "ziyaretçi"
+  },
+  "wait": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "beklemek"
+  },
+  "waiter": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "garson"
+  },
+  "walk": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "yürümek"
+  },
+  "wall": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "duvar"
+  },
+  "want": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "istemek"
+  },
+  "warm": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "sıcak/ılık"
+  },
+  "wash": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "yıkamak"
+  },
+  "watch": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "izlemek"
+  },
+  "water": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "su"
+  },
+  "way": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "yol"
+  },
+  "we": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "biz"
+  },
+  "wear": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "giymek"
+  },
+  "weather": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "hava durumu"
+  },
+  "website": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "web sitesi"
+  },
+  "Wednesday": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Çarşamba"
+  },
+  "week": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "hafta"
+  },
+  "weekend": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "hafta sonu"
+  },
+  "welcome": {
+    "level": "A1",
+    "pos": "exclam",
+    "tr": "hoş geldiniz"
+  },
+  "well": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "iyi"
+  },
+  "west": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "batı"
+  },
+  "what": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "ne"
+  },
+  "when": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "ne zaman"
+  },
+  "where": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "nerede"
+  },
+  "which": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "hangi"
+  },
+  "while": {
+    "level": "A1",
+    "pos": "conj",
+    "tr": "iken"
+  },
+  "white": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "beyaz"
+  },
+  "who": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "kim"
+  },
+  "why": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "neden"
+  },
+  "wife": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "eş/karı"
+  },
+  "will": {
+    "level": "A1",
+    "pos": "modal",
+    "tr": "-ecek/-acak"
+  },
+  "win": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "kazanmak"
+  },
+  "window": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "pencere"
+  },
+  "winter": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kış"
+  },
+  "with": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "ile"
+  },
+  "without": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "olmadan"
+  },
+  "woman": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kadın"
+  },
+  "wonderful": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "harika"
+  },
+  "word": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "kelime"
+  },
+  "work": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "çalışmak"
+  },
+  "worker": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "işçi"
+  },
+  "world": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "dünya"
+  },
+  "would": {
+    "level": "A1",
+    "pos": "modal",
+    "tr": "-irdi/-ırdı"
+  },
+  "write": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "yazmak"
+  },
+  "writer": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "yazar"
+  },
+  "writing": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "yazı"
+  },
+  "wrong": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "yanlış"
+  },
+  "yard": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "bahçe/avlu"
+  },
+  "yeah": {
+    "level": "A1",
+    "pos": "exclam",
+    "tr": "evet"
+  },
+  "year": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "yıl"
+  },
+  "yellow": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "sarı"
+  },
+  "yes": {
+    "level": "A1",
+    "pos": "exclam",
+    "tr": "evet"
+  },
+  "yesterday": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "dün"
+  },
+  "you": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "sen/siz"
+  },
+  "young": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "genç"
+  },
+  "your": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "senin/sizin"
+  },
+  "yours": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "seninki"
+  },
+  "yourself": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "kendin"
+  },
+  "zero": {
+    "level": "A1",
+    "pos": "number",
+    "tr": "sıfır"
+  }
+}
