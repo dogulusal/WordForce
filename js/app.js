@@ -328,7 +328,7 @@ function updateState(currentState, action) {
       break;
     case 'SET_MEANING_STATUS':
       {
-        const { word, meaningIndex, status, pendingAt } = action.payload;
+        const { word, meaningIndex, status, pendingAt, interval, nextReview } = action.payload;
         const existing = newState.progress.words[word] || {
           status: 'practice',
           interval: 1,
@@ -337,7 +337,11 @@ function updateState(currentState, action) {
         };
 
         newState.progress.words[word] = existing;
-        const updated = setMeaningState(existing, meaningIndex, { status });
+        const updated = setMeaningState(existing, meaningIndex, {
+          status,
+          interval: interval !== undefined ? interval : existing.interval,
+          nextReview: nextReview !== undefined ? nextReview : existing.nextReview,
+        });
 
         if (status === 'pending') {
           updated.pendingAt = pendingAt || toLocalDate(0);
@@ -405,9 +409,15 @@ function initiateSession(sessionSize, levelFilter = 'ALL', skipGate = false) {
 
   const sessionWords = pickSessionWords(sessionSize, levelFilter);
   const pendingSecondaryForSession = collectPendingSecondaryMeanings(AppState.progress, 2);
+  const secondaryQueueItems = pendingSecondaryForSession.map((item) => ({
+    kind: 'secondary',
+    word: item.word,
+    meaningIndex: item.meaningIndex,
+    phase: 'definition',
+  }));
   const nextSession = {
     words: sessionWords,
-    queue: shuffle(sessionWords),
+    queue: [...secondaryQueueItems, ...shuffle(sessionWords)],
     skipped: {},
     levelFilter,
     round: 0,
@@ -422,7 +432,7 @@ function initiateSession(sessionSize, levelFilter = 'ALL', skipGate = false) {
 
   if (skipGate) {
     AppState.session.words = sessionWords;
-    AppState.session.queue = shuffle(sessionWords);
+    AppState.session.queue = [...secondaryQueueItems, ...shuffle(sessionWords)];
     AppState.session.current = 0;
     dispatch({ type: 'SET_ROUND', payload: 1 });
     startRoundExercise();
@@ -433,7 +443,17 @@ function initiateSession(sessionSize, levelFilter = 'ALL', skipGate = false) {
 }
 
 function currentWord() {
+  const item = currentQueueItem();
+  if (!item) return null;
+  return typeof item === 'string' ? item : item.word;
+}
+
+function currentQueueItem() {
   return AppState.session.queue[AppState.session.current] || null;
+}
+
+function isSecondaryQueueItem(item) {
+  return Boolean(item && typeof item === 'object' && item.kind === 'secondary');
 }
 
 function gateKnown() {
@@ -522,7 +542,18 @@ function checkGateComplete() {
   dispatch({ type: 'SET_SCREEN', payload: 'round' });
 }
 
-function buildExercise(word, round, wordIndex) {
+function buildExercise(queueItem, round, wordIndex) {
+  if (isSecondaryQueueItem(queueItem)) {
+    if (queueItem.phase === 'definition') {
+      return Exercises.renderSecondaryMeaningDefinition(queueItem.word, queueItem.meaningIndex, AllWords);
+    }
+    if (queueItem.phase === 'gap') {
+      return Exercises.renderGapFill(queueItem.word, AllWords, queueItem.meaningIndex);
+    }
+    return Exercises.renderENtoTRMC(queueItem.word, AllWords, queueItem.meaningIndex);
+  }
+
+  const word = queueItem;
   if (round === 1) return Exercises.renderDefinition(word, AllWords);
   if (round === 2) return Exercises.renderENtoTRMC(word, AllWords);
   if (round === 3) return Exercises.renderGapFill(word, AllWords);
@@ -535,8 +566,8 @@ function buildExercise(word, round, wordIndex) {
 }
 
 function startRoundExercise() {
-  const word = currentWord();
-  if (!word) {
+  const queueItem = currentQueueItem();
+  if (!queueItem) {
     if (AppState.session.round >= 5) {
       const reviewedWords = [...new Set(AppState.session.words || [])];
       const newlyUnlocked = applySecondaryMeaningUnlocks(AppState.progress, AllWords, reviewedWords);
@@ -549,7 +580,7 @@ function startRoundExercise() {
     return;
   }
 
-  const exercise = buildExercise(word, AppState.session.round, AppState.session.current);
+  const exercise = buildExercise(queueItem, AppState.session.round, AppState.session.current);
   dispatch({ type: 'SET_CURRENT_EXERCISE', payload: exercise });
 }
 
@@ -580,7 +611,77 @@ function applyUnlockedDecision(nextStatus) {
   dispatch({ type: 'SET_NEWLY_UNLOCKED', payload: [] });
 }
 
+function moveSecondaryQueueToPhase(phase) {
+  const item = currentQueueItem();
+  if (!isSecondaryQueueItem(item)) return;
+  AppState.session.queue[AppState.session.current] = { ...item, phase };
+}
+
+function markSecondaryMeaningLearned(item) {
+  dispatch({
+    type: 'SET_MEANING_STATUS',
+    payload: {
+      word: item.word,
+      meaningIndex: item.meaningIndex,
+      status: 'learned',
+      interval: 1,
+      nextReview: toLocalDate(1),
+    },
+  });
+}
+
+function resetRoundInteractionState() {
+  dispatch({ type: 'SET_OPTION', payload: null });
+  dispatch({ type: 'SET_REVEAL', payload: null });
+  dispatch({ type: 'SET_LOCKED', payload: false });
+  dispatch({ type: 'SET_PENDING_RESULT', payload: null });
+  dispatch({ type: 'SET_FEEDBACK', payload: '' });
+}
+
+function finalizeSecondaryOutcome(item, correct) {
+  if (item.phase === 'definition') {
+    moveSecondaryQueueToPhase('gap');
+    resetRoundInteractionState();
+    startRoundExercise();
+    return;
+  }
+
+  if (item.phase === 'gap') {
+    if (correct) {
+      markSecondaryMeaningLearned(item);
+      dispatch({ type: 'ADVANCE_SESSION_INDEX' });
+      startRoundExercise();
+      return;
+    }
+
+    moveSecondaryQueueToPhase('mc');
+    resetRoundInteractionState();
+    dispatch({ type: 'SET_FEEDBACK', payload: 'Let\'s reinforce this meaning with a quick MC question.' });
+    startRoundExercise();
+    return;
+  }
+
+  // MC stage
+  if (correct) {
+    markSecondaryMeaningLearned(item);
+    dispatch({ type: 'ADVANCE_SESSION_INDEX' });
+    startRoundExercise();
+    return;
+  }
+
+  moveSecondaryQueueToPhase('gap');
+  resetRoundInteractionState();
+  dispatch({ type: 'SET_FEEDBACK', payload: 'Try the gap fill again for this meaning.' });
+  startRoundExercise();
+}
+
 function finalizeRoundAnswer(correct) {
+  const queueItem = currentQueueItem();
+  if (isSecondaryQueueItem(queueItem)) {
+    finalizeSecondaryOutcome(queueItem, correct);
+    return;
+  }
+
   const word = currentWord();
   const round = AppState.session.round;
 
@@ -840,6 +941,16 @@ function renderRound(state) {
     body = `
       <h2>${exercise.word}</h2>
       <p>${exercise.def}</p>
+      <button class="btn" data-action="submit-answer">Continue</button>
+    `;
+  } else if (exercise.type === 'SECONDARY_MEANING_DEFINITION') {
+    body = `
+      <h2>🔁 ${exercise.word} - ${exercise.meaningIndex}. meaning <span class="word-row-meta">${escapeHtml(exercise.meaningPos || '')}</span></h2>
+      <p><strong>💡 Reminder:</strong> ${escapeHtml(exercise.word)} = "${escapeHtml(exercise.primaryTr || '')}" <span class="word-row-meta">${escapeHtml(exercise.primaryPos || '')}</span></p>
+      ${exercise.primaryExample ? `<p>${escapeHtml(exercise.primaryExample)}</p>` : ''}
+      <p><strong>New meaning:</strong> "${escapeHtml(exercise.secondaryTr || '')}"</p>
+      <p>${escapeHtml(exercise.def || '')}</p>
+      ${exercise.secondaryExample ? `<p>${escapeHtml(exercise.secondaryExample)}</p>` : ''}
       <button class="btn" data-action="submit-answer">Continue</button>
     `;
   } else if (exercise.type === 'EN_TO_TR_MC') {

@@ -41,8 +41,30 @@ function selectDistractors(word, allWords, count, valueSelector) {
   return [...picked, ...fallback].slice(0, count);
 }
 
+function getMeaningData(word, allWords, meaningIndex = 0) {
+  const wordData = allWords[word] || {};
+  if (meaningIndex === 0) {
+    return {
+      tr: wordData.tr,
+      pos: wordData.pos,
+      def: wordData.def,
+      ex: wordData.ex,
+      ex_tr: wordData.ex_tr,
+    };
+  }
+
+  const alt = Array.isArray(wordData.alt_meanings) ? wordData.alt_meanings[meaningIndex - 1] : null;
+  return {
+    tr: alt?.tr,
+    pos: alt?.pos || wordData.pos,
+    def: alt?.def,
+    ex: alt?.ex,
+    ex_tr: [],
+  };
+}
+
 function renderDefinition(word, allWords) {
-  const data = allWords[word];
+  const data = getMeaningData(word, allWords, 0);
   return {
     type: 'DEFINITION',
     word,
@@ -51,9 +73,26 @@ function renderDefinition(word, allWords) {
   };
 }
 
-function renderENtoTRMC(word, allWords) {
-  const wordData = allWords[word];
-  const correctTr = wordData.tr;
+function renderSecondaryMeaningDefinition(word, meaningIndex, allWords) {
+  const primary = getMeaningData(word, allWords, 0);
+  const secondary = getMeaningData(word, allWords, meaningIndex);
+  return {
+    type: 'SECONDARY_MEANING_DEFINITION',
+    word,
+    meaningIndex,
+    meaningPos: secondary?.pos || '',
+    primaryPos: primary?.pos || '',
+    primaryTr: primary?.tr || '',
+    primaryExample: (primary?.ex && primary.ex[0]) || '',
+    secondaryTr: secondary?.tr || '',
+    secondaryExample: (secondary?.ex && secondary.ex[0]) || '',
+    def: secondary?.def || 'No secondary definition available yet.',
+  };
+}
+
+function renderENtoTRMC(word, allWords, meaningIndex = 0) {
+  const meaningData = getMeaningData(word, allWords, meaningIndex);
+  const correctTr = meaningData.tr;
   const distractors = selectDistractors(word, allWords, 3, (item) => item.tr);
   const options = shuffleList([correctTr, ...distractors]);
 
@@ -62,13 +101,14 @@ function renderENtoTRMC(word, allWords) {
     prompt: `What does '${word}' mean in Turkish?`,
     options,
     correct: correctTr,
-    word
+    word,
+    meaningIndex
   };
 }
 
-function renderGapFill(word, allWords) {
-  const wordData = allWords[word];
-  const sentence = (wordData.ex && wordData.ex[0]) || `${word} is useful.`;
+function renderGapFill(word, allWords, meaningIndex = 0) {
+  const meaningData = getMeaningData(word, allWords, meaningIndex);
+  const sentence = (meaningData.ex && meaningData.ex[0]) || `${word} is useful.`;
   const targetForms = [word, word.replace(/_/g, ' '), word.replace(/_/g, "'")].map(normalizeToken);
   const tokens = sentence.split(/(\s+)/);
   let replaced = false;
@@ -92,7 +132,8 @@ function renderGapFill(word, allWords) {
     sentence: gappedSentence,
     options,
     correct: word.replace(/_/g, ' '),
-    word
+    word,
+    meaningIndex
   };
 }
 
@@ -139,6 +180,7 @@ function renderTranslationMC(word, allWords) {
 
 window.Exercises = {
   renderDefinition,
+  renderSecondaryMeaningDefinition,
   renderENtoTRMC,
   renderGapFill,
   renderSentenceBuilder,
