@@ -13,6 +13,60 @@ const BATCH_SIZE = 10;
 const DELAY_MS = 1000;
 const MAX_RETRIES = 3;
 const REQUEST_TIMEOUT_MS = 45000;
+const ALLOWED_POS = new Set(['noun', 'verb', 'adj', 'adv', 'prep', 'pron', 'det', 'conj', 'interj', 'article']);
+
+function normalizePos(pos, fallbackPos = 'noun') {
+  const normalized = String(pos || '').toLowerCase().trim();
+  if (ALLOWED_POS.has(normalized)) return normalized;
+  return String(fallbackPos || 'noun').toLowerCase();
+}
+
+function normalizeAltMeaning(rawMeaning, inheritedPos) {
+  if (!rawMeaning || typeof rawMeaning !== 'object') return null;
+
+  const tr = typeof rawMeaning.tr === 'string' ? rawMeaning.tr.trim() : '';
+  const def = typeof rawMeaning.def === 'string' ? rawMeaning.def.trim() : '';
+  const ex = Array.isArray(rawMeaning.ex)
+    ? rawMeaning.ex.filter((item) => typeof item === 'string' && item.trim().length > 0)
+    : [];
+
+  if (!tr || !def || ex.length === 0) return null;
+
+  const meaning = {
+    tr,
+    pos: normalizePos(rawMeaning.pos, inheritedPos),
+    def,
+    ex,
+    unlockAfter: Number.isFinite(rawMeaning.unlockAfter) ? Number(rawMeaning.unlockAfter) : 14,
+  };
+
+  if (rawMeaning.source && typeof rawMeaning.source === 'object') {
+    meaning.source = rawMeaning.source;
+  }
+
+  return meaning;
+}
+
+function normalizeEnrichedData(baseWordData, generatedData) {
+  const merged = { ...baseWordData, ...generatedData };
+  const normalizedPos = normalizePos(merged.pos, baseWordData?.pos || 'noun');
+  merged.pos = normalizedPos;
+
+  const candidateAltMeanings = Array.isArray(generatedData?.alt_meanings)
+    ? generatedData.alt_meanings
+    : [];
+
+  if (candidateAltMeanings.length > 0) {
+    merged.alt_meanings = candidateAltMeanings
+      .map((meaning) => normalizeAltMeaning(meaning, normalizedPos))
+      .filter(Boolean)
+      .slice(0, 3);
+  } else {
+    delete merged.alt_meanings;
+  }
+
+  return merged;
+}
 
 async function callGemini(prompt, word, modelName) {
   const controller = new AbortController();
@@ -213,7 +267,7 @@ async function main() {
     try {
       const batchOutcome = await enrichBatch(batch);
       batchOutcome.results.forEach(({ word, data }) => {
-        enriched[word] = { ...words[word], ...data };
+        enriched[word] = normalizeEnrichedData(words[word], data);
       });
       failures = [
         ...failures,
