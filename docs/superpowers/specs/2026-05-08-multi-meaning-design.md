@@ -271,6 +271,7 @@ If `newlyUnlocked` is non-empty, the session summary screen shows:
 When a word has multiple meanings in spaced repetition, their review dates may land on the same day. Policy:
 
 - **Same session, same word, different meanings:** Only one meaning is reviewed per session. The meaning with the shorter interval (less established) takes priority. The other meaning's `nextReview` is pushed forward by 1 day.
+- **Tie-breaker when intervals are equal:** Choose the smaller `meaningIndex` first (primary meaning first), push the other by 1 day.
 - **Rationale:** Reviewing two meanings of the same word back-to-back conflates them in the learner's mind. Spacing them across sessions forces independent recall.
 
 This check happens during session queue construction in `app.js`.
