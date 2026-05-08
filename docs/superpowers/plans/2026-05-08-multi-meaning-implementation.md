@@ -44,13 +44,19 @@ Files:
 Steps:
 - [ ] Pull WordNet senses for each word and retain WordNet order.
 - [ ] Compute cosine similarity over gloss pairs and flag merge candidates (`> 0.85`).
-- [ ] Apply word-level frequency gate (`wordfreq` or equivalent) before LLM reranking.
+- [ ] Apply word-level frequency gate using a Node.js-compatible library or a static frequency JSON file. Do not use Python `wordfreq` directly from this Node.js script.
 - [ ] Send one LLM reranker call per word with merge candidates.
+- [ ] Add fail-safes in this task's implementation path:
+  - timeout guard per API call
+  - retry with backoff for `429` and transient `5xx`
+  - malformed JSON repair/fallback flow
+  - structured error reason codes in failure output
 - [ ] Parse and store `selected`, `merged`, `excluded` decisions.
 
 Acceptance:
 - No sense is invented by LLM.
 - Exclusion and merge reasons are persisted for audit.
+- Timeout/retry/JSON-repair behavior is present and testable.
 
 ### Task 1.3 - Generate learner-facing content for selected senses
 Files:
@@ -58,6 +64,8 @@ Files:
 
 Steps:
 - [ ] For each selected meaning, call LLM content generator for `def`, `tr`, `ex`.
+- [ ] Execute these per-meaning LLM content calls sequentially with a small delay to reduce `429` risk (no `Promise.all` burst by default).
+- [ ] Reuse fail-safe policy here as well (timeout, retry/backoff, malformed JSON repair/fallback, reason-coded failures).
 - [ ] Add `source` provenance: `senseId`, `wordnetRank`, `llmRank`, `orderChanged`, `selectionReason`.
 
 Acceptance:
@@ -90,25 +98,40 @@ Files:
 Steps:
 - [ ] Track per-meaning states under `meanings[]`.
 - [ ] Implement backward-compatible fallback for old records without `meanings`.
+- [ ] Do NOT write a migration script. Use lazy runtime handling with:
+
+```js
+const primaryMeaning = word.meanings?.[0] ?? { status: word.status, interval: word.interval };
+```
+
 - [ ] Keep existing spaced repetition intervals unchanged.
 
 Acceptance:
 - Existing users load without migration errors.
 
-### Task 2.2 - Implement unlock logic
+### Task 2.2a - Implement unlock logic in progress layer
 Files:
 - [js/progress.js](js/progress.js)
-- [js/app.js](js/app.js)
 
 Steps:
 - [ ] On review completion, unlock secondary meaning when interval threshold reached.
 - [ ] Mark new meanings as `queued`.
-- [ ] Populate `session.newlyUnlocked` for summary UI.
 
 Acceptance:
 - Unlock events appear exactly once per meaning.
 
 ## Phase 3: Session Queue and Pedagogy Rules
+
+### Task 3.0 - Wire unlock events into session UI state (2.2b)
+Files:
+- [js/app.js](js/app.js)
+
+Steps:
+- [ ] Populate `session.newlyUnlocked` from progress-layer unlock outputs.
+- [ ] Keep this change in the same app.js-oriented commit stream as other session queue rules to avoid overlapping commit churn.
+
+Acceptance:
+- Newly unlocked meanings are visible to session summary logic without duplicate insertion.
 
 ### Task 3.1 - Review collision policy
 Files:
@@ -197,8 +220,8 @@ Steps:
 
 1. `feat(enrich): add multi-meaning schema and WordNet reranker pipeline`
 2. `feat(validate): add multi-meaning validation and spot-check report`
-3. `feat(progress): add per-meaning progress and unlock logic`
-4. `feat(session): add collision policy and bloat limit`
+3. `feat(progress): add per-meaning progress and unlock queue marking`
+4. `feat(session): wire newlyUnlocked state, collision policy, and bloat limit`
 5. `feat(ui): add meaning badges, summary actions, queued activation`
 6. `feat(exercises): add adaptive secondary meaning flow with POS badges`
 7. `test: verify unlock, collision, and backward compatibility paths`
