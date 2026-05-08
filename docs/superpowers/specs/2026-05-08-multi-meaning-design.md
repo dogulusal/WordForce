@@ -149,11 +149,13 @@ Backward-compatible extension. Single-meaning words are untouched.
 ```json
 "bark": {
   "tr": "havlamak",
+  "pos": "verb",
   "def": "To make the sharp sound a dog makes.",
   "ex": ["The dog barked at the stranger."],
   "alt_meanings": [
     {
       "tr": "ağaç kabuğu",
+      "pos": "noun",
       "def": "The outer covering of a tree trunk or branch.",
       "ex": ["The bark of the oak tree is very rough."],
       "unlockAfter": 14
@@ -161,6 +163,12 @@ Backward-compatible extension. Single-meaning words are untouched.
   ]
 }
 ```
+
+### POS (Part of Speech) handling
+
+The top-level `pos` field already exists in `words_enriched.json`. For multi-meaning words, each `alt_meanings` entry carries its own `pos` when it differs from the primary. If omitted, the entry inherits the word-level `pos`.
+
+The Definition card displays a small POS badge next to the meaning label (e.g. `noun`, `verb`). This is especially important when meanings cross POS boundaries (e.g. `bark` as verb vs noun), so the learner immediately sees the grammatical shift.
 
 ### `unlockAfter` semantics
 
@@ -258,6 +266,15 @@ If `newlyUnlocked` is non-empty, the session summary screen shows:
 - **Evet** → sets `status: "pending"` for each; next session start includes them at the front of the queue
 - **Sonra** → status stays `"queued"`; user can activate later from the word list panel (see below)
 
+### Review collision policy
+
+When a word has multiple meanings in spaced repetition, their review dates may land on the same day. Policy:
+
+- **Same session, same word, different meanings:** Only one meaning is reviewed per session. The meaning with the shorter interval (less established) takes priority. The other meaning's `nextReview` is pushed forward by 1 day.
+- **Rationale:** Reviewing two meanings of the same word back-to-back conflates them in the learner's mind. Spacing them across sessions forces independent recall.
+
+This check happens during session queue construction in `app.js`.
+
 ### Activating "Sonra" items later
 
 The word list panel (accessible from the home screen) shows each word with its meaning progress badge (`🟡 1/2`). Words with `queued` meanings display an **"Öğren"** chip next to the badge. Tapping it sets the meaning to `pending` and it enters the next session. This is the only activation path — there is no separate "queued meanings" screen.
@@ -265,6 +282,12 @@ The word list panel (accessible from the home screen) shows each word with its m
 ---
 
 ## Secondary Meaning Exercise Flow (Adaptive B)
+
+### Session bloat limit
+
+At most **2 pending secondary meanings** are added to a single session. If more are pending, the rest stay `pending` and carry over to the next session (FIFO order). This prevents sessions from being dominated by secondary meanings at the expense of new words and regular reviews.
+
+### Exercise flow
 
 When a `pending` secondary meaning reaches the front of the session queue:
 
@@ -285,14 +308,16 @@ Production exercise is skipped entirely — the user already produces sentences 
 The Definition card for a secondary meaning always shows the primary meaning alongside the new one:
 
 ```
-🔁 bark — 2. anlam
+🔁 bark — 2. anlam  [noun]
 
-💡 Hatırla: bark = "havlamak" da demekti
+💡 Hatırla: bark = "havlamak" da demekti  [verb]
    "The dog barked loudly."
 
 Yeni anlam:
    "The bark of the oak tree is very rough."
 ```
+
+POS badges appear as small muted pills next to the meaning label. They are shown on all Definition cards (primary and secondary) but are most valuable when meanings cross POS boundaries.
 
 ---
 
