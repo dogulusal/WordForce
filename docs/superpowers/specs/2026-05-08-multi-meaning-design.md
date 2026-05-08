@@ -24,36 +24,68 @@ The system answers these through a source hierarchy.
 
 ### Source hierarchy (required)
 
-1. Lexical ground truth source (WordNet and/or licensed dictionary API such as Oxford/Merriam-Webster) to enumerate candidate senses.
-2. Frequency layer (corpus-based source such as COCA-derived mapping, SUBTLEX, or equivalent frequency table) to rank/filter by real usage.
-3. LLM layer only to render learner-friendly outputs for already selected senses.
+1. **WordNet sense enumeration** — Pull all senses for the word. WordNet's default sense ordering (Princeton editorial + historical usage frequency) serves as the initial ranking heuristic. This ordering is not perfect but is consistent for the majority of common words.
+2. **Coarse filter** — Two automatic passes:
+   - **Deduplication:** Merge senses with near-identical glosses that differ only in linguistic granularity (e.g. two "run" senses that both mean "move quickly on foot").
+   - **Word-level frequency gate:** Using `wordfreq` (Python, SUBTLEX-based) or equivalent, skip words whose overall frequency is too low to warrant multi-meaning treatment.
+3. **LLM reranker** — LLM receives the filtered WordNet sense list and reranks/filters based on a single criterion: **frequency in everyday spoken English**. LLM does not discover new senses — it only selects from and reorders the WordNet list.
 
-LLM must never be the authority for sense count or base ordering.
+LLM must never be the authority for sense count. It may reorder or exclude WordNet senses but cannot invent senses not present in the WordNet list.
+
+### LLM reranker prompt template
+
+```
+WordNet senses (in WordNet order): [1. havlamak, 2. ağaç kabuğu, 3. bir gemi türü]
+Word: bark
+Target audience: Turkish learners (A2-B1)
+
+From this list, select senses that are common in everyday spoken English.
+Rank selected senses by how frequently they appear in casual conversation and general media.
+For each excluded sense, write a one-sentence reason.
+Return JSON:
+{
+  "selected": [{"wordnetIndex": 1, "rank": 1}, ...],
+  "excluded": [{"wordnetIndex": 3, "reason": "Archaic nautical term, rare in modern speech"}]
+}
+```
+
+The exclusion reasons serve as an audit trail and help improve the prompt over time.
 
 ### Common-meaning selection policy
 
 For each word:
 
-- Gather all candidate senses from lexical source.
-- Map each sense to frequency evidence.
-- Keep only general-use senses passing minimum frequency threshold.
-- Sort by frequency score descending.
+- Pull all senses from WordNet (already roughly frequency-ordered).
+- Coarse-filter: deduplicate near-identical senses, skip low-frequency words.
+- LLM reranker: select and rank by everyday spoken English frequency.
 - Keep top K, where K <= 3 for this product phase.
 
 If a word has more than K genuinely common senses, only the top K are included. This is an intentional product limit, not a data error.
+
+### Automated spot-check flags
+
+After the pipeline runs, automatically flag words for manual review:
+
+- **Order mismatch:** LLM reranker changed WordNet's top-2 order → review.
+- **Heavy pruning:** WordNet listed 4+ senses but LLM selected only 1 → review.
+- **No alt_meanings:** Word has 3+ WordNet senses but pipeline produced 0 alt_meanings → review.
+
+These flags produce a `data/spot_check_review.json` file listing flagged words with reasons. Expected volume: ~20-30 words out of 100-200 polysemous candidates. Manual review of this list replaces full curation.
 
 ### Guarantee boundaries
 
 Guaranteed:
 
-- Included meanings are selected from external lexical/frequency evidence, not raw model intuition.
-- Included meanings are ordered by measurable usage score.
+- Sense candidates come from WordNet, not LLM invention.
+- Ordering uses WordNet's default frequency heuristic as baseline, refined by LLM reranking on spoken-language frequency.
 - Rare/domain-specific senses are filtered out by policy.
+- Every LLM exclusion decision has a logged reason for audit.
 
 Not guaranteed:
 
 - The app does not surface all common meanings when K limit is reached.
-- Frequency ranking can vary by domain/register; ordering reflects the chosen corpus profile, not every context.
+- Frequency ranking reflects everyday spoken English; register-specific ordering (e.g. academic, legal) may differ.
+- WordNet's sense granularity deduplication is heuristic — edge cases may merge or split incorrectly.
 
 ### Confidence metadata (stored for audit)
 
@@ -67,12 +99,23 @@ Each secondary meaning should carry provenance fields during enrichment:
   "unlockAfter": 14,
   "source": {
     "lexicon": "wordnet",
-    "senseId": "wn:...",
-    "frequencySource": "coca",
-    "frequencyRank": 2,
-    "frequencyScore": 0.71,
-    "selectionReason": "top_k_common"
+    "senseId": "wn:bark.n.02",
+    "wordnetRank": 2,
+    "llmRank": 2,
+    "orderChanged": false,
+    "selectionReason": "top_k_spoken"
   }
+}
+```
+
+Excluded senses are logged separately per word:
+
+```json
+{
+  "word": "bark",
+  "excluded": [
+    { "senseId": "wn:bark.n.03", "reason": "Archaic nautical term, rare in modern speech" }
+  ]
 }
 ```
 
@@ -83,9 +126,9 @@ These fields are optional for runtime UI but required in the enrichment artifact
 Add validation rules for multi-meaning data:
 
 - `alt_meanings.length <= 3`
-- `alt_meanings` sorted by `source.frequencyRank` ascending
+- `alt_meanings` sorted by `source.llmRank` ascending
 - each meaning has non-empty `tr`, `def`, `ex[0]`
-- no duplicate normalized Turkish gloss across meanings
+- no duplicate normalized Turkish gloss across primary `tr` and any `alt_meanings[].tr`
 - no duplicate `senseId` for the same word
 - `unlockAfter` in allowed set: `1|3|7|14|30`
 
@@ -131,12 +174,13 @@ No new counter field is needed. Unlock check: `wordProgress.interval >= meaning.
 
 When building `alt_meanings`:
 
-- Determine senses from lexical source first.
-- Apply frequency filtering/ranking before any generation.
-- Keep **at most 3 meanings** in descending frequency order.
-- Skip rare or highly domain-specific meanings.
-- Skip words where a second common meaning does not exist.
-- Use LLM only after selection, to generate learner-facing `def`, `tr`, `ex` for the already chosen senses.
+1. Pull WordNet senses for the word (uses default sense ordering as baseline).
+2. Coarse-filter: deduplicate near-identical glosses, skip words below frequency gate.
+3. Send filtered list to LLM reranker — select and rank by everyday spoken English frequency. Log exclusion reasons.
+4. Take top K (K <= 3) from reranked list.
+5. For each selected sense, call LLM separately to generate learner-facing `def`, `tr`, `ex`.
+6. Write `source` provenance metadata for each meaning.
+7. Generate spot-check flags to `data/spot_check_review.json`.
 
 ---
 
@@ -270,7 +314,7 @@ Yeni anlam:
 | File | Change |
 |------|--------|
 | `data/words_enriched.json` | `alt_meanings` field added to polysemous words via enrich script |
-| `scripts/enrich.js` | Source hierarchy integration (lexicon + frequency), then LLM generation for selected senses only |
+| `scripts/enrich.js` | WordNet sense pull → coarse filter → LLM reranker → LLM content generation; spot-check flag output |
 | `scripts/validate.js` | Multi-meaning validation rules (max 3, rank order, schema checks, duplicate sense guards) |
 | `js/progress.js` | `meanings` array tracking; unlock check after each review; backward-compat guard |
 | `js/app.js` | `session.newlyUnlocked` accumulation; session summary Evet/Sonra action handlers |
