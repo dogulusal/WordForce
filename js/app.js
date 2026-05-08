@@ -131,7 +131,7 @@ function collectPendingSecondaryMeanings(progress, limit = 2) {
 }
 
 async function loadWords() {
-  const response = await fetch('data/words_enriched.json');
+  const response = await fetch('data/words_enriched.json', { cache: 'no-store' });
   AllWords = await response.json();
   window.AllWords = AllWords;
 }

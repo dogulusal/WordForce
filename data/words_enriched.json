@@ -1,812 +1,4 @@
 {
-  "a": {
-    "level": "A1",
-    "pos": "article",
-    "tr": "bir",
-    "def": "Used before a singular noun to mean one.",
-    "ex": [
-      "I have a cat.",
-      "She is a teacher.",
-      "This is a book."
-    ],
-    "ex_tr": [
-      "Bir kedim var.",
-      "O bir öğretmen.",
-      "Bu bir kitap."
-    ],
-    "ex_distractors": [
-      [
-        "Kedilerim var.",
-        "Bir kedim vardı.",
-        "Senin bir kedin var."
-      ],
-      [
-        "Onlar öğretmenler.",
-        "O öğretmendi.",
-        "Ben bir öğretmenim."
-      ],
-      [
-        "Bunlar kitaplar.",
-        "Bu bir kitaptı.",
-        "O bir kitap."
-      ]
-    ],
-    "sb_distractors": [
-      [
-        "the",
-        "my",
-        "this"
-      ],
-      [
-        "the",
-        "my",
-        "that"
-      ],
-      [
-        "the",
-        "my",
-        "your"
-      ]
-    ]
-  },
-  "about": {
-    "level": "A1",
-    "pos": "prep",
-    "tr": "hakkında",
-    "def": "on the subject of someone or something",
-    "ex": [
-      "I read a book about animals.",
-      "Tell me about your family.",
-      "We are talking about the movie."
-    ],
-    "ex_tr": [
-      "Hayvanlar hakkında bir kitap okudum.",
-      "Bana ailen hakkında anlat.",
-      "Film hakkında konuşuyoruz."
-    ],
-    "ex_distractors": [
-      [
-        "Hayvanlar hakkında bir kitap okuyorum.",
-        "O, hayvanlar hakkında bir kitap okudu.",
-        "Hayvanlar için bir kitap okudum."
-      ],
-      [
-        "Bana aileni anlattı.",
-        "Sana ailen hakkında anlat.",
-        "Bana ailenle anlat."
-      ],
-      [
-        "Film hakkında konuştuk.",
-        "Onlar film hakkında konuşuyorlar.",
-        "Film için konuşuyoruz."
-      ]
-    ],
-    "sb_distractors": [
-      [
-        "with",
-        "for",
-        "in"
-      ],
-      [
-        "of",
-        "from",
-        "to"
-      ],
-      [
-        "with",
-        "on",
-        "at"
-      ]
-    ]
-  },
-  "above": {
-    "level": "A1",
-    "pos": "prep",
-    "tr": "üstünde",
-    "def": "In a higher place than something",
-    "ex": [
-      "The plane is above the clouds.",
-      "The clock is above the door.",
-      "The birds fly above the trees."
-    ],
-    "ex_tr": [
-      "Uçak bulutların üstünde.",
-      "Saat kapının üstünde.",
-      "Kuşlar ağaçların üstünde uçar."
-    ],
-    "ex_distractors": [
-      [
-        "Uçak bulutların altındaydı.",
-        "Uçaklar bulutların üstünde.",
-        "Uçak bulutun üstünde."
-      ],
-      [
-        "Saat kapının yanındaydı.",
-        "Saatler kapının üstünde.",
-        "Saat kapının altında."
-      ],
-      [
-        "Kuş uçuyor ağaçların üstünde.",
-        "Kuşlar ağaçların altında uçar.",
-        "Kuşlar ağaçların üstünde uçtu."
-      ]
-    ],
-    "sb_distractors": [
-      [
-        "under",
-        "near",
-        "behind"
-      ],
-      [
-        "below",
-        "next to",
-        "on"
-      ],
-      [
-        "between",
-        "under",
-        "across"
-      ]
-    ]
-  },
-  "across": {
-    "level": "A1",
-    "pos": "prep",
-    "tr": "karşısında",
-    "def": "on the other side of something",
-    "ex": [
-      "The bank is across the street.",
-      "My house is across the road.",
-      "The shop is across the park."
-    ],
-    "ex_tr": [
-      "Banka caddenin karşısında.",
-      "Evim yolun karşısında.",
-      "Dükkan parkın karşısında."
-    ],
-    "ex_distractors": [
-      [
-        "Banka caddenin içindedir.",
-        "Bankalar caddenin karşısındaydı.",
-        "Banka caddenin yanındadır."
-      ],
-      [
-        "Evim yolun üzerindedir.",
-        "Evim yolun karşısındaydı.",
-        "Evler yolun karşısında."
-      ],
-      [
-        "Dükkan parkın içindedir.",
-        "Dükkan parkın yanındaydı.",
-        "Dükkanlar parkın karşısında."
-      ]
-    ],
-    "sb_distractors": [
-      [
-        "near",
-        "in",
-        "on"
-      ],
-      [
-        "behind",
-        "under",
-        "at"
-      ],
-      [
-        "next to",
-        "in",
-        "from"
-      ]
-    ]
-  },
-  "act": {
-    "level": "A1",
-    "pos": "verb",
-    "tr": "hareket etmek",
-    "def": "To do something or behave in a certain way.",
-    "ex": [
-      "Please act quickly.",
-      "He always acts kind to everyone."
-    ],
-    "ex_tr": [
-      "Lütfen hızlı hareket et.",
-      "Her zaman herkese nazik davranır."
-    ],
-    "ex_distractors": [
-      [
-        "Please acting quickly.",
-        "Please acted quickly.",
-        "Please acts quickly."
-      ],
-      [
-        "He always act kind to everyone.",
-        "He always acting kind to everyone.",
-        "He always acted kind to everyone."
-      ]
-    ],
-    "sb_distractors": [
-      [
-        "move",
-        "go",
-        "run"
-      ],
-      [
-        "is",
-        "seems",
-        "looks"
-      ]
-    ]
-  },
-  "action": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "eylem",
-    "def": "Something that a person or animal does.",
-    "ex": [
-      "Taking action is important.",
-      "The movie has a lot of action."
-    ],
-    "ex_tr": [
-      "Eyleme geçmek önemlidir.",
-      "Filmde çok fazla aksiyon var."
-    ],
-    "ex_distractors": [
-      [
-        "Eylem almak önemliydi.",
-        "Eyleme geçmek önemli değil.",
-        "Eylemler önemlidir."
-      ],
-      [
-        "Filmde biraz aksiyon var.",
-        "Film aksiyonu sever.",
-        "Filmde çok aksiyon vardı."
-      ]
-    ],
-    "sb_distractors": [
-      [
-        "time",
-        "care",
-        "notes"
-      ],
-      [
-        "music",
-        "drama",
-        "color"
-      ]
-    ]
-  },
-  "activity": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "aktivite",
-    "def": "Something that you do for fun or to learn.",
-    "ex": [
-      "Reading is a quiet activity.",
-      "We have a fun activity today."
-    ],
-    "ex_tr": [
-      "Okumak sessiz bir aktivitedir.",
-      "Bugün eğlenceli bir aktivitemiz var."
-    ],
-    "ex_distractors": [
-      [
-        "Okumak sessiz bir aktiviteydi.",
-        "Okumak sessiz aktivitelerdir.",
-        "Okuyor sessiz bir aktivite."
-      ],
-      [
-        "Bugün eğlenceli bir aktivitemiz vardı.",
-        "Onlar bugün eğlenceli bir aktiviteye sahip.",
-        "Bugün eğlenceli aktiviteler var."
-      ]
-    ],
-    "sb_distractors": [
-      [
-        "game",
-        "hobby",
-        "place"
-      ],
-      [
-        "lesson",
-        "book",
-        "friend"
-      ]
-    ]
-  },
-  "actor": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "aktör",
-    "def": "A person who acts in a play or movie.",
-    "ex": [
-      "He is a famous actor.",
-      "The actor is very good."
-    ],
-    "ex_tr": [
-      "O ünlü bir aktördür.",
-      "Aktör çok iyi."
-    ],
-    "ex_distractors": [
-      [
-        "O ünlü bir aktördü.",
-        "Onlar ünlü aktörler.",
-        "O ünlü bir oyuncu değil."
-      ],
-      [
-        "Aktörler çok iyi.",
-        "Aktör çok kötüydü.",
-        "Bir aktör çok iyidir."
-      ]
-    ],
-    "sb_distractors": [
-      [
-        "singer",
-        "doctor",
-        "teacher"
-      ],
-      [
-        "student",
-        "driver",
-        "player"
-      ]
-    ]
-  },
-  "actress": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "aktris",
-    "def": "A woman who acts in plays or movies.",
-    "ex": [
-      "She is a famous actress.",
-      "The actress is very talented."
-    ],
-    "ex_tr": [
-      "O ünlü bir aktris.",
-      "Aktris çok yetenekli."
-    ],
-    "ex_distractors": [
-      [
-        "O ünlü bir aktördür.",
-        "O ünlü bir aktristi.",
-        "Onlar ünlü aktrisler."
-      ],
-      [
-        "Aktris çok yetenekliydi.",
-        "Aktrisler çok yetenekli.",
-        "Bir aktris çok yeteneklidir."
-      ]
-    ],
-    "sb_distractors": [
-      [
-        "singer",
-        "teacher",
-        "doctor"
-      ],
-      [
-        "student",
-        "writer",
-        "artist"
-      ]
-    ]
-  },
-  "add": {
-    "level": "A1",
-    "pos": "verb",
-    "tr": "eklemek",
-    "def": "to put something more to something else",
-    "ex": [
-      "Please add some salt to the soup.",
-      "Can you add my name to the list?"
-    ],
-    "ex_tr": [
-      "Lütfen çorbaya biraz tuz ekle.",
-      "Adımı listeye ekleyebilir misin?"
-    ],
-    "ex_distractors": [
-      [
-        "Lütfen çorbaya biraz tuz koydu.",
-        "Lütfen çorbada biraz tuz ekle.",
-        "Lütfen çorbaya tuz ekliyor."
-      ],
-      [
-        "Adımı listeye ekledin mi?",
-        "Adımı listeye ekle.",
-        "Adım listeye ekleyebilir misin?"
-      ]
-    ],
-    "sb_distractors": [
-      [
-        "put",
-        "bring",
-        "take"
-      ],
-      [
-        "write",
-        "put",
-        "send"
-      ]
-    ]
-  },
-  "afraid": {
-    "level": "A1",
-    "pos": "adj",
-    "tr": "korkmuş",
-    "def": "feeling fear",
-    "ex": [
-      "I am afraid of dogs.",
-      "She is afraid of the dark."
-    ],
-    "ex_tr": [
-      "Köpeklerden korkarım.",
-      "O, karanlıktan korkar."
-    ],
-    "ex_distractors": [
-      [
-        "Köpekleri severim.",
-        "Köpekten korkuyor.",
-        "Köpekler korkmuş."
-      ],
-      [
-        "Karanlıkta uyur.",
-        "Karanlıktan korkuyorsun.",
-        "Karanlık korkutucu."
-      ]
-    ],
-    "sb_distractors": [
-      [
-        "happy",
-        "tired",
-        "angry"
-      ],
-      [
-        "happy",
-        "sad",
-        "tired"
-      ]
-    ]
-  },
-  "after": {
-    "level": "A1",
-    "pos": "prep",
-    "tr": "sonra",
-    "def": "following in time",
-    "ex": [
-      "I go home after school.",
-      "Brush your teeth after breakfast."
-    ],
-    "ex_tr": [
-      "Okuldan sonra eve giderim.",
-      "Kahvaltıdan sonra dişlerini fırçala."
-    ],
-    "ex_distractors": [
-      [
-        "Okuldan önce eve giderim.",
-        "Okulda eve giderim.",
-        "Okula sonra eve giderim."
-      ],
-      [
-        "Kahvaltıdan önce dişlerini fırçala.",
-        "Kahvaltıda dişlerini fırçala.",
-        "Kahvaltı sonra dişlerini fırçala."
-      ]
-    ],
-    "sb_distractors": [
-      [
-        "before",
-        "with",
-        "near"
-      ],
-      [
-        "before",
-        "during",
-        "with"
-      ]
-    ]
-  },
-  "afternoon": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "öğleden sonra",
-    "def": "The time between lunch and evening.",
-    "ex": [
-      "I drink tea in the afternoon.",
-      "See you tomorrow afternoon."
-    ],
-    "ex_tr": [
-      "Öğleden sonra çay içerim.",
-      "Yarın öğleden sonra görüşürüz."
-    ],
-    "ex_distractors": [
-      [
-        "Öğleden sonra çay içtim.",
-        "O öğleden sonra çay içer.",
-        "Öğleden sonra çay içiyorlar."
-      ],
-      [
-        "Dün öğleden sonra görüştük.",
-        "Yarın sabah görüşürüz.",
-        "Yarın akşam görüşürüz."
-      ]
-    ],
-    "sb_distractors": [
-      [
-        "morning",
-        "evening",
-        "night"
-      ],
-      [
-        "morning",
-        "evening",
-        "night"
-      ]
-    ]
-  },
-  "again": {
-    "level": "A1",
-    "pos": "adv",
-    "tr": "tekrar",
-    "def": "one more time",
-    "ex": [
-      "Please say that again.",
-      "I am reading the book again."
-    ],
-    "ex_tr": [
-      "Lütfen bunu tekrar söyle.",
-      "Kitabı tekrar okuyorum."
-    ],
-    "ex_distractors": [
-      [
-        "Please says that again.",
-        "Please saying that again.",
-        "Please say that once."
-      ],
-      [
-        "I read the book again.",
-        "I am read the book again.",
-        "I am reading a book again."
-      ]
-    ],
-    "sb_distractors": [
-      [
-        "now",
-        "slowly",
-        "here"
-      ],
-      [
-        "now",
-        "fast",
-        "today"
-      ]
-    ]
-  },
-  "age": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "yaş",
-    "def": "The number of years a person has lived.",
-    "ex": [
-      "What is your age?",
-      "My age is twenty."
-    ],
-    "ex_tr": [
-      "Yaşın kaç?",
-      "Yaşım yirmi."
-    ],
-    "ex_distractors": [
-      [
-        "Yaşın ne?",
-        "Senin yaşın kaçtı?",
-        "Onun yaşı kaç?"
-      ],
-      [
-        "Yaşın yirmi.",
-        "Yaşım yirmiydi.",
-        "Yaşları yirmi."
-      ]
-    ],
-    "sb_distractors": [
-      [
-        "name",
-        "size",
-        "color"
-      ],
-      [
-        "height",
-        "weight",
-        "number"
-      ]
-    ]
-  },
-  "ago": {
-    "level": "A1",
-    "pos": "adv",
-    "tr": "önce",
-    "def": "before now",
-    "ex": [
-      "I saw him two days ago.",
-      "She left ten minutes ago."
-    ],
-    "ex_tr": [
-      "Onu iki gün önce gördüm.",
-      "On dakika önce ayrıldı."
-    ],
-    "ex_distractors": [
-      [
-        "Onu iki gün sonra gördüm.",
-        "Onu iki gün önce görüyorum.",
-        "Onlar onu iki gün önce gördü."
-      ],
-      [
-        "O on dakika sonra ayrıldı.",
-        "O on dakika önce ayrılıyor.",
-        "Biz on dakika önce ayrıldık."
-      ]
-    ],
-    "sb_distractors": [
-      [
-        "later",
-        "before",
-        "today"
-      ],
-      [
-        "later",
-        "before",
-        "soon"
-      ]
-    ]
-  },
-  "agree": {
-    "level": "A1",
-    "pos": "verb",
-    "tr": "katılmak",
-    "def": "To have the same opinion as someone else.",
-    "ex": [
-      "I agree with you.",
-      "They agree on the price."
-    ],
-    "ex_tr": [
-      "Sana katılıyorum.",
-      "Fiyat konusunda anlaştılar."
-    ],
-    "ex_distractors": [
-      [
-        "Sana katıldım.",
-        "Biz sana katılıyoruz.",
-        "Sana katılmıyorum."
-      ],
-      [
-        "Fiyat konusunda anlaşıyorlar.",
-        "O fiyat konusunda anlaştı.",
-        "Fiyat konusunda anlaşmadılar."
-      ]
-    ],
-    "sb_distractors": [
-      [
-        "talk",
-        "work",
-        "stay"
-      ],
-      [
-        "look",
-        "wait",
-        "stop"
-      ]
-    ]
-  },
-  "air": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "hava",
-    "def": "The gas that we breathe and is all around us.",
-    "ex": [
-      "The air is fresh today.",
-      "Birds fly in the air."
-    ],
-    "ex_tr": [
-      "Bugün hava taze.",
-      "Kuşlar havada uçar."
-    ],
-    "ex_distractors": [
-      [
-        "Bugün hava tazeydi.",
-        "Hava bugün taze değil.",
-        "Bugün hava tazeliyor."
-      ],
-      [
-        "Kuş havada uçar.",
-        "Kuşlar havada uçtu.",
-        "Kuşlar havada uçamaz."
-      ]
-    ],
-    "sb_distractors": [
-      [
-        "water",
-        "food",
-        "wind"
-      ],
-      [
-        "sky",
-        "water",
-        "space"
-      ]
-    ]
-  },
-  "airport": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "havaalanı",
-    "def": "A place where airplanes land and take off.",
-    "ex": [
-      "I am going to the airport.",
-      "The airport is very big."
-    ],
-    "ex_tr": [
-      "Havaalanına gidiyorum.",
-      "Havaalanı çok büyük."
-    ],
-    "ex_distractors": [
-      [
-        "Havaalanına gittim.",
-        "Biz havaalanına gidiyoruz.",
-        "Havaalanına gitmek istiyorum."
-      ],
-      [
-        "Havaalanı çok büyüktü.",
-        "Havaalanları çok büyüktür.",
-        "Havaalanı küçük."
-      ]
-    ],
-    "sb_distractors": [
-      [
-        "station",
-        "hotel",
-        "park"
-      ],
-      [
-        "city",
-        "school",
-        "house"
-      ]
-    ]
-  },
-  "all": {
-    "level": "A1",
-    "pos": "det",
-    "tr": "hepsi",
-    "def": "Every person or thing in a group.",
-    "ex": [
-      "All the students are here.",
-      "I eat all the apples."
-    ],
-    "ex_tr": [
-      "Tüm öğrenciler burada.",
-      "Tüm elmaları yerim."
-    ],
-    "ex_distractors": [
-      [
-        "Some students are here.",
-        "All the students were here.",
-        "The student is here."
-      ],
-      [
-        "I ate all the apples.",
-        "I eat some apples.",
-        "He eats all the apples."
-      ]
-    ],
-    "sb_distractors": [
-      [
-        "Some",
-        "Many",
-        "Few"
-      ],
-      [
-        "some",
-        "many",
-        "few"
-      ]
-    ]
-  },
   "also": {
     "level": "A1",
     "pos": "adv",
@@ -32041,6 +31233,1691 @@
         "some",
         "many"
       ]
+    ]
+  },
+  "a": {
+    "level": "A1",
+    "pos": "article",
+    "tr": "bir",
+    "def": "Used before a singular noun to mean one.",
+    "ex": [
+      "I have a dog.",
+      "She is a teacher."
+    ],
+    "ex_tr": [
+      "Bir köpeğim var.",
+      "O bir öğretmen."
+    ],
+    "ex_distractors": [
+      [
+        "Köpeklerim var.",
+        "Bir köpeğim vardı.",
+        "Senin bir köpeğin var."
+      ],
+      [
+        "O öğretmenler.",
+        "O bir öğretmendi.",
+        "Biz bir öğretmeniz."
+      ]
+    ],
+    "sb_distractors": [
+      [
+        "the",
+        "my",
+        "this"
+      ],
+      [
+        "the",
+        "my",
+        "that"
+      ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 3,
+        "reason": "Sense 3 is too specific or archaic for the general use of 'a'."
+      },
+      {
+        "wordnetIndex": 4,
+        "reason": "Sense 4 is not relevant to the typical usage of 'a' in this context."
+      },
+      {
+        "wordnetIndex": 7,
+        "reason": "Sense 7 is an uncommon or highly specialized meaning of 'a'."
+      }
+    ],
+    "alt_meanings_merged": [
+      {
+        "kept": 1,
+        "dropped": 2,
+        "reason": "Sense 2 is a near-duplicate or less common variant of sense 1 for 'a'."
+      }
+    ],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 7,
+      "selectedSenseCount": 2,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "a harfi",
+        "pos": "noun",
+        "def": "The first letter of the English alphabet.",
+        "ex": [
+          "The word 'apple' starts with the letter a."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "a.noun.6",
+          "wordnetRank": 6,
+          "llmRank": 1,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "amper",
+        "pos": "noun",
+        "def": "A unit for measuring electric current.",
+        "ex": [
+          "This charger provides 2 a of power."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "a.noun.5",
+          "wordnetRank": 5,
+          "llmRank": 2,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      }
+    ]
+  },
+  "across": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "karşısında",
+    "def": "On the other side of something, or from one side to the other.",
+    "ex": [
+      "He walked across the street.",
+      "There is a park across the river."
+    ],
+    "ex_tr": [
+      "Sokağın karşısına yürüdü.",
+      "Nehrin karşısında bir park var."
+    ],
+    "ex_distractors": [
+      [
+        "He walks across the street.",
+        "She walked across the street.",
+        "He walked on the street."
+      ],
+      [
+        "There was a park across the river.",
+        "A park is across the river.",
+        "There is a park next to the river."
+      ]
+    ],
+    "sb_distractors": [
+      [
+        "down",
+        "along",
+        "on"
+      ],
+      [
+        "near",
+        "by",
+        "next to"
+      ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 2,
+        "reason": "This sense is more specific and less frequent in everyday conversation compared to 'to the opposite side', which covers most common uses for A2-B1 learners."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 2,
+      "selectedSenseCount": 1,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "karşıya",
+        "pos": "adv",
+        "def": "to the other side",
+        "ex": [
+          "Let's go across and see what's there."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "across.adv.1",
+          "wordnetRank": 1,
+          "llmRank": 1,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      }
+    ]
+  },
+  "act": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "hareket etmek",
+    "def": "To do something.",
+    "ex": [
+      "Please act quickly.",
+      "He always acts kind."
+    ],
+    "ex_tr": [
+      "Lütfen çabuk hareket edin.",
+      "O her zaman nazik davranır."
+    ],
+    "ex_distractors": [
+      [
+        "Please sing quickly.",
+        "Please act slowly.",
+        "Please act now."
+      ],
+      [
+        "He never acts kind.",
+        "He always sings kind.",
+        "She always acts kind."
+      ]
+    ],
+    "sb_distractors": [
+      [
+        "move",
+        "react",
+        "do"
+      ],
+      [
+        "seems",
+        "behaves",
+        "looks"
+      ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 1,
+        "reason": "Too formal/legal for A2-B1."
+      },
+      {
+        "wordnetIndex": 4,
+        "reason": "Overlaps with 15 or 3, less central than 3."
+      },
+      {
+        "wordnetIndex": 5,
+        "reason": "Too specific/idiomatic."
+      },
+      {
+        "wordnetIndex": 9,
+        "reason": "Too formal."
+      },
+      {
+        "wordnetIndex": 11,
+        "reason": "Too rare."
+      },
+      {
+        "wordnetIndex": 12,
+        "reason": "More advanced usage."
+      },
+      {
+        "wordnetIndex": 13,
+        "reason": "Too specific."
+      },
+      {
+        "wordnetIndex": 14,
+        "reason": "Overlaps with 7 or 10."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 15,
+      "selectedSenseCount": 3,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "harekete geçmek",
+        "pos": "verb",
+        "def": "to take action to achieve a result",
+        "ex": [
+          "We must act now to solve this problem."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "act.verb.6",
+          "wordnetRank": 6,
+          "llmRank": 1,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "davranmak",
+        "pos": "verb",
+        "def": "to behave in a particular way",
+        "ex": [
+          "Stop acting like a child!"
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "act.verb.7",
+          "wordnetRank": 7,
+          "llmRank": 2,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "eylem",
+        "pos": "noun",
+        "def": "something that a person does",
+        "ex": [
+          "It was a kind act to help the old man."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "act.noun.2",
+          "wordnetRank": 2,
+          "llmRank": 3,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      }
+    ]
+  },
+  "activity": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "aktivite",
+    "def": "Something you do, often for fun or to learn.",
+    "ex": [
+      "Reading is a quiet activity.",
+      "We planned many activities for the weekend."
+    ],
+    "ex_tr": [
+      "Okumak sessiz bir aktivitedir.",
+      "Hafta sonu için birçok aktivite planladık."
+    ],
+    "ex_distractors": [
+      [
+        "Read is a quiet activity.",
+        "Reading are a quiet activity.",
+        "Reading was a quiet activity."
+      ],
+      [
+        "We plan many activities for the weekend.",
+        "We planned much activities for the weekend.",
+        "They planned many activities for the weekend."
+      ]
+    ],
+    "sb_distractors": [
+      [
+        "hobby",
+        "thing",
+        "job"
+      ],
+      [
+        "things",
+        "games",
+        "plans"
+      ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 3,
+        "reason": "Too technical/medical for A2-B1 level."
+      },
+      {
+        "wordnetIndex": 4,
+        "reason": "Too specialized (chemistry) for A2-B1 level."
+      },
+      {
+        "wordnetIndex": 5,
+        "reason": "Too formal and specific for everyday conversation."
+      },
+      {
+        "wordnetIndex": 6,
+        "reason": "Less common and overlaps with the general state of being active."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 6,
+      "selectedSenseCount": 2,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "faaliyet",
+        "pos": "noun",
+        "def": "a specific action or way of behaving",
+        "ex": [
+          "The police noticed some suspicious activity in the area."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "activity.noun.1",
+          "wordnetRank": 1,
+          "llmRank": 1,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "hareketlilik",
+        "pos": "noun",
+        "def": "the state of being busy or moving around",
+        "ex": [
+          "There was a lot of activity in the city center this morning."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "activity.noun.2",
+          "wordnetRank": 2,
+          "llmRank": 2,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      }
+    ]
+  },
+  "actor": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "aktör",
+    "def": "A person who performs in plays or films.",
+    "ex": [
+      "He is a famous actor.",
+      "The actor played a good role."
+    ],
+    "ex_tr": [
+      "O ünlü bir aktör.",
+      "Aktör iyi bir rol oynadı."
+    ],
+    "ex_distractors": [
+      [
+        "He are a famous actor.",
+        "She is a famous actor.",
+        "He was a famous actor."
+      ],
+      [
+        "The actor plays a good role.",
+        "The actress played a good role.",
+        "The actor played a bad role."
+      ]
+    ],
+    "sb_distractors": [
+      [
+        "actress",
+        "action",
+        "active"
+      ],
+      [
+        "acting",
+        "actual",
+        "agent"
+      ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 2,
+        "reason": "Too abstract and formal for A2-B1 learners; rarely used in everyday conversation."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 2,
+      "selectedSenseCount": 1,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "oyuncu",
+        "pos": "noun",
+        "def": "a person who acts in a play, movie, or television show",
+        "ex": [
+          "He is a very famous actor in Hollywood."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "actor.noun.1",
+          "wordnetRank": 1,
+          "llmRank": 1,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      }
+    ]
+  },
+  "actress": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "aktris",
+    "def": "A woman whose job is to act in plays or films.",
+    "ex": [
+      "She wants to be a famous actress.",
+      "The actress wore a beautiful dress on stage."
+    ],
+    "ex_tr": [
+      "Ünlü bir aktris olmak istiyor.",
+      "Aktris sahnede güzel bir elbise giydi."
+    ],
+    "ex_distractors": [
+      [
+        "He wants to be a famous actress.",
+        "She wanted to be a famous actress.",
+        "She want to be a famous actress."
+      ],
+      [
+        "The actor wore a beautiful dress on stage.",
+        "The actress wears a beautiful dress on stage.",
+        "The actress wearing a beautiful dress on stage."
+      ]
+    ],
+    "sb_distractors": [
+      [
+        "singer",
+        "teacher",
+        "doctor"
+      ],
+      [
+        "singer",
+        "dancer",
+        "model"
+      ]
+    ]
+  },
+  "add": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "eklemek",
+    "def": "to put something more into something",
+    "ex": [
+      "Please add some salt to the soup.",
+      "I want to add your name to the list."
+    ],
+    "ex_tr": [
+      "Lütfen çorbaya biraz tuz ekle.",
+      "Adını listeye eklemek istiyorum."
+    ],
+    "ex_distractors": [
+      [
+        "Lütfen çorbaya biraz tuz koydu.",
+        "Lütfen çorbada biraz tuz ekle.",
+        "Lütfen çorbaya tuz ekliyor."
+      ],
+      [
+        "Adını listeye ekledim.",
+        "Adını listeye eklemek ekliyor.",
+        "Adını listeye eklemek istiyor."
+      ]
+    ],
+    "sb_distractors": [
+      [
+        "put",
+        "bring",
+        "take"
+      ],
+      [
+        "write",
+        "put",
+        "send"
+      ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 4,
+        "reason": "Meaning is not relevant to the current context."
+      }
+    ],
+    "alt_meanings_merged": [
+      {
+        "kept": 1,
+        "dropped": 3,
+        "reason": "Semantic overlap, kept the more general sense."
+      }
+    ],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 7,
+      "selectedSenseCount": 2,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "toplamak",
+        "pos": "verb",
+        "def": "to find the total of two or more numbers",
+        "ex": [
+          "Can you add these two numbers for me?"
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "add.verb.2",
+          "wordnetRank": 2,
+          "llmRank": 1,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      }
+    ]
+  },
+  "afraid": {
+    "level": "A1",
+    "pos": "adj",
+    "tr": "korkmuş",
+    "def": "feeling fear",
+    "ex": [
+      "I am afraid of dogs.",
+      "She is afraid of the dark."
+    ],
+    "ex_tr": [
+      "Köpeklerden korkarım.",
+      "O, karanlıktan korkar."
+    ],
+    "ex_distractors": [
+      [
+        "Köpekleri severim.",
+        "Köpekten korkuyor.",
+        "Biz köpeklerden korkarız."
+      ],
+      [
+        "O, karanlığı sever.",
+        "Ben karanlıktan korkarım.",
+        "Onlar karanlıktan korkuyorlar."
+      ]
+    ],
+    "sb_distractors": [
+      [
+        "happy",
+        "tired",
+        "sad"
+      ],
+      [
+        "happy",
+        "tired",
+        "sad"
+      ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 3,
+        "reason": "Overlaps with the general sense of fear and apprehension in Sense 1."
+      },
+      {
+        "wordnetIndex": 4,
+        "reason": "Less common as a distinct sense for A2-B1 learners; usually covered by Sense 1."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 4,
+      "selectedSenseCount": 2,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "endişeli",
+        "pos": "adj",
+        "def": "feeling worried or scared about something",
+        "ex": [
+          "She is afraid of failing the test."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "afraid.adj.1",
+          "wordnetRank": 1,
+          "llmRank": 1,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "üzgünüm ki / korkarım ki",
+        "pos": "adj",
+        "def": "used to politely say that something is true, but not what you want it to be",
+        "ex": [
+          "I'm afraid I can't come to the party tonight."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "afraid.adj.2",
+          "wordnetRank": 2,
+          "llmRank": 2,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      }
+    ]
+  },
+  "after": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "sonra",
+    "def": "later than something or someone",
+    "ex": [
+      "I will call you after work.",
+      "She went to bed after dinner."
+    ],
+    "ex_tr": [
+      "İşten sonra seni arayacağım.",
+      "Akşam yemeğinden sonra yatağa gitti."
+    ],
+    "ex_distractors": [
+      [
+        "I call you after work.",
+        "I will call you before work.",
+        "I will call him after work."
+      ],
+      [
+        "She goes to bed after dinner.",
+        "She went to bed before dinner.",
+        "He went to bed after dinner."
+      ]
+    ],
+    "sb_distractors": [
+      [
+        "before",
+        "during",
+        "until"
+      ],
+      [
+        "before",
+        "during",
+        "until"
+      ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 1,
+        "reason": "Too technical/rare for A2-B1."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 3,
+      "selectedSenseCount": 2,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "sonrasında",
+        "pos": "adv",
+        "def": "at a later time",
+        "ex": [
+          "Shortly after, the rain stopped."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "after.adv.2",
+          "wordnetRank": 2,
+          "llmRank": 1,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "geriden",
+        "pos": "adv",
+        "def": "at the back or behind someone/something",
+        "ex": [
+          "I'll go first, you come after."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "after.adv.3",
+          "wordnetRank": 3,
+          "llmRank": 2,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      }
+    ]
+  },
+  "afternoon": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "öğleden sonra",
+    "def": "The part of the day between noon and evening.",
+    "ex": [
+      "I will meet you in the afternoon.",
+      "She likes to read books every afternoon."
+    ],
+    "ex_tr": [
+      "Seninle öğleden sonra buluşacağım.",
+      "O her öğleden sonra kitap okumayı sever."
+    ],
+    "ex_distractors": [
+      [
+        "I met you in the afternoon.",
+        "He will meet you in the afternoon.",
+        "I will meet you on the afternoon."
+      ],
+      [
+        "She liked to read books every afternoon.",
+        "He likes to read books every afternoon.",
+        "She likes to read every afternoon books."
+      ]
+    ],
+    "sb_distractors": [
+      [
+        "morning",
+        "evening",
+        "night"
+      ],
+      [
+        "morning",
+        "evening",
+        "night"
+      ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 2,
+        "reason": "This sense describes the use of 'afternoon' in a fixed greeting phrase ('Good afternoon') rather than a standalone meaning of the word itself, which is less relevant for A2-B1 learners defining 'afternoon'."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 2,
+      "selectedSenseCount": 1,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": []
+  },
+  "again": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "tekrar",
+    "def": "one more time",
+    "ex": [
+      "Please read the text again.",
+      "I want to see you again."
+    ],
+    "ex_tr": [
+      "Lütfen metni tekrar oku.",
+      "Seni tekrar görmek istiyorum."
+    ],
+    "ex_distractors": [
+      [
+        "Please read the text now.",
+        "Please read the texts again.",
+        "Please read the text yesterday."
+      ],
+      [
+        "I wanted to see you again.",
+        "He wants to see you again.",
+        "I want to see them again."
+      ]
+    ],
+    "sb_distractors": [
+      [
+        "now",
+        "slowly",
+        "loudly"
+      ],
+      [
+        "soon",
+        "today",
+        "here"
+      ]
+    ]
+  },
+  "age": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "yaş",
+    "def": "The number of years a person has lived.",
+    "ex": [
+      "What is your age?",
+      "She is the same age as me."
+    ],
+    "ex_tr": [
+      "Yaşın kaç?",
+      "O benimle aynı yaşta."
+    ],
+    "ex_distractors": [
+      [
+        "Yaşın kaçtı?",
+        "Yaşları kaç?",
+        "Yaşın kaç olacak?"
+      ],
+      [
+        "O benden daha yaşlı.",
+        "Onlar benimle aynı yaşta.",
+        "O benimle aynı yaştaydı."
+      ]
+    ],
+    "sb_distractors": [
+      [
+        "name",
+        "job",
+        "address"
+      ],
+      [
+        "height",
+        "size",
+        "weight"
+      ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 1,
+        "reason": "Similar to sense 2 but less common."
+      },
+      {
+        "wordnetIndex": 3,
+        "reason": "Less frequent in everyday conversation."
+      },
+      {
+        "wordnetIndex": 6,
+        "reason": "Too specific/technical for A2-B1 level."
+      },
+      {
+        "wordnetIndex": 8,
+        "reason": "Covered by more general senses of age."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 8,
+      "selectedSenseCount": 3,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "eskilik",
+        "pos": "noun",
+        "def": "the length of time something has been in existence",
+        "ex": [
+          "The age of this ancient pottery is unknown."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "age.noun.4",
+          "wordnetRank": 4,
+          "llmRank": 1,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "yaşlanmak",
+        "pos": "verb",
+        "def": "to become older",
+        "ex": [
+          "It's natural for skin to age over time."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "age.verb.2",
+          "wordnetRank": 2,
+          "llmRank": 2,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "çağ",
+        "pos": "noun",
+        "def": "a period of history known for particular features",
+        "ex": [
+          "The Bronze Age was an important period in human history."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "age.noun.5",
+          "wordnetRank": 5,
+          "llmRank": 3,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      }
+    ]
+  },
+  "ago": {
+    "level": "A1",
+    "pos": "adv",
+    "tr": "önce",
+    "def": "In the past",
+    "ex": [
+      "I saw him two days ago.",
+      "The movie started ten minutes ago."
+    ],
+    "ex_tr": [
+      "Onu iki gün önce gördüm.",
+      "Film on dakika önce başladı."
+    ],
+    "ex_distractors": [
+      [
+        "Onu iki gün sonra gördüm.",
+        "Onu iki gün önce görüyorum.",
+        "Onu iki gün önce göreceğim."
+      ],
+      [
+        "Film on dakika sonra başladı.",
+        "Film on dakika önce başlar.",
+        "Film on dakika önce başlayacak."
+      ]
+    ],
+    "sb_distractors": [
+      [
+        "later",
+        "soon",
+        "now"
+      ],
+      [
+        "later",
+        "soon",
+        "now"
+      ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 2,
+        "reason": "Rarely used as an adjective in modern spoken English; the adverbial sense covers common usage."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 2,
+      "selectedSenseCount": 1,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "eskiden",
+        "pos": "adv",
+        "def": "a long time in the past",
+        "ex": [
+          "This happened long ago."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "ago.adv.1",
+          "wordnetRank": 1,
+          "llmRank": 1,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      }
+    ]
+  },
+  "agree": {
+    "level": "A1",
+    "pos": "verb",
+    "tr": "katılmak",
+    "def": "To have the same opinion as someone else.",
+    "ex": [
+      "I agree with you.",
+      "They agree on the price."
+    ],
+    "ex_tr": [
+      "Sana katılıyorum.",
+      "Fiyat konusunda anlaşıyorlar."
+    ],
+    "ex_distractors": [
+      [
+        "Sana katıldım.",
+        "O sana katılıyor.",
+        "Sana katılmıyorum."
+      ],
+      [
+        "Fiyat konusunda anlaştılar.",
+        "Biz fiyat konusunda anlaşıyoruz.",
+        "Fiyat konusunda anlaşmıyorlar."
+      ]
+    ],
+    "sb_distractors": [
+      [
+        "talk",
+        "work",
+        "stay"
+      ],
+      [
+        "look",
+        "wait",
+        "talk"
+      ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 3,
+        "reason": "Less common in basic conversation"
+      },
+      {
+        "wordnetIndex": 4,
+        "reason": "Rare/idiomatic usage"
+      },
+      {
+        "wordnetIndex": 5,
+        "reason": "Too technical (linguistics)"
+      },
+      {
+        "wordnetIndex": 6,
+        "reason": "Idiomatic usage regarding suitability"
+      },
+      {
+        "wordnetIndex": 7,
+        "reason": "Redundant with sense 1 for A2-B1 learners"
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 7,
+      "selectedSenseCount": 2,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "uymak",
+        "pos": "verb",
+        "def": "to be the same as or match something else",
+        "ex": [
+          "The two reports agree on the final numbers."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "agree.verb.1",
+          "wordnetRank": 1,
+          "llmRank": 1,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "kabul etmek",
+        "pos": "verb",
+        "def": "to say yes to a suggestion or a plan",
+        "ex": [
+          "He agreed to help me with my homework."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "agree.verb.2",
+          "wordnetRank": 2,
+          "llmRank": 2,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      }
+    ]
+  },
+  "air": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "hava",
+    "def": "The gas that we breathe.",
+    "ex": [
+      "The air is fresh today.",
+      "Birds fly in the air."
+    ],
+    "ex_tr": [
+      "Bugün hava taze.",
+      "Kuşlar havada uçar."
+    ],
+    "ex_distractors": [
+      [
+        "Hava bugün tazeydi.",
+        "Hava taze değil.",
+        "Bugün hava tazeliyor."
+      ],
+      [
+        "Kuş havada uçuyor.",
+        "Kuşlar havada uçtu.",
+        "Kuşlar havaya uçuyor."
+      ]
+    ],
+    "sb_distractors": [
+      [
+        "water",
+        "food",
+        "room"
+      ],
+      [
+        "water",
+        "forest",
+        "city"
+      ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 3,
+        "reason": "Redundant with Sense 2."
+      },
+      {
+        "wordnetIndex": 4,
+        "reason": "Too formal/idiomatic for A2-B1."
+      },
+      {
+        "wordnetIndex": 5,
+        "reason": "Too specific for general use."
+      },
+      {
+        "wordnetIndex": 6,
+        "reason": "Too specific for general use."
+      },
+      {
+        "wordnetIndex": 9,
+        "reason": "Too abstract for A2-B1."
+      },
+      {
+        "wordnetIndex": 12,
+        "reason": "Archaic/philosophical."
+      },
+      {
+        "wordnetIndex": 13,
+        "reason": "Rare usage in modern English."
+      },
+      {
+        "wordnetIndex": 14,
+        "reason": "Redundant with Sense 2."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 15,
+      "selectedSenseCount": 3,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "gökyüzü",
+        "pos": "noun",
+        "def": "the space above the earth's surface",
+        "ex": [
+          "Birds fly in the air."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "air.noun.8",
+          "wordnetRank": 8,
+          "llmRank": 2,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "hava yolculuğu",
+        "pos": "noun",
+        "def": "travel by plane",
+        "ex": [
+          "It's quicker to go by air."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "air.noun.15",
+          "wordnetRank": 15,
+          "llmRank": 3,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      }
+    ]
+  },
+  "airport": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "havaalanı",
+    "def": "A place where planes land and take off.",
+    "ex": [
+      "I am going to the airport now.",
+      "The airport is very big."
+    ],
+    "ex_tr": [
+      "Şimdi havaalanına gidiyorum.",
+      "Havaalanı çok büyük."
+    ],
+    "ex_distractors": [
+      [
+        "Havaalanına gittim.",
+        "Havaalanına gidiyoruz.",
+        "Havaalanında bekliyorum."
+      ],
+      [
+        "Havaalanı çok büyüktü.",
+        "Havaalanları çok büyüktür.",
+        "Havaalanı çok küçük."
+      ]
+    ],
+    "sb_distractors": [
+      [
+        "station",
+        "hotel",
+        "school"
+      ],
+      [
+        "city",
+        "house",
+        "park"
+      ]
+    ]
+  },
+  "all": {
+    "level": "A1",
+    "pos": "det",
+    "tr": "hepsi",
+    "def": "every single thing or person in a group",
+    "ex": [
+      "All the students are here.",
+      "I ate all the cake."
+    ],
+    "ex_tr": [
+      "Todos los estudiantes están aquí.",
+      "Me comí todo el pastel."
+    ],
+    "ex_distractors": [
+      [
+        "Some students are here.",
+        "No students are here.",
+        "Few students are here."
+      ],
+      [
+        "I ate some of the cake.",
+        "I ate none of the cake.",
+        "I ate a little of the cake."
+      ]
+    ],
+    "sb_distractors": [
+      [
+        "some",
+        "none",
+        "part"
+      ],
+      [
+        "every",
+        "each",
+        "whole"
+      ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 3,
+        "reason": "Less common and more idiomatic, not essential for A2-B1 level."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 3,
+      "selectedSenseCount": 2,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "tüm",
+        "pos": "adj",
+        "def": "the complete amount or number of something, or every single one.",
+        "ex": [
+          "All the students passed the exam."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "all.adj.2",
+          "wordnetRank": 2,
+          "llmRank": 1,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "tamamen",
+        "pos": "adv",
+        "def": "completely or entirely",
+        "ex": [
+          "I'm all ready for the trip."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "all.adv.1",
+          "wordnetRank": 1,
+          "llmRank": 2,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      }
+    ]
+  },
+  "about": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "hakkında",
+    "def": "on the subject of",
+    "ex": [
+      "I read a book about animals.",
+      "Tell me about your family."
+    ],
+    "ex_tr": [
+      "Hayvanlar hakkında bir kitap okudum.",
+      "Bana ailen hakkında anlat."
+    ],
+    "ex_distractors": [
+      [
+        "Hayvanlar için bir kitap okuyorum.",
+        "Bir kitap hayvanlar okudu.",
+        "Hayvanlar hakkında kitap okuyacağım."
+      ],
+      [
+        "Ailen bana anlatıyor.",
+        "Ailen hakkında anlatmıştım.",
+        "Ailenle bana anlat."
+      ]
+    ],
+    "sb_distractors": [
+      [
+        "with",
+        "for",
+        "in"
+      ],
+      [
+        "to",
+        "with",
+        "of"
+      ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 1,
+        "reason": "Rare/idiomatic."
+      },
+      {
+        "wordnetIndex": 3,
+        "reason": "Redundant with vicinity/movement senses."
+      },
+      {
+        "wordnetIndex": 6,
+        "reason": "Too specific/rare."
+      },
+      {
+        "wordnetIndex": 7,
+        "reason": "Too specific/rare."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 8,
+      "selectedSenseCount": 3,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "yaklaşık",
+        "pos": "adv",
+        "def": "almost, but not exactly; close to a number or amount",
+        "ex": [
+          "There were about 20 people at the party."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "about.adv.2",
+          "wordnetRank": 2,
+          "llmRank": 1,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "neredeyse",
+        "pos": "adv",
+        "def": "nearly or almost",
+        "ex": [
+          "The movie is about over."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "about.adv.8",
+          "wordnetRank": 8,
+          "llmRank": 2,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "etrafta",
+        "pos": "adv",
+        "def": "in or around a place",
+        "ex": [
+          "There were a few people hanging about the entrance.",
+          "I left my keys lying about somewhere."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "about.adv.4",
+          "wordnetRank": 4,
+          "llmRank": 3,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      }
+    ]
+  },
+  "above": {
+    "level": "A1",
+    "pos": "prep",
+    "tr": "üstünde",
+    "def": "Higher than something else.",
+    "ex": [
+      "The plane is above the clouds.",
+      "The clock is above the door."
+    ],
+    "ex_tr": [
+      "Uçak bulutların üstünde.",
+      "Saat kapının üstünde."
+    ],
+    "ex_distractors": [
+      [
+        "Uçak bulutların altındaydı.",
+        "Uçaklar bulutların üstünde.",
+        "Uçak bulutların içinde."
+      ],
+      [
+        "Saat kapının altında.",
+        "Saatler kapının üstünde.",
+        "Saat kapının yanındaydı."
+      ]
+    ],
+    "sb_distractors": [
+      [
+        "under",
+        "near",
+        "behind"
+      ],
+      [
+        "below",
+        "next to",
+        "in"
+      ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 1,
+        "reason": "Redundant with sense 2 and primarily used in formal writing."
+      },
+      {
+        "wordnetIndex": 4,
+        "reason": "Redundant with sense 2 and primarily used in formal writing."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 4,
+      "selectedSenseCount": 2,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "yukarıda",
+        "pos": "adv",
+        "def": "in or to a higher place",
+        "ex": [
+          "Look above to see the stars."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "above.adv.3",
+          "wordnetRank": 3,
+          "llmRank": 1,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      }
+    ]
+  },
+  "action": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "eylem",
+    "def": "A thing that you do.",
+    "ex": [
+      "We need to take action now.",
+      "His actions showed he was kind."
+    ],
+    "ex_tr": [
+      "Şimdi harekete geçmeliyiz.",
+      "Eylemleri onun nazik olduğunu gösterdi."
+    ],
+    "ex_distractors": [
+      [
+        "We needed to take action now.",
+        "They need to take action now.",
+        "We need to taking action now."
+      ],
+      [
+        "His action showed he was kind.",
+        "His actions show he was kind.",
+        "His actions showed he is kind."
+      ]
+    ],
+    "sb_distractors": [
+      [
+        "reaction",
+        "motion",
+        "activity"
+      ],
+      [
+        "deeds",
+        "behavior",
+        "conduct"
+      ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 1,
+        "reason": "Too formal/legal."
+      },
+      {
+        "wordnetIndex": 2,
+        "reason": "Rare verb usage."
+      },
+      {
+        "wordnetIndex": 6,
+        "reason": "Too technical/scientific."
+      },
+      {
+        "wordnetIndex": 8,
+        "reason": "Less common description of personality."
+      },
+      {
+        "wordnetIndex": 9,
+        "reason": "Too technical/mechanical."
+      },
+      {
+        "wordnetIndex": 11,
+        "reason": "Too formal/administrative."
+      },
+      {
+        "wordnetIndex": 12,
+        "reason": "Too specific/idiomatic."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 12,
+      "selectedSenseCount": 3,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "icraat",
+        "pos": "noun",
+        "def": "a deed or something that is done, especially when contrasted with words.",
+        "ex": [
+          "It's time for action, not just talk."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "action.noun.3",
+          "wordnetRank": 3,
+          "llmRank": 1,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "hareketlilik",
+        "pos": "noun",
+        "def": "the state of being active or busy",
+        "ex": [
+          "The city is full of action during the festival."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "action.noun.4",
+          "wordnetRank": 4,
+          "llmRank": 2,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "olay örgüsü",
+        "pos": "noun",
+        "def": "the main events of a story or film",
+        "ex": [
+          "The action of the play moves quickly from one scene to the next."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "action.noun.7",
+          "wordnetRank": 7,
+          "llmRank": 3,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   }
 }

@@ -50,6 +50,21 @@ function getMeaningProgressMeta(word, progressEntry, allWords) {
   return { learnedCount, totalMeanings, hasQueued };
 }
 
+function buildSecondaryMeaningPreview(word, progressEntry, allWords) {
+  const alts = Array.isArray(allWords[word]?.alt_meanings) ? allWords[word].alt_meanings : [];
+  if (!alts.length) return '';
+
+  const meanings = Array.isArray(progressEntry.meanings) ? progressEntry.meanings : [];
+  const tags = alts.map((alt, idx) => {
+    const meaning = meanings[idx + 1];
+    const status = meaning?.status || 'locked';
+    const tr = escapeHtml(alt?.tr || '-');
+    return `<span class="meaning-chip meaning-chip-${escapeHtml(status)}">${tr} · ${escapeHtml(status)}</span>`;
+  });
+
+  return `<div class="word-row-secondary">${tags.join('')}</div>`;
+}
+
 function renderWordListModal(state, allWords) {
   const filter = state.ui.wordListFilter || 'practice';
   const progressWords = state.progress.words || {};
@@ -71,9 +86,13 @@ function renderWordListModal(state, allWords) {
       const activateButton = meaningMeta?.hasQueued
         ? `<button class="btn btn-muted" style="padding: 6px 10px; min-height: 34px; font-size: 0.85rem; margin-left: 8px;" data-ui-action="activate-queued-meaning" data-word="${escapeHtml(word)}">Öğren</button>`
         : '';
+      const secondaryPreview = buildSecondaryMeaningPreview(word, data, allWords);
       return `
         <div class="word-row">
-          <div style="flex:1;"><strong>${escapeHtml(word)}</strong> - ${escapeHtml(tr)} ${badge}</div>
+          <div style="flex:1;">
+            <div><strong>${escapeHtml(word)}</strong> - ${escapeHtml(tr)} ${badge}</div>
+            ${secondaryPreview}
+          </div>
           <div class="word-row-meta">${escapeHtml(data.status || '')}</div>
           ${activateButton}
           <button class="btn" style="padding: 6px 10px; min-height: 34px; font-size: 0.85rem; margin-left: 8px;" data-ui-action="${btnAction}" data-word="${escapeHtml(word)}">${btnLabel}</button>

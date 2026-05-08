@@ -353,6 +353,40 @@ button.card {
   white-space: nowrap;
 }
 
+.word-row-secondary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.meaning-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.meaning-chip-queued {
+  border-color: rgba(243, 165, 49, 0.45);
+  color: var(--accent);
+  background: rgba(243, 165, 49, 0.12);
+}
+
+.meaning-chip-learned {
+  border-color: rgba(46, 207, 149, 0.45);
+  color: var(--success);
+  background: rgba(46, 207, 149, 0.12);
+}
+
+.meaning-chip-locked {
+  opacity: 0.85;
+}
+
 .prep-screen {
   max-width: 760px;
   margin: 0 auto;

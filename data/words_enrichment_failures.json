@@ -1,1 +1,23 @@
-[]
+[
+  {
+    "word": "about",
+    "code": "UPSTREAM_5XX",
+    "error": "Failed after 3 attempts (about:secondary:about.adv.8): HTTP 503 for about:secondary:about.adv.8: {\"error\":{\"code\":503,\"message\":\"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\"status\":\"UNAVAILABLE\"}}",
+    "batch": 1,
+    "timestamp": "2026-05-08T15:39:59.206Z"
+  },
+  {
+    "word": "above",
+    "code": "UPSTREAM_5XX",
+    "error": "Failed after 3 attempts (above:primary): HTTP 503 for above:primary: {\"error\":{\"code\":503,\"message\":\"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\"status\":\"UNAVAILABLE\"}}",
+    "batch": 1,
+    "timestamp": "2026-05-08T15:39:59.223Z"
+  },
+  {
+    "word": "action",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (action:reranker): Expected ',' or ']' after array element in JSON at position 70 (line 6 column 6)",
+    "batch": 1,
+    "timestamp": "2026-05-08T15:39:59.224Z"
+  }
+]
