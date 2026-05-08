@@ -326,6 +326,26 @@ function updateState(currentState, action) {
         };
       }
       break;
+    case 'SET_MEANING_STATUS':
+      {
+        const { word, meaningIndex, status, pendingAt } = action.payload;
+        const existing = newState.progress.words[word] || {
+          status: 'practice',
+          interval: 1,
+          nextReview: toLocalDate(1),
+          posErrors: {},
+        };
+
+        newState.progress.words[word] = existing;
+        const updated = setMeaningState(existing, meaningIndex, { status });
+
+        if (status === 'pending') {
+          updated.pendingAt = pendingAt || toLocalDate(0);
+        } else if (updated.pendingAt) {
+          delete updated.pendingAt;
+        }
+      }
+      break;
     case 'DELETE_WORD_PROGRESS':
       delete newState.progress.words[action.payload];
       break;
@@ -346,6 +366,14 @@ window.dispatch = dispatch;
 
 function shuffle(arr) {
   return [...arr].sort(() => Math.random() - 0.5);
+}
+function escapeHtml(text) {
+  return String(text || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 function isEligibleForLevel(word, levelFilter) {
@@ -531,6 +559,25 @@ function recordPosError(word) {
   const posErrors = existing.posErrors || {};
   posErrors[pos] = (posErrors[pos] || 0) + 1;
   AppState.progress.words[word] = { ...existing, posErrors };
+}
+
+function applyUnlockedDecision(nextStatus) {
+  const items = AppState.session.newlyUnlocked || [];
+  const pendingAt = toLocalDate(0);
+
+  items.forEach((item) => {
+    dispatch({
+      type: 'SET_MEANING_STATUS',
+      payload: {
+        word: item.word,
+        meaningIndex: item.meaningIndex,
+        status: nextStatus,
+        pendingAt,
+      },
+    });
+  });
+
+  dispatch({ type: 'SET_NEWLY_UNLOCKED', payload: [] });
 }
 
 function finalizeRoundAnswer(correct) {
@@ -882,6 +929,23 @@ function renderRound(state) {
 function renderSummary(state) {
   const words = state.session.words;
   const perfect = words.filter((w) => Object.values(state.session.results[w] || {}).every(Boolean)).length;
+  const unlocked = state.session.newlyUnlocked || [];
+
+  const unlockedBlock = unlocked.length > 0
+    ? `
+      <div class="card" style="margin-top:12px; text-align:left;">
+        <h3>New meanings unlocked</h3>
+        <ul style="margin: 0 0 12px 18px; padding: 0;">
+          ${unlocked.map((item) => `<li><strong>${escapeHtml(item.word)}</strong> -> ${escapeHtml(item.tr || '')}</li>`).join('')}
+        </ul>
+        <div class="actions">
+          <button class="btn" data-action="summary-accept-unlocked">Evet</button>
+          <button class="btn btn-muted" data-action="summary-defer-unlocked">Sonra</button>
+        </div>
+      </div>
+    `
+    : '';
+
   return `
     <div class="summary-screen">
       <div class="card centered-card">
@@ -890,6 +954,7 @@ function renderSummary(state) {
         <p>Perfect words: ${perfect}</p>
         <button class="btn" data-action="go-home">Back Home</button>
       </div>
+      ${unlockedBlock}
     </div>
   `;
 }
@@ -1030,6 +1095,14 @@ function handleAction(action, target) {
     removeCurrentWordFromSession('known');
     return;
   }
+  if (action === 'summary-accept-unlocked') {
+    applyUnlockedDecision('pending');
+    return;
+  }
+  if (action === 'summary-defer-unlocked') {
+    applyUnlockedDecision('queued');
+    return;
+  }
   if (action === 'production-practice-later') {
     dispatch({ type: 'SET_SB_RETRY', payload: false });
     dispatch({ type: 'SET_PRODUCTION_DRAFT', payload: '' });
@@ -1087,6 +1160,26 @@ function handleUiAction(action, element) {
         payload: { word, status: 'known', interval: null, nextReview: null }
       });
     }
+  }
+  if (action === 'activate-queued-meaning') {
+    const word = element?.dataset?.word;
+    if (!word) return;
+
+    const entry = AppState.progress.words[word];
+    if (!entry || !Array.isArray(entry.meanings)) return;
+
+    const queuedIndex = entry.meanings.findIndex((meaning, idx) => idx > 0 && meaning?.status === 'queued');
+    if (queuedIndex === -1) return;
+
+    dispatch({
+      type: 'SET_MEANING_STATUS',
+      payload: {
+        word,
+        meaningIndex: queuedIndex,
+        status: 'pending',
+        pendingAt: toLocalDate(0),
+      },
+    });
   }
 }
 

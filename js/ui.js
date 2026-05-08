@@ -30,6 +30,26 @@ function renderSettingsModal() {
   `;
 }
 
+function getMeaningProgressMeta(word, progressEntry, allWords) {
+  const altCount = Array.isArray(allWords[word]?.alt_meanings) ? allWords[word].alt_meanings.length : 0;
+  const totalMeanings = 1 + altCount;
+  if (totalMeanings <= 1) return null;
+
+  let learnedCount = 0;
+  if (progressEntry.status === 'known' || progressEntry.status === 'learned') {
+    learnedCount += 1;
+  }
+
+  const meanings = Array.isArray(progressEntry.meanings) ? progressEntry.meanings : [];
+  for (let i = 1; i < totalMeanings; i++) {
+    const meaning = meanings[i];
+    if (meaning?.status === 'learned') learnedCount += 1;
+  }
+
+  const hasQueued = meanings.some((meaning, idx) => idx > 0 && meaning?.status === 'queued');
+  return { learnedCount, totalMeanings, hasQueued };
+}
+
 function renderWordListModal(state, allWords) {
   const filter = state.ui.wordListFilter || 'practice';
   const progressWords = state.progress.words || {};
@@ -46,10 +66,16 @@ function renderWordListModal(state, allWords) {
       const tr = allWords[word]?.tr || '';
       const btnLabel = filter === 'known' ? '✕ Remove' : '+ Add';
       const btnAction = filter === 'known' ? 'remove-from-known' : 'add-to-known';
+      const meaningMeta = getMeaningProgressMeta(word, data, allWords);
+      const badge = meaningMeta ? `<span class="word-row-meta" style="margin-left:8px;">🟡 ${meaningMeta.learnedCount}/${meaningMeta.totalMeanings}</span>` : '';
+      const activateButton = meaningMeta?.hasQueued
+        ? `<button class="btn btn-muted" style="padding: 6px 10px; min-height: 34px; font-size: 0.85rem; margin-left: 8px;" data-ui-action="activate-queued-meaning" data-word="${escapeHtml(word)}">Öğren</button>`
+        : '';
       return `
         <div class="word-row">
-          <div style="flex:1;"><strong>${escapeHtml(word)}</strong> - ${escapeHtml(tr)}</div>
+          <div style="flex:1;"><strong>${escapeHtml(word)}</strong> - ${escapeHtml(tr)} ${badge}</div>
           <div class="word-row-meta">${escapeHtml(data.status || '')}</div>
+          ${activateButton}
           <button class="btn" style="padding: 6px 10px; min-height: 34px; font-size: 0.85rem; margin-left: 8px;" data-ui-action="${btnAction}" data-word="${escapeHtml(word)}">${btnLabel}</button>
         </div>
       `;
