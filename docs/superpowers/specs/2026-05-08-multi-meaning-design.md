@@ -9,6 +9,88 @@
 
 Teach multiple meanings of polysemous words without disrupting the existing spaced repetition algorithm or forcing users through redundant exercises. A secondary meaning unlocks automatically after the primary meaning is sufficiently learned, surfaces in the session summary, and enters the queue only with user consent.
 
+Meaning discovery is source-first, not LLM-first: authoritative lexical data determines which meanings exist and their order; LLM is used only for pedagogical content generation (simple definition wording, Turkish translation phrasing, example sentence generation).
+
+---
+
+## Meaning Discovery and Verification
+
+This feature has two distinct questions:
+
+1. How many common meanings does a word have?
+2. Which meanings are most common for general learners?
+
+The system answers these through a source hierarchy.
+
+### Source hierarchy (required)
+
+1. Lexical ground truth source (WordNet and/or licensed dictionary API such as Oxford/Merriam-Webster) to enumerate candidate senses.
+2. Frequency layer (corpus-based source such as COCA-derived mapping, SUBTLEX, or equivalent frequency table) to rank/filter by real usage.
+3. LLM layer only to render learner-friendly outputs for already selected senses.
+
+LLM must never be the authority for sense count or base ordering.
+
+### Common-meaning selection policy
+
+For each word:
+
+- Gather all candidate senses from lexical source.
+- Map each sense to frequency evidence.
+- Keep only general-use senses passing minimum frequency threshold.
+- Sort by frequency score descending.
+- Keep top K, where K <= 3 for this product phase.
+
+If a word has more than K genuinely common senses, only the top K are included. This is an intentional product limit, not a data error.
+
+### Guarantee boundaries
+
+Guaranteed:
+
+- Included meanings are selected from external lexical/frequency evidence, not raw model intuition.
+- Included meanings are ordered by measurable usage score.
+- Rare/domain-specific senses are filtered out by policy.
+
+Not guaranteed:
+
+- The app does not surface all common meanings when K limit is reached.
+- Frequency ranking can vary by domain/register; ordering reflects the chosen corpus profile, not every context.
+
+### Confidence metadata (stored for audit)
+
+Each secondary meaning should carry provenance fields during enrichment:
+
+```json
+{
+  "tr": "ağaç kabuğu",
+  "def": "...",
+  "ex": ["..."],
+  "unlockAfter": 14,
+  "source": {
+    "lexicon": "wordnet",
+    "senseId": "wn:...",
+    "frequencySource": "coca",
+    "frequencyRank": 2,
+    "frequencyScore": 0.71,
+    "selectionReason": "top_k_common"
+  }
+}
+```
+
+These fields are optional for runtime UI but required in the enrichment artifact so quality can be inspected.
+
+### Verification checks (`scripts/validate.js`)
+
+Add validation rules for multi-meaning data:
+
+- `alt_meanings.length <= 3`
+- `alt_meanings` sorted by `source.frequencyRank` ascending
+- each meaning has non-empty `tr`, `def`, `ex[0]`
+- no duplicate normalized Turkish gloss across meanings
+- no duplicate `senseId` for the same word
+- `unlockAfter` in allowed set: `1|3|7|14|30`
+
+Validation failures go to `data/words_enrichment_failures.json` with reason code.
+
 ---
 
 ## Data Layer — `words_enriched.json`
@@ -47,10 +129,14 @@ No new counter field is needed. Unlock check: `wordProgress.interval >= meaning.
 
 ### Enrichment script note (`scripts/enrich.js`)
 
-When generating `alt_meanings`, instruct the model to:
-- Produce **at most 3 meanings** per word, in **descending frequency order**
-- Skip rare or highly domain-specific meanings
-- Skip words where a second common meaning does not exist
+When building `alt_meanings`:
+
+- Determine senses from lexical source first.
+- Apply frequency filtering/ranking before any generation.
+- Keep **at most 3 meanings** in descending frequency order.
+- Skip rare or highly domain-specific meanings.
+- Skip words where a second common meaning does not exist.
+- Use LLM only after selection, to generate learner-facing `def`, `tr`, `ex` for the already chosen senses.
 
 ---
 
@@ -184,7 +270,8 @@ Yeni anlam:
 | File | Change |
 |------|--------|
 | `data/words_enriched.json` | `alt_meanings` field added to polysemous words via enrich script |
-| `scripts/enrich.js` | Prompt addition to generate `alt_meanings` (max 3, frequency-ordered) |
+| `scripts/enrich.js` | Source hierarchy integration (lexicon + frequency), then LLM generation for selected senses only |
+| `scripts/validate.js` | Multi-meaning validation rules (max 3, rank order, schema checks, duplicate sense guards) |
 | `js/progress.js` | `meanings` array tracking; unlock check after each review; backward-compat guard |
 | `js/app.js` | `session.newlyUnlocked` accumulation; session summary Evet/Sonra action handlers |
 | `js/exercises.js` | `SECONDARY_MEANING_DEFINITION` renderer with context bridge; Adaptive B gate logic |
