@@ -15,7 +15,9 @@ let AppState = {
     round: 1,
     current: 0,
     results: {},
-    currentExercise: null
+    currentExercise: null,
+    newlyUnlocked: [],
+    pendingSecondaryForSession: []
   },
   ui: {
     screen: 'home',
@@ -42,6 +44,90 @@ const SESSION_SIZE = 10;
 
 function toLocalDate(daysToAdd = 0) {
   return new Date(Date.now() + daysToAdd * 24 * 60 * 60 * 1000).toLocaleDateString('en-CA');
+}
+
+function addDaysToDate(dateString, days) {
+  if (!dateString) return toLocalDate(days);
+  const parsed = new Date(`${dateString}T00:00:00`);
+  if (Number.isNaN(parsed.getTime())) return toLocalDate(days);
+  parsed.setDate(parsed.getDate() + days);
+  return parsed.toLocaleDateString('en-CA');
+}
+
+function applyReviewCollisionPolicy(progress) {
+  const today = toLocalDate(0);
+  let changed = false;
+
+  Object.values(progress.words || {}).forEach((entry) => {
+    const due = [];
+
+    if (entry.status === 'learned' && entry.nextReview && entry.nextReview <= today) {
+      due.push({
+        meaningIndex: 0,
+        interval: entry.interval,
+        nextReview: entry.nextReview,
+      });
+    }
+
+    if (Array.isArray(entry.meanings)) {
+      entry.meanings.forEach((meaning, meaningIndex) => {
+        if (meaningIndex === 0) return;
+        if (meaning?.status !== 'learned') return;
+        if (!meaning.nextReview || meaning.nextReview > today) return;
+        due.push({
+          meaningIndex,
+          interval: meaning.interval,
+          nextReview: meaning.nextReview,
+        });
+      });
+    }
+
+    if (due.length <= 1) return;
+
+    due.sort((a, b) => {
+      const intervalDiff = Number(a.interval || 999) - Number(b.interval || 999);
+      if (intervalDiff !== 0) return intervalDiff;
+      return a.meaningIndex - b.meaningIndex;
+    });
+
+    due.slice(1).forEach((deferred) => {
+      if (deferred.meaningIndex === 0) {
+        entry.nextReview = addDaysToDate(deferred.nextReview, 1);
+      } else if (entry.meanings?.[deferred.meaningIndex]) {
+        entry.meanings[deferred.meaningIndex].nextReview = addDaysToDate(deferred.nextReview, 1);
+      }
+      changed = true;
+    });
+  });
+
+  return changed;
+}
+
+function collectPendingSecondaryMeanings(progress, limit = 2) {
+  const pending = [];
+
+  Object.entries(progress.words || {}).forEach(([word, entry]) => {
+    if (!Array.isArray(entry.meanings)) return;
+    entry.meanings.forEach((meaning, meaningIndex) => {
+      if (meaningIndex === 0) return;
+      if (meaning?.status !== 'pending') return;
+      pending.push({
+        word,
+        meaningIndex,
+        queuedAt: meaning.pendingAt || meaning.unlockedAt || '',
+      });
+    });
+  });
+
+  pending.sort((a, b) => {
+    const dateCmp = String(a.queuedAt).localeCompare(String(b.queuedAt));
+    if (dateCmp !== 0) return dateCmp;
+    const wordCmp = a.word.localeCompare(b.word);
+    if (wordCmp !== 0) return wordCmp;
+    return a.meaningIndex - b.meaningIndex;
+  });
+
+  return pending.slice(0, limit);
 }
 
 async function loadWords() {
@@ -191,6 +277,12 @@ function updateState(currentState, action) {
     case 'SET_CURRENT_EXERCISE':
       newState.session.currentExercise = action.payload;
       break;
+    case 'SET_NEWLY_UNLOCKED':
+      newState.session.newlyUnlocked = action.payload;
+      break;
+    case 'SET_PENDING_SECONDARY_FOR_SESSION':
+      newState.session.pendingSecondaryForSession = action.payload;
+      break;
     case 'MARK_KNOWN':
       newState.progress.words[action.payload] = {
         status: 'known',
@@ -280,7 +372,11 @@ function pickSessionWords(sessionSize, levelFilter = 'ALL') {
 }
 
 function initiateSession(sessionSize, levelFilter = 'ALL', skipGate = false) {
+  const collisionChanged = applyReviewCollisionPolicy(AppState.progress);
+  if (collisionChanged) saveProgress(AppState.progress);
+
   const sessionWords = pickSessionWords(sessionSize, levelFilter);
+  const pendingSecondaryForSession = collectPendingSecondaryMeanings(AppState.progress, 2);
   const nextSession = {
     words: sessionWords,
     queue: shuffle(sessionWords),
@@ -289,7 +385,9 @@ function initiateSession(sessionSize, levelFilter = 'ALL', skipGate = false) {
     round: 0,
     current: 0,
     results: {},
-    currentExercise: null
+    currentExercise: null,
+    newlyUnlocked: [],
+    pendingSecondaryForSession
   };
 
   dispatch({ type: 'INIT_SESSION', payload: nextSession });
@@ -412,6 +510,9 @@ function startRoundExercise() {
   const word = currentWord();
   if (!word) {
     if (AppState.session.round >= 5) {
+      const reviewedWords = [...new Set(AppState.session.words || [])];
+      const newlyUnlocked = applySecondaryMeaningUnlocks(AppState.progress, AllWords, reviewedWords);
+      dispatch({ type: 'SET_NEWLY_UNLOCKED', payload: newlyUnlocked });
       dispatch({ type: 'SET_SCREEN', payload: 'summary' });
       return;
     }
