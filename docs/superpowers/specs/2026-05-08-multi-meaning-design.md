@@ -25,39 +25,45 @@ The system answers these through a source hierarchy.
 ### Source hierarchy (required)
 
 1. **WordNet sense enumeration** — Pull all senses for the word. WordNet's default sense ordering (Princeton editorial + historical usage frequency) serves as the initial ranking heuristic. This ordering is not perfect but is consistent for the majority of common words.
-2. **Coarse filter** — Two automatic passes:
-   - **Deduplication:** Merge senses with near-identical glosses that differ only in linguistic granularity (e.g. two "run" senses that both mean "move quickly on foot").
-   - **Word-level frequency gate:** Using `wordfreq` (Python, SUBTLEX-based) or equivalent, skip words whose overall frequency is too low to warrant multi-meaning treatment.
-3. **LLM reranker** — LLM receives the filtered WordNet sense list and reranks/filters based on a single criterion: **frequency in everyday spoken English**. LLM does not discover new senses — it only selects from and reorders the WordNet list.
+2. **Coarse filter** — Word-level frequency gate using `wordfreq` (Python, SUBTLEX-based) or equivalent: skip words whose overall frequency is too low to warrant multi-meaning treatment. Additionally, flag potential merge candidates by computing cosine similarity between WordNet gloss pairs; pairs with similarity > 0.85 are marked as merge candidates for the next step.
+3. **LLM reranker + deduplicator** — LLM receives the full WordNet sense list (with merge candidates flagged) and handles both jobs in a single call:
+   - **Dedup:** For flagged merge candidates, decide whether they are truly the same sense. If yes, keep the clearer gloss.
+   - **Rerank:** Select and rank remaining senses by **frequency in everyday spoken English**.
+   - LLM does not discover new senses — it only merges, selects from, and reorders the WordNet list.
 
-LLM must never be the authority for sense count. It may reorder or exclude WordNet senses but cannot invent senses not present in the WordNet list.
+LLM must never be the authority for sense count. It may merge near-duplicates, reorder, or exclude WordNet senses but cannot invent senses not present in the WordNet list.
 
 ### LLM reranker prompt template
 
 ```
 WordNet senses (in WordNet order): [1. havlamak, 2. ağaç kabuğu, 3. bir gemi türü]
+Merge candidates (cosine > 0.85): [(1, 4)]
 Word: bark
 Target audience: Turkish learners (A2-B1)
 
-From this list, select senses that are common in everyday spoken English.
-Rank selected senses by how frequently they appear in casual conversation and general media.
-For each excluded sense, write a one-sentence reason.
+Step 1: For each merge candidate pair, decide if they are the same sense.
+  If yes, keep the clearer gloss and note the merged index.
+Step 2: From the remaining senses, select those common in everyday spoken English.
+  Rank by how frequently they appear in casual conversation and general media.
+Step 3: For each excluded or merged sense, write a one-sentence reason.
+
 Return JSON:
 {
   "selected": [{"wordnetIndex": 1, "rank": 1}, ...],
+  "merged": [{"kept": 1, "dropped": 4, "reason": "Same sense: both describe rapid leg movement"}],
   "excluded": [{"wordnetIndex": 3, "reason": "Archaic nautical term, rare in modern speech"}]
 }
 ```
 
-The exclusion reasons serve as an audit trail and help improve the prompt over time.
+The exclusion and merge reasons serve as an audit trail and help improve the prompt over time.
 
 ### Common-meaning selection policy
 
 For each word:
 
 - Pull all senses from WordNet (already roughly frequency-ordered).
-- Coarse-filter: deduplicate near-identical senses, skip low-frequency words.
-- LLM reranker: select and rank by everyday spoken English frequency.
+- Coarse-filter: skip low-frequency words; flag gloss pairs with cosine similarity > 0.85 as merge candidates.
+- LLM reranker + deduplicator: merge flagged near-duplicates, then select and rank by everyday spoken English frequency.
 - Keep top K, where K <= 3 for this product phase.
 
 If a word has more than K genuinely common senses, only the top K are included. This is an intentional product limit, not a data error.
@@ -175,8 +181,8 @@ No new counter field is needed. Unlock check: `wordProgress.interval >= meaning.
 When building `alt_meanings`:
 
 1. Pull WordNet senses for the word (uses default sense ordering as baseline).
-2. Coarse-filter: deduplicate near-identical glosses, skip words below frequency gate.
-3. Send filtered list to LLM reranker — select and rank by everyday spoken English frequency. Log exclusion reasons.
+2. Coarse-filter: skip words below frequency gate; compute cosine similarity between gloss pairs and flag pairs > 0.85 as merge candidates.
+3. Send full sense list + merge candidates to LLM — merge near-duplicates, then select and rank by everyday spoken English frequency. Log merge and exclusion reasons.
 4. Take top K (K <= 3) from reranked list.
 5. For each selected sense, call LLM separately to generate learner-facing `def`, `tr`, `ex`.
 6. Write `source` provenance metadata for each meaning.
