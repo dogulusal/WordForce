@@ -178,6 +178,11 @@ button.card {
   color: var(--text-secondary);
 }
 
+.btn-manage {
+  background: linear-gradient(180deg, #2c8f81, #216d62);
+  color: #f2fbf8;
+}
+
 .btn:disabled,
 .option:disabled {
   opacity: 0.55;
@@ -196,6 +201,13 @@ button.card {
   font-size: 0.9rem;
   color: var(--accent);
   margin: 0 0 10px;
+}
+
+.round-quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 12px;
 }
 
 .options {
@@ -436,6 +448,17 @@ button.card {
   gap: 10px;
   font-size: 0.88rem;
   color: var(--text-secondary);
+}
+
+.prep-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.prep-save-btn {
+  min-width: 120px;
 }
 
 .prep-continue-btn {

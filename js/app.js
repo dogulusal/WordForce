@@ -33,7 +33,8 @@ let AppState = {
     productionSubmitted: '',
     prepLevel: 'ALL',
     prepPage: 0,
-    prepSelectedKnown: []
+    prepSelectedKnown: [],
+    prepPendingAction: null
   }
 };
 
@@ -148,6 +149,14 @@ function updateState(currentState, action) {
       newState.ui.prepLevel = 'ALL';
       newState.ui.prepPage = 0;
       newState.ui.prepSelectedKnown = [];
+      newState.ui.prepPendingAction = null;
+      break;
+    case 'CLEAR_PREP_SELECTION':
+      newState.ui.prepSelectedKnown = [];
+      newState.ui.prepPendingAction = null;
+      break;
+    case 'SET_PREP_PENDING_ACTION':
+      newState.ui.prepPendingAction = action.payload;
       break;
     case 'INIT_SESSION':
       newState.session = action.payload;
@@ -316,12 +325,58 @@ function gateLearn() {
 }
 
 function startSessionFromPrep() {
+  const chosenLevel = AppState.ui.prepLevel || 'ALL';
+  initiateSession(SESSION_SIZE, chosenLevel, true);
+}
+
+function savePrepSelection() {
   const prepKnown = AppState.ui.prepSelectedKnown || [];
   prepKnown.forEach((word) => {
     dispatch({ type: 'MARK_KNOWN', payload: word });
   });
-  const chosenLevel = AppState.ui.prepLevel || 'ALL';
-  initiateSession(SESSION_SIZE, chosenLevel, true);
+  dispatch({ type: 'CLEAR_PREP_SELECTION' });
+}
+
+function continuePrepPendingAction(pendingAction = AppState.ui.prepPendingAction) {
+  dispatch({ type: 'SET_MODAL', payload: null });
+  dispatch({ type: 'SET_PREP_PENDING_ACTION', payload: null });
+
+  if (pendingAction === 'start') {
+    startSessionFromPrep();
+    return;
+  }
+
+  dispatch({ type: 'SET_SCREEN', payload: 'home' });
+}
+
+function removeCurrentWordFromSession(status) {
+  const word = currentWord();
+  if (!word) return;
+
+  if (status === 'known') {
+    dispatch({ type: 'MARK_KNOWN', payload: word });
+  } else if (status === 'practice') {
+    dispatch({ type: 'MARK_PRACTICE', payload: word });
+  }
+
+  AppState.session.queue.splice(AppState.session.current, 1);
+  AppState.session.words = AppState.session.words.filter((sessionWord) => sessionWord !== word);
+  AppState.session.currentExercise = null;
+
+  if (AppState.session.queue.length === 0) {
+    dispatch({ type: 'SET_SCREEN', payload: 'summary' });
+    return;
+  }
+
+  if (AppState.session.current >= AppState.session.queue.length) {
+    if (AppState.session.round >= 5) {
+      dispatch({ type: 'SET_SCREEN', payload: 'summary' });
+      return;
+    }
+    dispatch({ type: 'SET_ROUND', payload: AppState.session.round + 1 });
+  }
+
+  startRoundExercise();
 }
 
 function checkGateComplete() {
@@ -507,7 +562,7 @@ function renderHome(state) {
       </div>
       <div class="actions">
         <button class="btn" data-action="start-session">Start Session (10 words)</button>
-        <button class="btn btn-muted" data-action="open-manage-words">Manage Words</button>
+        <button class="btn btn-manage" data-action="open-manage-words">Manage Words</button>
         <button class="btn btn-muted" data-action="open-settings">Settings</button>
       </div>
     </div>
@@ -578,7 +633,10 @@ function renderPrep(state) {
           <span>Page ${safePage + 1} / ${totalPages}</span>
           <button class="btn btn-muted" data-action="prep-next" ${safePage >= totalPages - 1 ? 'disabled' : ''}>Next →</button>
         </div>
-        <button class="btn prep-continue-btn" data-action="prep-start">Save &amp; Start Session →</button>
+        <div class="prep-actions">
+          <button class="btn btn-muted prep-save-btn" data-action="prep-save" ${(state.ui.prepSelectedKnown || []).length === 0 ? 'disabled' : ''}>Save Known</button>
+          <button class="btn prep-continue-btn" data-action="prep-start-session">Start Session →</button>
+        </div>
       </div>
     </div>
   `;
@@ -708,6 +766,11 @@ function renderRound(state) {
   return `
     <div class="round-screen" role="main" aria-label="Exercise screen">
       <div class="progress" aria-live="polite" aria-label="${progress}">${progress}</div>
+      <div class="round-quick-actions">
+        <button class="btn btn-muted" data-action="round-back">← Back</button>
+        <button class="btn btn-muted" data-action="round-skip">Skip</button>
+        <button class="btn btn-manage" data-action="round-known">Known</button>
+      </div>
       <div class="card">${body}</div>
       <p>${state.ui.feedback || ''}</p>
       <button class="btn" data-action="open-quit">End Session</button>
@@ -793,10 +856,24 @@ function handleAction(action, target) {
     return;
   }
   if (action === 'prep-back') {
+    if ((AppState.ui.prepSelectedKnown || []).length > 0) {
+      dispatch({ type: 'SET_PREP_PENDING_ACTION', payload: 'back' });
+      dispatch({ type: 'SET_MODAL', payload: 'prepUnsaved' });
+      return;
+    }
     dispatch({ type: 'SET_SCREEN', payload: 'home' });
     return;
   }
-  if (action === 'prep-start') {
+  if (action === 'prep-save') {
+    savePrepSelection();
+    return;
+  }
+  if (action === 'prep-start-session') {
+    if ((AppState.ui.prepSelectedKnown || []).length > 0) {
+      dispatch({ type: 'SET_PREP_PENDING_ACTION', payload: 'start' });
+      dispatch({ type: 'SET_MODAL', payload: 'prepUnsaved' });
+      return;
+    }
     startSessionFromPrep();
     return;
   }
@@ -840,6 +917,18 @@ function handleAction(action, target) {
     dispatch({ type: 'SET_MODAL', payload: 'quitConfirm' });
     return;
   }
+  if (action === 'round-back') {
+    dispatch({ type: 'SET_MODAL', payload: 'quitConfirm' });
+    return;
+  }
+  if (action === 'round-skip') {
+    removeCurrentWordFromSession('practice');
+    return;
+  }
+  if (action === 'round-known') {
+    removeCurrentWordFromSession('known');
+    return;
+  }
   if (action === 'production-practice-later') {
     dispatch({ type: 'SET_SB_RETRY', payload: false });
     dispatch({ type: 'SET_PRODUCTION_DRAFT', payload: '' });
@@ -869,6 +958,19 @@ function handleUiAction(action, element) {
   if (action === 'quit-session') {
     dispatch({ type: 'SET_MODAL', payload: null });
     dispatch({ type: 'SET_SCREEN', payload: 'home' });
+    return;
+  }
+  if (action === 'prep-save-and-continue') {
+    const pendingAction = AppState.ui.prepPendingAction;
+    savePrepSelection();
+    continuePrepPendingAction(pendingAction);
+    return;
+  }
+  if (action === 'prep-discard-and-continue') {
+    const pendingAction = AppState.ui.prepPendingAction;
+    dispatch({ type: 'CLEAR_PREP_SELECTION' });
+    continuePrepPendingAction(pendingAction);
+    return;
   }
   if (action === 'remove-from-known') {
     const word = element?.dataset?.word;

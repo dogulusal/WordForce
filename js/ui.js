@@ -84,6 +84,26 @@ function renderQuitConfirmModal() {
   `;
 }
 
+function renderPrepUnsavedModal(state) {
+  const pendingAction = state.ui.prepPendingAction === 'start' ? 'start the session' : 'leave this screen';
+  const selectedCount = (state.ui.prepSelectedKnown || []).length;
+
+  return `
+    <div class="modal-overlay" onclick="if(event.target===this) handleUiAction('close-modal')">
+      <div class="modal" role="dialog" aria-label="Unsaved known words">
+        <h2>Unsaved changes</h2>
+        <p>You marked ${selectedCount} word${selectedCount === 1 ? '' : 's'} as known but have not saved yet.</p>
+        <p>Save them first, or continue without saving before you ${escapeHtml(pendingAction)}.</p>
+        <div class="modal-actions">
+          <button class="btn" data-ui-action="prep-save-and-continue">Save and Continue</button>
+          <button class="btn btn-muted" data-ui-action="prep-discard-and-continue">Continue Without Saving</button>
+          <button class="btn btn-muted" data-ui-action="close-modal">Stay Here</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function renderModal(modalType, state, allWords) {
   switch (modalType) {
     case 'settings':
@@ -92,6 +112,8 @@ function renderModal(modalType, state, allWords) {
       return renderWordListModal(state, allWords);
     case 'quitConfirm':
       return renderQuitConfirmModal();
+    case 'prepUnsaved':
+      return renderPrepUnsavedModal(state);
     default:
       return '';
   }
