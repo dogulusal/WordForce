@@ -508,10 +508,16 @@ async function enrichOne(wordItem, frequencyGateConfig) {
     }
   }
 
+  primaryData.alt_meanings_excluded = rerankerResponse.excluded;
+  primaryData.alt_meanings_merged = rerankerResponse.merged;
+  primaryData.alt_meanings_meta = {
+    wordnetSenseCount: senses.length,
+    selectedSenseCount: selectedSenses.length,
+    mergeCandidateCount: mergeCandidates.length,
+  };
+
   if (alt_meanings.length > 0) {
     primaryData.alt_meanings = alt_meanings.slice(0, 3);
-    primaryData.alt_meanings_excluded = rerankerResponse.excluded;
-    primaryData.alt_meanings_merged = rerankerResponse.merged;
   }
 
   return { word, data: primaryData };
