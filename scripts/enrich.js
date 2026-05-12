@@ -573,8 +573,28 @@ async function main() {
     failures = JSON.parse(fs.readFileSync(failuresPath, 'utf-8'));
   }
 
+  const reEnrichNoAlt = process.env.REENRICH_NO_ALT === '1';
+  const targetWordSet = new Set(
+    String(process.env.TARGET_WORDS || '')
+      .split(',')
+      .map((word) => word.trim())
+      .filter(Boolean)
+  );
+
+  const shouldEnrichWord = (word) => {
+    if (targetWordSet.size > 0) return targetWordSet.has(word);
+
+    if (!enriched[word]) return true;
+
+    if (!reEnrichNoAlt) return false;
+
+    const entry = enriched[word] || {};
+    const altCount = Array.isArray(entry.alt_meanings) ? entry.alt_meanings.length : 0;
+    return altCount === 0;
+  };
+
   const toEnrich = Object.keys(words)
-    .filter((word) => !enriched[word])
+    .filter((word) => shouldEnrichWord(word))
     .map((word) => ({ word, ...words[word] }));
 
   const maxWords = Number(process.env.MAX_WORDS || 0);

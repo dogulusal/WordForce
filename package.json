@@ -7,7 +7,10 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"No test suite configured. See Phase 5 verification steps.\" && exit 0"
+    "test": "echo \"No test suite configured. See Phase 5 verification steps.\" && exit 0",
+    "validate:data": "node scripts/validate.js",
+    "audit:alt": "node scripts/audit_alt_coverage.js",
+    "refresh:no-alt": "powershell -ExecutionPolicy Bypass -File scripts/refresh_no_alt.ps1"
   },
   "keywords": [],
   "author": "",
