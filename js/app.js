@@ -766,6 +766,8 @@ async function submitExerciseAnswer() {
     }
     const correction = result.correctedSentence ? `\n💡 Suggestion: "${result.correctedSentence}"` : '';
     dispatch({ type: 'SET_FEEDBACK', payload: `${result.feedback}${correction}` });
+    dispatch({ type: 'SET_PRODUCTION_DRAFT', payload: userSentence });
+    dispatch({ type: 'SET_PRODUCTION_SUBMITTED', payload: '' });
     dispatch({ type: 'SET_LOCKED', payload: false });
     return;
   }
@@ -1011,10 +1013,11 @@ function renderRound(state) {
     const submittedSentence = state.ui.productionSubmitted || '';
     const draftValue = state.ui.productionDraft || '';
     const showTryAgain = hasFeedback && !waitingContinue && !state.ui.locked;
+    const textareaValue = draftValue || submittedSentence;
     body = `
       <h2>${exercise.prompt}</h2>
       ${submittedSentence && !waitingContinue ? `<div class="production-submitted">${submittedSentence.replace(/</g,'&lt;')}</div>` : ''}
-      ${!submittedSentence || waitingContinue ? `<textarea id="productionTextarea" class="modal-input" rows="3" placeholder="Write your sentence...">${draftValue.replace(/</g,'&lt;')}</textarea>` : ''}
+      ${!waitingContinue ? `<textarea id="productionTextarea" class="modal-input" rows="3" placeholder="Write your sentence..." ${state.ui.locked ? 'disabled' : ''}>${textareaValue.replace(/</g,'&lt;')}</textarea>` : ''}
       <div class="actions">
         <button class="btn" data-action="submit-answer" ${state.ui.locked && !waitingContinue ? 'disabled' : ''}>${waitingContinue ? 'Continue →' : (showTryAgain ? '↺ Try Again' : (isEvaluating ? '⏳ Evaluating...' : 'Submit'))}</button>
         ${showTryAgain ? '<button class="btn btn-muted" data-action="production-practice-later">Skip for now</button>' : ''}

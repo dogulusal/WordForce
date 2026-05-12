@@ -15,6 +15,26 @@ function toProductionResult(correct, feedback, correctedSentence = '') {
   };
 }
 
+function localFallbackEvaluation(word, userSentence, upstreamError) {
+  const normalizedSentence = String(userSentence || '').trim();
+  const requiredWord = String(word || '').toLowerCase().replace(/_/g, ' ');
+  const clean = normalizedSentence.toLowerCase().replace(/[.,!?;:'"()\[\]]/g, ' ');
+  const containsWord = new RegExp(`(^|\\s)${requiredWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(\\s|$)`, 'i').test(clean);
+  const tokenCount = clean.split(/\s+/).filter(Boolean).length;
+
+  if (containsWord && tokenCount >= 4) {
+    return toProductionResult(
+      true,
+      `LLM unavailable, accepted with local fallback check (${upstreamError}).`
+    );
+  }
+
+  return toProductionResult(
+    false,
+    `LLM unavailable (${upstreamError}). Please retry, or write a slightly longer sentence containing '${word}'.`
+  );
+}
+
 function extractJsonObject(text) {
   const clean = String(text || '').replace(/```json|```/g, '').trim();
   const firstBrace = clean.indexOf('{');
@@ -113,7 +133,7 @@ async function evaluateProduction(word, userSentence, allWords) {
   };
 
   const { ok, data, error } = await callGeminiWithRetry(url, payload);
-  if (!ok) return toProductionResult(false, error);
+  if (!ok) return localFallbackEvaluation(word, userSentence, error);
 
   const raw = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
   const jsonText = extractJsonObject(raw);
