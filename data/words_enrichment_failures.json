@@ -19,5 +19,684 @@
     "error": "Failed after 3 attempts (action:reranker): Expected ',' or ']' after array element in JSON at position 70 (line 6 column 6)",
     "batch": 1,
     "timestamp": "2026-05-08T15:39:59.224Z"
+  },
+  {
+    "word": "actress",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (actress:primary): HTTP 400 for actress:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 1,
+    "timestamp": "2026-05-12T08:51:51.721Z"
+  },
+  {
+    "word": "afternoon",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (afternoon:primary): HTTP 400 for afternoon:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 1,
+    "timestamp": "2026-05-12T08:51:51.745Z"
+  },
+  {
+    "word": "again",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (again:primary): HTTP 400 for again:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 1,
+    "timestamp": "2026-05-12T08:51:51.745Z"
+  },
+  {
+    "word": "airport",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (airport:primary): HTTP 400 for airport:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 1,
+    "timestamp": "2026-05-12T08:51:51.745Z"
+  },
+  {
+    "word": "also",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (also:primary): HTTP 400 for also:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 1,
+    "timestamp": "2026-05-12T08:51:51.745Z"
+  },
+  {
+    "word": "always",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (always:primary): HTTP 400 for always:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 1,
+    "timestamp": "2026-05-12T08:51:51.745Z"
+  },
+  {
+    "word": "amazing",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (amazing:primary): HTTP 400 for amazing:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 1,
+    "timestamp": "2026-05-12T08:51:51.745Z"
+  },
+  {
+    "word": "and",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (and:primary): HTTP 400 for and:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 1,
+    "timestamp": "2026-05-12T08:51:51.745Z"
+  },
+  {
+    "word": "angry",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (angry:primary): HTTP 400 for angry:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 1,
+    "timestamp": "2026-05-12T08:51:51.746Z"
+  },
+  {
+    "word": "animal",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (animal:primary): HTTP 400 for animal:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 1,
+    "timestamp": "2026-05-12T08:51:51.746Z"
+  },
+  {
+    "word": "another",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (another:primary): HTTP 400 for another:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 2,
+    "timestamp": "2026-05-12T08:51:56.810Z"
+  },
+  {
+    "word": "answer",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (answer:primary): HTTP 400 for answer:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 2,
+    "timestamp": "2026-05-12T08:51:56.810Z"
+  },
+  {
+    "word": "any",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (any:primary): HTTP 400 for any:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 2,
+    "timestamp": "2026-05-12T08:51:56.810Z"
+  },
+  {
+    "word": "anyone",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (anyone:primary): HTTP 400 for anyone:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 2,
+    "timestamp": "2026-05-12T08:51:56.810Z"
+  },
+  {
+    "word": "anything",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (anything:primary): HTTP 400 for anything:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 2,
+    "timestamp": "2026-05-12T08:51:56.810Z"
+  },
+  {
+    "word": "apartment",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (apartment:primary): HTTP 400 for apartment:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 2,
+    "timestamp": "2026-05-12T08:51:56.810Z"
+  },
+  {
+    "word": "apple",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (apple:primary): HTTP 400 for apple:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 2,
+    "timestamp": "2026-05-12T08:51:56.810Z"
+  },
+  {
+    "word": "April",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (April:primary): HTTP 400 for April:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 2,
+    "timestamp": "2026-05-12T08:51:56.810Z"
+  },
+  {
+    "word": "area",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (area:primary): HTTP 400 for area:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 2,
+    "timestamp": "2026-05-12T08:51:56.810Z"
+  },
+  {
+    "word": "arm",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (arm:primary): HTTP 400 for arm:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 2,
+    "timestamp": "2026-05-12T08:51:56.810Z"
+  },
+  {
+    "word": "around",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (around:primary): HTTP 400 for around:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 3,
+    "timestamp": "2026-05-12T08:52:02.159Z"
+  },
+  {
+    "word": "arrive",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (arrive:primary): HTTP 400 for arrive:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 3,
+    "timestamp": "2026-05-12T08:52:02.159Z"
+  },
+  {
+    "word": "art",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (art:primary): HTTP 400 for art:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 3,
+    "timestamp": "2026-05-12T08:52:02.159Z"
+  },
+  {
+    "word": "article",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (article:primary): HTTP 400 for article:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 3,
+    "timestamp": "2026-05-12T08:52:02.159Z"
+  },
+  {
+    "word": "artist",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (artist:primary): HTTP 400 for artist:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 3,
+    "timestamp": "2026-05-12T08:52:02.159Z"
+  },
+  {
+    "word": "as",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (as:primary): HTTP 400 for as:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 3,
+    "timestamp": "2026-05-12T08:52:02.159Z"
+  },
+  {
+    "word": "ask",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (ask:primary): HTTP 400 for ask:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 3,
+    "timestamp": "2026-05-12T08:52:02.159Z"
+  },
+  {
+    "word": "at",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (at:primary): HTTP 400 for at:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 3,
+    "timestamp": "2026-05-12T08:52:02.159Z"
+  },
+  {
+    "word": "August",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (August:primary): HTTP 400 for August:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 3,
+    "timestamp": "2026-05-12T08:52:02.159Z"
+  },
+  {
+    "word": "aunt",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (aunt:primary): HTTP 400 for aunt:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 3,
+    "timestamp": "2026-05-12T08:52:02.159Z"
+  },
+  {
+    "word": "autumn",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (autumn:primary): HTTP 400 for autumn:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 4,
+    "timestamp": "2026-05-12T08:52:07.369Z"
+  },
+  {
+    "word": "away",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (away:primary): HTTP 400 for away:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 4,
+    "timestamp": "2026-05-12T08:52:07.369Z"
+  },
+  {
+    "word": "awesome",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (awesome:primary): HTTP 400 for awesome:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 4,
+    "timestamp": "2026-05-12T08:52:07.369Z"
+  },
+  {
+    "word": "baby",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (baby:primary): HTTP 400 for baby:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 4,
+    "timestamp": "2026-05-12T08:52:07.369Z"
+  },
+  {
+    "word": "back",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (back:primary): HTTP 400 for back:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 4,
+    "timestamp": "2026-05-12T08:52:07.369Z"
+  },
+  {
+    "word": "bad",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (bad:primary): HTTP 400 for bad:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 4,
+    "timestamp": "2026-05-12T08:52:07.369Z"
+  },
+  {
+    "word": "bag",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (bag:primary): HTTP 400 for bag:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 4,
+    "timestamp": "2026-05-12T08:52:07.369Z"
+  },
+  {
+    "word": "ball",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (ball:primary): HTTP 400 for ball:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 4,
+    "timestamp": "2026-05-12T08:52:07.369Z"
+  },
+  {
+    "word": "banana",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (banana:primary): HTTP 400 for banana:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 4,
+    "timestamp": "2026-05-12T08:52:07.369Z"
+  },
+  {
+    "word": "band",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (band:primary): HTTP 400 for band:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 4,
+    "timestamp": "2026-05-12T08:52:07.369Z"
+  },
+  {
+    "word": "bank",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (bank:primary): HTTP 400 for bank:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 5,
+    "timestamp": "2026-05-12T08:52:14.004Z"
+  },
+  {
+    "word": "baseball",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (baseball:primary): HTTP 400 for baseball:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 5,
+    "timestamp": "2026-05-12T08:52:14.004Z"
+  },
+  {
+    "word": "basketball",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (basketball:primary): HTTP 400 for basketball:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 5,
+    "timestamp": "2026-05-12T08:52:14.004Z"
+  },
+  {
+    "word": "bath",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (bath:primary): HTTP 400 for bath:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 5,
+    "timestamp": "2026-05-12T08:52:14.004Z"
+  },
+  {
+    "word": "bathroom",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (bathroom:primary): HTTP 400 for bathroom:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 5,
+    "timestamp": "2026-05-12T08:52:14.004Z"
+  },
+  {
+    "word": "be",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (be:primary): HTTP 400 for be:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 5,
+    "timestamp": "2026-05-12T08:52:14.004Z"
+  },
+  {
+    "word": "beach",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (beach:primary): HTTP 400 for beach:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 5,
+    "timestamp": "2026-05-12T08:52:14.004Z"
+  },
+  {
+    "word": "beautiful",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (beautiful:primary): HTTP 400 for beautiful:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 5,
+    "timestamp": "2026-05-12T08:52:14.004Z"
+  },
+  {
+    "word": "because",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (because:primary): HTTP 400 for because:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 5,
+    "timestamp": "2026-05-12T08:52:14.004Z"
+  },
+  {
+    "word": "become",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (become:primary): HTTP 400 for become:primary: {\"error\":{\"code\":400,\"message\":\"API key not valid. Please pass a valid API key.\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"API_KEY_INVALID\",\"domain\":\"googleapis.com\",\"metadata\":{\"service\":\"generativelanguage.googleapis.com\"}},{\"@type\":\"type.googleapis.com/google.rpc.LocalizedMessage\",\"locale\":\"en-US\",\"message\":\"API key not valid. Please pass a valid API key.\"}]}}",
+    "batch": 5,
+    "timestamp": "2026-05-12T08:52:14.004Z"
+  },
+  {
+    "word": "any",
+    "code": "UPSTREAM_5XX",
+    "error": "Failed after 3 attempts (any:primary): HTTP 503 for any:primary: {\"error\":{\"code\":503,\"message\":\"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\"status\":\"UNAVAILABLE\"}}",
+    "batch": 2,
+    "timestamp": "2026-05-12T10:10:56.025Z"
+  },
+  {
+    "word": "away",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (away:reranker): Expected ',' or ']' after array element in JSON at position 669 (line 45 column 6)",
+    "batch": 4,
+    "timestamp": "2026-05-12T10:45:13.330Z"
+  },
+  {
+    "word": "bad",
+    "code": "UPSTREAM_5XX",
+    "error": "Failed after 3 attempts (bad:primary): HTTP 503 for bad:primary: {\"error\":{\"code\":503,\"message\":\"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\"status\":\"UNAVAILABLE\"}}",
+    "batch": 4,
+    "timestamp": "2026-05-12T10:45:13.330Z"
+  },
+  {
+    "word": "band",
+    "code": "UPSTREAM_5XX",
+    "error": "Failed after 3 attempts (band:secondary:band.noun.7): HTTP 503 for band:secondary:band.noun.7: {\"error\":{\"code\":503,\"message\":\"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\"status\":\"UNAVAILABLE\"}}",
+    "batch": 4,
+    "timestamp": "2026-05-12T10:45:13.330Z"
+  },
+  {
+    "word": "bank",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (bank:reranker): Expected ',' or ']' after array element in JSON at position 71 (line 6 column 6)",
+    "batch": 5,
+    "timestamp": "2026-05-12T10:59:17.682Z"
+  },
+  {
+    "word": "baseball",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (baseball:reranker): Expected ',' or ']' after array element in JSON at position 70 (line 6 column 6)",
+    "batch": 5,
+    "timestamp": "2026-05-12T10:59:17.682Z"
+  },
+  {
+    "word": "bath",
+    "code": "UPSTREAM_5XX",
+    "error": "Failed after 3 attempts (bath:secondary:bath.noun.2): HTTP 503 for bath:secondary:bath.noun.2: {\"error\":{\"code\":503,\"message\":\"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\"status\":\"UNAVAILABLE\"}}",
+    "batch": 5,
+    "timestamp": "2026-05-12T10:59:17.682Z"
+  },
+  {
+    "word": "bathroom",
+    "code": "UPSTREAM_5XX",
+    "error": "Failed after 3 attempts (bathroom:secondary:bathroom.noun.2): HTTP 503 for bathroom:secondary:bathroom.noun.2: {\"error\":{\"code\":503,\"message\":\"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\"status\":\"UNAVAILABLE\"}}",
+    "batch": 5,
+    "timestamp": "2026-05-12T10:59:17.682Z"
+  },
+  {
+    "word": "be",
+    "code": "UPSTREAM_5XX",
+    "error": "Failed after 3 attempts (be:reranker): HTTP 503 for be:repair-reranker: {\"error\":{\"code\":503,\"message\":\"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\"status\":\"UNAVAILABLE\"}}",
+    "batch": 5,
+    "timestamp": "2026-05-12T10:59:17.682Z"
+  },
+  {
+    "word": "become",
+    "code": "UPSTREAM_5XX",
+    "error": "Failed after 3 attempts (become:secondary:become.verb.1): HTTP 503 for become:secondary:become.verb.1: {\"error\":{\"code\":503,\"message\":\"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\"status\":\"UNAVAILABLE\"}}",
+    "batch": 5,
+    "timestamp": "2026-05-12T10:59:17.682Z"
+  },
+  {
+    "word": "always",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (always:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:20:42.298Z"
+  },
+  {
+    "word": "August",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (August:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:20:42.299Z"
+  },
+  {
+    "word": "CD",
+    "code": "INVALID_JSON",
+    "error": "Failed after 3 attempts (CD:primary): Failed after 3 attempts (CD:repair-primary): Invalid JSON response for CD:repair-primary",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:20:42.299Z"
+  },
+  {
+    "word": "I",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (I:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:20:42.299Z"
+  },
+  {
+    "word": "March",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (March:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:20:42.299Z"
+  },
+  {
+    "word": "OK",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (OK:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:20:42.299Z"
+  },
+  {
+    "word": "always",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (always:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:25:21.622Z"
+  },
+  {
+    "word": "August",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (August:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:25:21.624Z"
+  },
+  {
+    "word": "CD",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (CD:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:25:21.624Z"
+  },
+  {
+    "word": "I",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (I:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:25:21.624Z"
+  },
+  {
+    "word": "March",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (March:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:25:21.624Z"
+  },
+  {
+    "word": "OK",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (OK:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:25:21.624Z"
+  },
+  {
+    "word": "always",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (always:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:30:17.640Z"
+  },
+  {
+    "word": "August",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (August:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:30:17.641Z"
+  },
+  {
+    "word": "CD",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (CD:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:30:17.641Z"
+  },
+  {
+    "word": "I",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (I:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:30:17.641Z"
+  },
+  {
+    "word": "March",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (March:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:30:17.641Z"
+  },
+  {
+    "word": "OK",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (OK:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:30:17.641Z"
+  },
+  {
+    "word": "always",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (always:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:35:18.221Z"
+  },
+  {
+    "word": "August",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (August:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:35:18.223Z"
+  },
+  {
+    "word": "CD",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (CD:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:35:18.223Z"
+  },
+  {
+    "word": "I",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (I:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:35:18.223Z"
+  },
+  {
+    "word": "March",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (March:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:35:18.223Z"
+  },
+  {
+    "word": "OK",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (OK:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:35:18.223Z"
+  },
+  {
+    "word": "always",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (always:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:39:50.323Z"
+  },
+  {
+    "word": "August",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (August:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:39:50.324Z"
+  },
+  {
+    "word": "CD",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (CD:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:39:50.324Z"
+  },
+  {
+    "word": "I",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (I:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:39:50.324Z"
+  },
+  {
+    "word": "March",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (March:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:39:50.324Z"
+  },
+  {
+    "word": "OK",
+    "code": "UNKNOWN",
+    "error": "Failed after 3 attempts (OK:primary): \"[object Object]\" is not valid JSON",
+    "batch": 1,
+    "timestamp": "2026-05-12T12:39:50.324Z"
+  },
+  {
+    "source": "validate",
+    "word": "apple",
+    "code": "DUPLICATE_GLOSS",
+    "error": "duplicate Turkish gloss in alt_meanings[0]",
+    "timestamp": "2026-05-12T12:39:50.443Z"
+  },
+  {
+    "source": "validate",
+    "word": "arm",
+    "code": "DUPLICATE_GLOSS",
+    "error": "duplicate Turkish gloss in alt_meanings[0]",
+    "timestamp": "2026-05-12T12:39:50.445Z"
+  },
+  {
+    "source": "validate",
+    "word": "August",
+    "code": "DUPLICATE_GLOSS",
+    "error": "duplicate Turkish gloss in alt_meanings[0]",
+    "timestamp": "2026-05-12T12:39:50.445Z"
+  },
+  {
+    "source": "validate",
+    "word": "ball",
+    "code": "DUPLICATE_GLOSS",
+    "error": "duplicate Turkish gloss in alt_meanings[0]",
+    "timestamp": "2026-05-12T12:39:50.445Z"
+  },
+  {
+    "source": "validate",
+    "word": "ball",
+    "code": "DUPLICATE_GLOSS",
+    "error": "duplicate Turkish gloss in alt_meanings[1]",
+    "timestamp": "2026-05-12T12:39:50.445Z"
+  },
+  {
+    "source": "validate",
+    "word": "banana",
+    "code": "DUPLICATE_GLOSS",
+    "error": "duplicate Turkish gloss in alt_meanings[0]",
+    "timestamp": "2026-05-12T12:39:50.445Z"
+  },
+  {
+    "source": "validate",
+    "word": "afternoon",
+    "code": "DUPLICATE_GLOSS",
+    "error": "duplicate Turkish gloss in alt_meanings[0]",
+    "timestamp": "2026-05-12T12:39:50.445Z"
   }
 ]

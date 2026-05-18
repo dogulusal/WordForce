@@ -1,0 +1,72 @@
+{
+  "generatedAt": "2026-05-12T08:52:14.630Z",
+  "threshold": 3,
+  "totals": {
+    "wordsChecked": 50,
+    "wordsWithAltMeanings": 16,
+    "wordsWithoutAltMeanings": 34,
+    "highPolysemyMissingAlt": 6
+  },
+  "highPolysemyMissingAlt": [
+    {
+      "word": "March",
+      "wordnetSenseCount": 14,
+      "byPos": {
+        "noun": 7,
+        "verb": 7,
+        "adj": 0,
+        "adv": 0
+      }
+    },
+    {
+      "word": "always",
+      "wordnetSenseCount": 5,
+      "byPos": {
+        "noun": 0,
+        "verb": 0,
+        "adj": 0,
+        "adv": 5
+      }
+    },
+    {
+      "word": "CD",
+      "wordnetSenseCount": 5,
+      "byPos": {
+        "noun": 4,
+        "verb": 0,
+        "adj": 1,
+        "adv": 0
+      }
+    },
+    {
+      "word": "I",
+      "wordnetSenseCount": 4,
+      "byPos": {
+        "noun": 3,
+        "verb": 0,
+        "adj": 1,
+        "adv": 0
+      }
+    },
+    {
+      "word": "OK",
+      "wordnetSenseCount": 4,
+      "byPos": {
+        "noun": 2,
+        "verb": 0,
+        "adj": 1,
+        "adv": 1
+      }
+    },
+    {
+      "word": "August",
+      "wordnetSenseCount": 3,
+      "byPos": {
+        "noun": 1,
+        "verb": 0,
+        "adj": 2,
+        "adv": 0
+      }
+    }
+  ]
+}

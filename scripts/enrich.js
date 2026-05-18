@@ -26,6 +26,23 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function parseApiKeys() {
+  const rawKeys = [];
+
+  if (typeof process.env.GEMINI_API_KEYS === 'string' && process.env.GEMINI_API_KEYS.trim()) {
+    rawKeys.push(...process.env.GEMINI_API_KEYS.split(/[,;\n]/g));
+  }
+
+  if (typeof process.env.GEMINI_API_KEY === 'string' && process.env.GEMINI_API_KEY.trim()) {
+    rawKeys.push(process.env.GEMINI_API_KEY);
+  }
+
+  return [...new Set(rawKeys.map((key) => String(key).trim()).filter(Boolean))];
+}
+
+const API_KEYS = parseApiKeys();
+const retiredApiKeys = new Set();
+
 function normalizePos(pos, fallbackPos = 'noun') {
   const normalized = String(pos || '').toLowerCase().trim();
   if (ALLOWED_POS.has(normalized)) return normalized;
@@ -139,6 +156,23 @@ function isRetryableError(error) {
   return /http 5\d\d/.test(msg);
 }
 
+function shouldRetireApiKey(error) {
+  const msg = String(error?.message || '').toLowerCase();
+  return msg.includes('api key not valid') || msg.includes('invalid api key') || msg.includes('api_key_invalid');
+}
+
+function getAvailableApiKeys() {
+  return API_KEYS.filter((key) => !retiredApiKeys.has(key));
+}
+
+function retireApiKey(apiKey, error) {
+  if (!apiKey) return;
+  if (shouldRetireApiKey(error)) {
+    retiredApiKeys.add(apiKey);
+    console.warn('Retiring invalid Gemini API key and switching to the next available key.');
+  }
+}
+
 function loadFrequencyGate() {
   if (!fs.existsSync(frequencyGatePath)) return null;
   try {
@@ -200,13 +234,13 @@ function buildMergeCandidates(senses) {
   return candidates;
 }
 
-async function callGemini(prompt, word, modelName) {
+async function callGemini(prompt, word, modelName, apiKey) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
   try {
-    const apiKey = process.env.GEMINI_API_KEY;
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
+    const activeApiKey = apiKey || process.env.GEMINI_API_KEY;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${activeApiKey}`;
 
     const response = await fetch(url, {
       method: 'POST',
@@ -278,7 +312,7 @@ Required schema:
 Malformed text:
 ${rawText}`;
 
-  return callGemini(repairPrompt, `${word}:repair-primary`, FALLBACK_MODEL);
+  return callGeminiWithRetries(repairPrompt, `${word}:repair-primary`, null);
 }
 
 async function repairRerankerJSON(rawText, word, senses) {
@@ -296,7 +330,7 @@ Required schema:
 Malformed text:
 ${rawText}`;
 
-  return callGemini(repairPrompt, `${word}:repair-reranker`, FALLBACK_MODEL);
+  return callGeminiWithRetries(repairPrompt, `${word}:repair-reranker`, null);
 }
 
 async function repairSecondaryJSON(rawText, word, senseId) {
@@ -313,28 +347,50 @@ Required schema:
 Malformed text:
 ${rawText}`;
 
-  return callGemini(repairPrompt, `${word}:repair-secondary:${senseId}`, FALLBACK_MODEL);
+  return callGeminiWithRetries(repairPrompt, `${word}:repair-secondary:${senseId}`, null);
 }
 
 async function callGeminiWithRetries(prompt, word, repairFn) {
   let lastError;
+  const apiKeys = getAvailableApiKeys();
+  const fallbackKeys = apiKeys.length > 0 ? apiKeys : [process.env.GEMINI_API_KEY].filter(Boolean);
+
+  if (fallbackKeys.length === 0) {
+    throw new Error(`Missing Gemini API key for ${word}`);
+  }
+
   for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+    const modelForAttempt = attempt < MAX_RETRIES - 1 ? MODEL : FALLBACK_MODEL;
+
     try {
-      const modelForAttempt = attempt < MAX_RETRIES - 1 ? MODEL : FALLBACK_MODEL;
-      const raw = await callGemini(prompt, word, modelForAttempt);
-      const clean = extractJSONObject(raw);
-      try {
-        return JSON.parse(clean);
-      } catch {
-        if (!repairFn) throw new Error(`Invalid JSON response for ${word}`);
-        const repairedRaw = await repairFn(raw);
-        const repairedClean = extractJSONObject(repairedRaw);
-        return JSON.parse(repairedClean);
+      for (const apiKey of fallbackKeys) {
+        if (retiredApiKeys.has(apiKey)) continue;
+
+        try {
+          const raw = await callGemini(prompt, word, modelForAttempt, apiKey);
+          const clean = extractJSONObject(raw);
+
+          try {
+            return JSON.parse(clean);
+          } catch {
+            if (!repairFn) throw new Error(`Invalid JSON response for ${word}`);
+            const repairedRaw = await repairFn(raw);
+            const repairedClean = extractJSONObject(repairedRaw);
+            return JSON.parse(repairedClean);
+          }
+        } catch (error) {
+          lastError = error;
+          retireApiKey(apiKey, error);
+          if (retiredApiKeys.has(apiKey) || isRetryableError(error)) {
+            continue;
+          }
+          throw error;
+        }
       }
     } catch (error) {
       lastError = error;
       if (attempt < MAX_RETRIES - 1 && isRetryableError(error)) {
-        const waitMs = 5000 * Math.pow(2, attempt);
+        const waitMs = 3000 * Math.pow(2, attempt);
         console.warn(`Attempt ${attempt + 1}/${MAX_RETRIES} failed for ${word}, retrying in ${waitMs}ms...`);
         await sleep(waitMs);
         continue;

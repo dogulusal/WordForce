@@ -1,5 +1,131 @@
 [
   {
+    "word": "always",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
+    "word": "amazing",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
+    "word": "animal",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
+    "word": "answer",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
+    "word": "area",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
+    "word": "arm",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
+    "word": "around",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
+    "word": "article",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
+    "word": "ask",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
+    "word": "baby",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
+    "word": "bag",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
+    "word": "ball",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
+    "word": "banana",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
+    "word": "beach",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
     "word": "a",
     "flags": [
       {

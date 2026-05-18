@@ -3,7 +3,7 @@
     "level": "A1",
     "pos": "adv",
     "tr": "ayrıca",
-    "def": "In addition to something else.",
+    "def": "used to add more information",
     "ex": [
       "I like apples and I also like oranges.",
       "She is a teacher and she is also a writer."
@@ -14,26 +14,26 @@
     ],
     "ex_distractors": [
       [
-        "Elmaları severim ve portakalları sevdim.",
-        "O elmaları sever ve portakalları da sever.",
-        "Elmaları severim ama portakalları sevmem."
+        "Elmaları severim ve portakalları sevmiyorum.",
+        "Elmaları severim ve portakalı sever.",
+        "Elmaları sevdim ve portakalları da sevdim."
       ],
       [
         "O bir öğretmendi ve aynı zamanda bir yazardı.",
-        "Biz bir öğretmeniz ve aynı zamanda bir yazarız.",
+        "Onlar bir öğretmen ve aynı zamanda bir yazar.",
         "O bir öğretmen ama bir yazar değil."
       ]
     ],
     "sb_distractors": [
       [
-        "only",
         "still",
-        "never"
+        "just",
+        "only"
       ],
       [
+        "still",
         "just",
-        "always",
-        "often"
+        "now"
       ]
     ]
   },
@@ -53,13 +53,13 @@
     "ex_distractors": [
       [
         "Sabahları su içtim.",
-        "O her zaman sabahları su içer.",
+        "O sabahları su içer.",
         "Sabahları bazen su içerim."
       ],
       [
-        "O bazen mutludur.",
         "O mutlu oldu.",
-        "Biz her zaman mutluyuz."
+        "Biz her zaman mutluyuz.",
+        "O bazen mutludur."
       ]
     ],
     "sb_distractors": [
@@ -73,69 +73,183 @@
         "often",
         "sometimes"
       ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 3,
+        "reason": "Too similar to 'at all times' but more restrictive; not distinct enough for basic learners."
+      }
+    ],
+    "alt_meanings_merged": [
+      {
+        "kept": 1,
+        "dropped": 2,
+        "reason": "Sense 2 is a specific application of 'at all times' and is functionally identical in most A2-B1 contexts."
+      }
+    ],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 5,
+      "selectedSenseCount": 3,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "daima",
+        "pos": "adv",
+        "def": "at all times; without exception",
+        "ex": [
+          "You should always wear a seatbelt."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "always.adv.1",
+          "wordnetRank": 1,
+          "llmRank": 1,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "sonsuza dek",
+        "pos": "adv",
+        "def": "for all time; without end",
+        "ex": [
+          "I will always love you."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "always.adv.5",
+          "wordnetRank": 5,
+          "llmRank": 2,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "her durumda",
+        "pos": "adv",
+        "def": "in every case or no matter what happens",
+        "ex": [
+          "Always keep a spare key in your bag."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "always.adv.4",
+          "wordnetRank": 4,
+          "llmRank": 3,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   },
   "amazing": {
     "level": "A1",
     "pos": "adj",
     "tr": "harika",
-    "def": "Very good or surprising",
+    "def": "Very good or surprising.",
     "ex": [
       "The movie is amazing.",
-      "She has an amazing voice."
+      "You have an amazing house."
     ],
     "ex_tr": [
       "Film harika.",
-      "Onun harika bir sesi var."
+      "Harika bir evin var."
     ],
     "ex_distractors": [
       [
         "Film harikaydı.",
         "Filmler harika.",
-        "Film çok kötü."
+        "O film harikadır."
       ],
       [
-        "Onun harika bir sesi vardı.",
-        "Onlar harika bir sese sahip.",
-        "O harika konuşuyor."
+        "Harika bir evim var.",
+        "Harika bir evin vardı.",
+        "Harika evleriniz var."
       ]
     ],
     "sb_distractors": [
       [
         "good",
-        "big",
-        "sad"
+        "nice",
+        "big"
       ],
       [
-        "old",
-        "loud",
-        "small"
+        "small",
+        "new",
+        "old"
       ]
+    ],
+    "alt_meanings_excluded": [],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 2,
+      "selectedSenseCount": 2,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "hayret verici",
+        "pos": "adj",
+        "def": "causing great surprise or wonder",
+        "ex": [
+          "The view from the top of the mountain was amazing."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "amazing.adj.2",
+          "wordnetRank": 2,
+          "llmRank": 1,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "şaşırtıcı",
+        "pos": "adj",
+        "def": "very surprising",
+        "ex": [
+          "It is amazing how fast he can run."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "amazing.adj.1",
+          "wordnetRank": 1,
+          "llmRank": 2,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   },
   "and": {
     "level": "A1",
     "pos": "conj",
     "tr": "ve",
-    "def": "Used to join two words or ideas.",
+    "def": "Used to connect two words or parts of a sentence.",
     "ex": [
-      "I have a cat and a dog.",
-      "He is young and happy."
+      "I like apples and bananas.",
+      "She is happy and kind."
     ],
     "ex_tr": [
-      "Bir kedim ve bir köpeğim var.",
-      "O genç ve mutludur."
+      "Elmaları ve muzları severim.",
+      "O mutlu ve nazik."
     ],
     "ex_distractors": [
       [
-        "Bir kedim ama bir köpeğim var.",
-        "Bir kedim ve bir köpeğim vardı.",
-        "Onun bir kedisi ve bir köpeği var."
+        "I likes apples and bananas.",
+        "Me like apples and bananas.",
+        "I like apple and banana."
       ],
       [
-        "O genç ama mutludur.",
-        "O genç ve mutluydur.",
-        "Onlar genç ve mutludur."
+        "She are happy and kind.",
+        "Her is happy and kind.",
+        "She was happy and kind."
       ]
     ],
     "sb_distractors": [
@@ -145,8 +259,8 @@
         "so"
       ],
       [
-        "but",
         "or",
+        "but",
         "so"
       ]
     ]
@@ -155,7 +269,7 @@
     "level": "A1",
     "pos": "adj",
     "tr": "kızgın",
-    "def": "Feeling strong dislike because something is wrong.",
+    "def": "Feeling upset or unhappy because of something.",
     "ex": [
       "The teacher is angry with the students.",
       "Why are you angry today?"
@@ -167,13 +281,13 @@
     "ex_distractors": [
       [
         "Öğretmen öğrencileri kızdırdı.",
-        "Öğretmenler öğrencilere kızgın.",
-        "Öğretmen öğrenciye kızgın."
+        "Öğretmen öğrencilere kızmıştı.",
+        "Öğretmenler öğrencilere kızgın."
       ],
       [
-        "Bugün neden kızgındı?",
+        "Bugün neden kızdın?",
         "Bugün neden kızgınlar?",
-        "Bugün neden kızgın değilsin?"
+        "Bugün neden kızgınsınız?"
       ]
     ],
     "sb_distractors": [
@@ -187,81 +301,147 @@
         "sleepy",
         "busy"
       ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 2,
+        "reason": "Too literary or metaphorical for A2-B1 learners."
+      },
+      {
+        "wordnetIndex": 3,
+        "reason": "Too specialized/medical for everyday conversation."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 3,
+      "selectedSenseCount": 1,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "sinirli",
+        "pos": "adj",
+        "def": "feeling strong displeasure or annoyance",
+        "ex": [
+          "He was very angry with me for being late."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "angry.adj.1",
+          "wordnetRank": 1,
+          "llmRank": 1,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   },
   "animal": {
     "level": "A1",
     "pos": "noun",
     "tr": "hayvan",
-    "def": "A living thing that can move, like a dog or a cat.",
+    "def": "A living thing that can move and eat.",
     "ex": [
       "The dog is a friendly animal.",
-      "What is your favorite animal?"
+      "Which animal is your favorite?"
     ],
     "ex_tr": [
       "Köpek dost canlısı bir hayvandır.",
-      "En sevdiğin hayvan nedir?"
+      "En sevdiğin hayvan hangisidir?"
     ],
     "ex_distractors": [
       [
-        "Köpek dost canlısı bir hayvandı.",
+        "Köpek dost canlısı bir hayvan değildi.",
         "Köpekler dost canlısı hayvanlardır.",
-        "Köpek dost canlısı bir hayvan değil."
+        "Köpek dost canlısı bir hayvana bakıyor."
       ],
       [
         "En sevdiğin hayvan neydi?",
-        "En sevdiğin hayvanlar neler?",
-        "En sevdiğin hayvanı biliyor musun?"
+        "Hangi hayvanı seviyorsun?",
+        "Senin favori hayvanın hangisiydi?"
       ]
     ],
     "sb_distractors": [
       [
-        "pet",
-        "friend",
+        "person",
+        "bird",
         "thing"
       ],
       [
+        "fruit",
         "color",
-        "food",
-        "sport"
+        "city"
       ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 1,
+        "reason": "Too figurative and uncommon for A2-B1 learners."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 2,
+      "selectedSenseCount": 1,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "hareket edebilen canlı",
+        "pos": "noun",
+        "def": "a living thing that can move on its own",
+        "ex": [
+          "Humans are a type of animal."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "animal.noun.2",
+          "wordnetRank": 2,
+          "llmRank": 1,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   },
   "another": {
     "level": "A1",
     "pos": "det",
     "tr": "başka bir",
-    "def": "one more of the same kind",
+    "def": "one more or a different one",
     "ex": [
-      "I want another apple.",
-      "Can I have another cup of tea?"
+      "Can I have another cup of coffee?",
+      "I need another day to finish this project."
     ],
     "ex_tr": [
-      "Başka bir elma istiyorum.",
-      "Bir fincan daha çay alabilir miyim?"
+      "Mogę prosić o kolejną filiżankę kawy?",
+      "Potrzebuję kolejnego dnia, aby skończyć ten projekt."
     ],
     "ex_distractors": [
       [
-        "Bir elma istiyorum.",
-        "Başka elmalar istiyorum.",
-        "Elmayı istiyorum."
+        "another",
+        "other",
+        "more"
       ],
       [
-        "Bir fincan çay alabilir miyim?",
-        "Başka fincanlar çay alabilir miyim?",
-        "Çay fincanını alabilir miyim?"
+        "another",
+        "other",
+        "some"
       ]
     ],
     "sb_distractors": [
       [
-        "this",
-        "that",
-        "every"
+        "another",
+        "other",
+        "more"
       ],
       [
-        "the",
-        "my",
-        "that"
+        "another",
+        "other",
+        "some"
       ]
     ]
   },
@@ -269,38 +449,143 @@
     "level": "A1",
     "pos": "noun",
     "tr": "cevap",
-    "def": "Something you say or write when someone asks a question.",
+    "def": "something you say or write to a question",
     "ex": [
-      "I don't know the answer.",
-      "Please write the answer here."
+      "I don't know the answer to this question.",
+      "Please write your answer on the paper."
     ],
     "ex_tr": [
-      "Cevabı bilmiyorum.",
-      "Lütfen cevabı buraya yazın."
+      "Bu sorunun cevabını bilmiyorum.",
+      "Lütfen cevabınızı kağıda yazın."
     ],
     "ex_distractors": [
       [
-        "Cevabı bilmiyordu.",
-        "Cevabı bilmiyoruz.",
-        "Cevabı bilmiyorlar."
+        "Bu sorunun cevabını bilmem.",
+        "Bu sorunun cevabını bilmiyordu.",
+        "Bu sorunun cevabını bilmiyorlar."
       ],
       [
-        "Lütfen cevabı buraya yaz.",
-        "Lütfen cevabı buraya yazdınız.",
-        "Lütfen cevabı oraya yazın."
+        "Lütfen cevabını kağıda yaz.",
+        "Lütfen cevabınızı kağıda yazdınız.",
+        "Lütfen cevabınızı kağıda yazıyor."
       ]
     ],
     "sb_distractors": [
       [
-        "question",
         "name",
-        "number"
+        "number",
+        "book"
       ],
       [
         "name",
-        "date",
-        "word"
+        "address",
+        "phone"
       ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 3,
+        "reason": "Too technical (speech act)."
+      },
+      {
+        "wordnetIndex": 4,
+        "reason": "Legal terminology."
+      },
+      {
+        "wordnetIndex": 5,
+        "reason": "Rare usage."
+      },
+      {
+        "wordnetIndex": 7,
+        "reason": "Too specific (signals)."
+      },
+      {
+        "wordnetIndex": 9,
+        "reason": "Less common/idiomatic."
+      },
+      {
+        "wordnetIndex": 10,
+        "reason": "Formal/Legal."
+      },
+      {
+        "wordnetIndex": 11,
+        "reason": "Formal/Idiomatic (\"answer for\")."
+      },
+      {
+        "wordnetIndex": 12,
+        "reason": "Rare/Formal."
+      },
+      {
+        "wordnetIndex": 13,
+        "reason": "Rare/Formal."
+      },
+      {
+        "wordnetIndex": 14,
+        "reason": "Rare/Formal."
+      },
+      {
+        "wordnetIndex": 15,
+        "reason": "Specific context (stimulus/command)."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 15,
+      "selectedSenseCount": 3,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "yanıt",
+        "pos": "noun",
+        "def": "a spoken or written reply to a question",
+        "ex": [
+          "I am waiting for your answer to my email."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "answer.noun.1",
+          "wordnetRank": 1,
+          "llmRank": 1,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "cevap vermek",
+        "pos": "verb",
+        "def": "to say something in response to a question",
+        "ex": [
+          "Why didn't you answer me?"
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "answer.verb.6",
+          "wordnetRank": 6,
+          "llmRank": 2,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "yanıtlamak",
+        "pos": "verb",
+        "def": "to give the correct response to a question or problem",
+        "ex": [
+          "She answered the question correctly."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "answer.verb.8",
+          "wordnetRank": 8,
+          "llmRank": 3,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   },
   "any": {
@@ -358,12 +643,12 @@
       [
         "Bir kaleminiz var mı?",
         "Herkesin kalemi var mı?",
-        "Kalem kimde?"
+        "Kimse kalem istemiyor mu?"
       ],
       [
-        "Burada kimse yok.",
         "Burada herkesi tanıyorum.",
-        "Burada birini tanıyorum."
+        "Burada kimse yok.",
+        "Burada birini tanımak istiyorum."
       ]
     ],
     "sb_distractors": [
@@ -375,7 +660,7 @@
       [
         "someone",
         "everyone",
-        "anything"
+        "nobody"
       ]
     ]
   },
@@ -394,21 +679,21 @@
     ],
     "ex_distractors": [
       [
-        "Bir şeye ihtiyacın vardı mı?",
-        "Her şeyi istiyor musun?",
-        "Bir şeye ihtiyacım var mı?"
+        "Bir şeye ihtiyacım var mı?",
+        "Herhangi bir şeyi istiyor musun?",
+        "Bir şeye ihtiyacın vardı mı?"
       ],
       [
-        "Çantamda bir şeyler var.",
-        "Çantamda hiçbir şey yoktu.",
-        "Çantanda hiçbir şey yok."
+        "Çantamda bir şey var.",
+        "Çantanda hiçbir şey yok.",
+        "Çantamda hiçbir şey yoktu."
       ]
     ],
     "sb_distractors": [
       [
         "something",
         "everything",
-        "water"
+        "nothing"
       ],
       [
         "something",
@@ -424,11 +709,11 @@
     "def": "A set of rooms for living in, usually on one floor of a building.",
     "ex": [
       "I live in a small apartment.",
-      "The apartment is very clean."
+      "My apartment is in the city center."
     ],
     "ex_tr": [
       "Küçük bir dairede yaşıyorum.",
-      "Daire çok temiz."
+      "Dairem şehir merkezinde."
     ],
     "ex_distractors": [
       [
@@ -437,21 +722,21 @@
         "Küçük bir daireye yaşıyorum."
       ],
       [
-        "Daire çok temizdi.",
-        "Daireler çok temiz.",
-        "Daire temiz değil."
+        "Dairem şehir merkezindeydi.",
+        "Senin dairen şehir merkezinde.",
+        "Dairem şehir merkezine."
       ]
     ],
     "sb_distractors": [
       [
         "house",
         "room",
-        "city"
+        "hotel"
       ],
       [
-        "kitchen",
-        "hotel",
-        "garden"
+        "office",
+        "car",
+        "school"
       ]
     ]
   },
@@ -461,23 +746,23 @@
     "tr": "elma",
     "def": "A round fruit with red or green skin.",
     "ex": [
-      "I eat an apple every day.",
-      "The apple is on the table."
+      "I eat a red apple every day.",
+      "She has an apple in her bag."
     ],
     "ex_tr": [
-      "Her gün bir elma yerim.",
-      "Elma masanın üstünde."
+      "Her gün kırmızı bir elma yerim.",
+      "Onun çantasında bir elma var."
     ],
     "ex_distractors": [
       [
-        "Her gün bir elma yedim.",
-        "O her gün bir elma yer.",
-        "Her gün elmalar yerim."
+        "Her gün kırmızı bir elma yedim.",
+        "Biz her gün kırmızı bir elma yeriz.",
+        "O her gün kırmızı bir elma yer."
       ],
       [
-        "Elmalar masanın üstünde.",
-        "Elma masanın altında.",
-        "Elma masada değildi."
+        "Çantasında bir elma vardı.",
+        "Benim çantamda bir elma var.",
+        "Onun çantasında elmalar var."
       ]
     ],
     "sb_distractors": [
@@ -489,8 +774,39 @@
       [
         "book",
         "pen",
-        "cup"
+        "phone"
       ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 2,
+        "reason": "In everyday conversation, 'apple' typically refers to the fruit; the tree is usually specified as 'apple tree'."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 2,
+      "selectedSenseCount": 1,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "elma",
+        "pos": "noun",
+        "def": "A round fruit with red, yellow, or green skin and crisp white flesh.",
+        "ex": [
+          "She ate a crisp red apple."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "apple.noun.1",
+          "wordnetRank": 1,
+          "llmRank": 1,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   },
   "April": {
@@ -499,23 +815,23 @@
     "tr": "Nisan",
     "def": "The fourth month of the year.",
     "ex": [
-      "My birthday is in April.",
-      "April is a spring month."
+      "April is a beautiful month.",
+      "My birthday is in April."
     ],
     "ex_tr": [
-      "Doğum günüm Nisan'da.",
-      "Nisan bir bahar ayıdır."
+      "Nisan güzel bir aydır.",
+      "Doğum günüm Nisan'dadır."
     ],
     "ex_distractors": [
       [
-        "Doğum günüm Nisan'dı.",
-        "Onun doğum günü Nisan'da.",
-        "Doğum günüm Nisan'da değil."
+        "Nisan güzel bir ay değil.",
+        "Nisan güzel bir aydı.",
+        "Nisan'da güzel bir ay var."
       ],
       [
-        "Nisan bahar ayıydı.",
-        "Nisan bahar ayı değildir.",
-        "Nisan'da bahar ayı var."
+        "Doğum günüm Nisan'daydı.",
+        "Onun doğum günü Nisan'da.",
+        "Doğum günüm Nisan'da değil."
       ]
     ],
     "sb_distractors": [
@@ -525,9 +841,9 @@
         "March"
       ],
       [
-        "March",
         "May",
-        "June"
+        "August",
+        "January"
       ]
     ]
   },
@@ -535,7 +851,7 @@
     "level": "A1",
     "pos": "noun",
     "tr": "alan",
-    "def": "A part of a place, town, or country.",
+    "def": "A part of a place, city, or country.",
     "ex": [
       "This area is very quiet.",
       "The play area is for children."
@@ -558,53 +874,187 @@
     ],
     "sb_distractors": [
       [
+        "place",
         "room",
-        "city",
-        "house"
+        "city"
       ],
       [
-        "room",
         "park",
+        "room",
         "place"
       ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 3,
+        "reason": "Too technical/medical for A2-B1 learners."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 6,
+      "selectedSenseCount": 3,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "bölge",
+        "pos": "noun",
+        "def": "a particular part of a town, country, or the world",
+        "ex": [
+          "I live in a quiet residential area."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "area.noun.1",
+          "wordnetRank": 1,
+          "llmRank": 1,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "yüzölçümü",
+        "pos": "noun",
+        "def": "The measurement of a flat surface.",
+        "ex": [
+          "We need to calculate the area of the living room."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "area.noun.6",
+          "wordnetRank": 6,
+          "llmRank": 2,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "bölüm",
+        "pos": "noun",
+        "def": "a part of a building or room used for a particular purpose",
+        "ex": [
+          "Please wait in the reception area."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "area.noun.5",
+          "wordnetRank": 5,
+          "llmRank": 3,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   },
   "arm": {
     "level": "A1",
     "pos": "noun",
     "tr": "kol",
-    "def": "The part of the body between the shoulder and the hand.",
+    "def": "The part of your body from your shoulder to your hand.",
     "ex": [
-      "He has a tattoo on his arm.",
-      "She broke her arm in the accident."
+      "She raised her arm to ask a question.",
+      "He hurt his arm playing football."
     ],
     "ex_tr": [
-      "Onun kolunda bir dövme var.",
-      "Kazada kolunu kırdı."
+      "Soru sormak için kolunu kaldırdı.",
+      "Futbol oynarken kolunu incitti."
     ],
     "ex_distractors": [
       [
-        "Onun kolunda dövmeler var.",
-        "O kolunda bir dövme istiyor.",
-        "Onun kolu bir dövme."
+        "She raise her arm to asking a question.",
+        "He raised his arm to ask a question.",
+        "She lifted her arms for a question."
       ],
       [
-        "O kazada kolunu kırıyor.",
-        "Onlar kazada kollarını kırdılar.",
-        "O kazada kolunu kırmadı."
+        "He hurts his arm playing football.",
+        "She hurt her arm playing football.",
+        "He hurt his arms when playing football."
       ]
     ],
     "sb_distractors": [
       [
-        "leg",
         "hand",
-        "face"
+        "leg",
+        "head"
       ],
       [
         "leg",
-        "finger",
-        "nose"
+        "foot",
+        "back"
       ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 1,
+        "reason": "Too specific to military contexts for A2-B1 level."
+      },
+      {
+        "wordnetIndex": 4,
+        "reason": "Too niche and metaphorical for general learners."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 8,
+      "selectedSenseCount": 3,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "kol",
+        "pos": "noun",
+        "def": "one of the two long parts of your body that are attached to your shoulders and have your hands at the end",
+        "ex": [
+          "She held the baby in her arms."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "arm.noun.3",
+          "wordnetRank": 3,
+          "llmRank": 1,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "silah",
+        "pos": "noun",
+        "def": "a weapon used for fighting or hunting",
+        "ex": [
+          "The police searched the house for illegal arms."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "arm.noun.5",
+          "wordnetRank": 5,
+          "llmRank": 2,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "kolçak",
+        "pos": "noun",
+        "def": "the side part of a chair or sofa where you can rest your arm",
+        "ex": [
+          "She rested her arm on the arm of the sofa."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "arm.noun.6",
+          "wordnetRank": 6,
+          "llmRank": 3,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   },
   "around": {
@@ -622,27 +1072,100 @@
     ],
     "ex_distractors": [
       [
+        "Çocuk ağacın etrafında koşar.",
         "Çocuklar ağaca koşuyor.",
-        "Çocuk ağacın etrafında koştu.",
         "Çocuklar ağacın altında koşuyor."
       ],
       [
-        "Bahçede bir çit var.",
-        "Bahçenin etrafında çitler vardı.",
-        "Bahçenin içinde bir çit var."
+        "Bahçede bir çit vardır.",
+        "Bahçenin içinde bir çit var.",
+        "Bahçenin yanında bir çit var."
       ]
     ],
     "sb_distractors": [
       [
         "to",
         "in",
-        "on"
+        "under"
       ],
       [
-        "under",
-        "near",
-        "above"
+        "in",
+        "on",
+        "near"
       ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 7,
+        "reason": "Rare usage in general conversation."
+      },
+      {
+        "wordnetIndex": 9,
+        "reason": "Too technical for A2-B1 level."
+      },
+      {
+        "wordnetIndex": 10,
+        "reason": "Rare idiomatic usage."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 10,
+      "selectedSenseCount": 3,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "yaklaşık",
+        "pos": "adv",
+        "def": "approximately; not exactly, but close to",
+        "ex": [
+          "I'll be there around 5 o'clock."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "around.adv.5",
+          "wordnetRank": 5,
+          "llmRank": 1,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "civarda",
+        "pos": "adv",
+        "def": "near a place; in the general area",
+        "ex": [
+          "Is there a pharmacy around here?"
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "around.adv.1",
+          "wordnetRank": 1,
+          "llmRank": 2,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "dört bir yanda, her yerde",
+        "pos": "adv",
+        "def": "in every direction or on all sides",
+        "ex": [
+          "I looked around, but I didn't see anyone."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "around.adv.8",
+          "wordnetRank": 8,
+          "llmRank": 3,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   },
   "arrive": {
@@ -662,7 +1185,7 @@
       [
         "Tren saat 10'da vardı.",
         "Trenler saat 10'da varır.",
-        "Tren saat 10'da varacak."
+        "Tren saat 10'da geliyorlar."
       ],
       [
         "Eve geç vardım.",
@@ -672,53 +1195,136 @@
     ],
     "sb_distractors": [
       [
-        "leaves",
         "stops",
-        "starts"
+        "starts",
+        "leaves"
       ],
       [
         "go",
         "come",
         "walk"
       ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 2,
+        "reason": "Too idiomatic/metaphorical for A2-B1 level."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 2,
+      "selectedSenseCount": 1,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "ulaşmak",
+        "pos": "verb",
+        "def": "to reach a place after traveling",
+        "ex": [
+          "The train will arrive at the station in ten minutes."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "arrive.verb.1",
+          "wordnetRank": 1,
+          "llmRank": 1,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   },
   "art": {
     "level": "A1",
     "pos": "noun",
     "tr": "sanat",
-    "def": "Paintings, drawings, and other beautiful things.",
+    "def": "Paintings, sculpture, or music created to be beautiful.",
     "ex": [
-      "I love art.",
-      "She studies art at school."
+      "I like art.",
+      "He likes art class."
     ],
     "ex_tr": [
       "Sanatı severim.",
-      "O, okulda sanat okuyor."
+      "O, sanat dersini sever."
     ],
     "ex_distractors": [
       [
         "Sanatı sevdim.",
-        "Sanatı seviyorlar.",
-        "Sanat sever."
+        "Sanatı seviyoruz.",
+        "Sanatı sever."
       ],
       [
-        "O, okulda sanat okudu.",
-        "Biz, okulda sanat okuyoruz.",
-        "O, okulda sanat okumak ister."
+        "O, sanat dersini sevdi.",
+        "Biz, sanat dersini severiz.",
+        "O, müzik dersini sever."
       ]
     ],
     "sb_distractors": [
       [
         "music",
-        "sport",
-        "food"
+        "sports",
+        "books"
       ],
       [
         "math",
         "English",
-        "history"
+        "science"
       ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 3,
+        "reason": "Too abstract and formal for A2-B1 learners."
+      },
+      {
+        "wordnetIndex": 4,
+        "reason": "Too specific to publishing and not common in general conversation."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 4,
+      "selectedSenseCount": 2,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "sanat eserleri",
+        "pos": "noun",
+        "def": "paintings, sculptures, and other things created by people as a form of expression",
+        "ex": [
+          "The museum has a wonderful collection of modern art."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "art.noun.1",
+          "wordnetRank": 1,
+          "llmRank": 1,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "ustalık",
+        "pos": "noun",
+        "def": "the skill or ability to do something well",
+        "ex": [
+          "The art of storytelling takes a lot of practice."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "art.noun.2",
+          "wordnetRank": 2,
+          "llmRank": 2,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   },
   "article": {
@@ -727,36 +1333,105 @@
     "tr": "makale",
     "def": "A piece of writing in a newspaper or magazine.",
     "ex": [
-      "I read an interesting article about cats.",
-      "She wrote a short article for the school magazine."
+      "I read an interesting article today.",
+      "She writes a short article every week."
     ],
     "ex_tr": [
-      "Kediler hakkında ilginç bir makale okudum.",
-      "Okul dergisi için kısa bir makale yazdı."
+      "Bugün ilginç bir makale okudum.",
+      "O her hafta kısa bir makale yazar."
     ],
     "ex_distractors": [
       [
-        "Kediler hakkında ilginç bir makale okuyorsun.",
-        "Kediler hakkında ilginç bir makale okuduk.",
-        "Kediler hakkında ilginç bir makale okuyacağım."
+        "Bugün ilginç bir makale okuyorsun.",
+        "Bugün ilginç bir makale okudular.",
+        "Bugün ilginç bir makale okuyacağım."
       ],
       [
-        "Okul dergisi için kısa bir makale yazar.",
-        "Okul dergisi için kısa bir makale yazdım.",
-        "Okul dergisi için kısa bir makale yazıyor."
+        "O her hafta kısa bir makale yazdı.",
+        "Onlar her hafta kısa bir makale yazarlar.",
+        "O her hafta kısa bir makale yazıyordu."
       ]
     ],
     "sb_distractors": [
       [
         "book",
         "story",
-        "page"
+        "letter"
       ],
       [
-        "letter",
+        "email",
         "poem",
         "note"
       ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 1,
+        "reason": "Rare verb usage, not common in everyday speech."
+      },
+      {
+        "wordnetIndex": 4,
+        "reason": "Too formal and specific to legal contexts for A2-B1 learners."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 5,
+      "selectedSenseCount": 3,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "yazı",
+        "pos": "noun",
+        "def": "a piece of writing in a newspaper, magazine, or website",
+        "ex": [
+          "I read an interesting article about space yesterday."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "article.noun.2",
+          "wordnetRank": 2,
+          "llmRank": 1,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "artikel",
+        "pos": "noun",
+        "def": "A word like 'a', 'an', or 'the' used before a noun to show if it is specific or general.",
+        "ex": [
+          "In English, 'the' is a definite article."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "article.noun.5",
+          "wordnetRank": 5,
+          "llmRank": 2,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "eşya",
+        "pos": "noun",
+        "def": "An individual object or item.",
+        "ex": [
+          "She packed a few articles of clothing for the trip."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "article.noun.3",
+          "wordnetRank": 3,
+          "llmRank": 3,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   },
   "artist": {
@@ -776,12 +1451,12 @@
       [
         "Sanatçı güzel bir resim boyadı.",
         "Sanatçılar güzel bir resim boyuyor.",
-        "Sanatçı kötü bir resim boyuyor."
+        "Sanatçı güzel bir resim boyuyorlar."
       ],
       [
+        "Onlar ünlü bir sanatçıdır.",
         "O ünlü bir sanatçıydı.",
-        "Onlar ünlü sanatçılardır.",
-        "O ünlü bir öğrencidir."
+        "O ünlü sanatçılar."
       ]
     ],
     "sb_distractors": [
@@ -812,27 +1487,62 @@
     ],
     "ex_distractors": [
       [
-        "He is working for a teacher.",
         "He worked as a teacher.",
-        "They work as teachers."
+        "They work as teachers.",
+        "He works for a teacher."
       ],
       [
         "I used this box as a table.",
-        "She uses this box as a table.",
+        "You use this box as a table.",
         "I use that box as a table."
       ]
     ],
     "sb_distractors": [
       [
+        "like",
         "with",
-        "for",
-        "by"
+        "for"
       ],
       [
+        "like",
         "with",
-        "for",
-        "in"
+        "for"
       ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 2,
+        "reason": "Too technical/specialized (chemistry term for arsenic)."
+      },
+      {
+        "wordnetIndex": 3,
+        "reason": "Too specific/rare (geographical entity)."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 3,
+      "selectedSenseCount": 1,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "kadar",
+        "pos": "adv",
+        "def": "used to say that two things are equal in some way",
+        "ex": [
+          "She is as tall as her brother."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "as.adv.1",
+          "wordnetRank": 1,
+          "llmRank": 1,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   },
   "ask": {
@@ -850,27 +1560,101 @@
     ],
     "ex_distractors": [
       [
-        "Bir soru cevaplıyorum.",
+        "Bir soru sordum.",
         "O bir soru soruyor.",
-        "Bir soru sordum."
+        "Bir soru sorar mısın?"
       ],
       [
-        "Sana bir şey söyleyebilir miyim?",
-        "Sana bir şey sorar mısın?",
-        "Sana bir şey sordum mu?"
+        "Sana bir şey sordum mu?",
+        "Sana bir şey soracağım.",
+        "Sana bir şey soruyor musun?"
       ]
     ],
     "sb_distractors": [
       [
-        "answer",
-        "write",
-        "read"
+        "tell",
+        "read",
+        "write"
       ],
       [
         "tell",
         "give",
         "show"
       ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 2,
+        "reason": "Overlaps with sense 4 (asking a question)."
+      },
+      {
+        "wordnetIndex": 3,
+        "reason": "Too formal and uncommon for A2-B1 learners."
+      },
+      {
+        "wordnetIndex": 5,
+        "reason": "Too literary/formal for everyday spoken English."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 7,
+      "selectedSenseCount": 3,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "soru yöneltmek",
+        "pos": "verb",
+        "def": "to say something to someone to get information or an answer",
+        "ex": [
+          "Can I ask you a question?"
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "ask.verb.4",
+          "wordnetRank": 4,
+          "llmRank": 1,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "istemek",
+        "pos": "verb",
+        "def": "to request something",
+        "ex": [
+          "He asked for a glass of water."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "ask.verb.1",
+          "wordnetRank": 1,
+          "llmRank": 2,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "çıkma teklif etmek",
+        "pos": "verb",
+        "def": "to invite someone to go on a date",
+        "ex": [
+          "He finally decided to ask her out on a date.",
+          "I want to ask her out."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "ask.verb.6",
+          "wordnetRank": 6,
+          "llmRank": 3,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   },
   "at": {
@@ -890,12 +1674,12 @@
       [
         "I was at home.",
         "He is at home.",
-        "I go home."
+        "I am in the home."
       ],
       [
         "She was at school.",
         "They are at school.",
-        "She goes to school."
+        "She is to school."
       ]
     ],
     "sb_distractors": [
@@ -909,7 +1693,23 @@
         "on",
         "with"
       ]
-    ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 1,
+        "reason": "Too technical/scientific (chemical element)."
+      },
+      {
+        "wordnetIndex": 2,
+        "reason": "Too obscure (foreign currency unit)."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 2,
+      "selectedSenseCount": 0,
+      "mergeCandidateCount": 0
+    }
   },
   "August": {
     "level": "A1",
@@ -918,11 +1718,11 @@
     "def": "The eighth month of the year.",
     "ex": [
       "My birthday is in August.",
-      "August is a hot month."
+      "It is very hot in August."
     ],
     "ex_tr": [
       "Doğum günüm Ağustos'ta.",
-      "Ağustos sıcak bir aydır."
+      "Ağustos'ta hava çok sıcaktır."
     ],
     "ex_distractors": [
       [
@@ -931,22 +1731,57 @@
         "Doğum günüm Ağustos'ta değil."
       ],
       [
-        "Ağustos sıcak bir ay değil.",
-        "Ağustos sıcak bir aydı.",
-        "Ağustoslar sıcak aylardır."
+        "Ağustos'ta hava çok soğuktur.",
+        "Ağustos'ta hava sıcaktı.",
+        "Ağustos'ta hava sıcak olacak."
       ]
     ],
     "sb_distractors": [
       [
-        "June",
         "July",
-        "May"
+        "June",
+        "September"
       ],
       [
-        "June",
         "July",
-        "April"
+        "June",
+        "May"
       ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 2,
+        "reason": "Too formal/archaic for A2-B1 learners."
+      },
+      {
+        "wordnetIndex": 3,
+        "reason": "Too formal/rare for everyday conversation."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 3,
+      "selectedSenseCount": 1,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "Ağustos",
+        "pos": "noun",
+        "def": "the eighth month of the year, coming after July and before September.",
+        "ex": [
+          "We usually go on holiday in August"
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "August.noun.1",
+          "wordnetRank": 1,
+          "llmRank": 1,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   },
   "aunt": {
@@ -959,19 +1794,19 @@
       "I visit my aunt every Sunday."
     ],
     "ex_tr": [
-      "Teyzem Londra'da yaşıyor.",
-      "Her Pazar teyzemi ziyaret ederim."
+      "Teyzem/Halam Londra'da yaşıyor.",
+      "Her Pazar teyzemi/halamı ziyaret ederim."
     ],
     "ex_distractors": [
       [
         "Teyzem Londra'da yaşıyordu.",
-        "Teyzelerim Londra'da yaşıyor.",
+        "Teyzeler Londra'da yaşıyor.",
         "Teyzem Londra'ya gidiyor."
       ],
       [
-        "Teyzemi her Pazar ziyaret ettim.",
-        "Biz her Pazar teyzemi ziyaret ederiz.",
-        "Teyzem beni her Pazar ziyaret eder."
+        "Teyzemi her Pazar ziyaret ettin.",
+        "Teyzemi her Pazar ziyaret ettik.",
+        "Teyzem her Pazar beni ziyaret eder."
       ]
     ],
     "sb_distractors": [
@@ -982,8 +1817,8 @@
       ],
       [
         "cousin",
-        "friend",
-        "brother"
+        "brother",
+        "friend"
       ]
     ]
   },
@@ -993,35 +1828,35 @@
     "tr": "sonbahar",
     "def": "The season between summer and winter.",
     "ex": [
-      "I love the colors of autumn.",
-      "Autumn starts in September."
+      "The leaves fall in autumn.",
+      "I love the cool weather in autumn."
     ],
     "ex_tr": [
-      "Sonbaharın renklerini seviyorum.",
-      "Sonbahar Eylül'de başlar."
+      "Yapraklar sonbaharda dökülür.",
+      "Sonbahardaki serin havayı severim."
     ],
     "ex_distractors": [
       [
-        "Sonbahar renklerini sevdim.",
-        "O, sonbaharın renklerini seviyor.",
-        "Sonbaharın renklerini sevmeyiz."
+        "Yapraklar sonbaharda döküldü.",
+        "Yaprak sonbaharda dökülür.",
+        "Yapraklar sonbaharda dökülüyorlar."
       ],
       [
-        "Sonbahar Eylül'de başladı.",
-        "Sonbahar Ekim'de başlar.",
-        "Sonbaharlar Eylül'de başlar."
+        "Sonbahardaki serin havayı seviyorsun.",
+        "Sonbahardaki serin havayı sevdim.",
+        "Sonbahardaki soğuk havayı severim."
       ]
     ],
     "sb_distractors": [
       [
-        "spring",
         "summer",
-        "winter"
+        "winter",
+        "spring"
       ],
       [
-        "School",
-        "Winter",
-        "Summer"
+        "January",
+        "Monday",
+        "morning"
       ]
     ]
   },
@@ -1067,20 +1902,20 @@
     "level": "A1",
     "pos": "adj",
     "tr": "harika",
-    "def": "Very good or impressive.",
+    "def": "Very good or great.",
     "ex": [
-      "The movie was awesome.",
+      "This movie is awesome!",
       "You have an awesome car."
     ],
     "ex_tr": [
-      "Film harikaydı.",
+      "Bu film harika!",
       "Harika bir araban var."
     ],
     "ex_distractors": [
       [
-        "Film harikadır.",
-        "Filmler harikaydı.",
-        "Film kötüydü."
+        "Bu filmler harika!",
+        "O film harikaydı!",
+        "Bu film harika mı?"
       ],
       [
         "Harika bir arabam var.",
@@ -1092,12 +1927,12 @@
       [
         "good",
         "nice",
-        "big"
+        "great"
       ],
       [
+        "big",
         "new",
-        "red",
-        "small"
+        "old"
       ]
     ]
   },
@@ -1108,11 +1943,11 @@
     "def": "A very young child.",
     "ex": [
       "The baby is sleeping.",
-      "She has a beautiful baby."
+      "She has a cute baby."
     ],
     "ex_tr": [
       "Bebek uyuyor.",
-      "Onun güzel bir bebeği var."
+      "Onun sevimli bir bebeği var."
     ],
     "ex_distractors": [
       [
@@ -1121,9 +1956,9 @@
         "Bebek uyanıyor."
       ],
       [
-        "Onun güzel bir bebeği vardı.",
-        "O güzel bir bebektir.",
-        "Onlar güzel bir bebeğe sahip."
+        "Onun sevimli bir bebeği vardı.",
+        "O sevimli bir bebektir.",
+        "Onlar sevimli bir bebeğe sahip."
       ]
     ],
     "sb_distractors": [
@@ -1133,48 +1968,175 @@
         "boy"
       ],
       [
-        "car",
-        "house",
+        "cat",
+        "dog",
         "doll"
       ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 5,
+        "reason": "Overlaps with the general meaning of a young child."
+      },
+      {
+        "wordnetIndex": 6,
+        "reason": "Too specific to animal biology."
+      },
+      {
+        "wordnetIndex": 7,
+        "reason": "Too idiomatic for A2-B1 learners."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 7,
+      "selectedSenseCount": 3,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "süt çocuğu",
+        "pos": "noun",
+        "def": "a child who is too young to walk or talk",
+        "ex": [
+          "The baby is sleeping in her crib."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "baby.noun.2",
+          "wordnetRank": 2,
+          "llmRank": 1,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "şımartmak",
+        "pos": "verb",
+        "def": "to treat someone with too much care or attention",
+        "ex": [
+          "Stop babying him; he is already ten years old!"
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "baby.verb.1",
+          "wordnetRank": 1,
+          "llmRank": 2,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "çocuksu kişi",
+        "pos": "noun",
+        "def": "someone who behaves in a childish or immature way",
+        "ex": [
+          "He is such a baby when he doesn't get what he wants."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "baby.noun.4",
+          "wordnetRank": 4,
+          "llmRank": 3,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   },
   "back": {
     "level": "A1",
     "pos": "noun",
     "tr": "arka",
-    "def": "The back part of the human body.",
+    "def": "The part of the body from the neck to the waist.",
     "ex": [
-      "My back hurts today.",
+      "My back hurts.",
       "He has a bag on his back."
     ],
     "ex_tr": [
-      "Bugün sırtım ağrıyor.",
+      "Sırtım ağrıyor.",
       "Sırtında bir çanta var."
     ],
     "ex_distractors": [
       [
-        "Sırtım dün ağrıdı.",
-        "Sırtın bugün ağrıyor.",
+        "Sırtım ağrıdı.",
+        "Sırtın ağrıyor.",
         "Sırtım ağrımıyor."
       ],
       [
-        "Sırtında çanta yok.",
-        "Sırtında çantası vardı.",
-        "Sırtında çantalar var."
+        "Sırtında çantalar var.",
+        "Sırtında bir çanta yok.",
+        "Sırtında bir çanta vardı."
       ]
     ],
     "sb_distractors": [
       [
+        "head",
         "arm",
-        "leg",
-        "head"
+        "leg"
       ],
       [
-        "shoulder",
         "head",
-        "arm"
+        "shoulder",
+        "hand"
       ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 5,
+        "reason": "Example exclusion for completion"
+      }
+    ],
+    "alt_meanings_merged": [
+      {
+        "kept": 3,
+        "dropped": 4,
+        "reason": "Example merge for completion"
+      }
+    ],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 28,
+      "selectedSenseCount": 2,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "geri",
+        "pos": "adv",
+        "def": "returning to a place where you were before",
+        "ex": [
+          "I will go back home."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "back.adv.1",
+          "wordnetRank": 1,
+          "llmRank": 1,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "geriye",
+        "pos": "adv",
+        "def": "towards the back or rear",
+        "ex": [
+          "Please move back a little so everyone can see."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "back.adv.2",
+          "wordnetRank": 2,
+          "llmRank": 2,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   },
   "bad": {
@@ -1230,14 +2192,14 @@
     ],
     "ex_distractors": [
       [
-        "Mavi bir çantam vardı.",
-        "Mavi bir çantan var.",
-        "Mavi bir çanta istiyorum."
+        "Mavi bir çantam yok.",
+        "Mavi bir çanta var.",
+        "Mavi çantaları var."
       ],
       [
-        "Kitabı çantaya koy.",
+        "Kitabı çantaya koydu.",
         "Kitapları çantadan al.",
-        "Kitapları çantaya koydum."
+        "Kitaplar çantada."
       ]
     ],
     "sb_distractors": [
@@ -1251,6 +2213,107 @@
         "car",
         "room"
       ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 1,
+        "reason": "Specific to hunting."
+      },
+      {
+        "wordnetIndex": 2,
+        "reason": "Rare usage in daily conversation."
+      },
+      {
+        "wordnetIndex": 3,
+        "reason": "Rare usage in daily conversation."
+      },
+      {
+        "wordnetIndex": 4,
+        "reason": "Rare/slang usage."
+      },
+      {
+        "wordnetIndex": 7,
+        "reason": "Specific to hunting."
+      },
+      {
+        "wordnetIndex": 8,
+        "reason": "Specific to sports (baseball)."
+      },
+      {
+        "wordnetIndex": 10,
+        "reason": "Rare usage."
+      },
+      {
+        "wordnetIndex": 12,
+        "reason": "Offensive/dated."
+      },
+      {
+        "wordnetIndex": 13,
+        "reason": "Technical/Agricultural."
+      },
+      {
+        "wordnetIndex": 14,
+        "reason": "Slang/Idiomatic."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 14,
+      "selectedSenseCount": 3,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "torba",
+        "pos": "noun",
+        "def": "a soft container, often made of paper or plastic, used for carrying things.",
+        "ex": [
+          "The cashier put my groceries in a paper bag."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "bag.noun.6",
+          "wordnetRank": 6,
+          "llmRank": 1,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "el çantası",
+        "pos": "noun",
+        "def": "A small bag used for carrying money, keys, and other personal items.",
+        "ex": [
+          "She put her phone and wallet in her bag."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "bag.noun.9",
+          "wordnetRank": 9,
+          "llmRank": 2,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "bavul",
+        "pos": "noun",
+        "def": "a large bag used for carrying clothes when traveling",
+        "ex": [
+          "He packed his bag for the trip to Italy."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "bag.noun.11",
+          "wordnetRank": 11,
+          "llmRank": 3,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   },
   "ball": {
@@ -1268,27 +2331,98 @@
     ],
     "ex_distractors": [
       [
-        "Çocuğun kırmızı bir topu vardı.",
-        "Kızın kırmızı bir topu var.",
-        "Çocukların kırmızı topları var."
+        "Çocuk kırmızı bir top istiyor.",
+        "Çocuklar kırmızı bir topu var.",
+        "Çocuğun kırmızı bir topu yok."
       ],
       [
         "Topla oynadık.",
         "Onlar topla oynuyor.",
-        "Topla oynamıyoruz."
+        "Topu oynuyoruz."
       ]
     ],
     "sb_distractors": [
       [
-        "car",
         "book",
-        "pen"
+        "car",
+        "dog"
       ],
       [
         "toy",
-        "cat",
+        "game",
         "doll"
       ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 3,
+        "reason": "Not relevant to the current context."
+      }
+    ],
+    "alt_meanings_merged": [
+      {
+        "kept": 5,
+        "dropped": 6,
+        "reason": "Similar meanings were combined."
+      }
+    ],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 13,
+      "selectedSenseCount": 3,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "top",
+        "pos": "noun",
+        "def": "A round object used for playing games.",
+        "ex": [
+          "He kicked the ball into the net."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "ball.noun.2",
+          "wordnetRank": 2,
+          "llmRank": 1,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "top",
+        "pos": "noun",
+        "def": "a round object, often used in games",
+        "ex": [
+          "The dog is playing with a red ball."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "ball.noun.4",
+          "wordnetRank": 4,
+          "llmRank": 2,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "yuvarlamak",
+        "pos": "verb",
+        "def": "to make something into a round shape by rolling or folding it",
+        "ex": [
+          "He balled up the paper and threw it away."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "ball.verb.1",
+          "wordnetRank": 1,
+          "llmRank": 3,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   },
   "banana": {
@@ -1298,11 +2432,11 @@
     "def": "A long yellow fruit.",
     "ex": [
       "I eat a banana for breakfast.",
-      "The banana is on the table."
+      "The banana is yellow."
     ],
     "ex_tr": [
       "Kahvaltıda bir muz yerim.",
-      "Muz masanın üstünde."
+      "Muz sarıdır."
     ],
     "ex_distractors": [
       [
@@ -1311,22 +2445,53 @@
         "Kahvaltıda muzlar yerim."
       ],
       [
-        "Muz masada değildi.",
-        "Muzlar masanın üstünde.",
-        "Muz masanın altında."
+        "Muz sarıydı.",
+        "Muzlar sarıdır.",
+        "Muz sarı değil."
       ]
     ],
     "sb_distractors": [
       [
         "apple",
-        "egg",
-        "sandwich"
+        "orange",
+        "egg"
       ],
       [
-        "book",
-        "pen",
-        "cup"
+        "lemon",
+        "sun",
+        "bus"
       ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 1,
+        "reason": "Refers to the plant, which is less common in everyday conversation than the fruit for A2-B1 learners."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 2,
+      "selectedSenseCount": 1,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "muz",
+        "pos": "noun",
+        "def": "a long, curved, yellow fruit with soft, sweet flesh",
+        "ex": [
+          "I like to eat a banana for breakfast."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "banana.noun.2",
+          "wordnetRank": 2,
+          "llmRank": 1,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   },
   "band": {
@@ -1447,38 +2612,81 @@
     "level": "A1",
     "pos": "noun",
     "tr": "basketbol",
-    "def": "A game where two teams throw a ball into a basket.",
+    "def": "A team game where players try to throw a ball into a high net.",
     "ex": [
-      "I play basketball every Friday.",
-      "Basketball is a popular sport."
+      "I like to play basketball with my friends.",
+      "Basketball is a very popular sport around the world."
     ],
     "ex_tr": [
-      "Her Cuma basketbol oynarım.",
-      "Basketbol popüler bir spordur."
+      "Arkadaşlarımla basketbol oynamayı severim.",
+      "Basketbol dünya çapında çok popüler bir spordur."
     ],
     "ex_distractors": [
       [
-        "Cuma günü basketbol oynadım.",
-        "O her Cuma basketbol oynar.",
-        "Cuma günleri basketbol oynayacağım."
+        "I likes to play basketball with my friends.",
+        "He like to play basketball with my friends.",
+        "I liked to play basketball with my friends."
       ],
       [
-        "Basketbol popüler bir spor değildi.",
-        "Basketbol popüler bir spor olacak.",
-        "Basketbol popüler bir sporlar."
+        "Basketball are a very popular sport around the world.",
+        "Basketball was a very popular sport around the world.",
+        "Basketball is a very popular sports around the world."
       ]
     ],
     "sb_distractors": [
       [
         "football",
         "tennis",
-        "volleyball"
+        "games"
       ],
       [
-        "Football",
-        "Tennis",
-        "Swimming"
+        "football",
+        "swimming",
+        "running"
       ]
+    ],
+    "alt_meanings_excluded": [],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 2,
+      "selectedSenseCount": 2,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "basketbol maçı",
+        "pos": "noun",
+        "def": "a single match of basketball",
+        "ex": [
+          "We are going to watch a basketball game tonight."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "basketball.noun.1",
+          "wordnetRank": 1,
+          "llmRank": 1,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "basketbol topu",
+        "pos": "noun",
+        "def": "The round ball used to play basketball.",
+        "ex": [
+          "He bounced the basketball before shooting."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "basketball.noun.2",
+          "wordnetRank": 2,
+          "llmRank": 2,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   },
   "bath": {
@@ -1599,63 +2807,94 @@
     "level": "A1",
     "pos": "noun",
     "tr": "plaj",
-    "def": "A sandy area next to the sea.",
+    "def": "A sandy or stony area next to the sea or a lake.",
     "ex": [
-      "I like to walk on the beach.",
-      "The beach is very beautiful."
+      "We like to play on the beach.",
+      "The children built a sandcastle on the beach."
     ],
     "ex_tr": [
-      "Plajda yürümeyi severim.",
-      "Plaj çok güzel."
+      "Sahilde oynamayı severiz.",
+      "Çocuklar sahilde bir kumdan kale yaptılar."
     ],
     "ex_distractors": [
       [
-        "Plajda yürümeyi sevdim.",
-        "Plajda yürümeyi severler.",
-        "Plajda yürümek istiyorum."
+        "We liked to playing on the beach.",
+        "Us like to play on the beach.",
+        "We like to play in the beach."
       ],
       [
-        "Plaj çok güzeldi.",
-        "Plajlar çok güzel.",
-        "Plaj güzel bir yerdir."
+        "The children build a sandcastle on the beach.",
+        "The child built a sandcastle on the beach.",
+        "The children built a sandcastle at the beach."
       ]
     ],
     "sb_distractors": [
       [
         "park",
-        "road",
-        "street"
+        "grass",
+        "sand"
       ],
       [
-        "city",
-        "hotel",
-        "garden"
+        "ground",
+        "land",
+        "floor"
       ]
+    ],
+    "alt_meanings_excluded": [
+      {
+        "wordnetIndex": 1,
+        "reason": "Rarely used in everyday conversation for A2-B1 learners."
+      }
+    ],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 2,
+      "selectedSenseCount": 1,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "kumsal",
+        "pos": "noun",
+        "def": "a sandy area next to the ocean or a lake",
+        "ex": [
+          "We walked along the sandy beach."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "beach.noun.2",
+          "wordnetRank": 2,
+          "llmRank": 1,
+          "orderChanged": true,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   },
   "beautiful": {
     "level": "A1",
     "pos": "adj",
     "tr": "güzel",
-    "def": "Very pretty or pleasant to look at.",
+    "def": "Very nice to look at.",
     "ex": [
       "The flower is beautiful.",
-      "She has a beautiful voice."
+      "She has a beautiful dress."
     ],
     "ex_tr": [
       "Çiçek güzel.",
-      "Onun güzel bir sesi var."
+      "Onun güzel bir elbisesi var."
     ],
     "ex_distractors": [
       [
         "Çiçekler güzel.",
         "Çiçek güzeldi.",
-        "Çiçek güzel değil."
+        "Çiçek güzelmiş."
       ],
       [
-        "Onun güzel bir sesi vardı.",
-        "Onlar güzel bir sese sahip.",
-        "O güzel bir ses."
+        "Onun güzel bir elbisesi vardı.",
+        "Onlar güzel bir elbiseye sahip.",
+        "O güzel bir elbise giyiyor."
       ]
     ],
     "sb_distractors": [
@@ -1665,47 +2904,90 @@
         "small"
       ],
       [
-        "loud",
         "new",
-        "good"
+        "blue",
+        "long"
       ]
+    ],
+    "alt_meanings_excluded": [],
+    "alt_meanings_merged": [],
+    "alt_meanings_meta": {
+      "wordnetSenseCount": 2,
+      "selectedSenseCount": 2,
+      "mergeCandidateCount": 0
+    },
+    "alt_meanings": [
+      {
+        "tr": "büyüleyici",
+        "pos": "adj",
+        "def": "extremely pleasing to the senses or the mind",
+        "ex": [
+          "The pianist played a beautiful melody."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "beautiful.adj.1",
+          "wordnetRank": 1,
+          "llmRank": 1,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      },
+      {
+        "tr": "Harika",
+        "pos": "adj",
+        "def": "Describing weather that is very pleasant and enjoyable.",
+        "ex": [
+          "It's a beautiful day, perfect for a picnic."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "beautiful.adj.2",
+          "wordnetRank": 2,
+          "llmRank": 2,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      }
     ]
   },
   "because": {
     "level": "A1",
     "pos": "conj",
     "tr": "çünkü",
-    "def": "used to give a reason",
+    "def": "It shows the reason for something.",
     "ex": [
-      "I am happy because it is sunny.",
+      "I am happy because it is sunny today.",
       "She is tired because she worked a lot."
     ],
     "ex_tr": [
-      "Mutluyum çünkü hava güneşli.",
+      "Mutluyum çünkü bugün güneşli.",
       "Yorgun çünkü çok çalıştı."
     ],
     "ex_distractors": [
       [
-        "Mutlu değilim çünkü hava güneşli.",
-        "Mutluyuz çünkü hava güneşli.",
-        "Mutluydum çünkü hava güneşliydi."
+        "I am happy because it was sunny today.",
+        "I am happy because it is sun today.",
+        "I am happy because he is sunny today."
       ],
       [
-        "O yorgun değil çünkü çok çalıştı.",
-        "Onlar yorgun çünkü çok çalıştılar.",
-        "O yorgundu çünkü çok çalıştı."
+        "She is tired because she works a lot.",
+        "She is tired because she work a lot.",
+        "She is tired because he worked a lot."
       ]
     ],
     "sb_distractors": [
       [
         "and",
         "but",
-        "or"
+        "so"
       ],
       [
-        "so",
+        "and",
         "but",
-        "and"
+        "so"
       ]
     ]
   },
@@ -31706,25 +32988,25 @@
     "level": "A1",
     "pos": "noun",
     "tr": "aktris",
-    "def": "A woman whose job is to act in plays or films.",
+    "def": "A woman who acts in movies or plays.",
     "ex": [
-      "She wants to be a famous actress.",
-      "The actress wore a beautiful dress on stage."
+      "She is a famous actress.",
+      "The actress is very talented."
     ],
     "ex_tr": [
-      "Ünlü bir aktris olmak istiyor.",
-      "Aktris sahnede güzel bir elbise giydi."
+      "O ünlü bir aktris.",
+      "Aktris çok yetenekli."
     ],
     "ex_distractors": [
       [
-        "He wants to be a famous actress.",
-        "She wanted to be a famous actress.",
-        "She want to be a famous actress."
+        "O ünlü bir aktördür.",
+        "O ünlü bir aktris değildi.",
+        "Onlar ünlü aktrisler."
       ],
       [
-        "The actor wore a beautiful dress on stage.",
-        "The actress wears a beautiful dress on stage.",
-        "The actress wearing a beautiful dress on stage."
+        "Aktris çok yetenekli değildi.",
+        "Aktrisler çok yetenekli.",
+        "Aktris çok yetenekli olacak."
       ]
     ],
     "sb_distractors": [
@@ -31734,9 +33016,9 @@
         "doctor"
       ],
       [
-        "singer",
-        "dancer",
-        "model"
+        "student",
+        "writer",
+        "artist"
       ]
     ]
   },
@@ -31995,25 +33277,25 @@
     "level": "A1",
     "pos": "noun",
     "tr": "öğleden sonra",
-    "def": "The part of the day between noon and evening.",
+    "def": "The time between lunch and evening.",
     "ex": [
-      "I will meet you in the afternoon.",
-      "She likes to read books every afternoon."
+      "I drink tea in the afternoon.",
+      "See you tomorrow afternoon."
     ],
     "ex_tr": [
-      "Seninle öğleden sonra buluşacağım.",
-      "O her öğleden sonra kitap okumayı sever."
+      "Öğleden sonra çay içerim.",
+      "Yarın öğleden sonra görüşürüz."
     ],
     "ex_distractors": [
       [
-        "I met you in the afternoon.",
-        "He will meet you in the afternoon.",
-        "I will meet you on the afternoon."
+        "Öğleden sonra çay içtim.",
+        "Biz öğleden sonra çay içeriz.",
+        "Öğleden sonra çay içiyor."
       ],
       [
-        "She liked to read books every afternoon.",
-        "He likes to read books every afternoon.",
-        "She likes to read every afternoon books."
+        "Dün öğleden sonra görüştük.",
+        "Yarın sabah görüşürüz.",
+        "Seni öğleden sonra göreceğim."
       ]
     ],
     "sb_distractors": [
@@ -32031,7 +33313,7 @@
     "alt_meanings_excluded": [
       {
         "wordnetIndex": 2,
-        "reason": "This sense describes the use of 'afternoon' in a fixed greeting phrase ('Good afternoon') rather than a standalone meaning of the word itself, which is less relevant for A2-B1 learners defining 'afternoon'."
+        "reason": "This sense refers to the word used in greetings, which is a specific application of the primary time-of-day meaning."
       }
     ],
     "alt_meanings_merged": [],
@@ -32040,7 +33322,25 @@
       "selectedSenseCount": 1,
       "mergeCandidateCount": 0
     },
-    "alt_meanings": []
+    "alt_meanings": [
+      {
+        "tr": "öğleden sonra",
+        "pos": "noun",
+        "def": "the time of day between noon and evening",
+        "ex": [
+          "I usually go for a walk in the afternoon."
+        ],
+        "unlockAfter": 14,
+        "source": {
+          "lexicon": "wordnet",
+          "senseId": "afternoon.noun.1",
+          "wordnetRank": 1,
+          "llmRank": 1,
+          "orderChanged": false,
+          "selectionReason": "top_k_spoken"
+        }
+      }
+    ]
   },
   "again": {
     "level": "A1",
@@ -32048,35 +33348,35 @@
     "tr": "tekrar",
     "def": "one more time",
     "ex": [
-      "Please read the text again.",
-      "I want to see you again."
+      "Please say that again.",
+      "Can you come again tomorrow?"
     ],
     "ex_tr": [
-      "Lütfen metni tekrar oku.",
-      "Seni tekrar görmek istiyorum."
+      "Lütfen onu tekrar söyle.",
+      "Yarın tekrar gelebilir misin?"
     ],
     "ex_distractors": [
       [
-        "Please read the text now.",
-        "Please read the texts again.",
-        "Please read the text yesterday."
+        "Please said that again.",
+        "Please saying that again.",
+        "Please say this again."
       ],
       [
-        "I wanted to see you again.",
-        "He wants to see you again.",
-        "I want to see them again."
+        "Can you came again tomorrow?",
+        "Can you coming again tomorrow?",
+        "Can he come again tomorrow?"
       ]
     ],
     "sb_distractors": [
       [
         "now",
-        "slowly",
+        "here",
         "loudly"
       ],
       [
-        "soon",
-        "today",
-        "here"
+        "here",
+        "back",
+        "early"
       ]
     ]
   },
@@ -32484,25 +33784,25 @@
     "level": "A1",
     "pos": "noun",
     "tr": "havaalanı",
-    "def": "A place where planes land and take off.",
+    "def": "A place where planes take off and land.",
     "ex": [
-      "I am going to the airport now.",
+      "I am going to the airport.",
       "The airport is very big."
     ],
     "ex_tr": [
-      "Şimdi havaalanına gidiyorum.",
+      "Havaalanına gidiyorum.",
       "Havaalanı çok büyük."
     ],
     "ex_distractors": [
       [
         "Havaalanına gittim.",
-        "Havaalanına gidiyoruz.",
-        "Havaalanında bekliyorum."
+        "Biz havaalanına gidiyoruz.",
+        "Havaalanına gitmek istiyorum."
       ],
       [
         "Havaalanı çok büyüktü.",
         "Havaalanları çok büyüktür.",
-        "Havaalanı çok küçük."
+        "Havaalanı küçük."
       ]
     ],
     "sb_distractors": [
@@ -32513,8 +33813,8 @@
       ],
       [
         "city",
-        "house",
-        "park"
+        "park",
+        "house"
       ]
     ]
   },
