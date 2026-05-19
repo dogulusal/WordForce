@@ -25,6 +25,12 @@ function renderSettingsModal() {
           <button class="btn" data-ui-action="save-settings">Save</button>
           <button class="btn" data-ui-action="close-modal">Close</button>
         </div>
+        <hr style="border-color: var(--border); margin: 16px 0;">
+        <h3 style="margin-bottom: 8px;">Data</h3>
+        <div class="modal-actions">
+          <button class="btn btn-muted" data-ui-action="export-progress">Export Progress</button>
+          <label class="btn btn-muted" style="cursor:pointer;">Import Progress<input type="file" id="importFileInput" accept=".json" style="display:none;"></label>
+        </div>
       </div>
     </div>
   `;
@@ -35,6 +41,23 @@ function renderWordListModal(state, allWords) {
   const progressWords = state.progress.words || {};
   const today = new Date().toLocaleDateString('en-CA');
 
+  function getWordRowAction(activeFilter) {
+    if (activeFilter === 'known') {
+      return { label: 'Remove', action: 'remove-from-known' };
+    }
+    if (activeFilter === 'practice') {
+      return { label: 'Remove', action: 'remove-from-practice' };
+    }
+    return { label: 'Move to Known', action: 'add-to-known' };
+  }
+
+  const rowAction = getWordRowAction(filter);
+  const actionHelp = filter === 'practice'
+    ? 'Remove clears this word from the practice list.'
+    : filter === 'known'
+      ? 'Remove sends this word back to the active pool.'
+      : 'Move to Known marks the word as known and removes it from active study.';
+
   const rows = Object.entries(progressWords)
     .filter(([_, data]) => {
       if (filter === 'review') {
@@ -44,15 +67,13 @@ function renderWordListModal(state, allWords) {
     })
     .map(([word, data]) => {
       const tr = allWords[word]?.tr || '';
-      const btnLabel = filter === 'known' ? '✕ Remove' : '+ Add';
-      const btnAction = filter === 'known' ? 'remove-from-known' : 'add-to-known';
       return `
         <div class="word-row">
           <div style="flex:1;">
             <div><strong>${escapeHtml(word)}</strong> - ${escapeHtml(tr)}</div>
           </div>
           <div class="word-row-meta">${escapeHtml(data.status || '')}</div>
-          <button class="btn" style="padding: 6px 10px; min-height: 34px; font-size: 0.85rem; margin-left: 8px;" data-ui-action="${btnAction}" data-word="${escapeHtml(word)}">${btnLabel}</button>
+          <button class="btn" style="padding: 6px 10px; min-height: 34px; font-size: 0.85rem; margin-left: 8px;" data-ui-action="${rowAction.action}" data-word="${escapeHtml(word)}">${rowAction.label}</button>
         </div>
       `;
     })
@@ -62,6 +83,7 @@ function renderWordListModal(state, allWords) {
     <div class="modal-overlay" onclick="if(event.target===this) handleUiAction('close-modal')">
       <div class="modal" role="dialog" aria-label="Word list">
         <h2>${escapeHtml(filter)} words</h2>
+        <p>${escapeHtml(actionHelp)}</p>
         <div class="word-list">${rows}</div>
         <div class="modal-actions">
           <button class="btn" data-ui-action="close-modal">Close</button>

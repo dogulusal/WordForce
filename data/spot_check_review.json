@@ -1,5 +1,95 @@
 [
   {
+    "word": "a",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
+    "word": "about",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
+    "word": "above",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
+    "word": "act",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
+    "word": "action",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
+    "word": "add",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
+    "word": "after",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
+    "word": "age",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
+    "word": "air",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
+    "word": "all",
+    "flags": [
+      {
+        "type": "ORDER_MISMATCH",
+        "reason": "LLM reranker changed WordNet top-2 order"
+      }
+    ]
+  },
+  {
     "word": "always",
     "flags": [
       {
@@ -118,96 +208,6 @@
   },
   {
     "word": "beach",
-    "flags": [
-      {
-        "type": "ORDER_MISMATCH",
-        "reason": "LLM reranker changed WordNet top-2 order"
-      }
-    ]
-  },
-  {
-    "word": "a",
-    "flags": [
-      {
-        "type": "ORDER_MISMATCH",
-        "reason": "LLM reranker changed WordNet top-2 order"
-      }
-    ]
-  },
-  {
-    "word": "act",
-    "flags": [
-      {
-        "type": "ORDER_MISMATCH",
-        "reason": "LLM reranker changed WordNet top-2 order"
-      }
-    ]
-  },
-  {
-    "word": "add",
-    "flags": [
-      {
-        "type": "ORDER_MISMATCH",
-        "reason": "LLM reranker changed WordNet top-2 order"
-      }
-    ]
-  },
-  {
-    "word": "after",
-    "flags": [
-      {
-        "type": "ORDER_MISMATCH",
-        "reason": "LLM reranker changed WordNet top-2 order"
-      }
-    ]
-  },
-  {
-    "word": "age",
-    "flags": [
-      {
-        "type": "ORDER_MISMATCH",
-        "reason": "LLM reranker changed WordNet top-2 order"
-      }
-    ]
-  },
-  {
-    "word": "air",
-    "flags": [
-      {
-        "type": "ORDER_MISMATCH",
-        "reason": "LLM reranker changed WordNet top-2 order"
-      }
-    ]
-  },
-  {
-    "word": "all",
-    "flags": [
-      {
-        "type": "ORDER_MISMATCH",
-        "reason": "LLM reranker changed WordNet top-2 order"
-      }
-    ]
-  },
-  {
-    "word": "about",
-    "flags": [
-      {
-        "type": "ORDER_MISMATCH",
-        "reason": "LLM reranker changed WordNet top-2 order"
-      }
-    ]
-  },
-  {
-    "word": "above",
-    "flags": [
-      {
-        "type": "ORDER_MISMATCH",
-        "reason": "LLM reranker changed WordNet top-2 order"
-      }
-    ]
-  },
-  {
-    "word": "action",
     "flags": [
       {
         "type": "ORDER_MISMATCH",
