@@ -362,9 +362,34 @@ function escapeHtml(text) {
     .replace(/'/g, '&#39;');
 }
 
+const CEFR_ORDER = { A1: 1, A2: 2, B1: 3, B2: 4, C1: 5 };
+
 function isEligibleForLevel(word, levelFilter) {
   if (levelFilter === 'ALL') return true;
   return (AllWords[word]?.level || 'A1') === levelFilter;
+}
+
+function getWordLevel(word) {
+  return AllWords[word]?.level || 'A1';
+}
+
+// Returns the lowest CEFR level that still has unseen or practice words.
+// Used when levelFilter is 'ALL' to ensure level-ordered progression (A1 → A2 → ...).
+function getActiveLevel(progress) {
+  const levelOrder = ['A1', 'A2', 'B1', 'B2', 'C1'];
+  const today = toLocalDate(0);
+  for (const level of levelOrder) {
+    const hasActive = Object.keys(AllWords).some((w) => {
+      if (getWordLevel(w) !== level) return false;
+      const wp = progress.words[w];
+      if (!wp) return true; // unseen
+      if (wp.status === 'practice' && (!wp.nextReview || wp.nextReview <= today)) return true;
+      return false;
+    });
+    if (hasActive) return level;
+  }
+  // All levels exhausted — allow review-due words from any level
+  return null;
 }
 
 function pickSessionWords(sessionSize, levelFilter = 'ALL') {
@@ -380,13 +405,21 @@ function pickSessionWords(sessionSize, levelFilter = 'ALL') {
   });
   const unseen = Object.keys(AllWords).filter((w) => !AppState.progress.words[w]);
 
+  // When ALL is selected, enforce level-ordered progression: finish lower levels first
+  const effectiveFilter = levelFilter === 'ALL'
+    ? (getActiveLevel(AppState.progress) || 'ALL')
+    : levelFilter;
+
   const picked = [
-    ...reviewDue.filter((w) => isEligibleForLevel(w, levelFilter)),
-    ...practiceWords.filter((w) => !reviewDue.includes(w) && isEligibleForLevel(w, levelFilter)),
-    ...unseen.filter((w) => isEligibleForLevel(w, levelFilter))
+    ...reviewDue.filter((w) => isEligibleForLevel(w, effectiveFilter)),
+    ...practiceWords.filter((w) => !reviewDue.includes(w) && isEligibleForLevel(w, effectiveFilter)),
+    ...unseen.filter((w) => isEligibleForLevel(w, effectiveFilter))
   ];
 
   if (picked.length === 0) {
+    // No active words at current level — try review-due words from any level
+    const anyReviewDue = reviewDue.filter((w) => isEligibleForLevel(w, levelFilter));
+    if (anyReviewDue.length > 0) return anyReviewDue.slice(0, sessionSize);
     return deferredPracticeWords
       .filter((w) => isEligibleForLevel(w, levelFilter))
       .slice(0, sessionSize);

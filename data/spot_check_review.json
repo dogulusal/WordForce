@@ -1,5 +1,14 @@
 [
   {
+    "word": "August",
+    "flags": [
+      {
+        "type": "NO_ALT_MEANINGS",
+        "reason": "WordNet sense count 3 but no alt_meanings produced"
+      }
+    ]
+  },
+  {
     "word": "a",
     "flags": [
       {
@@ -138,8 +147,8 @@
     "word": "arm",
     "flags": [
       {
-        "type": "ORDER_MISMATCH",
-        "reason": "LLM reranker changed WordNet top-2 order"
+        "type": "NO_ALT_MEANINGS",
+        "reason": "WordNet sense count 8 but no alt_meanings produced"
       }
     ]
   },
@@ -192,17 +201,8 @@
     "word": "ball",
     "flags": [
       {
-        "type": "ORDER_MISMATCH",
-        "reason": "LLM reranker changed WordNet top-2 order"
-      }
-    ]
-  },
-  {
-    "word": "banana",
-    "flags": [
-      {
-        "type": "ORDER_MISMATCH",
-        "reason": "LLM reranker changed WordNet top-2 order"
+        "type": "NO_ALT_MEANINGS",
+        "reason": "WordNet sense count 13 but no alt_meanings produced"
       }
     ]
   },
