@@ -1,139 +1,4 @@
 {
-  "April": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "Nisan"
-  },
-  "August": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "Ağustos"
-  },
-  "CD": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "CD"
-  },
-  "DVD": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "DVD"
-  },
-  "December": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "Aralık"
-  },
-  "February": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "Şubat"
-  },
-  "Friday": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "Cuma"
-  },
-  "I": {
-    "level": "A1",
-    "pos": "pron",
-    "tr": "ben"
-  },
-  "January": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "Ocak"
-  },
-  "July": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "Temmuz"
-  },
-  "June": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "Haziran"
-  },
-  "March": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "Mart"
-  },
-  "May": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "Mayıs"
-  },
-  "Monday": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "Pazartesi"
-  },
-  "Mr": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "Bay"
-  },
-  "Mrs": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "Bayan"
-  },
-  "November": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "Kasım"
-  },
-  "OK": {
-    "level": "A1",
-    "pos": "exclam",
-    "tr": "tamam"
-  },
-  "October": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "Ekim"
-  },
-  "Saturday": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "Cumartesi"
-  },
-  "September": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "Eylül"
-  },
-  "Sunday": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "Pazar"
-  },
-  "T-shirt": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "tişört"
-  },
-  "TV": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "televizyon"
-  },
-  "Thursday": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "Perşembe"
-  },
-  "Tuesday": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "Salı"
-  },
-  "Wednesday": {
-    "level": "A1",
-    "pos": "noun",
-    "tr": "Çarşamba"
-  },
   "a": {
     "level": "A1",
     "pos": "article",
@@ -144,6 +9,11 @@
       "She wants a new book.",
       "He is a teacher."
     ]
+  },
+  "abandon": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "abandon"
   },
   "abdicate": {
     "level": "C1",
@@ -174,6 +44,11 @@
       "She has the ability to learn languages quickly.",
       "His ability to solve problems impressed everyone."
     ]
+  },
+  "able": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "able"
   },
   "abolish": {
     "level": "B2",
@@ -215,6 +90,16 @@
     "level": "A2",
     "pos": "adj",
     "tr": "yok, mevcut değil"
+  },
+  "absolute": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "absolute"
+  },
+  "absolutely": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "absolutely"
   },
   "abstain": {
     "level": "C1",
@@ -266,6 +151,16 @@
       "I can't accept your apology this time."
     ]
   },
+  "acceptable": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "acceptable"
+  },
+  "access": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "access"
+  },
   "accident": {
     "level": "A2",
     "pos": "noun",
@@ -295,6 +190,11 @@
     "level": "B2",
     "pos": "verb",
     "tr": "barındırmak, yerleştirmek"
+  },
+  "accompany": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "accompany"
   },
   "accomplish": {
     "level": "B1",
@@ -341,6 +241,11 @@
     "pos": "adj",
     "tr": "doğru, kesin"
   },
+  "accuse": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "accuse"
+  },
   "ache": {
     "level": "A2",
     "pos": "noun",
@@ -355,6 +260,11 @@
       "He achieved his goal of running a marathon.",
       "You can achieve anything if you work hard enough."
     ]
+  },
+  "achievement": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "achievement"
   },
   "acknowledge": {
     "level": "B2",
@@ -477,6 +387,16 @@
       "Add these numbers together.",
       "I want to add one more thing."
     ]
+  },
+  "addition": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "addition"
+  },
+  "additional": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "additional"
   },
   "additionally": {
     "level": "B2",
@@ -603,6 +523,16 @@
       "As an adult, you need to make your own decisions."
     ]
   },
+  "advance": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "advance"
+  },
+  "advanced": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "advanced"
+  },
   "advantage": {
     "level": "A2",
     "pos": "noun",
@@ -648,10 +578,20 @@
     "pos": "noun",
     "tr": "reklam"
   },
+  "advertise": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "advertise"
+  },
   "advertisement": {
     "level": "A2",
     "pos": "noun",
     "tr": "reklam"
+  },
+  "advertising": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "advertising"
   },
   "advice": {
     "level": "A2",
@@ -692,6 +632,11 @@
       "The building has great aesthetic value.",
       "She made the choice for purely aesthetic reasons."
     ]
+  },
+  "affair": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "affair"
   },
   "affect": {
     "level": "B1",
@@ -784,6 +729,11 @@
       "She always sleeps in the afternoon."
     ]
   },
+  "afterward": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "afterward"
+  },
   "afterwards": {
     "level": "A2",
     "pos": "adv",
@@ -816,6 +766,16 @@
       "She started working at age 18."
     ]
   },
+  "agency": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "agency"
+  },
+  "agenda": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "agenda"
+  },
   "aggravate": {
     "level": "B2",
     "pos": "verb",
@@ -835,6 +795,11 @@
       "In the aggregate, consumer spending rose by 4% last year.",
       "The team won the match on aggregate after two legs."
     ]
+  },
+  "aggressive": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "aggressive"
   },
   "ago": {
     "level": "A1",
@@ -867,6 +832,11 @@
     "pos": "noun",
     "tr": "anlaşma"
   },
+  "ah": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "ah"
+  },
   "ahead": {
     "level": "A2",
     "pos": "adv",
@@ -892,6 +862,16 @@
       "Birds fly through the air.",
       "The air smells clean after rain."
     ]
+  },
+  "aircraft": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "aircraft"
+  },
+  "airline": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "airline"
   },
   "airport": {
     "level": "A1",
@@ -922,6 +902,11 @@
     "level": "A2",
     "pos": "noun",
     "tr": "albüm"
+  },
+  "alcohol": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "alcohol"
   },
   "alert": {
     "level": "B1",
@@ -1086,6 +1071,11 @@
     "pos": "noun",
     "tr": "karışım, alaşım"
   },
+  "amaze": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "amaze"
+  },
   "amazing": {
     "level": "A1",
     "pos": "adj",
@@ -1237,6 +1227,11 @@
     "pos": "noun",
     "tr": "fıkra, kısa hikaye"
   },
+  "anger": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "anger"
+  },
   "angry": {
     "level": "A1",
     "pos": "adj",
@@ -1263,6 +1258,11 @@
     "level": "B2",
     "pos": "noun",
     "tr": "düşmanlık, kin"
+  },
+  "ankle": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "ankle"
   },
   "annexation": {
     "level": "B2",
@@ -1382,6 +1382,16 @@
       "Any student can join."
     ]
   },
+  "anybody": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "anybody"
+  },
+  "anymore": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "anymore"
+  },
   "anyone": {
     "level": "A1",
     "pos": "pron",
@@ -1418,6 +1428,11 @@
     "level": "A2",
     "pos": "adv",
     "tr": "herhangi bir yer"
+  },
+  "apart": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "apart"
   },
   "apartment": {
     "level": "A1",
@@ -1459,6 +1474,11 @@
     "pos": "noun",
     "tr": "özür"
   },
+  "app": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "app"
+  },
   "apparatus": {
     "level": "B2",
     "pos": "noun",
@@ -1478,6 +1498,11 @@
       "It was apparent that she was unhappy.",
       "The reason for his absence became apparent later."
     ]
+  },
+  "apparently": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "apparently"
   },
   "appeal": {
     "level": "B1",
@@ -1579,6 +1604,11 @@
     "pos": "adj",
     "tr": "uygun"
   },
+  "approval": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "approval"
+  },
   "approve": {
     "level": "B1",
     "pos": "verb",
@@ -1588,6 +1618,16 @@
       "The manager approved my vacation request.",
       "Her parents don't approve of her boyfriend."
     ]
+  },
+  "approximately": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "approximately"
+  },
+  "April": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Nisan"
   },
   "apron": {
     "level": "A2",
@@ -1618,6 +1658,16 @@
     "level": "B2",
     "pos": "noun",
     "tr": "tahkim"
+  },
+  "architect": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "architect"
+  },
+  "architecture": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "architecture"
   },
   "ardent": {
     "level": "C1",
@@ -1665,6 +1715,11 @@
     "pos": "noun",
     "tr": "tartışma"
   },
+  "arise": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "arise"
+  },
   "arm": {
     "level": "A1",
     "pos": "noun",
@@ -1674,6 +1729,21 @@
       "She broke her arm last week.",
       "He put his arm around her."
     ]
+  },
+  "armed": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "armed"
+  },
+  "arms": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "arms"
+  },
+  "army": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "army"
   },
   "around": {
     "level": "A1",
@@ -1700,6 +1770,11 @@
     "level": "B1",
     "pos": "noun",
     "tr": "düzenleme"
+  },
+  "arrest": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "arrest"
   },
   "arrive": {
     "level": "A1",
@@ -1758,6 +1833,11 @@
       "The artist painted this picture."
     ]
   },
+  "artistic": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "artistic"
+  },
   "as": {
     "level": "A1",
     "pos": "prep",
@@ -1787,6 +1867,11 @@
     "level": "B1",
     "pos": "adj",
     "tr": "utanmış"
+  },
+  "aside": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "aside"
   },
   "ask": {
     "level": "A1",
@@ -1834,6 +1919,11 @@
     "pos": "verb",
     "tr": "değerlendirmek, belirlemek"
   },
+  "assessment": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "assessment"
+  },
   "asset": {
     "level": "B2",
     "pos": "noun",
@@ -1844,6 +1934,11 @@
     "pos": "noun",
     "tr": "gayret, özen"
   },
+  "assignment": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "assignment"
+  },
   "assimilate": {
     "level": "B2",
     "pos": "verb",
@@ -1853,6 +1948,26 @@
     "level": "B1",
     "pos": "verb",
     "tr": "yardım etmek"
+  },
+  "assistant": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "assistant"
+  },
+  "associate": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "associate"
+  },
+  "associated": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "associated"
+  },
+  "association": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "association"
   },
   "assuage": {
     "level": "C1",
@@ -1894,6 +2009,11 @@
       "The meeting is at 3 pm.",
       "Look at this!"
     ]
+  },
+  "athlete": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "athlete"
   },
   "atmosphere": {
     "level": "B1",
@@ -1955,6 +2075,16 @@
       "His attitude at work needs to improve."
     ]
   },
+  "attorney": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "attorney"
+  },
+  "attract": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "attract"
+  },
   "attraction": {
     "level": "B1",
     "pos": "noun",
@@ -2005,6 +2135,11 @@
     "pos": "verb",
     "tr": "artırmak, çoğaltmak"
   },
+  "August": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Ağustos"
+  },
   "aunt": {
     "level": "A1",
     "pos": "noun",
@@ -2035,6 +2170,11 @@
       "Is this an authentic Picasso painting?"
     ]
   },
+  "author": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "author"
+  },
   "authority": {
     "level": "B1",
     "pos": "noun",
@@ -2044,6 +2184,11 @@
       "The police have the authority to stop you.",
       "She spoke with great authority on the subject."
     ]
+  },
+  "automatic": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "automatic"
   },
   "autonomous": {
     "level": "B2",
@@ -2193,6 +2338,16 @@
     "pos": "noun",
     "tr": "sırt çantası"
   },
+  "backward": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "backward"
+  },
+  "bacteria": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "bacteria"
+  },
   "bad": {
     "level": "A1",
     "pos": "adj",
@@ -2203,6 +2358,11 @@
       "The weather is bad today.",
       "I feel bad about it."
     ]
+  },
+  "badly": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "badly"
   },
   "bag": {
     "level": "A1",
@@ -2275,6 +2435,11 @@
       "The bank closes at 5 pm."
     ]
   },
+  "bar": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "bar"
+  },
   "barbecue": {
     "level": "A2",
     "pos": "noun",
@@ -2290,10 +2455,20 @@
     "pos": "noun",
     "tr": "engel"
   },
+  "base": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "base"
+  },
   "baseball": {
     "level": "A1",
     "pos": "noun",
     "tr": "beyzbol"
+  },
+  "based": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "based"
   },
   "basic": {
     "level": "A2",
@@ -2304,6 +2479,11 @@
       "You need to learn the basic rules first.",
       "The hotel room was basic but clean."
     ]
+  },
+  "basically": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "basically"
   },
   "basis": {
     "level": "B1",
@@ -2340,6 +2520,16 @@
     "pos": "noun",
     "tr": "banyo"
   },
+  "battery": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "battery"
+  },
+  "battle": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "battle"
+  },
   "be": {
     "level": "A1",
     "pos": "verb",
@@ -2361,6 +2551,16 @@
       "The beach was very crowded.",
       "Let us build a sandcastle on the beach."
     ]
+  },
+  "bean": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "bean"
+  },
+  "bear": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "bear"
   },
   "beard": {
     "level": "A2",
@@ -2429,6 +2629,11 @@
     "level": "A1",
     "pos": "noun",
     "tr": "yatak odası"
+  },
+  "beef": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "beef"
   },
   "beer": {
     "level": "A1",
@@ -2548,6 +2753,11 @@
       "The report sets a benchmark for future studies.",
       "Their product became the benchmark in the industry."
     ]
+  },
+  "bend": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "bend"
   },
   "beneath": {
     "level": "B1",
@@ -2672,6 +2882,16 @@
     "pos": "noun",
     "tr": "fatura"
   },
+  "billion": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "billion"
+  },
+  "biology": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "biology"
+  },
   "bird": {
     "level": "A1",
     "pos": "noun",
@@ -2681,6 +2901,11 @@
       "A bird is singing in the tree.",
       "I saw a beautiful bird today."
     ]
+  },
+  "birth": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "birth"
   },
   "birthday": {
     "level": "A1",
@@ -2738,6 +2963,11 @@
       "His speech was bland and failed to inspire anyone."
     ]
   },
+  "blank": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "blank"
+  },
   "blanket": {
     "level": "A2",
     "pos": "noun",
@@ -2767,6 +2997,11 @@
     "level": "A1",
     "pos": "noun",
     "tr": "blog"
+  },
+  "blood": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "blood"
   },
   "blue": {
     "level": "A1",
@@ -2819,6 +3054,11 @@
       "The human body needs water."
     ]
   },
+  "boil": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "boil"
+  },
   "boisterous": {
     "level": "B2",
     "pos": "adj",
@@ -2848,6 +3088,11 @@
       "The bomb was found before it exploded.",
       "They dropped bombs on the city during the war."
     ]
+  },
+  "bond": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "bond"
   },
   "bone": {
     "level": "A2",
@@ -2986,6 +3231,16 @@
       "The boy is playing in the park.",
       "He was a quiet boy."
     ]
+  },
+  "boyfriend": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "boyfriend"
+  },
+  "brain": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "brain"
   },
   "branch": {
     "level": "A2",
@@ -3161,6 +3416,11 @@
       "I like brown shoes."
     ]
   },
+  "bubble": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "bubble"
+  },
   "bucket": {
     "level": "A2",
     "pos": "noun",
@@ -3190,6 +3450,16 @@
     "level": "A1",
     "pos": "noun",
     "tr": "bina"
+  },
+  "bullet": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "bullet"
+  },
+  "bunny": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "bunny"
   },
   "burden": {
     "level": "B2",
@@ -3413,10 +3683,20 @@
       "She joined a campaign to protect the environment."
     ]
   },
+  "camping": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "camping"
+  },
   "campsite": {
     "level": "A2",
     "pos": "noun",
     "tr": "kamp alanı"
+  },
+  "campus": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "campus"
   },
   "can": {
     "level": "A1",
@@ -3454,6 +3734,11 @@
       "Let me be candid with you — the results are not good."
     ]
   },
+  "candidate": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "candidate"
+  },
   "candle": {
     "level": "A2",
     "pos": "noun",
@@ -3464,10 +3749,20 @@
     "pos": "noun",
     "tr": "içtenlik"
   },
+  "candy": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "candy"
+  },
   "cannot": {
     "level": "A1",
     "pos": "verb",
     "tr": "-ememek"
+  },
+  "cap": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "cap"
   },
   "capable": {
     "level": "B1",
@@ -3483,6 +3778,11 @@
     "level": "B2",
     "pos": "noun",
     "tr": "kapasite"
+  },
+  "capital": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "capital"
   },
   "caprice": {
     "level": "B2",
@@ -3540,6 +3840,11 @@
       "Do you accept credit cards?"
     ]
   },
+  "care": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "care"
+  },
   "career": {
     "level": "A1",
     "pos": "noun",
@@ -3595,6 +3900,11 @@
       "The waterfall formed a beautiful cascade down the rocks."
     ]
   },
+  "case": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "case"
+  },
   "cash": {
     "level": "A2",
     "pos": "noun",
@@ -3625,6 +3935,11 @@
     "level": "C1",
     "pos": "verb",
     "tr": "katalizlemek"
+  },
+  "catch": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "catch"
   },
   "category": {
     "level": "B1",
@@ -3666,6 +3981,11 @@
       "She took a cautious approach to the negotiations."
     ]
   },
+  "CD": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "CD"
+  },
   "ceiling": {
     "level": "A2",
     "pos": "noun",
@@ -3691,6 +4011,16 @@
     "pos": "noun",
     "tr": "kutlama"
   },
+  "celebrity": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "celebrity"
+  },
+  "cell": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "cell"
+  },
   "cent": {
     "level": "A1",
     "pos": "noun",
@@ -3700,6 +4030,11 @@
     "level": "A1",
     "pos": "noun",
     "tr": "merkez"
+  },
+  "central": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "central"
   },
   "century": {
     "level": "A2",
@@ -3715,6 +4050,11 @@
     "level": "A2",
     "pos": "noun",
     "tr": "gevrek"
+  },
+  "ceremony": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "ceremony"
   },
   "certain": {
     "level": "A2",
@@ -3736,10 +4076,25 @@
     "pos": "noun",
     "tr": "sandalye"
   },
+  "chairman": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "chairman"
+  },
   "challenge": {
     "level": "B1",
     "pos": "noun",
     "tr": "meydan okuma"
+  },
+  "champion": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "champion"
+  },
+  "chance": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "chance"
   },
   "change": {
     "level": "A1",
@@ -3772,6 +4127,11 @@
       "The main character is a young doctor."
     ]
   },
+  "characteristic": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "characteristic"
+  },
   "charge": {
     "level": "A2",
     "pos": "noun",
@@ -3796,6 +4156,11 @@
     "level": "B1",
     "pos": "adj",
     "tr": "çekici, büyüleyici"
+  },
+  "chart": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "chart"
   },
   "chase": {
     "level": "A2",
@@ -3858,10 +4223,20 @@
     "pos": "noun",
     "tr": "şef"
   },
+  "chemical": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "chemical"
+  },
   "chemist": {
     "level": "A2",
     "pos": "noun",
     "tr": "eczane"
+  },
+  "chemistry": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "chemistry"
   },
   "chest": {
     "level": "A2",
@@ -3899,10 +4274,25 @@
       "The child is playing outside."
     ]
   },
+  "childhood": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "childhood"
+  },
+  "chip": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "chip"
+  },
   "chocolate": {
     "level": "A1",
     "pos": "noun",
     "tr": "çikolata"
+  },
+  "choice": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "choice"
   },
   "choose": {
     "level": "A1",
@@ -3918,6 +4308,11 @@
     "level": "A2",
     "pos": "noun",
     "tr": "kilise"
+  },
+  "cigarette": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "cigarette"
   },
   "cinema": {
     "level": "A2",
@@ -3943,6 +4338,11 @@
     "level": "C1",
     "pos": "verb",
     "tr": "atlatmak, önlemek"
+  },
+  "citizen": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "citizen"
   },
   "city": {
     "level": "A1",
@@ -4005,6 +4405,16 @@
       "She is the best in her class.",
       "English class is fun."
     ]
+  },
+  "classic": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "classic"
+  },
+  "classical": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "classical"
   },
   "classmate": {
     "level": "A2",
@@ -4093,6 +4503,11 @@
     "pos": "adj",
     "tr": "kapalı"
   },
+  "closely": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "closely"
+  },
   "clothes": {
     "level": "A1",
     "pos": "noun",
@@ -4103,6 +4518,11 @@
       "Put on warm clothes.",
       "I need to wash my clothes."
     ]
+  },
+  "clothing": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "clothing"
   },
   "cloud": {
     "level": "A2",
@@ -4129,6 +4549,16 @@
       "The disease appeared in clusters in certain neighborhoods."
     ]
   },
+  "coach": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "coach"
+  },
+  "coal": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "coal"
+  },
   "coalition": {
     "level": "B2",
     "pos": "noun",
@@ -4148,6 +4578,11 @@
     "level": "A1",
     "pos": "noun",
     "tr": "mont/palto"
+  },
+  "code": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "code"
   },
   "coerce": {
     "level": "C1",
@@ -4240,6 +4675,11 @@
       "Artists and engineers collaborated to create the interactive exhibit."
     ]
   },
+  "collapse": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "collapse"
+  },
   "colleague": {
     "level": "B1",
     "pos": "noun",
@@ -4274,6 +4714,11 @@
     "level": "A1",
     "pos": "noun",
     "tr": "renk"
+  },
+  "combination": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "combination"
   },
   "combine": {
     "level": "B1",
@@ -4321,6 +4766,11 @@
       "Construction is set to commence next month."
     ]
   },
+  "comment": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "comment"
+  },
   "commercial": {
     "level": "B1",
     "pos": "adj",
@@ -4336,6 +4786,11 @@
     "pos": "verb",
     "tr": "acılarını paylaşmak, teselli etmek"
   },
+  "commission": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "commission"
+  },
   "commit": {
     "level": "B1",
     "pos": "verb",
@@ -4346,10 +4801,25 @@
       "The crime was committed at night."
     ]
   },
+  "commitment": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "commitment"
+  },
   "common": {
     "level": "A1",
     "pos": "adj",
     "tr": "yaygın"
+  },
+  "communicate": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "communicate"
+  },
+  "communication": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "communication"
   },
   "community": {
     "level": "B1",
@@ -4380,6 +4850,11 @@
       "Compare these two pictures and find the differences.",
       "You cannot compare a city with a village."
     ]
+  },
+  "comparison": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "comparison"
   },
   "compel": {
     "level": "B2",
@@ -4416,6 +4891,11 @@
     "pos": "noun",
     "tr": "yarışma"
   },
+  "competitive": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "competitive"
+  },
   "complain": {
     "level": "A2",
     "pos": "verb",
@@ -4451,6 +4931,11 @@
       "Please complete this form and sign it."
     ]
   },
+  "completely": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "completely"
+  },
   "complex": {
     "level": "B1",
     "pos": "adj",
@@ -4461,6 +4946,11 @@
       "This is a very complex problem to solve."
     ]
   },
+  "complicated": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "complicated"
+  },
   "compliment": {
     "level": "A2",
     "pos": "noun",
@@ -4470,6 +4960,11 @@
     "level": "B2",
     "pos": "verb",
     "tr": "uymak"
+  },
+  "component": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "component"
   },
   "compulsory": {
     "level": "B2",
@@ -4501,6 +4996,21 @@
       "The candidate conceded defeat shortly after midnight."
     ]
   },
+  "concentrate": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "concentrate"
+  },
+  "concentration": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "concentration"
+  },
+  "concept": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "concept"
+  },
   "concern": {
     "level": "B1",
     "pos": "noun",
@@ -4530,6 +5040,11 @@
       "Please keep your answers concise and to the point.",
       "The manual provides concise instructions for each step."
     ]
+  },
+  "conclude": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "conclude"
   },
   "conclusion": {
     "level": "B1",
@@ -4601,6 +5116,11 @@
       "The warm climate is conducive to growing tropical fruit."
     ]
   },
+  "conduct": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "conduct"
+  },
   "confer": {
     "level": "B2",
     "pos": "verb",
@@ -4615,6 +5135,11 @@
     "level": "B1",
     "pos": "verb",
     "tr": "itiraf etmek"
+  },
+  "confidence": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "confidence"
   },
   "confident": {
     "level": "A2",
@@ -4681,6 +5206,11 @@
     "pos": "adj",
     "tr": "kafası karışmış"
   },
+  "confusing": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "confusing"
+  },
   "congenial": {
     "level": "B2",
     "pos": "adj",
@@ -4695,6 +5225,11 @@
       "Traffic congestion is a major problem in big cities.",
       "The new road aims to reduce congestion in the city center."
     ]
+  },
+  "congress": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "congress"
   },
   "conjecture": {
     "level": "C1",
@@ -4720,6 +5255,11 @@
       "Connect the printer to your computer.",
       "This road connects the two villages."
     ]
+  },
+  "connected": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "connected"
   },
   "connection": {
     "level": "B1",
@@ -4756,6 +5296,11 @@
       "Losing his job was a consequence of his behavior."
     ]
   },
+  "consequent": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "consequent"
+  },
   "consequently": {
     "level": "A2",
     "pos": "adv",
@@ -4776,6 +5321,11 @@
       "There has been considerable interest in the project."
     ]
   },
+  "consideration": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "consideration"
+  },
   "consist": {
     "level": "B1",
     "pos": "verb",
@@ -4785,6 +5335,11 @@
       "The team consists of five members.",
       "The exam consists of three sections."
     ]
+  },
+  "consistent": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "consistent"
   },
   "consolidate": {
     "level": "C1",
@@ -4841,6 +5396,11 @@
       "The building was constructed in 1920."
     ]
   },
+  "construction": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "construction"
+  },
   "consumer": {
     "level": "B1",
     "pos": "noun",
@@ -4871,10 +5431,20 @@
       "The drink contains a lot of sugar."
     ]
   },
+  "container": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "container"
+  },
   "contemplate": {
     "level": "B2",
     "pos": "verb",
     "tr": "düşünmek, tasarlamak"
+  },
+  "contemporary": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "contemporary"
   },
   "contempt": {
     "level": "B2",
@@ -4901,6 +5471,11 @@
     "pos": "noun",
     "tr": "yarışma"
   },
+  "context": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "context"
+  },
   "contingency": {
     "level": "B2",
     "pos": "noun",
@@ -4915,6 +5490,16 @@
     "level": "B2",
     "pos": "adj",
     "tr": "bağımlı"
+  },
+  "continue": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "continue"
+  },
+  "continuous": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "continuous"
   },
   "contradict": {
     "level": "B2",
@@ -5058,6 +5643,16 @@
       "She's finding it hard to cope with the changes."
     ]
   },
+  "copy": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "copy"
+  },
+  "core": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "core"
+  },
   "corn": {
     "level": "A1",
     "pos": "noun",
@@ -5067,6 +5662,11 @@
     "level": "A2",
     "pos": "noun",
     "tr": "köşe"
+  },
+  "corporate": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "corporate"
   },
   "correct": {
     "level": "A1",
@@ -5107,6 +5707,11 @@
     "level": "A2",
     "pos": "noun",
     "tr": "kostüm"
+  },
+  "cotton": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "cotton"
   },
   "cough": {
     "level": "A2",
@@ -5563,6 +6168,11 @@
     "pos": "noun",
     "tr": "kıtlık, eksiklik"
   },
+  "death": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "death"
+  },
   "debacle": {
     "level": "B2",
     "pos": "noun",
@@ -5598,6 +6208,11 @@
       "The explosion sent debris flying in all directions."
     ]
   },
+  "debt": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "debt"
+  },
   "decade": {
     "level": "B1",
     "pos": "noun",
@@ -5607,6 +6222,11 @@
       "Technology has changed a lot in the last decade.",
       "She lived abroad for over a decade."
     ]
+  },
+  "December": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Aralık"
   },
   "decent": {
     "level": "B1",
@@ -5644,6 +6264,11 @@
       "A good leader must be decisive under pressure."
     ]
   },
+  "declare": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "declare"
+  },
   "decline": {
     "level": "B1",
     "pos": "verb",
@@ -5654,10 +6279,25 @@
       "She declined the invitation to dinner."
     ]
   },
+  "decoration": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "decoration"
+  },
+  "decorative": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "decorative"
+  },
   "decorum": {
     "level": "B2",
     "pos": "noun",
     "tr": "terbiye, görgü kuralları"
+  },
+  "decrease": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "decrease"
   },
   "deduce": {
     "level": "B2",
@@ -5679,10 +6319,25 @@
     "pos": "adj",
     "tr": "derin"
   },
+  "deeply": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "deeply"
+  },
+  "defeat": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "defeat"
+  },
   "defend": {
     "level": "B1",
     "pos": "verb",
     "tr": "savunmak"
+  },
+  "defense": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "defense"
   },
   "defer": {
     "level": "B2",
@@ -5698,6 +6353,16 @@
       "She spoke with deference to the senior professor.",
       "In deference to local customs, visitors removed their shoes."
     ]
+  },
+  "define": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "define"
+  },
+  "definite": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "definite"
   },
   "definitely": {
     "level": "B1",
@@ -5758,6 +6423,11 @@
       "It was a deliberate attempt to mislead the public.",
       "She spoke in a slow, deliberate manner."
     ]
+  },
+  "deliberately": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "deliberately"
   },
   "delicate": {
     "level": "B1",
@@ -5879,6 +6549,16 @@
       "She denied any involvement in the plan."
     ]
   },
+  "depart": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "depart"
+  },
+  "departure": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "departure"
+  },
   "depend": {
     "level": "A2",
     "pos": "verb",
@@ -5924,10 +6604,25 @@
       "The company deployed new software across all departments."
     ]
   },
+  "depressed": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "depressed"
+  },
+  "depressing": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "depressing"
+  },
   "deprivation": {
     "level": "B2",
     "pos": "noun",
     "tr": "yoksunluk, mahrumiyet"
+  },
+  "depth": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "depth"
   },
   "derision": {
     "level": "B2",
@@ -5943,6 +6638,11 @@
     "level": "A1",
     "pos": "noun",
     "tr": "tanım"
+  },
+  "desert": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "desert"
   },
   "deserve": {
     "level": "B1",
@@ -5979,6 +6679,11 @@
     "pos": "noun",
     "tr": "masa"
   },
+  "desperate": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "desperate"
+  },
   "despite": {
     "level": "B1",
     "pos": "prep",
@@ -5999,6 +6704,11 @@
     "pos": "noun",
     "tr": "varış yeri"
   },
+  "destine": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "destine"
+  },
   "destroy": {
     "level": "A2",
     "pos": "verb",
@@ -6009,6 +6719,11 @@
       "War destroys people's lives."
     ]
   },
+  "detail": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "detail"
+  },
   "detain": {
     "level": "B2",
     "pos": "verb",
@@ -6018,6 +6733,11 @@
       "Police detained three suspects for questioning.",
       "He was detained at the border for several hours."
     ]
+  },
+  "detect": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "detect"
   },
   "deter": {
     "level": "B2",
@@ -6064,6 +6784,11 @@
       "She is developing her language skills."
     ]
   },
+  "development": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "development"
+  },
   "deviate": {
     "level": "C1",
     "pos": "verb",
@@ -6099,10 +6824,25 @@
       "The mechanic's diagnosis was that the engine needed replacing."
     ]
   },
+  "diagram": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "diagram"
+  },
+  "dialog": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "dialog"
+  },
   "dialogue": {
     "level": "A1",
     "pos": "noun",
     "tr": "diyalog"
+  },
+  "diamond": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "diamond"
   },
   "diary": {
     "level": "A2",
@@ -6139,6 +6879,11 @@
     "pos": "noun",
     "tr": "diyet"
   },
+  "difference": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "difference"
+  },
   "different": {
     "level": "A1",
     "pos": "adj",
@@ -6148,6 +6893,11 @@
     "level": "B2",
     "pos": "verb",
     "tr": "ayırt etmek, farklılaştırmak"
+  },
+  "differently": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "differently"
   },
   "difficult": {
     "level": "A1",
@@ -6164,6 +6914,11 @@
     "level": "B1",
     "pos": "noun",
     "tr": "zorluk"
+  },
+  "dig": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "dig"
   },
   "digital": {
     "level": "A2",
@@ -6236,6 +6991,16 @@
     "pos": "noun",
     "tr": "yön"
   },
+  "directly": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "directly"
+  },
+  "director": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "director"
+  },
   "dirty": {
     "level": "A1",
     "pos": "adj",
@@ -6271,6 +7036,11 @@
     "pos": "adj",
     "tr": "hayal kırıklığına uğramış"
   },
+  "disappointing": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "disappointing"
+  },
   "disaster": {
     "level": "B1",
     "pos": "noun",
@@ -6305,6 +7075,11 @@
     "level": "C1",
     "pos": "noun",
     "tr": "bozgun, utanç"
+  },
+  "discount": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "discount"
   },
   "discourse": {
     "level": "B2",
@@ -6356,10 +7131,30 @@
     "pos": "noun",
     "tr": "tartışma"
   },
+  "disease": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "disease"
+  },
   "dish": {
     "level": "A1",
     "pos": "noun",
     "tr": "tabak/yemek"
+  },
+  "dishonest": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "dishonest"
+  },
+  "disk": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "disk"
+  },
+  "dismiss": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "dismiss"
   },
   "disparate": {
     "level": "C1",
@@ -6421,6 +7216,11 @@
       "There were voices of dissent within the party."
     ]
   },
+  "distance": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "distance"
+  },
   "distinct": {
     "level": "B1",
     "pos": "adj",
@@ -6441,6 +7241,11 @@
     "pos": "verb",
     "tr": "dağıtmak"
   },
+  "district": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "district"
+  },
   "disturb": {
     "level": "B1",
     "pos": "verb",
@@ -6460,6 +7265,21 @@
     "level": "B2",
     "pos": "adj",
     "tr": "çeşitli, farklı"
+  },
+  "divide": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "divide"
+  },
+  "division": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "division"
+  },
+  "divorce": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "divorce"
   },
   "do": {
     "level": "A1",
@@ -6529,6 +7349,16 @@
     "pos": "noun",
     "tr": "dolar"
   },
+  "dominant": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "dominant"
+  },
+  "donate": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "donate"
+  },
   "donor": {
     "level": "B2",
     "pos": "noun",
@@ -6570,6 +7400,11 @@
       "The price has doubled in five years."
     ]
   },
+  "doubt": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "doubt"
+  },
   "down": {
     "level": "A1",
     "pos": "adv",
@@ -6581,10 +7416,25 @@
       "The sun is going down."
     ]
   },
+  "download": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "download"
+  },
   "downstairs": {
     "level": "A2",
     "pos": "adv",
     "tr": "aşağıya, alt katta"
+  },
+  "downward": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "downward"
+  },
+  "dozen": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "dozen"
   },
   "draft": {
     "level": "B1",
@@ -6595,6 +7445,21 @@
       "I finished the first draft of my essay.",
       "Can you review this draft before I submit it?"
     ]
+  },
+  "drag": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "drag"
+  },
+  "drama": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "drama"
+  },
+  "dramatic": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "dramatic"
   },
   "draw": {
     "level": "A1",
@@ -6612,10 +7477,25 @@
     "pos": "noun",
     "tr": "çekmece"
   },
+  "drawing": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "drawing"
+  },
   "dream": {
     "level": "A2",
     "pos": "verb",
     "tr": "rüya görmek"
+  },
+  "dress": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "dress"
+  },
+  "dressed": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "dressed"
   },
   "drink": {
     "level": "A1",
@@ -6644,6 +7524,11 @@
     "pos": "noun",
     "tr": "sürücü"
   },
+  "driving": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "driving"
+  },
   "drop": {
     "level": "A2",
     "pos": "verb",
@@ -6659,6 +7544,16 @@
       "Parts of Africa suffer from severe drought every year."
     ]
   },
+  "drug": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "drug"
+  },
+  "drum": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "drum"
+  },
   "dubious": {
     "level": "B2",
     "pos": "adj",
@@ -6673,6 +7568,11 @@
       "The train is due at 3 o'clock.",
       "The delay was due to bad weather."
     ]
+  },
+  "dug": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "dug"
   },
   "during": {
     "level": "A1",
@@ -6704,6 +7604,11 @@
       "It's your duty to report any problems.",
       "The nurse was on duty all night."
     ]
+  },
+  "DVD": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "DVD"
   },
   "dwell": {
     "level": "B2",
@@ -6750,10 +7655,20 @@
       "He earns money by teaching guitar."
     ]
   },
+  "earth": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "earth"
+  },
   "east": {
     "level": "A1",
     "pos": "noun",
     "tr": "doğu"
+  },
+  "eastern": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "eastern"
   },
   "easy": {
     "level": "A1",
@@ -6790,6 +7705,16 @@
       "Tourism is important for the local economy."
     ]
   },
+  "edit": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "edit"
+  },
+  "edition": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "edition"
+  },
   "educate": {
     "level": "B1",
     "pos": "verb",
@@ -6799,6 +7724,16 @@
     "level": "B1",
     "pos": "noun",
     "tr": "eğitim"
+  },
+  "effect": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "effect"
+  },
+  "effective": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "effective"
   },
   "efficacious": {
     "level": "B2",
@@ -6875,6 +7810,11 @@
     "pos": "adj",
     "tr": "yaşlı, ihtiyar"
   },
+  "elect": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "elect"
+  },
   "election": {
     "level": "B1",
     "pos": "noun",
@@ -6884,6 +7824,16 @@
       "The next election will be held in June.",
       "She won the election by a large margin."
     ]
+  },
+  "electric": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "electric"
+  },
+  "electricity": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "electricity"
   },
   "electronic": {
     "level": "A2",
@@ -6895,10 +7845,20 @@
       "Electronic music is very popular now."
     ]
   },
+  "element": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "element"
+  },
   "elephant": {
     "level": "A1",
     "pos": "noun",
     "tr": "fil"
+  },
+  "elevate": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "elevate"
   },
   "eleven": {
     "level": "A1",
@@ -7000,6 +7960,11 @@
       "Music can bring out strong emotions."
     ]
   },
+  "emotional": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "emotional"
+  },
   "empathy": {
     "level": "C1",
     "pos": "noun",
@@ -7035,6 +8000,16 @@
       "She was employed as a teacher."
     ]
   },
+  "employer": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "employer"
+  },
+  "employment": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "employment"
+  },
   "empty": {
     "level": "A2",
     "pos": "adj",
@@ -7064,6 +8039,11 @@
       "The course encompasses everything from basic theory to advanced practice.",
       "The national park encompasses over 500 square kilometers of wilderness."
     ]
+  },
+  "encounter": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "encounter"
   },
   "encourage": {
     "level": "A2",
@@ -7105,6 +8085,16 @@
       "The billionaire endowed the university with a new research center."
     ]
   },
+  "enemy": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "enemy"
+  },
+  "energy": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "energy"
+  },
   "engage": {
     "level": "B1",
     "pos": "verb",
@@ -7115,10 +8105,25 @@
       "The company engages in international trade."
     ]
   },
+  "engaged": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "engaged"
+  },
   "engine": {
     "level": "A2",
     "pos": "noun",
     "tr": "motor"
+  },
+  "engineering": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "engineering"
+  },
+  "english": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "english"
   },
   "enhance": {
     "level": "B2",
@@ -7170,6 +8175,16 @@
     "pos": "verb",
     "tr": "girmek"
   },
+  "entertain": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "entertain"
+  },
+  "entertainment": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "entertainment"
+  },
   "enthusiasm": {
     "level": "B1",
     "pos": "noun",
@@ -7200,6 +8215,11 @@
     "pos": "noun",
     "tr": "giriş"
   },
+  "entry": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "entry"
+  },
   "envelope": {
     "level": "A2",
     "pos": "noun",
@@ -7209,6 +8229,11 @@
     "level": "B1",
     "pos": "noun",
     "tr": "çevre"
+  },
+  "environmental": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "environmental"
   },
   "envisage": {
     "level": "C1",
@@ -7255,6 +8280,16 @@
     "pos": "noun",
     "tr": "özet, örnek"
   },
+  "equal": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "equal"
+  },
+  "equally": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "equally"
+  },
   "equipment": {
     "level": "B1",
     "pos": "noun",
@@ -7289,6 +8324,11 @@
       "His erratic behavior worried his colleagues.",
       "The stock market has been erratic this month."
     ]
+  },
+  "escape": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "escape"
   },
   "esoteric": {
     "level": "C1",
@@ -7400,6 +8440,11 @@
     "pos": "pron",
     "tr": "herkes"
   },
+  "everyday": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "everyday"
+  },
   "everyone": {
     "level": "A1",
     "pos": "pron",
@@ -7424,6 +8469,11 @@
       "There is no evidence that he committed the crime.",
       "The evidence shows that exercise improves health."
     ]
+  },
+  "evil": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "evil"
   },
   "evoke": {
     "level": "B2",
@@ -7454,6 +8504,11 @@
     "level": "B2",
     "pos": "noun",
     "tr": "kötüleşme"
+  },
+  "exact": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "exact"
   },
   "exactly": {
     "level": "A2",
@@ -7505,6 +8560,11 @@
     "pos": "adj",
     "tr": "aşırı"
   },
+  "exchange": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "exchange"
+  },
   "excited": {
     "level": "A1",
     "pos": "adj",
@@ -7555,6 +8615,16 @@
     "pos": "adj",
     "tr": "bitkin"
   },
+  "exhibit": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "exhibit"
+  },
+  "exhibition": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "exhibition"
+  },
   "exigent": {
     "level": "C1",
     "pos": "adj",
@@ -7569,6 +8639,16 @@
       "The writer spent 20 years in exile.",
       "The dictator was sent into exile after the revolution."
     ]
+  },
+  "exist": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "exist"
+  },
+  "existence": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "existence"
   },
   "exit": {
     "level": "A2",
@@ -7604,6 +8684,11 @@
       "The movie didn't meet my expectations.",
       "There are high expectations for the new product."
     ]
+  },
+  "expected": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "expected"
   },
   "expediency": {
     "level": "B2",
@@ -7650,10 +8735,20 @@
     "pos": "noun",
     "tr": "deneyim"
   },
+  "experienced": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "experienced"
+  },
   "experiment": {
     "level": "B1",
     "pos": "noun",
     "tr": "deney"
+  },
+  "expert": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "expert"
   },
   "expertise": {
     "level": "B2",
@@ -7680,6 +8775,11 @@
       "She gave her explicit consent to the procedure."
     ]
   },
+  "explode": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "explode"
+  },
   "exploit": {
     "level": "C1",
     "pos": "verb",
@@ -7689,6 +8789,11 @@
       "The company was accused of exploiting cheap labor overseas.",
       "We need to exploit renewable energy sources more effectively."
     ]
+  },
+  "exploration": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "exploration"
   },
   "explore": {
     "level": "A2",
@@ -7700,6 +8805,16 @@
       "Children love to explore nature."
     ]
   },
+  "explosion": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "explosion"
+  },
+  "export": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "export"
+  },
   "expose": {
     "level": "B1",
     "pos": "verb",
@@ -7709,6 +8824,16 @@
       "The report exposed serious problems in the system.",
       "Children should not be exposed to violence."
     ]
+  },
+  "express": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "express"
+  },
+  "expression": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "expression"
   },
   "exquisite": {
     "level": "B2",
@@ -7725,6 +8850,16 @@
       "The road extends all the way to the coast."
     ]
   },
+  "extent": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "extent"
+  },
+  "external": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "external"
+  },
   "extra": {
     "level": "A2",
     "pos": "adj",
@@ -7734,6 +8869,11 @@
       "Would you like extra cheese on your pizza?",
       "She works extra hours on Fridays."
     ]
+  },
+  "extraordinary": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "extraordinary"
   },
   "extrapolate": {
     "level": "B2",
@@ -7825,6 +8965,11 @@
       "The plan failed because of bad weather."
     ]
   },
+  "failure": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "failure"
+  },
   "faint": {
     "level": "A2",
     "pos": "verb",
@@ -7845,6 +8990,11 @@
       "She speaks English fairly well."
     ]
   },
+  "faith": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "faith"
+  },
   "fall": {
     "level": "A1",
     "pos": "verb",
@@ -7854,6 +9004,11 @@
     "level": "C1",
     "pos": "noun",
     "tr": "yanılgı, yanlış inanç"
+  },
+  "false": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "false"
   },
   "familiar": {
     "level": "A2",
@@ -7900,6 +9055,11 @@
     "pos": "noun",
     "tr": "çiftçi"
   },
+  "farming": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "farming"
+  },
   "fascinating": {
     "level": "B1",
     "pos": "adj",
@@ -7909,6 +9069,11 @@
     "level": "B1",
     "pos": "noun",
     "tr": "moda"
+  },
+  "fashionable": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "fashionable"
   },
   "fast": {
     "level": "A1",
@@ -7945,6 +9110,11 @@
       "The accident was not her fault."
     ]
   },
+  "favor": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "favor"
+  },
   "favorite": {
     "level": "A1",
     "pos": "adj",
@@ -7960,6 +9130,11 @@
     "pos": "adj",
     "tr": "favori"
   },
+  "fear": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "fear"
+  },
   "feasible": {
     "level": "B2",
     "pos": "adj",
@@ -7969,6 +9144,11 @@
       "The plan is technically feasible but expensive.",
       "Is it feasible to complete the project by December?"
     ]
+  },
+  "feather": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "feather"
   },
   "feature": {
     "level": "B1",
@@ -7980,10 +9160,30 @@
       "Her best feature is her sense of humor."
     ]
   },
+  "February": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Şubat"
+  },
+  "federal": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "federal"
+  },
+  "fee": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "fee"
+  },
   "feed": {
     "level": "A2",
     "pos": "verb",
     "tr": "beslemek"
+  },
+  "feedback": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "feedback"
   },
   "feel": {
     "level": "A1",
@@ -7994,6 +9194,11 @@
     "level": "A1",
     "pos": "noun",
     "tr": "duygu"
+  },
+  "fellow": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "fellow"
   },
   "female": {
     "level": "A2",
@@ -8040,6 +9245,16 @@
     "pos": "det",
     "tr": "birkaç"
   },
+  "fiction": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "fiction"
+  },
+  "field": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "field"
+  },
   "fierce": {
     "level": "B2",
     "pos": "adj",
@@ -8055,15 +9270,35 @@
     "pos": "number",
     "tr": "on beş"
   },
+  "fifth": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "fifth"
+  },
   "fifty": {
     "level": "A1",
     "pos": "number",
     "tr": "elli"
   },
+  "fight": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "fight"
+  },
+  "fighting": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "fighting"
+  },
   "figure": {
     "level": "B1",
     "pos": "noun",
     "tr": "rakam"
+  },
+  "file": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "file"
   },
   "fill": {
     "level": "A1",
@@ -8085,10 +9320,25 @@
     "pos": "adv",
     "tr": "sonunda"
   },
+  "finance": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "finance"
+  },
+  "financial": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "financial"
+  },
   "find": {
     "level": "A1",
     "pos": "verb",
     "tr": "bulmak"
+  },
+  "finding": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "finding"
   },
   "fine": {
     "level": "A1",
@@ -8100,6 +9350,11 @@
     "pos": "noun",
     "tr": "incelik, ustalık"
   },
+  "finger": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "finger"
+  },
   "finish": {
     "level": "A1",
     "pos": "verb",
@@ -8110,10 +9365,20 @@
     "pos": "noun",
     "tr": "ateş"
   },
+  "firm": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "firm"
+  },
   "first": {
     "level": "A1",
     "pos": "det",
     "tr": "ilk"
+  },
+  "first-number": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "first-number"
   },
   "fiscal": {
     "level": "B2",
@@ -8145,6 +9410,26 @@
     "pos": "verb",
     "tr": "tamir etmek"
   },
+  "fixed": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "fixed"
+  },
+  "flag": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "flag"
+  },
+  "flash": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "flash"
+  },
+  "flat": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "flat"
+  },
   "flavour": {
     "level": "A2",
     "pos": "noun",
@@ -8164,6 +9449,11 @@
       "The flight to Istanbul takes two hours.",
       "Our flight was delayed by one hour."
     ]
+  },
+  "float": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "float"
   },
   "flood": {
     "level": "A2",
@@ -8220,15 +9510,40 @@
     "pos": "verb",
     "tr": "uçmak"
   },
+  "flying": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "flying"
+  },
+  "focus": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "focus"
+  },
   "fold": {
     "level": "A2",
     "pos": "verb",
     "tr": "katlamak"
   },
+  "folding": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "folding"
+  },
+  "folk": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "folk"
+  },
   "follow": {
     "level": "A1",
     "pos": "verb",
     "tr": "takip etmek"
+  },
+  "following": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "following"
   },
   "foment": {
     "level": "C1",
@@ -8255,10 +9570,20 @@
     "pos": "prep",
     "tr": "için"
   },
+  "force": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "force"
+  },
   "foreign": {
     "level": "A2",
     "pos": "adj",
     "tr": "yabancı"
+  },
+  "forest": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "forest"
   },
   "forever": {
     "level": "A2",
@@ -8300,6 +9625,11 @@
     "pos": "noun",
     "tr": "form/biçim"
   },
+  "formal": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "formal"
+  },
   "former": {
     "level": "B1",
     "pos": "adj",
@@ -8334,6 +9664,11 @@
     "level": "C1",
     "pos": "adj",
     "tr": "tesadüfi, şans eseri"
+  },
+  "fortunately": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "fortunately"
   },
   "fortune": {
     "level": "B1",
@@ -8400,6 +9735,11 @@
       "I only caught a fragment of their conversation."
     ]
   },
+  "frame": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "frame"
+  },
   "framework": {
     "level": "B2",
     "pos": "noun",
@@ -8429,6 +9769,11 @@
       "Water freezes at zero degrees.",
       "I am freezing — can you close the window?"
     ]
+  },
+  "frequency": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "frequency"
   },
   "frequent": {
     "level": "B1",
@@ -8465,6 +9810,11 @@
       "Friction between the tire and road helps the car stop."
     ]
   },
+  "Friday": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Cuma"
+  },
   "fridge": {
     "level": "A2",
     "pos": "noun",
@@ -8485,10 +9835,20 @@
     "pos": "adj",
     "tr": "korkmuş"
   },
+  "frightening": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "frightening"
+  },
   "frivolous": {
     "level": "B2",
     "pos": "adj",
     "tr": "faydasız, boş"
+  },
+  "frog": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "frog"
   },
   "from": {
     "level": "A1",
@@ -8530,6 +9890,11 @@
     "pos": "adj",
     "tr": "dolu"
   },
+  "fully": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "fully"
+  },
   "fun": {
     "level": "A1",
     "pos": "noun",
@@ -8550,10 +9915,25 @@
       "The government cut funds for education."
     ]
   },
+  "fundamental": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "fundamental"
+  },
+  "funning": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "funning"
+  },
   "funny": {
     "level": "A1",
     "pos": "adj",
     "tr": "komik"
+  },
+  "fur": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "fur"
   },
   "furious": {
     "level": "B1",
@@ -8595,6 +9975,11 @@
     "pos": "noun",
     "tr": "gelecek"
   },
+  "gaily": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "gaily"
+  },
   "gain": {
     "level": "B1",
     "pos": "verb",
@@ -8614,6 +9999,16 @@
     "level": "A1",
     "pos": "noun",
     "tr": "oyun"
+  },
+  "gamer": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "gamer"
+  },
+  "gang": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "gang"
   },
   "gap": {
     "level": "B1",
@@ -8635,6 +10030,11 @@
       "The garage door was left open."
     ]
   },
+  "garbage": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "garbage"
+  },
   "garden": {
     "level": "A1",
     "pos": "noun",
@@ -8655,6 +10055,11 @@
     "pos": "adj",
     "tr": "geveze, konuşkan"
   },
+  "gas": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "gas"
+  },
   "gate": {
     "level": "A2",
     "pos": "noun",
@@ -8669,6 +10074,21 @@
       "People gathered in the square to watch the show.",
       "She gathered her belongings and left."
     ]
+  },
+  "gaze": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "gaze"
+  },
+  "general": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "general"
+  },
+  "generally": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "generally"
   },
   "generation": {
     "level": "B1",
@@ -8685,6 +10105,11 @@
     "pos": "adj",
     "tr": "cömert"
   },
+  "genre": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "genre"
+  },
   "gentle": {
     "level": "A2",
     "pos": "adj",
@@ -8694,6 +10119,11 @@
       "Be gentle with the baby.",
       "She has a gentle voice."
     ]
+  },
+  "gentleman": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "gentleman"
   },
   "genuine": {
     "level": "B1",
@@ -8710,6 +10140,16 @@
     "pos": "verb",
     "tr": "almak/elde etmek"
   },
+  "ghost": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "ghost"
+  },
+  "giant": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "giant"
+  },
   "gift": {
     "level": "A2",
     "pos": "noun",
@@ -8719,6 +10159,11 @@
     "level": "A1",
     "pos": "noun",
     "tr": "kız"
+  },
+  "girlfriend": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "girlfriend"
   },
   "give": {
     "level": "A1",
@@ -8745,6 +10190,11 @@
       "The documentary offers a glimpse into life behind bars."
     ]
   },
+  "global": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "global"
+  },
   "gloomy": {
     "level": "B1",
     "pos": "adj",
@@ -8754,6 +10204,11 @@
     "level": "A1",
     "pos": "noun",
     "tr": "eldiven"
+  },
+  "glow": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "glow"
   },
   "go": {
     "level": "A1",
@@ -8770,6 +10225,16 @@
       "He scored three goals in one match."
     ]
   },
+  "gold": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "gold"
+  },
+  "golf": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "golf"
+  },
   "good": {
     "level": "A1",
     "pos": "adj",
@@ -8780,15 +10245,60 @@
     "pos": "exclam",
     "tr": "hoşçakal"
   },
+  "goods": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "goods"
+  },
   "gossip": {
     "level": "B1",
     "pos": "noun",
     "tr": "dedikodu"
   },
+  "govern": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "govern"
+  },
+  "government": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "government"
+  },
+  "governor": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "governor"
+  },
+  "grab": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "grab"
+  },
+  "grade": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "grade"
+  },
   "gradually": {
     "level": "B1",
     "pos": "adv",
     "tr": "giderek"
+  },
+  "graduate": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "graduate"
+  },
+  "grain": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "grain"
+  },
+  "grand": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "grand"
   },
   "grandfather": {
     "level": "A1",
@@ -8804,6 +10314,11 @@
     "level": "A1",
     "pos": "noun",
     "tr": "büyük ebeveyn"
+  },
+  "grant": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "grant"
   },
   "grapple": {
     "level": "B2",
@@ -8845,6 +10360,11 @@
     "pos": "adj",
     "tr": "yeşil"
   },
+  "greet": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "greet"
+  },
   "gregarious": {
     "level": "B2",
     "pos": "adj",
@@ -8860,6 +10380,11 @@
       "The treaty failed to address their long-standing grievances."
     ]
   },
+  "grocery": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "grocery"
+  },
   "ground": {
     "level": "A2",
     "pos": "noun",
@@ -8874,6 +10399,11 @@
     "level": "A1",
     "pos": "verb",
     "tr": "büyümek"
+  },
+  "grown": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "grown"
   },
   "grueling": {
     "level": "C1",
@@ -8915,6 +10445,11 @@
     "pos": "noun",
     "tr": "rehberlik"
   },
+  "guide": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "guide"
+  },
   "guilty": {
     "level": "A2",
     "pos": "adj",
@@ -8929,6 +10464,21 @@
     "level": "A1",
     "pos": "noun",
     "tr": "gitar"
+  },
+  "gum": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "gum"
+  },
+  "gun": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "gun"
+  },
+  "guy": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "guy"
   },
   "gym": {
     "level": "A1",
@@ -8954,6 +10504,11 @@
     "level": "A1",
     "pos": "noun",
     "tr": "yarım"
+  },
+  "hall": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "hall"
   },
   "halt": {
     "level": "B2",
@@ -9005,6 +10560,11 @@
     "pos": "verb",
     "tr": "olmak/gerçekleşmek"
   },
+  "happiness": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "happiness"
+  },
   "happy": {
     "level": "A1",
     "pos": "adj",
@@ -9029,6 +10589,11 @@
       "I can hardly hear you — speak louder.",
       "She hardly ever goes out at night."
     ]
+  },
+  "harm": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "harm"
   },
   "harmful": {
     "level": "B1",
@@ -9100,6 +10665,16 @@
     "pos": "noun",
     "tr": "baş/kafa"
   },
+  "headache": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "headache"
+  },
+  "headline": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "headline"
+  },
   "health": {
     "level": "A1",
     "pos": "noun",
@@ -9125,6 +10700,31 @@
     "pos": "verb",
     "tr": "duymak"
   },
+  "hearing": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "hearing"
+  },
+  "heart": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "heart"
+  },
+  "heat": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "heat"
+  },
+  "heating": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "heating"
+  },
+  "heaven": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "heaven"
+  },
   "heavy": {
     "level": "A2",
     "pos": "adj",
@@ -9134,6 +10734,21 @@
     "level": "C1",
     "pos": "noun",
     "tr": "hegemonya, üstünlük"
+  },
+  "height": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "height"
+  },
+  "helicopter": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "helicopter"
+  },
+  "hell": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "hell"
   },
   "hello": {
     "level": "A1",
@@ -9149,6 +10764,11 @@
     "level": "A1",
     "pos": "verb",
     "tr": "yardım etmek"
+  },
+  "helpful": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "helpful"
   },
   "hence": {
     "level": "A2",
@@ -9190,6 +10810,16 @@
       "UNESCO works to protect world heritage sites."
     ]
   },
+  "hers": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "hers"
+  },
+  "herself": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "herself"
+  },
   "hesitate": {
     "level": "B1",
     "pos": "verb",
@@ -9220,6 +10850,11 @@
     "pos": "noun",
     "tr": "boşluk, ara, kesinti"
   },
+  "hide": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "hide"
+  },
   "hierarchy": {
     "level": "B2",
     "pos": "noun",
@@ -9245,10 +10880,25 @@
       "She highlighted the key points in her presentation."
     ]
   },
+  "highly": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "highly"
+  },
+  "hilarious": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "hilarious"
+  },
   "him": {
     "level": "A1",
     "pos": "pron",
     "tr": "onu (erkek)"
+  },
+  "himself": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "himself"
   },
   "hinder": {
     "level": "C1",
@@ -9265,15 +10915,30 @@
     "pos": "noun",
     "tr": "engel"
   },
+  "hire": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "hire"
+  },
   "his": {
     "level": "A1",
     "pos": "det",
     "tr": "onun (erkek)"
   },
+  "historical": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "historical"
+  },
   "history": {
     "level": "A1",
     "pos": "noun",
     "tr": "tarih"
+  },
+  "hit": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "hit"
   },
   "hitherto": {
     "level": "B2",
@@ -9285,10 +10950,35 @@
     "pos": "noun",
     "tr": "hobi"
   },
+  "hockey": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "hockey"
+  },
+  "hold": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "hold"
+  },
+  "hole": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "hole"
+  },
   "holiday": {
     "level": "A1",
     "pos": "noun",
     "tr": "tatil"
+  },
+  "hollow": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "hollow"
+  },
+  "holy": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "holy"
   },
   "home": {
     "level": "A1",
@@ -9305,10 +10995,25 @@
     "pos": "adj",
     "tr": "dürüst"
   },
+  "honor": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "honor"
+  },
   "hope": {
     "level": "A1",
     "pos": "verb",
     "tr": "ummak"
+  },
+  "horrible": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "horrible"
+  },
+  "horror": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "horror"
   },
   "horse": {
     "level": "A1",
@@ -9319,6 +11024,11 @@
     "level": "A1",
     "pos": "noun",
     "tr": "hastane"
+  },
+  "host": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "host"
   },
   "hostile": {
     "level": "B2",
@@ -9350,6 +11060,16 @@
     "pos": "noun",
     "tr": "ev"
   },
+  "household": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "household"
+  },
+  "housing": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "housing"
+  },
   "how": {
     "level": "A1",
     "pos": "adv",
@@ -9370,6 +11090,11 @@
       "The concert was a huge success."
     ]
   },
+  "human": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "human"
+  },
   "humanitarian": {
     "level": "B2",
     "pos": "adj",
@@ -9384,6 +11109,16 @@
     "level": "B1",
     "pos": "adj",
     "tr": "mütevazı"
+  },
+  "humor": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "humor"
+  },
+  "humorous": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "humorous"
   },
   "humour": {
     "level": "B1",
@@ -9405,6 +11140,11 @@
     "pos": "verb",
     "tr": "avlamak"
   },
+  "hurricane": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "hurricane"
+  },
   "hurry": {
     "level": "A2",
     "pos": "verb",
@@ -9425,6 +11165,11 @@
       "The hypocrisy of preaching tolerance while practicing discrimination was obvious."
     ]
   },
+  "I": {
+    "level": "A1",
+    "pos": "pron",
+    "tr": "ben"
+  },
   "ice": {
     "level": "A1",
     "pos": "noun",
@@ -9439,6 +11184,11 @@
     "level": "A1",
     "pos": "noun",
     "tr": "fikir"
+  },
+  "ideal": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "ideal"
   },
   "identify": {
     "level": "B1",
@@ -9480,6 +11230,26 @@
     "pos": "adj",
     "tr": "utanç verici, rezil"
   },
+  "ignore": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "ignore"
+  },
+  "ill": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "ill"
+  },
+  "illegal": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "illegal"
+  },
+  "illness": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "illness"
+  },
   "illuminate": {
     "level": "C1",
     "pos": "verb",
@@ -9499,6 +11269,21 @@
     "level": "B2",
     "pos": "verb",
     "tr": "örneklerle açıklamak"
+  },
+  "illustration": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "illustration"
+  },
+  "image": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "image"
+  },
+  "imaginary": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "imaginary"
   },
   "imagination": {
     "level": "B1",
@@ -9535,6 +11320,11 @@
       "She felt immense relief when the results came back negative."
     ]
   },
+  "immigrant": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "immigrant"
+  },
   "imminent": {
     "level": "B2",
     "pos": "adj",
@@ -9559,6 +11349,11 @@
     "level": "B2",
     "pos": "adj",
     "tr": "tarafsız"
+  },
+  "impatient": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "impatient"
   },
   "impeccable": {
     "level": "B2",
@@ -9620,10 +11415,20 @@
       "The implication was that he had been lying."
     ]
   },
+  "imply": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "imply"
+  },
   "important": {
     "level": "A1",
     "pos": "adj",
     "tr": "önemli"
+  },
+  "importantly": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "importantly"
   },
   "impress": {
     "level": "B1",
@@ -9725,6 +11530,16 @@
     "pos": "noun",
     "tr": "başlangıç"
   },
+  "inch": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "inch"
+  },
+  "incident": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "incident"
+  },
   "incipient": {
     "level": "C1",
     "pos": "adj",
@@ -9745,6 +11560,16 @@
       "His natural inclination was toward solitude rather than social gatherings."
     ]
   },
+  "include": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "include"
+  },
+  "included": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "included"
+  },
   "income": {
     "level": "B1",
     "pos": "noun",
@@ -9764,6 +11589,11 @@
     "level": "B1",
     "pos": "adv",
     "tr": "giderek daha fazla"
+  },
+  "incredible": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "incredible"
   },
   "incredibly": {
     "level": "B1",
@@ -9804,6 +11634,11 @@
     "level": "B1",
     "pos": "adj",
     "tr": "bağımsız"
+  },
+  "independently": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "independently"
   },
   "indicate": {
     "level": "B1",
@@ -9875,6 +11710,11 @@
     "pos": "adj",
     "tr": "boyun eğmez, yılmaz"
   },
+  "indoors": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "indoors"
+  },
   "induce": {
     "level": "B2",
     "pos": "verb",
@@ -9889,6 +11729,11 @@
     "level": "B1",
     "pos": "noun",
     "tr": "endüstri"
+  },
+  "infection": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "infection"
   },
   "infer": {
     "level": "C1",
@@ -9919,6 +11764,16 @@
     "level": "B2",
     "pos": "adv",
     "tr": "etkili bir şekilde"
+  },
+  "inform": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "inform"
+  },
+  "informal": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "informal"
   },
   "information": {
     "level": "A1",
@@ -9965,15 +11820,40 @@
       "The initial cost is high, but it saves money later."
     ]
   },
+  "initially": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "initially"
+  },
   "initiative": {
     "level": "B2",
     "pos": "noun",
     "tr": "girişim"
   },
+  "injure": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "injure"
+  },
+  "injured": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "injured"
+  },
+  "injury": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "injury"
+  },
   "innate": {
     "level": "C1",
     "pos": "adj",
     "tr": "doğuştan, doğal"
+  },
+  "inner": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "inner"
   },
   "innocent": {
     "level": "B1",
@@ -9990,6 +11870,16 @@
     "pos": "adj",
     "tr": "yenilikçi"
   },
+  "inquiry": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "inquiry"
+  },
+  "insect": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "insect"
+  },
   "inside": {
     "level": "A2",
     "pos": "prep",
@@ -9999,6 +11889,11 @@
     "level": "C1",
     "pos": "adj",
     "tr": "sinsi"
+  },
+  "insight": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "insight"
   },
   "insist": {
     "level": "B1",
@@ -10035,6 +11930,11 @@
       "The teacher inspired his students to love reading."
     ]
   },
+  "install": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "install"
+  },
   "instance": {
     "level": "B1",
     "pos": "noun",
@@ -10049,6 +11949,16 @@
     "level": "A2",
     "pos": "prep",
     "tr": "yerine"
+  },
+  "institution": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "institution"
+  },
+  "instruction": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "instruction"
   },
   "instructions": {
     "level": "A2",
@@ -10110,6 +12020,16 @@
       "The structural integrity of the bridge was compromised."
     ]
   },
+  "intelligence": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "intelligence"
+  },
+  "intelligent": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "intelligent"
+  },
   "intend": {
     "level": "A2",
     "pos": "verb",
@@ -10119,6 +12039,21 @@
       "I intend to finish this book today.",
       "She intended to call but forgot."
     ]
+  },
+  "intended": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "intended"
+  },
+  "intense": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "intense"
+  },
+  "intention": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "intention"
   },
   "interact": {
     "level": "B2",
@@ -10170,6 +12105,11 @@
     "pos": "verb",
     "tr": "sözünü kesmek"
   },
+  "interview": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "interview"
+  },
   "into": {
     "level": "A1",
     "pos": "prep",
@@ -10184,6 +12124,11 @@
     "level": "A1",
     "pos": "verb",
     "tr": "tanıtmak"
+  },
+  "introduction": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "introduction"
   },
   "introspection": {
     "level": "C1",
@@ -10205,10 +12150,20 @@
     "pos": "adv",
     "tr": "daima"
   },
+  "invent": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "invent"
+  },
   "invention": {
     "level": "B1",
     "pos": "noun",
     "tr": "icat"
+  },
+  "invest": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "invest"
   },
   "investigate": {
     "level": "B1",
@@ -10250,6 +12205,16 @@
     "pos": "verb",
     "tr": "içermek"
   },
+  "involved": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "involved"
+  },
+  "iron": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "iron"
+  },
   "irrefutable": {
     "level": "C1",
     "pos": "adj",
@@ -10285,10 +12250,30 @@
     "pos": "det",
     "tr": "onun (nesne)"
   },
+  "itself": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "itself"
+  },
   "jacket": {
     "level": "A1",
     "pos": "noun",
     "tr": "ceket"
+  },
+  "jam": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "jam"
+  },
+  "January": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Ocak"
+  },
+  "jazz": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "jazz"
   },
   "jealous": {
     "level": "B1",
@@ -10310,6 +12295,21 @@
     "pos": "verb",
     "tr": "katılmak"
   },
+  "joke": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "joke"
+  },
+  "journal": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "journal"
+  },
+  "journalist": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "journalist"
+  },
   "journey": {
     "level": "A2",
     "pos": "noun",
@@ -10320,15 +12320,55 @@
       "Have a safe journey!"
     ]
   },
+  "joy": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "joy"
+  },
+  "judge": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "judge"
+  },
+  "judgment": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "judgment"
+  },
   "juice": {
     "level": "A1",
     "pos": "noun",
     "tr": "meyve suyu"
   },
+  "July": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Temmuz"
+  },
+  "jump": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "jump"
+  },
+  "jumper": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "jumper"
+  },
   "juncture": {
     "level": "C1",
     "pos": "noun",
     "tr": "dönüm noktası, birleşme noktası"
+  },
+  "June": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Haziran"
+  },
+  "junior": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "junior"
   },
   "jurisdiction": {
     "level": "B2",
@@ -10349,6 +12389,11 @@
     "level": "A1",
     "pos": "adv",
     "tr": "sadece"
+  },
+  "justify": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "justify"
   },
   "juxtapose": {
     "level": "C1",
@@ -10380,25 +12425,65 @@
     "pos": "noun",
     "tr": "anahtar"
   },
+  "keyboard": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "keyboard"
+  },
   "kick": {
     "level": "A2",
     "pos": "verb",
     "tr": "tekmelemek"
+  },
+  "kid": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "kid"
+  },
+  "kill": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "kill"
+  },
+  "killing": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "killing"
+  },
+  "kilometer": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "kilometer"
   },
   "kind": {
     "level": "A1",
     "pos": "noun",
     "tr": "tür"
   },
+  "kindly": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "kindly"
+  },
   "kindness": {
     "level": "A2",
     "pos": "noun",
     "tr": "nazik davranış"
   },
+  "kiss": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "kiss"
+  },
   "kitchen": {
     "level": "A1",
     "pos": "noun",
     "tr": "mutfak"
+  },
+  "knee": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "knee"
   },
   "knife": {
     "level": "A2",
@@ -10420,6 +12505,31 @@
     "pos": "noun",
     "tr": "bilgi"
   },
+  "label": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "label"
+  },
+  "labor": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "labor"
+  },
+  "laboratory": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "laboratory"
+  },
+  "lack": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "lack"
+  },
+  "lady": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "lady"
+  },
   "lake": {
     "level": "A1",
     "pos": "noun",
@@ -10435,20 +12545,40 @@
       "She lamented the loss of traditional crafts in modern society."
     ]
   },
+  "lamp": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "lamp"
+  },
   "land": {
     "level": "A2",
     "pos": "verb",
     "tr": "inmek"
+  },
+  "landscape": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "landscape"
   },
   "language": {
     "level": "A1",
     "pos": "noun",
     "tr": "dil"
   },
+  "laptop": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "laptop"
+  },
   "large": {
     "level": "A1",
     "pos": "adj",
     "tr": "büyük"
+  },
+  "largely": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "largely"
   },
   "last": {
     "level": "A1",
@@ -10465,15 +12595,30 @@
     "pos": "adv",
     "tr": "sonra"
   },
+  "latest": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "latest"
+  },
   "laugh": {
     "level": "A1",
     "pos": "verb",
     "tr": "gülmek"
   },
+  "launch": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "launch"
+  },
   "laundry": {
     "level": "A2",
     "pos": "noun",
     "tr": "çamaşır"
+  },
+  "law": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "law"
   },
   "lawyer": {
     "level": "A2",
@@ -10485,6 +12630,16 @@
       "He wants to become a lawyer."
     ]
   },
+  "lay": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "lay"
+  },
+  "layer": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "layer"
+  },
   "lazy": {
     "level": "A2",
     "pos": "adj",
@@ -10495,10 +12650,40 @@
       "I felt lazy and stayed in bed all morning."
     ]
   },
+  "lead": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "lead"
+  },
+  "leader": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "leader"
+  },
+  "leadership": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "leadership"
+  },
+  "leak": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "leak"
+  },
+  "lean": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "lean"
+  },
   "learn": {
     "level": "A1",
     "pos": "verb",
     "tr": "öğrenmek"
+  },
+  "learning": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "learning"
   },
   "leave": {
     "level": "A1",
@@ -10515,6 +12700,16 @@
     "pos": "noun",
     "tr": "bacak"
   },
+  "legal": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "legal"
+  },
+  "leisure": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "leisure"
+  },
   "lend": {
     "level": "A2",
     "pos": "verb",
@@ -10524,6 +12719,11 @@
       "Can you lend me some money until Friday?",
       "She lent her umbrella to her colleague."
     ]
+  },
+  "length": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "length"
   },
   "lesson": {
     "level": "A1",
@@ -10555,6 +12755,11 @@
     "pos": "noun",
     "tr": "mektup/harf"
   },
+  "level": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "level"
+  },
   "levy": {
     "level": "B2",
     "pos": "verb",
@@ -10585,6 +12790,11 @@
     "pos": "noun",
     "tr": "kütüphane"
   },
+  "license": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "license"
+  },
   "licentious": {
     "level": "C1",
     "pos": "adj",
@@ -10599,6 +12809,16 @@
     "level": "A1",
     "pos": "noun",
     "tr": "hayat"
+  },
+  "lifestyle": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "lifestyle"
+  },
+  "lift": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "lift"
   },
   "light": {
     "level": "A1",
@@ -10625,6 +12845,11 @@
       "There is a limit to what I can do."
     ]
   },
+  "limited": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "limited"
+  },
   "line": {
     "level": "A1",
     "pos": "noun",
@@ -10645,6 +12870,16 @@
     "pos": "noun",
     "tr": "aslan"
   },
+  "lip": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "lip"
+  },
+  "liquid": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "liquid"
+  },
   "list": {
     "level": "A1",
     "pos": "noun",
@@ -10654,6 +12889,16 @@
     "level": "A1",
     "pos": "verb",
     "tr": "dinlemek"
+  },
+  "listener": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "listener"
+  },
+  "literature": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "literature"
   },
   "little": {
     "level": "A1",
@@ -10669,6 +12914,16 @@
     "level": "B1",
     "pos": "adj",
     "tr": "canlı"
+  },
+  "living": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "living"
+  },
+  "load": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "load"
   },
   "loan": {
     "level": "B1",
@@ -10690,10 +12945,35 @@
       "The industry has been lobbying against stricter regulations."
     ]
   },
+  "local": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "local"
+  },
+  "locate": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "locate"
+  },
+  "located": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "located"
+  },
   "location": {
     "level": "B1",
     "pos": "noun",
     "tr": "konum"
+  },
+  "lock": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "lock"
+  },
+  "logical": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "logical"
   },
   "lonely": {
     "level": "B1",
@@ -10705,15 +12985,35 @@
     "pos": "adj",
     "tr": "uzun"
   },
+  "long-term": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "long-term"
+  },
   "look": {
     "level": "A1",
     "pos": "verb",
     "tr": "bakmak"
   },
+  "loose": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "loose"
+  },
+  "lord": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "lord"
+  },
   "lose": {
     "level": "A1",
     "pos": "verb",
     "tr": "kaybetmek"
+  },
+  "loss": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "loss"
   },
   "lot": {
     "level": "A1",
@@ -10724,6 +13024,11 @@
     "level": "A2",
     "pos": "adj",
     "tr": "yüksek sesli"
+  },
+  "loudly": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "loudly"
   },
   "lounge": {
     "level": "B1",
@@ -10750,6 +13055,11 @@
     "pos": "adj",
     "tr": "alçak/düşük"
   },
+  "lower": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "lower"
+  },
   "loyal": {
     "level": "B1",
     "pos": "adj",
@@ -10759,6 +13069,11 @@
     "level": "B2",
     "pos": "adj",
     "tr": "anlaşılır"
+  },
+  "luck": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "luck"
   },
   "lucky": {
     "level": "A2",
@@ -10770,15 +13085,35 @@
     "pos": "noun",
     "tr": "öğle yemeği"
   },
+  "lung": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "lung"
+  },
+  "luxury": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "luxury"
+  },
   "machine": {
     "level": "A1",
     "pos": "noun",
     "tr": "makine"
   },
+  "mad": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "mad"
+  },
   "magazine": {
     "level": "A2",
     "pos": "noun",
     "tr": "dergi"
+  },
+  "magic": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "magic"
   },
   "magnify": {
     "level": "C1",
@@ -10800,6 +13135,11 @@
     "pos": "adj",
     "tr": "ana"
   },
+  "mainly": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "mainly"
+  },
   "maintain": {
     "level": "B1",
     "pos": "verb",
@@ -10809,6 +13149,11 @@
       "It's important to maintain a healthy lifestyle.",
       "The building is well maintained."
     ]
+  },
+  "major": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "major"
   },
   "majority": {
     "level": "B1",
@@ -10825,6 +13170,16 @@
     "pos": "verb",
     "tr": "yapmak"
   },
+  "male": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "male"
+  },
+  "mall": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "mall"
+  },
   "man": {
     "level": "A1",
     "pos": "noun",
@@ -10839,6 +13194,11 @@
       "I managed to finish the report on time.",
       "How do you manage to stay so calm?"
     ]
+  },
+  "management": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "management"
   },
   "mandate": {
     "level": "B2",
@@ -10865,6 +13225,11 @@
       "The data had been manipulated to show better results."
     ]
   },
+  "manner": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "manner"
+  },
   "many": {
     "level": "A1",
     "pos": "det",
@@ -10874,6 +13239,11 @@
     "level": "A1",
     "pos": "noun",
     "tr": "harita"
+  },
+  "March": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Mart"
   },
   "mark": {
     "level": "A2",
@@ -10885,20 +13255,60 @@
     "pos": "noun",
     "tr": "pazar/market"
   },
+  "marketing": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "marketing"
+  },
+  "marriage": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "marriage"
+  },
   "married": {
     "level": "A1",
     "pos": "adj",
     "tr": "evli"
+  },
+  "mass": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "mass"
+  },
+  "massive": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "massive"
+  },
+  "mat": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "mat"
   },
   "match": {
     "level": "A1",
     "pos": "verb",
     "tr": "eşleştirmek"
   },
+  "matching": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "matching"
+  },
+  "material": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "material"
+  },
   "math": {
     "level": "A1",
     "pos": "noun",
     "tr": "matematik"
+  },
+  "mathematics": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "mathematics"
   },
   "matter": {
     "level": "B1",
@@ -10919,6 +13329,11 @@
     "level": "C1",
     "pos": "noun",
     "tr": "bağımsız, aykırı tip"
+  },
+  "May": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Mayıs"
   },
   "maybe": {
     "level": "A1",
@@ -10945,6 +13360,11 @@
     "pos": "noun",
     "tr": "anlam"
   },
+  "means": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "means"
+  },
   "meanwhile": {
     "level": "A2",
     "pos": "adv",
@@ -10959,6 +13379,11 @@
       "Can you measure the width of the room?",
       "Success is difficult to measure."
     ]
+  },
+  "measurement": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "measurement"
   },
   "meat": {
     "level": "A1",
@@ -10975,6 +13400,16 @@
       "Social media has changed how we communicate."
     ]
   },
+  "medical": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "medical"
+  },
+  "medicine": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "medicine"
+  },
   "medieval": {
     "level": "B2",
     "pos": "adj",
@@ -10985,6 +13420,11 @@
       "Medieval manuscripts reveal much about daily life in that era."
     ]
   },
+  "medium": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "medium"
+  },
   "meet": {
     "level": "A1",
     "pos": "verb",
@@ -10994,6 +13434,11 @@
     "level": "A1",
     "pos": "noun",
     "tr": "toplantı"
+  },
+  "melt": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "melt"
   },
   "member": {
     "level": "A1",
@@ -11014,6 +13459,11 @@
     "level": "B1",
     "pos": "noun",
     "tr": "hafıza"
+  },
+  "mental": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "mental"
   },
   "mention": {
     "level": "A2",
@@ -11045,10 +13495,20 @@
       "The proposal has considerable merit."
     ]
   },
+  "mess": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "mess"
+  },
   "message": {
     "level": "A1",
     "pos": "noun",
     "tr": "mesaj"
+  },
+  "metal": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "metal"
   },
   "metaphor": {
     "level": "C1",
@@ -11085,6 +13545,26 @@
     "pos": "noun",
     "tr": "gece yarısı"
   },
+  "might": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "might"
+  },
+  "mil": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "mil"
+  },
+  "mild": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "mild"
+  },
+  "military": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "military"
+  },
   "milk": {
     "level": "A1",
     "pos": "noun",
@@ -11100,6 +13580,36 @@
     "pos": "verb",
     "tr": "aldırmak"
   },
+  "mine": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "mine"
+  },
+  "mineral": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "mineral"
+  },
+  "minimum": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "minimum"
+  },
+  "minister": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "minister"
+  },
+  "minor": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "minor"
+  },
+  "minority": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "minority"
+  },
   "minute": {
     "level": "A1",
     "pos": "noun",
@@ -11114,6 +13624,16 @@
     "level": "A1",
     "pos": "verb",
     "tr": "özlemek/kaçırmak"
+  },
+  "mission": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "mission"
+  },
+  "mistake": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "mistake"
   },
   "mitigate": {
     "level": "C1",
@@ -11134,6 +13654,31 @@
       "Mix the flour and eggs in a bowl.",
       "You should not mix work and personal life."
     ]
+  },
+  "mixed": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "mixed"
+  },
+  "mixture": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "mixture"
+  },
+  "modal": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "modal"
+  },
+  "model": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "model"
+  },
+  "modern": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "modern"
   },
   "modest": {
     "level": "B1",
@@ -11164,6 +13709,11 @@
       "The campaign is gaining momentum ahead of the election.",
       "Once the reforms started, they quickly built momentum."
     ]
+  },
+  "Monday": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Pazartesi"
   },
   "money": {
     "level": "A1",
@@ -11220,6 +13770,11 @@
       "The disease has a high mortality rate if left untreated."
     ]
   },
+  "mortuary": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "mortuary"
+  },
   "most": {
     "level": "A1",
     "pos": "det",
@@ -11245,6 +13800,11 @@
       "Students need motivation to study hard."
     ]
   },
+  "motor": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "motor"
+  },
   "mountain": {
     "level": "A1",
     "pos": "noun",
@@ -11265,15 +13825,45 @@
     "pos": "verb",
     "tr": "taşınmak/hareket etmek"
   },
+  "movement": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "movement"
+  },
   "movie": {
     "level": "A1",
     "pos": "noun",
     "tr": "film"
   },
+  "Mr": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Bay"
+  },
+  "Mrs": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Bayan"
+  },
   "much": {
     "level": "A1",
     "pos": "det",
     "tr": "çok"
+  },
+  "mud": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "mud"
+  },
+  "multiplied": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "multiplied"
+  },
+  "multiply": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "multiply"
   },
   "municipal": {
     "level": "B2",
@@ -11305,6 +13895,16 @@
     "pos": "noun",
     "tr": "müzik"
   },
+  "musical": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "musical"
+  },
+  "musician": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "musician"
+  },
   "must": {
     "level": "A1",
     "pos": "modal",
@@ -11315,15 +13915,50 @@
     "pos": "det",
     "tr": "benim"
   },
+  "myself": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "myself"
+  },
+  "mysterious": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "mysterious"
+  },
+  "mystery": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "mystery"
+  },
+  "nail": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "nail"
+  },
   "name": {
     "level": "A1",
     "pos": "noun",
     "tr": "isim"
   },
+  "narrative": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "narrative"
+  },
   "narrow": {
     "level": "A2",
     "pos": "adj",
     "tr": "dar"
+  },
+  "nation": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "nation"
+  },
+  "national": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "national"
   },
   "natural": {
     "level": "B1",
@@ -11334,6 +13969,11 @@
     "level": "B1",
     "pos": "adv",
     "tr": "doğal olarak"
+  },
+  "nature": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "nature"
   },
   "near": {
     "level": "A1",
@@ -11355,15 +13995,40 @@
       "Keep your desk neat and clean."
     ]
   },
+  "necessarily": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "necessarily"
+  },
+  "necessary": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "necessary"
+  },
+  "neck": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "neck"
+  },
   "need": {
     "level": "A1",
     "pos": "verb",
     "tr": "ihtiyaç duymak"
   },
+  "needle": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "needle"
+  },
   "nefarious": {
     "level": "C1",
     "pos": "adj",
     "tr": "kötü şöhretli"
+  },
+  "negative": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "negative"
   },
   "negotiate": {
     "level": "B1",
@@ -11375,10 +14040,30 @@
       "The two countries are negotiating a peace deal."
     ]
   },
+  "neighbor": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "neighbor"
+  },
+  "neighborhood": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "neighborhood"
+  },
   "neighbour": {
     "level": "B1",
     "pos": "noun",
     "tr": "komşu"
+  },
+  "neither": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "neither"
+  },
+  "nerve": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "nerve"
   },
   "nervous": {
     "level": "A2",
@@ -11389,6 +14074,11 @@
       "She felt nervous before the interview.",
       "I always get nervous before exams."
     ]
+  },
+  "network": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "network"
   },
   "never": {
     "level": "A1",
@@ -11450,6 +14140,11 @@
     "pos": "noun",
     "tr": "gece"
   },
+  "nightmare": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "nightmare"
+  },
   "nine": {
     "level": "A1",
     "pos": "number",
@@ -11459,6 +14154,11 @@
     "level": "A1",
     "pos": "number",
     "tr": "on dokuz"
+  },
+  "nineteenth": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "nineteenth"
   },
   "ninety": {
     "level": "A1",
@@ -11510,6 +14210,11 @@
     "pos": "conj",
     "tr": "ne de"
   },
+  "normally": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "normally"
+  },
   "north": {
     "level": "A1",
     "pos": "noun",
@@ -11530,6 +14235,11 @@
     "pos": "adv",
     "tr": "özellikle"
   },
+  "note": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "note"
+  },
   "notebook": {
     "level": "A2",
     "pos": "noun",
@@ -11544,6 +14254,11 @@
     "level": "A1",
     "pos": "pron",
     "tr": "hiçbir şey"
+  },
+  "notice": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "notice"
   },
   "notion": {
     "level": "B2",
@@ -11564,6 +14279,16 @@
     "level": "B2",
     "pos": "prep",
     "tr": "e rağmen"
+  },
+  "novel": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "novel"
+  },
+  "November": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Kasım"
   },
   "now": {
     "level": "A1",
@@ -11615,10 +14340,20 @@
       "The program nurtures young talent in the arts."
     ]
   },
+  "nut": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "nut"
+  },
   "o_clock": {
     "level": "A1",
     "pos": "adv",
     "tr": "saat (tam)"
+  },
+  "o'clock": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "o'clock"
   },
   "obfuscate": {
     "level": "C1",
@@ -11650,6 +14385,11 @@
       "I observed that she seemed very tired."
     ]
   },
+  "obtain": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "obtain"
+  },
   "obvious": {
     "level": "A2",
     "pos": "adj",
@@ -11660,10 +14400,20 @@
       "The answer is obvious if you think about it."
     ]
   },
+  "obviously": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "obviously"
+  },
   "occasion": {
     "level": "B1",
     "pos": "noun",
     "tr": "fırsat, durum"
+  },
+  "occasionally": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "occasionally"
   },
   "occur": {
     "level": "B1",
@@ -11680,6 +14430,16 @@
     "pos": "noun",
     "tr": "okyanus"
   },
+  "October": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Ekim"
+  },
+  "odd": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "odd"
+  },
   "of": {
     "level": "A1",
     "pos": "prep",
@@ -11689,6 +14449,16 @@
     "level": "A1",
     "pos": "adv",
     "tr": "kapalı/uzakta"
+  },
+  "offense": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "offense"
+  },
+  "offensive": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "offensive"
   },
   "offer": {
     "level": "A2",
@@ -11700,6 +14470,16 @@
     "pos": "noun",
     "tr": "ofis"
   },
+  "officer": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "officer"
+  },
+  "official": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "official"
+  },
   "often": {
     "level": "A1",
     "pos": "adv",
@@ -11710,10 +14490,25 @@
     "pos": "exclam",
     "tr": "oh"
   },
+  "oil": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "oil"
+  },
+  "OK": {
+    "level": "A1",
+    "pos": "exclam",
+    "tr": "tamam"
+  },
   "old": {
     "level": "A1",
     "pos": "adj",
     "tr": "eski/yaşlı"
+  },
+  "old-fashioned": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "old-fashioned"
   },
   "omit": {
     "level": "B2",
@@ -11740,6 +14535,11 @@
     "pos": "noun",
     "tr": "soğan"
   },
+  "online": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "online"
+  },
   "only": {
     "level": "A1",
     "pos": "adj",
@@ -11765,6 +14565,21 @@
     "pos": "adj",
     "tr": "açık"
   },
+  "opening": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "opening"
+  },
+  "operate": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "operate"
+  },
+  "operation": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "operation"
+  },
   "opinion": {
     "level": "B1",
     "pos": "noun",
@@ -11779,6 +14594,16 @@
       "This job is a great opportunity for you.",
       "Don't miss the opportunity to travel abroad."
     ]
+  },
+  "oppose": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "oppose"
+  },
+  "opposite": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "opposite"
   },
   "opt": {
     "level": "B2",
@@ -11819,6 +14644,46 @@
       "It was just an ordinary day.",
       "She is no ordinary student — she is brilliant."
     ]
+  },
+  "organ": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "organ"
+  },
+  "organization": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "organization"
+  },
+  "organize": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "organize"
+  },
+  "organized": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "organized"
+  },
+  "organizer": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "organizer"
+  },
+  "origin": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "origin"
+  },
+  "original": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "original"
+  },
+  "originally": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "originally"
   },
   "oscillate": {
     "level": "B2",
@@ -11870,20 +14735,45 @@
     "pos": "pron",
     "tr": "bizimki"
   },
+  "ourselves": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "ourselves"
+  },
   "out": {
     "level": "A1",
     "pos": "adv",
     "tr": "dışarı"
+  },
+  "outcome": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "outcome"
   },
   "outcry": {
     "level": "B2",
     "pos": "noun",
     "tr": "protesto"
   },
+  "outdoor": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "outdoor"
+  },
   "outdoors": {
     "level": "A2",
     "pos": "adv",
     "tr": "dışarıda"
+  },
+  "outer": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "outer"
+  },
+  "outline": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "outline"
   },
   "outside": {
     "level": "A1",
@@ -11920,6 +14810,16 @@
       "Overall, I'm satisfied with the results."
     ]
   },
+  "overly": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "overly"
+  },
+  "oversee": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "oversee"
+  },
   "oversight": {
     "level": "B2",
     "pos": "noun",
@@ -11935,20 +14835,45 @@
       "The regime engaged in overt censorship of the press."
     ]
   },
+  "owe": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "owe"
+  },
   "own": {
     "level": "A1",
     "pos": "adj",
     "tr": "kendi"
+  },
+  "owner": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "owner"
   },
   "pack": {
     "level": "A2",
     "pos": "verb",
     "tr": "paketlemek"
   },
+  "package": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "package"
+  },
   "page": {
     "level": "A1",
     "pos": "noun",
     "tr": "sayfa"
+  },
+  "pain": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "pain"
+  },
+  "painful": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "painful"
   },
   "paint": {
     "level": "A1",
@@ -11964,6 +14889,21 @@
     "level": "A1",
     "pos": "noun",
     "tr": "çift"
+  },
+  "pale": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "pale"
+  },
+  "pan": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "pan"
+  },
+  "panel": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "panel"
   },
   "pants": {
     "level": "A1",
@@ -12025,6 +14965,11 @@
     "pos": "noun",
     "tr": "park"
   },
+  "parking": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "parking"
+  },
   "part": {
     "level": "A1",
     "pos": "noun",
@@ -12034,6 +14979,11 @@
     "level": "B1",
     "pos": "adv",
     "tr": "kısmen"
+  },
+  "participant": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "participant"
   },
   "participate": {
     "level": "B1",
@@ -12060,6 +15010,11 @@
     "pos": "adv",
     "tr": "kısmen"
   },
+  "partner": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "partner"
+  },
   "party": {
     "level": "A1",
     "pos": "noun",
@@ -12069,6 +15024,16 @@
     "level": "A2",
     "pos": "verb",
     "tr": "geçmek"
+  },
+  "passage": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "passage"
+  },
+  "passion": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "passion"
   },
   "passport": {
     "level": "A1",
@@ -12110,10 +15075,30 @@
       "Patrons of the library can borrow up to ten books."
     ]
   },
+  "pattern": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "pattern"
+  },
   "pay": {
     "level": "A1",
     "pos": "verb",
     "tr": "ödemek"
+  },
+  "payment": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "payment"
+  },
+  "peace": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "peace"
+  },
+  "peaceful": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "peaceful"
   },
   "peculiar": {
     "level": "B2",
@@ -12135,6 +15120,11 @@
     "pos": "noun",
     "tr": "kurşun kalem"
   },
+  "penny": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "penny"
+  },
   "people": {
     "level": "A1",
     "pos": "noun",
@@ -12145,10 +15135,20 @@
     "pos": "noun",
     "tr": "biber"
   },
+  "per": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "per"
+  },
   "perceive": {
     "level": "B2",
     "pos": "verb",
     "tr": "algılamak"
+  },
+  "percent": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "percent"
   },
   "perception": {
     "level": "C1",
@@ -12159,6 +15159,11 @@
     "level": "A1",
     "pos": "adj",
     "tr": "mükemmel"
+  },
+  "perfectly": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "perfectly"
   },
   "perform": {
     "level": "A2",
@@ -12185,10 +15190,20 @@
     "pos": "adv",
     "tr": "belki"
   },
+  "period": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "period"
+  },
   "permission": {
     "level": "B1",
     "pos": "noun",
     "tr": "izin"
+  },
+  "permit": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "permit"
   },
   "perpetrate": {
     "level": "B2",
@@ -12224,6 +15239,16 @@
     "level": "A1",
     "pos": "noun",
     "tr": "kişi"
+  },
+  "personal": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "personal"
+  },
+  "personality": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "personality"
   },
   "perspective": {
     "level": "B2",
@@ -12275,6 +15300,21 @@
       "They filed a petition with the court to overturn the decision."
     ]
   },
+  "phase": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "phase"
+  },
+  "phenomenon": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "phenomenon"
+  },
+  "philosophy": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "philosophy"
+  },
   "phone": {
     "level": "A1",
     "pos": "noun",
@@ -12285,10 +15325,30 @@
     "pos": "noun",
     "tr": "fotoğraf"
   },
+  "photograph": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "photograph"
+  },
+  "photographer": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "photographer"
+  },
+  "photography": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "photography"
+  },
   "phrase": {
     "level": "A1",
     "pos": "noun",
     "tr": "ifade"
+  },
+  "physical": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "physical"
   },
   "piano": {
     "level": "A1",
@@ -12330,15 +15390,30 @@
     "pos": "noun",
     "tr": "plan"
   },
+  "planning": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "planning"
+  },
   "plant": {
     "level": "A1",
     "pos": "noun",
     "tr": "bitki"
   },
+  "plastic": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "plastic"
+  },
   "plate": {
     "level": "A2",
     "pos": "noun",
     "tr": "tabak"
+  },
+  "platform": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "platform"
   },
   "plausible": {
     "level": "B2",
@@ -12375,6 +15450,11 @@
     "pos": "exclam",
     "tr": "lütfen"
   },
+  "pleased": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "pleased"
+  },
   "pledge": {
     "level": "B2",
     "pos": "verb",
@@ -12400,6 +15480,11 @@
     "pos": "noun",
     "tr": "bolluk, fazlalık"
   },
+  "plot": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "plot"
+  },
   "plunge": {
     "level": "B2",
     "pos": "verb",
@@ -12420,15 +15505,45 @@
     "pos": "noun",
     "tr": "cep"
   },
+  "poem": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "poem"
+  },
+  "poetry": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "poetry"
+  },
   "point": {
     "level": "A1",
     "pos": "noun",
     "tr": "nokta/puan"
   },
+  "poison": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "poison"
+  },
+  "poisonous": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "poisonous"
+  },
   "police": {
     "level": "A1",
     "pos": "noun",
     "tr": "polis"
+  },
+  "policeman": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "policeman"
+  },
+  "policy": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "policy"
   },
   "polite": {
     "level": "A2",
@@ -12439,6 +15554,26 @@
       "He is always polite to strangers.",
       "It is polite to say thank you."
     ]
+  },
+  "political": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "political"
+  },
+  "politician": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "politician"
+  },
+  "politics": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "politics"
+  },
+  "poll": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "poll"
   },
   "pollution": {
     "level": "A2",
@@ -12455,10 +15590,25 @@
     "pos": "adj",
     "tr": "fakir"
   },
+  "pop": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "pop"
+  },
   "popular": {
     "level": "A1",
     "pos": "adj",
     "tr": "popüler"
+  },
+  "population": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "population"
+  },
+  "portrait": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "portrait"
   },
   "portray": {
     "level": "B2",
@@ -12470,15 +15620,30 @@
       "The media often portrays teenagers negatively."
     ]
   },
+  "position": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "position"
+  },
   "positive": {
     "level": "B1",
     "pos": "adj",
     "tr": "olumlu"
   },
+  "possibility": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "possibility"
+  },
   "possible": {
     "level": "A1",
     "pos": "adj",
     "tr": "mümkün"
+  },
+  "possibly": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "possibly"
   },
   "post": {
     "level": "A1",
@@ -12490,6 +15655,11 @@
     "pos": "noun",
     "tr": "postane"
   },
+  "poster": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "poster"
+  },
   "postpone": {
     "level": "B2",
     "pos": "verb",
@@ -12499,6 +15669,11 @@
       "The match was postponed due to heavy rain.",
       "They decided to postpone the wedding until next spring."
     ]
+  },
+  "pot": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "pot"
   },
   "potato": {
     "level": "A1",
@@ -12540,6 +15715,16 @@
       "The government is trying to reduce poverty."
     ]
   },
+  "power": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "power"
+  },
+  "powerful": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "powerful"
+  },
   "practical": {
     "level": "B2",
     "pos": "adj",
@@ -12564,6 +15749,21 @@
     "level": "B2",
     "pos": "adj",
     "tr": "pragmatik"
+  },
+  "praise": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "praise"
+  },
+  "pray": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "pray"
+  },
+  "prayer": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "prayer"
   },
   "precarious": {
     "level": "B2",
@@ -12645,6 +15845,11 @@
     "pos": "noun",
     "tr": "öncül"
   },
+  "prep": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "prep"
+  },
   "preparation": {
     "level": "B1",
     "pos": "noun",
@@ -12669,6 +15874,21 @@
     "level": "A1",
     "pos": "adj",
     "tr": "mevcut/hediye"
+  },
+  "presentation": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "presentation"
+  },
+  "president": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "president"
+  },
+  "press": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "press"
   },
   "pressure": {
     "level": "B1",
@@ -12725,15 +15945,40 @@
     "pos": "adj",
     "tr": "önceki"
   },
+  "previously": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "previously"
+  },
   "price": {
     "level": "A1",
     "pos": "noun",
     "tr": "fiyat"
   },
+  "priest": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "priest"
+  },
   "primarily": {
     "level": "B2",
     "pos": "adv",
     "tr": "başlıca"
+  },
+  "primary": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "primary"
+  },
+  "prince": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "prince"
+  },
+  "principal": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "principal"
   },
   "principle": {
     "level": "B1",
@@ -12745,15 +15990,55 @@
       "The principle behind this method is simple."
     ]
   },
+  "print": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "print"
+  },
+  "printer": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "printer"
+  },
+  "prior": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "prior"
+  },
   "prioritize": {
     "level": "B2",
     "pos": "verb",
     "tr": "öncelik vermek"
   },
+  "priority": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "priority"
+  },
+  "prison": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "prison"
+  },
+  "privacy": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "privacy"
+  },
   "private": {
     "level": "B1",
     "pos": "adj",
     "tr": "özel"
+  },
+  "prize": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "prize"
+  },
+  "probably": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "probably"
   },
   "problem": {
     "level": "A1",
@@ -12764,6 +16049,11 @@
     "level": "B2",
     "pos": "noun",
     "tr": "prosedür"
+  },
+  "process": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "process"
   },
   "proclivity": {
     "level": "C1",
@@ -12780,15 +16070,40 @@
       "He was charged with procuring false documents."
     ]
   },
+  "produce": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "produce"
+  },
   "product": {
     "level": "A1",
     "pos": "noun",
     "tr": "ürün"
   },
+  "production": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "production"
+  },
+  "professional": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "professional"
+  },
+  "professor": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "professor"
+  },
   "proficient": {
     "level": "B2",
     "pos": "adj",
     "tr": "yetkin"
+  },
+  "profile": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "profile"
   },
   "profound": {
     "level": "B2",
@@ -12820,6 +16135,11 @@
     "pos": "noun",
     "tr": "çoğalma"
   },
+  "promise": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "promise"
+  },
   "promote": {
     "level": "B1",
     "pos": "verb",
@@ -12835,6 +16155,16 @@
     "pos": "verb",
     "tr": "ilan etmek"
   },
+  "pronounce": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "pronounce"
+  },
+  "proof": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "proof"
+  },
   "propagate": {
     "level": "C1",
     "pos": "verb",
@@ -12844,6 +16174,16 @@
     "level": "C1",
     "pos": "noun",
     "tr": "eğilim, yatkınlık"
+  },
+  "proper": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "proper"
+  },
+  "property": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "property"
   },
   "proposal": {
     "level": "B1",
@@ -12869,6 +16209,16 @@
     "level": "B1",
     "pos": "verb",
     "tr": "korumak"
+  },
+  "protection": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "protection"
+  },
+  "protest": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "protest"
   },
   "proud": {
     "level": "A2",
@@ -12925,6 +16275,21 @@
       "The proximity of the deadline forced them to work overtime."
     ]
   },
+  "psychology": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "psychology"
+  },
+  "public": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "public"
+  },
+  "publication": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "publication"
+  },
   "publish": {
     "level": "A2",
     "pos": "verb",
@@ -12945,10 +16310,25 @@
       "He was punished for breaking the rules."
     ]
   },
+  "punishment": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "punishment"
+  },
+  "purchase": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "purchase"
+  },
   "purpose": {
     "level": "B1",
     "pos": "noun",
     "tr": "amaç"
+  },
+  "pursue": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "pursue"
   },
   "put": {
     "level": "A1",
@@ -12960,6 +16340,21 @@
     "pos": "noun",
     "tr": "bulmaca"
   },
+  "qualification": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "qualification"
+  },
+  "qualified": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "qualified"
+  },
+  "qualify": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "qualify"
+  },
   "quality": {
     "level": "B1",
     "pos": "noun",
@@ -12969,6 +16364,11 @@
     "level": "C1",
     "pos": "noun",
     "tr": "ikilem, çıkmaz"
+  },
+  "quantify": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "quantify"
   },
   "quarter": {
     "level": "A1",
@@ -13005,25 +16405,70 @@
     "pos": "noun",
     "tr": "öz"
   },
+  "quit": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "quit"
+  },
   "quite": {
     "level": "A1",
     "pos": "adv",
     "tr": "oldukça"
+  },
+  "quote": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "quote"
+  },
+  "race": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "race"
   },
   "radio": {
     "level": "A1",
     "pos": "noun",
     "tr": "radyo"
   },
+  "railroad": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "railroad"
+  },
   "rain": {
     "level": "A1",
     "pos": "noun",
     "tr": "yağmur"
   },
+  "raise": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "raise"
+  },
   "ramification": {
     "level": "C1",
     "pos": "noun",
     "tr": "sonuç, yan etki"
+  },
+  "range": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "range"
+  },
+  "rank": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "rank"
+  },
+  "rapid": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "rapid"
+  },
+  "rapidly": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "rapidly"
   },
   "rare": {
     "level": "B1",
@@ -13039,6 +16484,11 @@
     "level": "A2",
     "pos": "adv",
     "tr": "daha doğrusu"
+  },
+  "reach": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "reach"
   },
   "react": {
     "level": "B1",
@@ -13060,6 +16510,16 @@
     "pos": "verb",
     "tr": "okumak"
   },
+  "reader": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "reader"
+  },
+  "reading": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "reading"
+  },
   "ready": {
     "level": "A1",
     "pos": "adj",
@@ -13074,6 +16534,16 @@
     "level": "B1",
     "pos": "verb",
     "tr": "fark etmek"
+  },
+  "realistic": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "realistic"
+  },
+  "reality": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "reality"
   },
   "realize": {
     "level": "A2",
@@ -13105,6 +16575,11 @@
     "pos": "noun",
     "tr": "sebep"
   },
+  "reasonable": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "reasonable"
+  },
   "rebut": {
     "level": "B2",
     "pos": "verb",
@@ -13115,15 +16590,45 @@
     "pos": "adj",
     "tr": "inatçı"
   },
+  "recall": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "recall"
+  },
   "recapitulate": {
     "level": "C1",
     "pos": "verb",
     "tr": "özetlemek"
   },
+  "receive": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "receive"
+  },
+  "recent": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "recent"
+  },
+  "recently": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "recently"
+  },
+  "reception": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "reception"
+  },
   "recipe": {
     "level": "A2",
     "pos": "noun",
     "tr": "yemek tarifi"
+  },
+  "recipient": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "recipient"
   },
   "recognise": {
     "level": "B1",
@@ -13145,6 +16650,11 @@
       "The doctor recommended more exercise."
     ]
   },
+  "recommendation": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "recommendation"
+  },
   "reconcile": {
     "level": "B2",
     "pos": "verb",
@@ -13155,6 +16665,16 @@
       "It's hard to reconcile his public image with his private behavior."
     ]
   },
+  "record": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "record"
+  },
+  "recording": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "recording"
+  },
   "recover": {
     "level": "B1",
     "pos": "verb",
@@ -13164,6 +16684,11 @@
       "She's recovering from surgery.",
       "The economy is slowly recovering."
     ]
+  },
+  "recycle": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "recycle"
   },
   "red": {
     "level": "A1",
@@ -13179,6 +16704,21 @@
       "We need to reduce our spending.",
       "The shop reduced prices by 20 percent."
     ]
+  },
+  "reduction": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "reduction"
+  },
+  "refer": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "refer"
+  },
+  "reference": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "reference"
   },
   "reflect": {
     "level": "B1",
@@ -13199,6 +16739,11 @@
       "Please refrain from smoking inside the building.",
       "She refrained from making any comments to the press."
     ]
+  },
+  "refrigerator": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "refrigerator"
   },
   "refuse": {
     "level": "A2",
@@ -13230,6 +16775,11 @@
     "pos": "noun",
     "tr": "bölge"
   },
+  "regional": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "regional"
+  },
   "register": {
     "level": "B1",
     "pos": "verb",
@@ -13250,6 +16800,16 @@
       "She regretted her decision immediately."
     ]
   },
+  "regular": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "regular"
+  },
+  "regularly": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "regularly"
+  },
   "regulate": {
     "level": "B2",
     "pos": "verb",
@@ -13265,10 +16825,45 @@
     "pos": "verb",
     "tr": "tekrarlamak"
   },
+  "reject": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "reject"
+  },
+  "relate": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "relate"
+  },
+  "related": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "related"
+  },
   "relationship": {
     "level": "B1",
     "pos": "noun",
     "tr": "ilişki"
+  },
+  "relative": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "relative"
+  },
+  "relax": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "relax"
+  },
+  "relaxed": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "relaxed"
+  },
+  "release": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "release"
   },
   "relegate": {
     "level": "C1",
@@ -13295,10 +16890,35 @@
     "pos": "adj",
     "tr": "güvenilir"
   },
+  "relief": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "relief"
+  },
+  "religion": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "religion"
+  },
+  "religious": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "religious"
+  },
   "relish": {
     "level": "B2",
     "pos": "verb",
     "tr": "tadını çıkarmak, zevk almak"
+  },
+  "rely": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "rely"
+  },
+  "remain": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "remain"
   },
   "remember": {
     "level": "A1",
@@ -13314,6 +16934,16 @@
       "Please remind me to call the dentist.",
       "This song reminds me of my childhood."
     ]
+  },
+  "remove": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "remove"
+  },
+  "rent": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "rent"
   },
   "repair": {
     "level": "A2",
@@ -13360,6 +16990,21 @@
     "pos": "verb",
     "tr": "kopyalamak"
   },
+  "reply": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "reply"
+  },
+  "report": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "report"
+  },
+  "reporter": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "reporter"
+  },
   "represent": {
     "level": "B1",
     "pos": "verb",
@@ -13369,6 +17014,11 @@
       "A lawyer will represent you in court.",
       "This painting represents freedom."
     ]
+  },
+  "representative": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "representative"
   },
   "reproach": {
     "level": "C1",
@@ -13380,15 +17030,50 @@
     "pos": "noun",
     "tr": "itibar"
   },
+  "request": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "request"
+  },
   "require": {
     "level": "B1",
     "pos": "verb",
     "tr": "gerektirmek"
   },
+  "requirement": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "requirement"
+  },
+  "rescue": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "rescue"
+  },
   "research": {
     "level": "B1",
     "pos": "noun",
     "tr": "araştırma"
+  },
+  "researcher": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "researcher"
+  },
+  "reservation": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "reservation"
+  },
+  "reserve": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "reserve"
+  },
+  "resident": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "resident"
   },
   "resign": {
     "level": "B1",
@@ -13409,6 +17094,21 @@
     "level": "B2",
     "pos": "adj",
     "tr": "dirençli, çabuk iyileşen"
+  },
+  "resist": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "resist"
+  },
+  "resolve": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "resolve"
+  },
+  "resort": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "resort"
   },
   "resource": {
     "level": "B1",
@@ -13435,6 +17135,11 @@
     "pos": "verb",
     "tr": "cevap vermek"
   },
+  "response": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "response"
+  },
   "responsibility": {
     "level": "A2",
     "pos": "noun",
@@ -13450,6 +17155,16 @@
     "pos": "adj",
     "tr": "sorumlu"
   },
+  "responsibly": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "responsibly"
+  },
+  "rest": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "rest"
+  },
   "restaurant": {
     "level": "A1",
     "pos": "noun",
@@ -13459,6 +17174,11 @@
     "level": "A1",
     "pos": "noun",
     "tr": "sonuç"
+  },
+  "retain": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "retain"
   },
   "retaliate": {
     "level": "C1",
@@ -13470,10 +17190,20 @@
       "She resisted the urge to retaliate against her critics."
     ]
   },
+  "retrieve": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "retrieve"
+  },
   "return": {
     "level": "A1",
     "pos": "verb",
     "tr": "dönmek"
+  },
+  "reveal": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "reveal"
   },
   "reverberation": {
     "level": "C1",
@@ -13484,6 +17214,26 @@
     "level": "C1",
     "pos": "noun",
     "tr": "hayal kurma, dalgınlık"
+  },
+  "review": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "review"
+  },
+  "revise": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "revise"
+  },
+  "revolution": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "revolution"
+  },
+  "rhythm": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "rhythm"
   },
   "rice": {
     "level": "A1",
@@ -13505,6 +17255,21 @@
     "pos": "adj",
     "tr": "doğru/sağ"
   },
+  "ring": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "ring"
+  },
+  "rise": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "rise"
+  },
+  "risk": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "risk"
+  },
   "river": {
     "level": "A1",
     "pos": "noun",
@@ -13525,10 +17290,40 @@
       "He was robbed on his way home."
     ]
   },
+  "robot": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "robot"
+  },
+  "rock": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "rock"
+  },
+  "roll": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "roll"
+  },
+  "romantic": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "romantic"
+  },
   "room": {
     "level": "A1",
     "pos": "noun",
     "tr": "oda"
+  },
+  "root": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "root"
+  },
+  "rope": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "rope"
   },
   "rough": {
     "level": "A2",
@@ -13540,6 +17335,26 @@
       "The surface of the road is rough."
     ]
   },
+  "routine": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "routine"
+  },
+  "row": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "row"
+  },
+  "rub": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "rub"
+  },
+  "rubber": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "rubber"
+  },
   "rude": {
     "level": "A2",
     "pos": "adj",
@@ -13549,6 +17364,26 @@
     "level": "A1",
     "pos": "verb",
     "tr": "koşmak"
+  },
+  "runner": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "runner"
+  },
+  "running": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "running"
+  },
+  "rural": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "rural"
+  },
+  "rush": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "rush"
   },
   "sad": {
     "level": "A1",
@@ -13560,10 +17395,35 @@
     "pos": "adj",
     "tr": "güvenli"
   },
+  "safeguard": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "safeguard"
+  },
+  "safety": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "safety"
+  },
   "sagacious": {
     "level": "B2",
     "pos": "adj",
     "tr": "bilge"
+  },
+  "sail": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sail"
+  },
+  "sailing": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sailing"
+  },
+  "sailor": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sailor"
   },
   "salad": {
     "level": "A1",
@@ -13595,15 +17455,30 @@
     "pos": "adj",
     "tr": "aynı"
   },
+  "sample": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sample"
+  },
   "sanction": {
     "level": "C1",
     "pos": "verb",
     "tr": "onaylamak"
   },
+  "sand": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sand"
+  },
   "sandwich": {
     "level": "A1",
     "pos": "noun",
     "tr": "sandviç"
+  },
+  "satisfied": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "satisfied"
   },
   "satisfy": {
     "level": "A2",
@@ -13615,10 +17490,35 @@
       "Nothing satisfies him — he always wants more."
     ]
   },
+  "Saturday": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Cumartesi"
+  },
+  "save": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "save"
+  },
+  "saving": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "saving"
+  },
   "say": {
     "level": "A1",
     "pos": "verb",
     "tr": "söylemek"
+  },
+  "scale": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "scale"
+  },
+  "scan": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "scan"
   },
   "scare": {
     "level": "A2",
@@ -13630,6 +17530,21 @@
       "Don't scare me like that!"
     ]
   },
+  "scared": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "scared"
+  },
+  "scary": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "scary"
+  },
+  "schedule": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "schedule"
+  },
   "school": {
     "level": "A1",
     "pos": "noun",
@@ -13639,6 +17554,26 @@
     "level": "A1",
     "pos": "noun",
     "tr": "bilim"
+  },
+  "scientific": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "scientific"
+  },
+  "scientist": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "scientist"
+  },
+  "score": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "score"
+  },
+  "script": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "script"
   },
   "scrutinize": {
     "level": "C1",
@@ -13660,6 +17595,21 @@
     "pos": "noun",
     "tr": "deniz"
   },
+  "search": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "search"
+  },
+  "season": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "season"
+  },
+  "seat": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "seat"
+  },
   "second": {
     "level": "A1",
     "pos": "det",
@@ -13674,6 +17624,11 @@
       "Can you keep a secret?",
       "She told me all her secrets."
     ]
+  },
+  "secretary": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "secretary"
   },
   "section": {
     "level": "A1",
@@ -13690,6 +17645,21 @@
     "pos": "verb",
     "tr": "görmek"
   },
+  "seed": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "seed"
+  },
+  "seek": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "seek"
+  },
+  "seem": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "seem"
+  },
   "seldom": {
     "level": "A2",
     "pos": "adv",
@@ -13705,6 +17675,16 @@
       "He was selected for the national team."
     ]
   },
+  "selection": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "selection"
+  },
+  "self": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "self"
+  },
   "selfish": {
     "level": "B1",
     "pos": "adj",
@@ -13715,10 +17695,30 @@
     "pos": "verb",
     "tr": "satmak"
   },
+  "senate": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "senate"
+  },
+  "senator": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "senator"
+  },
   "send": {
     "level": "A1",
     "pos": "verb",
     "tr": "göndermek"
+  },
+  "senior": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "senior"
+  },
+  "sense": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sense"
   },
   "sensible": {
     "level": "B1",
@@ -13745,15 +17745,80 @@
       "Keep your personal life separate from work."
     ]
   },
+  "September": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Eylül"
+  },
+  "sequence": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sequence"
+  },
   "serene": {
     "level": "B2",
     "pos": "adj",
     "tr": "sakin, huzurlu"
   },
+  "series": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "series"
+  },
   "serious": {
     "level": "B1",
     "pos": "adj",
     "tr": "ciddi"
+  },
+  "seriously": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "seriously"
+  },
+  "serve": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "serve"
+  },
+  "service": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "service"
+  },
+  "session": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "session"
+  },
+  "set": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "set"
+  },
+  "setting": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "setting"
+  },
+  "settle": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "settle"
+  },
+  "seven": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "seven"
+  },
+  "seventeen": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "seventeen"
+  },
+  "seventy": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "seventy"
   },
   "severe": {
     "level": "A2",
@@ -13765,6 +17830,31 @@
       "The country faced severe flooding."
     ]
   },
+  "sex": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sex"
+  },
+  "sexual": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sexual"
+  },
+  "shade": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "shade"
+  },
+  "shadow": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "shadow"
+  },
+  "shake": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "shake"
+  },
   "shall": {
     "level": "A2",
     "pos": "verb",
@@ -13775,6 +17865,11 @@
       "Shall I open the window?"
     ]
   },
+  "shallow": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "shallow"
+  },
   "shame": {
     "level": "A2",
     "pos": "noun",
@@ -13784,6 +17879,11 @@
       "He felt shame after lying to his parents.",
       "What a shame you cannot come to the party."
     ]
+  },
+  "shape": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "shape"
   },
   "share": {
     "level": "A2",
@@ -13805,15 +17905,60 @@
     "pos": "pron",
     "tr": "o (kadın)"
   },
+  "sheep": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sheep"
+  },
+  "sheet": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sheet"
+  },
   "shelf": {
     "level": "A2",
     "pos": "noun",
     "tr": "raf"
   },
+  "shell": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "shell"
+  },
+  "shelter": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "shelter"
+  },
+  "shh": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "shh"
+  },
+  "shift": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "shift"
+  },
+  "ship": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "ship"
+  },
   "shirt": {
     "level": "A1",
     "pos": "noun",
     "tr": "gömlek"
+  },
+  "shock": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "shock"
+  },
+  "shocked": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "shocked"
   },
   "shoe": {
     "level": "A1",
@@ -13835,6 +17980,11 @@
     "pos": "adj",
     "tr": "kısa"
   },
+  "shot": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "shot"
+  },
   "should": {
     "level": "A1",
     "pos": "modal",
@@ -13845,10 +17995,35 @@
     "pos": "verb",
     "tr": "göstermek"
   },
+  "shower": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "shower"
+  },
+  "showing": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "showing"
+  },
   "sick": {
     "level": "A1",
     "pos": "adj",
     "tr": "hasta"
+  },
+  "side": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "side"
+  },
+  "sign": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sign"
+  },
+  "signal": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "signal"
   },
   "significance": {
     "level": "B2",
@@ -13875,6 +18050,11 @@
       "She sat in silence for a long time."
     ]
   },
+  "silent": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "silent"
+  },
   "silly": {
     "level": "A2",
     "pos": "adj",
@@ -13885,6 +18065,11 @@
       "It was a silly mistake."
     ]
   },
+  "similar": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "similar"
+  },
   "similarly": {
     "level": "B1",
     "pos": "adv",
@@ -13894,6 +18079,11 @@
     "level": "A2",
     "pos": "adj",
     "tr": "basit"
+  },
+  "simply": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "simply"
   },
   "since": {
     "level": "A2",
@@ -13909,6 +18099,26 @@
     "level": "A1",
     "pos": "noun",
     "tr": "şarkıcı"
+  },
+  "singing": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "singing"
+  },
+  "single": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "single"
+  },
+  "sink": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sink"
+  },
+  "sir": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sir"
   },
   "sister": {
     "level": "A1",
@@ -13945,30 +18155,95 @@
     "pos": "number",
     "tr": "on altı"
   },
+  "sixth": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sixth"
+  },
   "sixty": {
     "level": "A1",
     "pos": "number",
     "tr": "altmış"
+  },
+  "size": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "size"
   },
   "ski": {
     "level": "A1",
     "pos": "verb",
     "tr": "kayak yapmak"
   },
+  "skiing": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "skiing"
+  },
+  "skin": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "skin"
+  },
   "skirt": {
     "level": "A1",
     "pos": "noun",
     "tr": "etek"
+  },
+  "sky": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sky"
+  },
+  "slave": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "slave"
   },
   "sleep": {
     "level": "A1",
     "pos": "verb",
     "tr": "uyumak"
   },
+  "slice": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "slice"
+  },
+  "slide": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "slide"
+  },
+  "slight": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "slight"
+  },
+  "slightly": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "slightly"
+  },
+  "slip": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "slip"
+  },
+  "slope": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "slope"
+  },
   "slow": {
     "level": "A1",
     "pos": "adj",
     "tr": "yavaş"
+  },
+  "slowly": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "slowly"
   },
   "small": {
     "level": "A1",
@@ -13979,6 +18254,21 @@
     "level": "A1",
     "pos": "adj",
     "tr": "akıllı"
+  },
+  "smell": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "smell"
+  },
+  "smile": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "smile"
+  },
+  "smoke": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "smoke"
   },
   "smooth": {
     "level": "A2",
@@ -14010,6 +18300,51 @@
     "pos": "noun",
     "tr": "sabun"
   },
+  "soccer": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "soccer"
+  },
+  "social": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "social"
+  },
+  "society": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "society"
+  },
+  "sock": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sock"
+  },
+  "soft": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "soft"
+  },
+  "software": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "software"
+  },
+  "soil": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "soil"
+  },
+  "solar": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "solar"
+  },
+  "sold": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sold"
+  },
   "solicit": {
     "level": "C1",
     "pos": "verb",
@@ -14019,6 +18354,11 @@
       "The organization solicited donations from local businesses.",
       "The committee solicited feedback from all stakeholders before deciding."
     ]
+  },
+  "solid": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "solid"
   },
   "solution": {
     "level": "B1",
@@ -14055,6 +18395,11 @@
     "pos": "adv",
     "tr": "bazen"
   },
+  "somewhat": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "somewhat"
+  },
   "somewhere": {
     "level": "A2",
     "pos": "adv",
@@ -14084,6 +18429,11 @@
     "level": "A1",
     "pos": "adj",
     "tr": "üzgün"
+  },
+  "sort": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sort"
   },
   "sound": {
     "level": "A1",
@@ -14120,10 +18470,30 @@
     "pos": "verb",
     "tr": "konuşmak"
   },
+  "speaker": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "speaker"
+  },
   "special": {
     "level": "A1",
     "pos": "adj",
     "tr": "özel"
+  },
+  "specialist": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "specialist"
+  },
+  "species": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "species"
+  },
+  "specific": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "specific"
   },
   "specifically": {
     "level": "B2",
@@ -14150,6 +18520,41 @@
     "pos": "verb",
     "tr": "harcamak"
   },
+  "spicy": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "spicy"
+  },
+  "spider": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "spider"
+  },
+  "spirit": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "spirit"
+  },
+  "spiritual": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "spiritual"
+  },
+  "split": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "split"
+  },
+  "spoke": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "spoke"
+  },
+  "sponsor": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sponsor"
+  },
   "spoon": {
     "level": "A2",
     "pos": "noun",
@@ -14160,15 +18565,45 @@
     "pos": "noun",
     "tr": "spor"
   },
+  "spot": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "spot"
+  },
+  "spread": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "spread"
+  },
   "spring": {
     "level": "A1",
     "pos": "noun",
     "tr": "ilkbahar"
   },
+  "square": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "square"
+  },
+  "stable": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "stable"
+  },
   "stadium": {
     "level": "A2",
     "pos": "noun",
     "tr": "stadyum"
+  },
+  "staff": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "staff"
+  },
+  "stage": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "stage"
   },
   "stairs": {
     "level": "A2",
@@ -14180,6 +18615,11 @@
     "pos": "verb",
     "tr": "ayakta durmak"
   },
+  "standard": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "standard"
+  },
   "star": {
     "level": "A1",
     "pos": "noun",
@@ -14189,6 +18629,11 @@
     "level": "A1",
     "pos": "verb",
     "tr": "başlamak"
+  },
+  "statement": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "statement"
   },
   "station": {
     "level": "A1",
@@ -14200,10 +18645,20 @@
     "pos": "noun",
     "tr": "boy, itibar"
   },
+  "status": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "status"
+  },
   "stay": {
     "level": "A1",
     "pos": "verb",
     "tr": "kalmak"
+  },
+  "steady": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "steady"
   },
   "steal": {
     "level": "A2",
@@ -14214,6 +18669,26 @@
       "Someone stole my wallet on the bus.",
       "It is wrong to steal."
     ]
+  },
+  "steel": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "steel"
+  },
+  "step": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "step"
+  },
+  "stick": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "stick"
+  },
+  "sticky": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sticky"
   },
   "stigma": {
     "level": "C1",
@@ -14234,6 +18709,16 @@
     "level": "B2",
     "pos": "noun",
     "tr": "şart"
+  },
+  "stomach": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "stomach"
+  },
+  "stone": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "stone"
   },
   "stop": {
     "level": "A1",
@@ -14260,10 +18745,25 @@
     "pos": "noun",
     "tr": "hikaye"
   },
+  "stove": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "stove"
+  },
   "strange": {
     "level": "A2",
     "pos": "adj",
     "tr": "garip"
+  },
+  "strangely": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "strangely"
+  },
+  "stranger": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "stranger"
   },
   "strategy": {
     "level": "B1",
@@ -14275,20 +18775,40 @@
       "What's your strategy for passing the exam?"
     ]
   },
+  "stream": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "stream"
+  },
   "street": {
     "level": "A1",
     "pos": "noun",
     "tr": "sokak"
+  },
+  "strength": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "strength"
   },
   "strenuous": {
     "level": "B2",
     "pos": "adj",
     "tr": "yorucu"
   },
+  "stress": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "stress"
+  },
   "strict": {
     "level": "B1",
     "pos": "adj",
     "tr": "katı"
+  },
+  "strike": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "strike"
   },
   "stringent": {
     "level": "C1",
@@ -14304,6 +18824,11 @@
     "level": "A1",
     "pos": "adj",
     "tr": "güçlü"
+  },
+  "structured": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "structured"
   },
   "struggle": {
     "level": "B1",
@@ -14325,10 +18850,25 @@
     "pos": "verb",
     "tr": "çalışmak/öğrenmek"
   },
+  "stuff": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "stuff"
+  },
   "style": {
     "level": "A1",
     "pos": "noun",
     "tr": "stil"
+  },
+  "subject": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "subject"
+  },
+  "submit": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "submit"
   },
   "subsequent": {
     "level": "B2",
@@ -14355,6 +18895,11 @@
     "pos": "noun",
     "tr": "sübvansiyon"
   },
+  "substance": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "substance"
+  },
   "substantial": {
     "level": "B2",
     "pos": "adj",
@@ -14375,6 +18920,11 @@
     "pos": "adj",
     "tr": "ince, ustaca"
   },
+  "subway": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "subway"
+  },
   "succeed": {
     "level": "A2",
     "pos": "verb",
@@ -14390,6 +18940,16 @@
     "pos": "noun",
     "tr": "başarı"
   },
+  "successful": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "successful"
+  },
+  "successfully": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "successfully"
+  },
   "succumb": {
     "level": "C1",
     "pos": "verb",
@@ -14399,6 +18959,11 @@
       "Many patients succumbed to the illness before a cure was found.",
       "After months of pressure, the CEO succumbed and resigned."
     ]
+  },
+  "such": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "such"
   },
   "sudden": {
     "level": "A2",
@@ -14430,15 +18995,35 @@
     "pos": "adj",
     "tr": "uygun"
   },
+  "sum": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sum"
+  },
+  "summary": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "summary"
+  },
   "summer": {
     "level": "A1",
     "pos": "noun",
     "tr": "yaz"
   },
+  "summit": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "summit"
+  },
   "sun": {
     "level": "A1",
     "pos": "noun",
     "tr": "güneş"
+  },
+  "Sunday": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Pazar"
   },
   "supermarket": {
     "level": "A1",
@@ -14449,6 +19034,16 @@
     "level": "B1",
     "pos": "verb",
     "tr": "desteklemek"
+  },
+  "supporter": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "supporter"
+  },
+  "suppose": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "suppose"
   },
   "suppress": {
     "level": "C1",
@@ -14465,6 +19060,11 @@
     "pos": "adj",
     "tr": "emin"
   },
+  "surgery": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "surgery"
+  },
   "surmount": {
     "level": "C1",
     "pos": "verb",
@@ -14480,15 +19080,45 @@
     "pos": "verb",
     "tr": "şaşırtmak"
   },
+  "surprising": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "surprising"
+  },
   "surround": {
     "level": "A2",
     "pos": "verb",
     "tr": "çevrelemek"
   },
+  "surrounding": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "surrounding"
+  },
+  "survey": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "survey"
+  },
   "sweater": {
     "level": "A1",
     "pos": "noun",
     "tr": "kazak"
+  },
+  "sweep": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sweep"
+  },
+  "sweet": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sweet"
+  },
+  "swept": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "swept"
   },
   "swim": {
     "level": "A1",
@@ -14505,6 +19135,21 @@
     "pos": "noun",
     "tr": "dalkavuk"
   },
+  "symbol": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "symbol"
+  },
+  "sympathy": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "sympathy"
+  },
+  "symptom": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "symptom"
+  },
   "synthesis": {
     "level": "C1",
     "pos": "noun",
@@ -14515,15 +19160,40 @@
     "pos": "verb",
     "tr": "sentezlemek"
   },
+  "system": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "system"
+  },
+  "T-shirt": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "tişört"
+  },
   "table": {
     "level": "A1",
     "pos": "noun",
     "tr": "masa"
   },
+  "tablet": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "tablet"
+  },
   "take": {
     "level": "A1",
     "pos": "verb",
     "tr": "almak"
+  },
+  "talent": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "talent"
+  },
+  "talented": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "talented"
   },
   "talk": {
     "level": "A1",
@@ -14540,6 +19210,16 @@
     "pos": "adj",
     "tr": "somut"
   },
+  "tank": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "tank"
+  },
+  "tape": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "tape"
+  },
   "target": {
     "level": "B1",
     "pos": "noun",
@@ -14550,6 +19230,11 @@
       "The target audience for this product is young adults."
     ]
   },
+  "task": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "task"
+  },
   "taste": {
     "level": "A2",
     "pos": "verb",
@@ -14559,6 +19244,11 @@
     "level": "A2",
     "pos": "adj",
     "tr": "lezzetli"
+  },
+  "tax": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "tax"
   },
   "taxi": {
     "level": "A1",
@@ -14580,15 +19270,45 @@
     "pos": "noun",
     "tr": "öğretmen"
   },
+  "teaching": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "teaching"
+  },
   "team": {
     "level": "A1",
     "pos": "noun",
     "tr": "takım"
   },
+  "tear": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "tear"
+  },
+  "technical": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "technical"
+  },
+  "technique": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "technique"
+  },
   "technology": {
     "level": "B1",
     "pos": "noun",
     "tr": "teknoloji"
+  },
+  "teenage": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "teenage"
+  },
+  "teenager": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "teenager"
   },
   "telephone": {
     "level": "A1",
@@ -14635,10 +19355,20 @@
     "pos": "noun",
     "tr": "tenis"
   },
+  "tent": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "tent"
+  },
   "tenuous": {
     "level": "B2",
     "pos": "adj",
     "tr": "zayıf, ince"
+  },
+  "term": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "term"
   },
   "terrible": {
     "level": "A1",
@@ -14715,10 +19445,25 @@
       "The party had a space theme."
     ]
   },
+  "themselves": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "themselves"
+  },
   "then": {
     "level": "A1",
     "pos": "adv",
     "tr": "sonra/o zaman"
+  },
+  "theory": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "theory"
+  },
+  "therapy": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "therapy"
   },
   "there": {
     "level": "A1",
@@ -14785,6 +19530,11 @@
     "pos": "verb",
     "tr": "düşünmek"
   },
+  "thinking": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "thinking"
+  },
   "third": {
     "level": "A1",
     "pos": "number",
@@ -14815,10 +19565,20 @@
     "pos": "det",
     "tr": "şunlar"
   },
+  "thought": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "thought"
+  },
   "thousand": {
     "level": "A1",
     "pos": "number",
     "tr": "bin"
+  },
+  "threat": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "threat"
   },
   "three": {
     "level": "A1",
@@ -14845,10 +19605,30 @@
     "pos": "prep",
     "tr": "boyunca"
   },
+  "throw": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "throw"
+  },
+  "Thursday": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Perşembe"
+  },
+  "thus": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "thus"
+  },
   "ticket": {
     "level": "A1",
     "pos": "noun",
     "tr": "bilet"
+  },
+  "tie": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "tie"
   },
   "tight": {
     "level": "A2",
@@ -14865,10 +19645,20 @@
     "pos": "noun",
     "tr": "zaman"
   },
+  "tiny": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "tiny"
+  },
   "tired": {
     "level": "A1",
     "pos": "adj",
     "tr": "yorgun"
+  },
+  "title": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "title"
   },
   "to": {
     "level": "A1",
@@ -14910,6 +19700,16 @@
     "pos": "adv",
     "tr": "yarın"
   },
+  "ton": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "ton"
+  },
+  "tone": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "tone"
+  },
   "tongue": {
     "level": "A2",
     "pos": "noun",
@@ -14930,6 +19730,11 @@
     "pos": "adv",
     "tr": "de/çok fazla"
   },
+  "tool": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "tool"
+  },
   "tooth": {
     "level": "A1",
     "pos": "noun",
@@ -14940,10 +19745,20 @@
     "pos": "noun",
     "tr": "üst/tepe"
   },
+  "topic": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "topic"
+  },
   "total": {
     "level": "A1",
     "pos": "adj",
     "tr": "toplam"
+  },
+  "totally": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "totally"
   },
   "tough": {
     "level": "A2",
@@ -14955,6 +19770,26 @@
       "You need to be tough to survive in this job."
     ]
   },
+  "tour": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "tour"
+  },
+  "tourism": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "tourism"
+  },
+  "tourist": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "tourist"
+  },
+  "toward": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "toward"
+  },
   "towards": {
     "level": "A2",
     "pos": "prep",
@@ -14965,10 +19800,25 @@
     "pos": "noun",
     "tr": "havlu"
   },
+  "tower": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "tower"
+  },
   "town": {
     "level": "A1",
     "pos": "noun",
     "tr": "kasaba"
+  },
+  "track": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "track"
+  },
+  "trade": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "trade"
   },
   "tradition": {
     "level": "A2",
@@ -14990,6 +19840,21 @@
     "pos": "noun",
     "tr": "tren"
   },
+  "trainer": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "trainer"
+  },
+  "training": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "training"
+  },
+  "transfer": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "transfer"
+  },
   "transform": {
     "level": "B1",
     "pos": "verb",
@@ -14999,6 +19864,11 @@
     "level": "C1",
     "pos": "adj",
     "tr": "geçici"
+  },
+  "transition": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "transition"
   },
   "transitional": {
     "level": "B2",
@@ -15015,15 +19885,35 @@
       "She translates books for a living."
     ]
   },
+  "translation": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "translation"
+  },
   "transparency": {
     "level": "C1",
     "pos": "noun",
     "tr": "şeffaflık"
   },
+  "transportation": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "transportation"
+  },
+  "trash": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "trash"
+  },
   "travel": {
     "level": "A1",
     "pos": "verb",
     "tr": "seyahat etmek"
+  },
+  "traveler": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "traveler"
   },
   "treat": {
     "level": "A2",
@@ -15050,6 +19940,16 @@
     "pos": "adj",
     "tr": "keskin, etkili"
   },
+  "trend": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "trend"
+  },
+  "trial": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "trial"
+  },
   "trick": {
     "level": "A2",
     "pos": "noun",
@@ -15065,6 +19965,11 @@
     "pos": "noun",
     "tr": "gezi"
   },
+  "tropical": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "tropical"
+  },
   "true": {
     "level": "A1",
     "pos": "adj",
@@ -15074,6 +19979,21 @@
     "level": "A1",
     "pos": "verb",
     "tr": "denemek"
+  },
+  "Tuesday": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Salı"
+  },
+  "tune": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "tune"
+  },
+  "tunnel": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "tunnel"
   },
   "turmoil": {
     "level": "B2",
@@ -15085,6 +20005,11 @@
     "pos": "verb",
     "tr": "dönmek"
   },
+  "TV": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "televizyon"
+  },
   "twelve": {
     "level": "A1",
     "pos": "number",
@@ -15094,6 +20019,11 @@
     "level": "A1",
     "pos": "number",
     "tr": "yirmi"
+  },
+  "twice": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "twice"
   },
   "two": {
     "level": "A1",
@@ -15150,6 +20080,16 @@
     "pos": "noun",
     "tr": "amca/dayı"
   },
+  "uncomfortable": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "uncomfortable"
+  },
+  "unconscious": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "unconscious"
+  },
   "under": {
     "level": "A1",
     "pos": "prep",
@@ -15170,6 +20110,36 @@
     "pos": "verb",
     "tr": "anlamak"
   },
+  "understanding": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "understanding"
+  },
+  "underwear": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "underwear"
+  },
+  "unemployed": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "unemployed"
+  },
+  "unemployment": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "unemployment"
+  },
+  "unexpected": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "unexpected"
+  },
+  "unfair": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "unfair"
+  },
   "unfortunately": {
     "level": "A2",
     "pos": "adv",
@@ -15179,6 +20149,26 @@
       "Unfortunately, the shop was closed.",
       "Unfortunately, I cannot come to your party."
     ]
+  },
+  "unhappy": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "unhappy"
+  },
+  "uniform": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "uniform"
+  },
+  "unique": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "unique"
+  },
+  "unit": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "unit"
   },
   "unite": {
     "level": "A2",
@@ -15190,10 +20180,25 @@
       "Music can unite people from different cultures."
     ]
   },
+  "united": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "united"
+  },
+  "universe": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "universe"
+  },
   "university": {
     "level": "A1",
     "pos": "noun",
     "tr": "üniversite"
+  },
+  "unknown": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "unknown"
   },
   "unless": {
     "level": "A2",
@@ -15204,6 +20209,21 @@
     "level": "B1",
     "pos": "prep",
     "tr": "aksine"
+  },
+  "unlikely": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "unlikely"
+  },
+  "unnecessary": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "unnecessary"
+  },
+  "unpleasant": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "unpleasant"
   },
   "unprecedented": {
     "level": "B2",
@@ -15224,6 +20244,16 @@
     "level": "A1",
     "pos": "adv",
     "tr": "yukarı"
+  },
+  "update": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "update"
+  },
+  "upon": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "upon"
   },
   "upset": {
     "level": "A2",
@@ -15250,10 +20280,25 @@
     "pos": "verb",
     "tr": "kullanmak"
   },
+  "used": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "used"
+  },
   "useful": {
     "level": "A1",
     "pos": "adj",
     "tr": "faydalı"
+  },
+  "user": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "user"
+  },
+  "usual": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "usual"
   },
   "usually": {
     "level": "A1",
@@ -15300,10 +20345,20 @@
       "A river runs through the valley."
     ]
   },
+  "valuable": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "valuable"
+  },
   "variation": {
     "level": "B2",
     "pos": "noun",
     "tr": "varyasyon"
+  },
+  "varied": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "varied"
   },
   "variety": {
     "level": "A2",
@@ -15315,10 +20370,20 @@
       "Variety is the spice of life."
     ]
   },
+  "vast": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "vast"
+  },
   "vegetable": {
     "level": "A1",
     "pos": "noun",
     "tr": "sebze"
+  },
+  "vehicle": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "vehicle"
   },
   "venerate": {
     "level": "B2",
@@ -15330,6 +20395,11 @@
     "pos": "noun",
     "tr": "doğruluk, gerçeklik"
   },
+  "version": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "version"
+  },
   "very": {
     "level": "A1",
     "pos": "adv",
@@ -15339,6 +20409,11 @@
     "level": "C1",
     "pos": "noun",
     "tr": "kalıntı, iz"
+  },
+  "via": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "via"
   },
   "vibrant": {
     "level": "B2",
@@ -15350,6 +20425,16 @@
     "pos": "adj",
     "tr": "başkası aracılığıyla hissedilen"
   },
+  "victim": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "victim"
+  },
+  "victory": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "victory"
+  },
   "video": {
     "level": "A1",
     "pos": "noun",
@@ -15359,6 +20444,11 @@
     "level": "B1",
     "pos": "noun",
     "tr": "görüş"
+  },
+  "viewer": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "viewer"
   },
   "vignette": {
     "level": "C1",
@@ -15380,6 +20470,21 @@
       "Recent discoveries have vindicated the scientist's controversial theory."
     ]
   },
+  "virtual": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "virtual"
+  },
+  "virus": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "virus"
+  },
+  "vision": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "vision"
+  },
   "visit": {
     "level": "A1",
     "pos": "verb",
@@ -15390,15 +20495,45 @@
     "pos": "noun",
     "tr": "ziyaretçi"
   },
+  "visual": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "visual"
+  },
   "vital": {
     "level": "B2",
     "pos": "adj",
     "tr": "hayati"
   },
+  "vitamin": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "vitamin"
+  },
   "vivid": {
     "level": "B2",
     "pos": "adj",
     "tr": "canlı"
+  },
+  "volka": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "volka"
+  },
+  "volume": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "volume"
+  },
+  "volunteer": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "volunteer"
+  },
+  "vote": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "vote"
   },
   "vulnerability": {
     "level": "B2",
@@ -15420,10 +20555,20 @@
     "pos": "noun",
     "tr": "garson"
   },
+  "wake": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "wake"
+  },
   "walk": {
     "level": "A1",
     "pos": "verb",
     "tr": "yürümek"
+  },
+  "walker": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "walker"
   },
   "wall": {
     "level": "A1",
@@ -15460,6 +20605,11 @@
       "The sign warns drivers about the sharp turn."
     ]
   },
+  "warning": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "warning"
+  },
   "warrant": {
     "level": "C1",
     "pos": "verb",
@@ -15475,6 +20625,16 @@
     "pos": "verb",
     "tr": "yıkamak"
   },
+  "washing": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "washing"
+  },
+  "waste": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "waste"
+  },
   "watch": {
     "level": "A1",
     "pos": "verb",
@@ -15484,6 +20644,11 @@
     "level": "A1",
     "pos": "noun",
     "tr": "su"
+  },
+  "wave": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "wave"
   },
   "way": {
     "level": "A1",
@@ -15495,6 +20660,16 @@
     "pos": "pron",
     "tr": "biz"
   },
+  "weak": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "weak"
+  },
+  "weakness": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "weakness"
+  },
   "wealth": {
     "level": "A2",
     "pos": "noun",
@@ -15504,6 +20679,16 @@
       "His family has great wealth.",
       "Health is more important than wealth."
     ]
+  },
+  "wealthy": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "wealthy"
+  },
+  "weapon": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "weapon"
   },
   "wear": {
     "level": "A1",
@@ -15515,10 +20700,25 @@
     "pos": "noun",
     "tr": "hava durumu"
   },
+  "web": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "web"
+  },
   "website": {
     "level": "A1",
     "pos": "noun",
     "tr": "web sitesi"
+  },
+  "wedding": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "wedding"
+  },
+  "Wednesday": {
+    "level": "A1",
+    "pos": "noun",
+    "tr": "Çarşamba"
   },
   "week": {
     "level": "A1",
@@ -15540,6 +20740,11 @@
       "She weighed the fruit before paying."
     ]
   },
+  "weight": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "weight"
+  },
   "welcome": {
     "level": "A1",
     "pos": "exclam",
@@ -15559,6 +20764,16 @@
     "level": "A1",
     "pos": "det",
     "tr": "ne"
+  },
+  "whatever": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "whatever"
+  },
+  "wheel": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "wheel"
   },
   "when": {
     "level": "A1",
@@ -15620,6 +20835,11 @@
     "pos": "conj",
     "tr": "iken, sırasında"
   },
+  "whisper": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "whisper"
+  },
   "white": {
     "level": "A1",
     "pos": "adj",
@@ -15630,10 +20850,30 @@
     "pos": "pron",
     "tr": "kim"
   },
+  "whom": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "whom"
+  },
+  "whose": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "whose"
+  },
   "why": {
     "level": "A1",
     "pos": "adv",
     "tr": "neden"
+  },
+  "wide": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "wide"
+  },
+  "widely": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "widely"
   },
   "widespread": {
     "level": "B2",
@@ -15645,20 +20885,50 @@
     "pos": "noun",
     "tr": "eş/karı"
   },
+  "wild": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "wild"
+  },
+  "wildlife": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "wildlife"
+  },
   "will": {
     "level": "A1",
     "pos": "modal",
     "tr": "-ecek/-acak"
+  },
+  "willing": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "willing"
   },
   "win": {
     "level": "A1",
     "pos": "verb",
     "tr": "kazanmak"
   },
+  "wind": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "wind"
+  },
   "window": {
     "level": "A1",
     "pos": "noun",
     "tr": "pencere"
+  },
+  "wine": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "wine"
+  },
+  "winner": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "winner"
   },
   "winter": {
     "level": "A1",
@@ -15669,6 +20939,11 @@
     "level": "B1",
     "pos": "adj",
     "tr": "bilge"
+  },
+  "wish": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "wish"
   },
   "with": {
     "level": "A1",
@@ -15710,6 +20985,11 @@
     "pos": "noun",
     "tr": "kelime"
   },
+  "words": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "words"
+  },
   "work": {
     "level": "A1",
     "pos": "verb",
@@ -15725,10 +21005,25 @@
     "pos": "noun",
     "tr": "dünya"
   },
+  "worldwide": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "worldwide"
+  },
+  "worried": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "worried"
+  },
   "worry": {
     "level": "B1",
     "pos": "verb",
     "tr": "endişelenmek"
+  },
+  "worse": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "worse"
   },
   "worth": {
     "level": "A2",
@@ -15744,6 +21039,11 @@
     "level": "A1",
     "pos": "modal",
     "tr": "-irdi/-ırdı"
+  },
+  "wound": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "wound"
   },
   "write": {
     "level": "A1",
@@ -15830,6 +21130,11 @@
     "pos": "pron",
     "tr": "kendin"
   },
+  "youth": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "youth"
+  },
   "zeal": {
     "level": "C1",
     "pos": "noun",
@@ -15844,6 +21149,11 @@
     "level": "A1",
     "pos": "number",
     "tr": "sıfır"
+  },
+  "zone": {
+    "level": "B1",
+    "pos": "noun",
+    "tr": "zone"
   },
   "zoo": {
     "level": "A2",
