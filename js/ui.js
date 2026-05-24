@@ -15,6 +15,14 @@ function renderSettingsModal() {
   const quickActionHint = cloudAuth.signedIn
     ? 'You are signed in. Use Sync Now to fetch latest progress.'
     : 'Sign in once with GitHub, then use Sync Now anytime.';
+  const cloudActionButtons = cloudAuth.signedIn
+    ? `
+      <button class="btn" data-ui-action="cloud-sync-now">Sync Now</button>
+      <button class="btn btn-muted" data-ui-action="cloud-signout">Sign out</button>
+    `
+    : `
+      <button class="btn" data-ui-action="cloud-connect">Connect with GitHub</button>
+    `;
 
   return `
     <div class="modal-overlay" onclick="if(event.target===this) handleUiAction('close-modal')">
@@ -34,9 +42,7 @@ function renderSettingsModal() {
         <div style="font-size:0.8rem; color: var(--text-muted); margin-bottom:8px;">${escapeHtml(quickActionHint)}</div>
         <div id="cloud-status" style="font-size:0.82rem; min-height:1.2em; margin-bottom:8px;"></div>
         <div class="modal-actions">
-          <button class="btn" data-ui-action="cloud-connect">Connect with GitHub</button>
-          <button class="btn btn-muted" data-ui-action="cloud-sync-now">Sync Now</button>
-          <button class="btn btn-muted" data-ui-action="cloud-signout">Sign out</button>
+          ${cloudActionButtons}
         </div>
         <hr style="border-color: var(--border); margin: 16px 0;">
         <h3 style="margin-bottom: 8px;">Data</h3>
