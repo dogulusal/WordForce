@@ -10,14 +10,13 @@ let AppState = {
   session: {
     words: [],
     queue: [],
+    templateHistory: {},
     skipped: {},
     levelFilter: 'ALL',
     round: 1,
     current: 0,
     results: {},
-    currentExercise: null,
-    newlyUnlocked: [],
-    pendingSecondaryForSession: []
+    currentExercise: null
   },
   ui: {
     screen: 'home',
@@ -30,9 +29,17 @@ let AppState = {
     reveal: null,
     locked: false,
     pendingResult: null,
+    wrongAttempts: 0,
+    hintVisible: false,
+    freeTypeInput: '',
+    flashcardIndex: 0,
+    flashcardFlipped: false,
     sbRetryMode: false,
+    sbPrefixMatch: 0,
+    sbShake: false,
     productionDraft: '',
     productionSubmitted: '',
+    sessionSize: 10,
     prepLevel: 'ALL',
     prepPage: 0,
     prepSelectedKnown: [],
@@ -41,6 +48,9 @@ let AppState = {
 };
 
 const SESSION_SIZE = 10;
+const PRIMARY_PROGRESS_KEY = 'wf_progress';
+const LEGACY_PROGRESS_KEYS = ['wordforge_progress', 'progress'];
+const WF_PROGRESS_UPDATED_KEY = 'wf_local_updated_at';
 
 function toLocalDate(daysToAdd = 0) {
   return new Date(Date.now() + daysToAdd * 24 * 60 * 60 * 1000).toLocaleDateString('en-CA');
@@ -103,35 +113,8 @@ function applyReviewCollisionPolicy(progress) {
   return changed;
 }
 
-function collectPendingSecondaryMeanings(progress, limit = 2) {
-  const pending = [];
-
-  Object.entries(progress.words || {}).forEach(([word, entry]) => {
-    if (!Array.isArray(entry.meanings)) return;
-    entry.meanings.forEach((meaning, meaningIndex) => {
-      if (meaningIndex === 0) return;
-      if (meaning?.status !== 'pending') return;
-      pending.push({
-        word,
-        meaningIndex,
-        queuedAt: meaning.pendingAt || meaning.unlockedAt || '',
-      });
-    });
-  });
-
-  pending.sort((a, b) => {
-    const dateCmp = String(a.queuedAt).localeCompare(String(b.queuedAt));
-    if (dateCmp !== 0) return dateCmp;
-    const wordCmp = a.word.localeCompare(b.word);
-    if (wordCmp !== 0) return wordCmp;
-    return a.meaningIndex - b.meaningIndex;
-  });
-
-  return pending.slice(0, limit);
-}
-
 async function loadWords() {
-  const response = await fetch('data/words_enriched.json');
+  const response = await fetch('data/words_enriched.json', { cache: 'no-store' });
   AllWords = await response.json();
   window.AllWords = AllWords;
 }
@@ -141,13 +124,34 @@ async function loadEnvApiKey() {
     const response = await fetch('.env', { cache: 'no-store' });
     if (!response.ok) return;
     const content = await response.text();
-    const match = content.match(/^API_KEY\s*=\s*(.+)$/m);
-    if (!match) return;
-    const key = match[1].trim();
-    if (!key) return;
-    window.ENV_API_KEY = key;
-    if (!localStorage.getItem('wf_api_key')) {
-      localStorage.setItem('wf_api_key', key);
+
+    const readEnvValue = (name) => {
+      const match = content.match(new RegExp(`^${name}\\s*=\\s*(.+)$`, 'm'));
+      return match ? match[1].trim() : '';
+    };
+
+    const key = readEnvValue('API_KEY');
+    if (key) {
+      window.ENV_API_KEY = key;
+      if (!localStorage.getItem('wf_api_key')) {
+        localStorage.setItem('wf_api_key', key);
+      }
+    }
+
+    const supabaseUrl = readEnvValue('SUPABASE_URL');
+    if (supabaseUrl) {
+      window.ENV_SUPABASE_URL = supabaseUrl;
+      if (!localStorage.getItem('wf_supabase_url')) {
+        localStorage.setItem('wf_supabase_url', supabaseUrl);
+      }
+    }
+
+    const supabaseAnonKey = readEnvValue('SUPABASE_ANON_KEY');
+    if (supabaseAnonKey) {
+      window.ENV_SUPABASE_ANON_KEY = supabaseAnonKey;
+      if (!localStorage.getItem('wf_supabase_anon_key')) {
+        localStorage.setItem('wf_supabase_anon_key', supabaseAnonKey);
+      }
     }
   } catch (error) {
     // .env may be absent in some environments; ignore silently.
@@ -155,18 +159,48 @@ async function loadEnvApiKey() {
 }
 
 function saveProgress(progress) {
-  localStorage.setItem('wf_progress', JSON.stringify(progress));
+  const payload = JSON.stringify(progress);
+  const currentPayload = localStorage.getItem(PRIMARY_PROGRESS_KEY);
+  if (currentPayload === payload) return;
+
+  localStorage.setItem(PRIMARY_PROGRESS_KEY, payload);
+  // Mirror to legacy keys so older app variants can still read the same progress.
+  LEGACY_PROGRESS_KEYS.forEach((key) => localStorage.setItem(key, payload));
+  localStorage.setItem(WF_PROGRESS_UPDATED_KEY, new Date().toISOString());
+
+  if (window.WFCloud) {
+    window.WFCloud.notifyLocalChange();
+  }
+}
+
+function parseProgressJSON(json) {
+  if (!json) return null;
+  try {
+    const parsed = JSON.parse(json);
+    if (!parsed || typeof parsed !== 'object') return null;
+    if (!parsed.words || typeof parsed.words !== 'object') return null;
+    return parsed;
+  } catch {
+    return null;
+  }
 }
 
 function loadProgress() {
-  const json = localStorage.getItem('wf_progress');
-  if (!json) return { level: 'A1', words: {} };
-  try {
-    return JSON.parse(json);
-  } catch (e) {
-    localStorage.removeItem('wf_progress');
-    return { level: 'A1', words: {} };
+  const keysToTry = [PRIMARY_PROGRESS_KEY, ...LEGACY_PROGRESS_KEYS];
+
+  for (const key of keysToTry) {
+    const parsed = parseProgressJSON(localStorage.getItem(key));
+    if (!parsed) continue;
+
+    if (key !== PRIMARY_PROGRESS_KEY) {
+      // Self-heal: migrate legacy storage into the primary key.
+      localStorage.setItem(PRIMARY_PROGRESS_KEY, JSON.stringify(parsed));
+    }
+
+    return parsed;
   }
+
+  return { level: 'A1', words: {} };
 }
 
 function updateState(currentState, action) {
@@ -203,17 +237,39 @@ function updateState(currentState, action) {
     case 'SET_LOCKED':
       newState.ui.locked = action.payload;
       break;
+    case 'SET_FREE_TYPE_SECOND_CHANCE':
+      newState.ui.freeTypeSecondChance = action.payload;
+      break;
     case 'SET_PENDING_RESULT':
       newState.ui.pendingResult = action.payload;
       break;
     case 'SET_SB_RETRY':
       newState.ui.sbRetryMode = action.payload;
       break;
+    case 'SET_SB_PREFIX':
+      newState.ui.sbPrefixMatch = Number(action.payload) || 0;
+      break;
+    case 'SET_SB_SHAKE':
+      newState.ui.sbShake = Boolean(action.payload);
+      break;
     case 'SET_PRODUCTION_DRAFT':
       newState.ui.productionDraft = action.payload;
       break;
     case 'SET_PRODUCTION_SUBMITTED':
       newState.ui.productionSubmitted = action.payload;
+      break;
+    case 'SET_SESSION_SIZE':
+      newState.ui.sessionSize = action.payload;
+      break;
+    case 'SET_HINT_VISIBLE':
+      newState.ui.hintVisible = Boolean(action.payload);
+      break;
+    case 'SET_FREE_TYPE_INPUT':
+      newState.ui.freeTypeInput = action.payload;
+      break;
+    case 'SET_FLASHCARD':
+      newState.ui.flashcardIndex = action.payload.index;
+      newState.ui.flashcardFlipped = action.payload.flipped;
       break;
     case 'SET_PREP_LEVEL':
       newState.ui.prepLevel = action.payload;
@@ -256,7 +312,12 @@ function updateState(currentState, action) {
       newState.ui.reveal = null;
       newState.ui.locked = false;
       newState.ui.pendingResult = null;
+      newState.ui.wrongAttempts = 0;
+      newState.ui.hintVisible = false;
+      newState.ui.freeTypeInput = '';
       newState.ui.sbRetryMode = false;
+      newState.ui.sbPrefixMatch = 0;
+      newState.ui.sbShake = false;
       newState.ui.productionDraft = '';
       newState.ui.productionSubmitted = '';
       break;
@@ -270,18 +331,17 @@ function updateState(currentState, action) {
       newState.ui.reveal = null;
       newState.ui.locked = false;
       newState.ui.pendingResult = null;
+      newState.ui.wrongAttempts = 0;
+      newState.ui.hintVisible = false;
+      newState.ui.freeTypeInput = '';
       newState.ui.sbRetryMode = false;
+      newState.ui.sbPrefixMatch = 0;
+      newState.ui.sbShake = false;
       newState.ui.productionDraft = '';
       newState.ui.productionSubmitted = '';
       break;
     case 'SET_CURRENT_EXERCISE':
       newState.session.currentExercise = action.payload;
-      break;
-    case 'SET_NEWLY_UNLOCKED':
-      newState.session.newlyUnlocked = action.payload;
-      break;
-    case 'SET_PENDING_SECONDARY_FOR_SESSION':
-      newState.session.pendingSecondaryForSession = action.payload;
       break;
     case 'MARK_KNOWN':
       newState.progress.words[action.payload] = {
@@ -326,30 +386,6 @@ function updateState(currentState, action) {
         };
       }
       break;
-    case 'SET_MEANING_STATUS':
-      {
-        const { word, meaningIndex, status, pendingAt, interval, nextReview } = action.payload;
-        const existing = newState.progress.words[word] || {
-          status: 'practice',
-          interval: 1,
-          nextReview: toLocalDate(1),
-          posErrors: {},
-        };
-
-        newState.progress.words[word] = existing;
-        const updated = setMeaningState(existing, meaningIndex, {
-          status,
-          interval: interval !== undefined ? interval : existing.interval,
-          nextReview: nextReview !== undefined ? nextReview : existing.nextReview,
-        });
-
-        if (status === 'pending') {
-          updated.pendingAt = pendingAt || toLocalDate(0);
-        } else if (updated.pendingAt) {
-          delete updated.pendingAt;
-        }
-      }
-      break;
     case 'DELETE_WORD_PROGRESS':
       delete newState.progress.words[action.payload];
       break;
@@ -380,9 +416,34 @@ function escapeHtml(text) {
     .replace(/'/g, '&#39;');
 }
 
+const CEFR_ORDER = { A1: 1, A2: 2, B1: 3, B2: 4, C1: 5 };
+
 function isEligibleForLevel(word, levelFilter) {
   if (levelFilter === 'ALL') return true;
   return (AllWords[word]?.level || 'A1') === levelFilter;
+}
+
+function getWordLevel(word) {
+  return AllWords[word]?.level || 'A1';
+}
+
+// Returns the lowest CEFR level that still has unseen or practice words.
+// Used when levelFilter is 'ALL' to ensure level-ordered progression (A1 → A2 → ...).
+function getActiveLevel(progress) {
+  const levelOrder = ['A1', 'A2', 'B1', 'B2', 'C1'];
+  const today = toLocalDate(0);
+  for (const level of levelOrder) {
+    const hasActive = Object.keys(AllWords).some((w) => {
+      if (getWordLevel(w) !== level) return false;
+      const wp = progress.words[w];
+      if (!wp) return true; // unseen
+      if (wp.status === 'practice' && (!wp.nextReview || wp.nextReview <= today)) return true;
+      return false;
+    });
+    if (hasActive) return level;
+  }
+  // All levels exhausted — allow review-due words from any level
+  return null;
 }
 
 function pickSessionWords(sessionSize, levelFilter = 'ALL') {
@@ -392,13 +453,31 @@ function pickSessionWords(sessionSize, levelFilter = 'ALL') {
     const data = AppState.progress.words[w];
     return data.status === 'practice' && (!data.nextReview || data.nextReview <= today);
   });
+  const deferredPracticeWords = Object.keys(AppState.progress.words).filter((w) => {
+    const data = AppState.progress.words[w];
+    return data.status === 'practice' && data.nextReview && data.nextReview > today;
+  });
   const unseen = Object.keys(AllWords).filter((w) => !AppState.progress.words[w]);
 
+  // When ALL is selected, enforce level-ordered progression: finish lower levels first
+  const effectiveFilter = levelFilter === 'ALL'
+    ? (getActiveLevel(AppState.progress) || 'ALL')
+    : levelFilter;
+
   const picked = [
-    ...reviewDue.filter((w) => isEligibleForLevel(w, levelFilter)),
-    ...practiceWords.filter((w) => !reviewDue.includes(w) && isEligibleForLevel(w, levelFilter)),
-    ...unseen.filter((w) => isEligibleForLevel(w, levelFilter))
+    ...reviewDue.filter((w) => isEligibleForLevel(w, effectiveFilter)),
+    ...practiceWords.filter((w) => !reviewDue.includes(w) && isEligibleForLevel(w, effectiveFilter)),
+    ...unseen.filter((w) => isEligibleForLevel(w, effectiveFilter))
   ];
+
+  if (picked.length === 0) {
+    // No active words at current level — try review-due words from any level
+    const anyReviewDue = reviewDue.filter((w) => isEligibleForLevel(w, levelFilter));
+    if (anyReviewDue.length > 0) return anyReviewDue.slice(0, sessionSize);
+    return deferredPracticeWords
+      .filter((w) => isEligibleForLevel(w, levelFilter))
+      .slice(0, sessionSize);
+  }
 
   return picked.slice(0, sessionSize);
 }
@@ -408,31 +487,28 @@ function initiateSession(sessionSize, levelFilter = 'ALL', skipGate = false) {
   if (collisionChanged) saveProgress(AppState.progress);
 
   const sessionWords = pickSessionWords(sessionSize, levelFilter);
-  const pendingSecondaryForSession = collectPendingSecondaryMeanings(AppState.progress, 2);
-  const secondaryQueueItems = pendingSecondaryForSession.map((item) => ({
-    kind: 'secondary',
-    word: item.word,
-    meaningIndex: item.meaningIndex,
-    phase: 'definition',
-  }));
   const nextSession = {
     words: sessionWords,
-    queue: [...secondaryQueueItems, ...shuffle(sessionWords)],
+    queue: shuffle(sessionWords),
+    templateHistory: {},
     skipped: {},
     levelFilter,
     round: 0,
     current: 0,
     results: {},
-    currentExercise: null,
-    newlyUnlocked: [],
-    pendingSecondaryForSession
+    currentExercise: null
   };
 
   dispatch({ type: 'INIT_SESSION', payload: nextSession });
 
+  if (sessionWords.length === 0) {
+    dispatch({ type: 'SET_SCREEN', payload: 'summary' });
+    return;
+  }
+
   if (skipGate) {
     AppState.session.words = sessionWords;
-    AppState.session.queue = [...secondaryQueueItems, ...shuffle(sessionWords)];
+    AppState.session.queue = shuffle(sessionWords);
     AppState.session.current = 0;
     dispatch({ type: 'SET_ROUND', payload: 1 });
     startRoundExercise();
@@ -450,10 +526,6 @@ function currentWord() {
 
 function currentQueueItem() {
   return AppState.session.queue[AppState.session.current] || null;
-}
-
-function isSecondaryQueueItem(item) {
-  return Boolean(item && typeof item === 'object' && item.kind === 'secondary');
 }
 
 function gateKnown() {
@@ -495,6 +567,41 @@ function continuePrepPendingAction(pendingAction = AppState.ui.prepPendingAction
   dispatch({ type: 'SET_SCREEN', payload: 'home' });
 }
 
+function buildRoundSkipKey(word, round) {
+  return `r${round}:${word}`;
+}
+
+function deferCurrentWordInSession() {
+  const word = currentWord();
+  if (!word) return;
+
+  const skipKey = buildRoundSkipKey(word, AppState.session.round);
+  const skipCount = (AppState.session.skipped[skipKey] || 0) + 1;
+  AppState.session.skipped[skipKey] = skipCount;
+
+  if (skipCount > 1) {
+    removeCurrentWordFromSession('practice');
+    return;
+  }
+
+  const [deferredWord] = AppState.session.queue.splice(AppState.session.current, 1);
+  if (!deferredWord) return;
+
+  AppState.session.queue.push(deferredWord);
+  AppState.session.currentExercise = null;
+  resetRoundInteractionState();
+
+  if (AppState.session.current >= AppState.session.queue.length) {
+    if (AppState.session.round >= getMaxRound()) {
+      dispatch({ type: 'SET_SCREEN', payload: 'summary' });
+      return;
+    }
+    dispatch({ type: 'SET_ROUND', payload: AppState.session.round + 1 });
+  }
+
+  startRoundExercise();
+}
+
 function removeCurrentWordFromSession(status) {
   const word = currentWord();
   if (!word) return;
@@ -515,7 +622,7 @@ function removeCurrentWordFromSession(status) {
   }
 
   if (AppState.session.current >= AppState.session.queue.length) {
-    if (AppState.session.round >= 5) {
+    if (AppState.session.round >= getMaxRound()) {
       dispatch({ type: 'SET_SCREEN', payload: 'summary' });
       return;
     }
@@ -542,36 +649,77 @@ function checkGateComplete() {
   dispatch({ type: 'SET_SCREEN', payload: 'round' });
 }
 
-function buildExercise(queueItem, round, wordIndex) {
-  if (isSecondaryQueueItem(queueItem)) {
-    if (queueItem.phase === 'definition') {
-      return Exercises.renderSecondaryMeaningDefinition(queueItem.word, queueItem.meaningIndex, AllWords);
-    }
-    if (queueItem.phase === 'gap') {
-      return Exercises.renderGapFill(queueItem.word, AllWords, queueItem.meaningIndex);
-    }
-    return Exercises.renderENtoTRMC(queueItem.word, AllWords, queueItem.meaningIndex);
+function pickPracticeGapExampleIndex(word) {
+  const examples = Array.isArray(AllWords[word]?.ex) ? AllWords[word].ex : [];
+  if (examples.length <= 1) return 0;
+
+  if (!AppState.session.templateHistory) {
+    AppState.session.templateHistory = {};
   }
 
+  const recent = AppState.session.templateHistory[word] || [];
+  let candidates = examples.map((_, idx) => idx).filter((idx) => !recent.includes(idx));
+  if (candidates.length === 0) {
+    candidates = examples.map((_, idx) => idx);
+  }
+
+  const picked = candidates[Math.floor(Math.random() * candidates.length)] || 0;
+  AppState.session.templateHistory[word] = [picked, ...recent.filter((idx) => idx !== picked)].slice(0, 2);
+  return picked;
+}
+
+function buildExercise(queueItem, round, wordIndex) {
   const word = queueItem;
   if (round === 1) return Exercises.renderDefinition(word, AllWords);
   if (round === 2) return Exercises.renderENtoTRMC(word, AllWords);
-  if (round === 3) return Exercises.renderGapFill(word, AllWords);
+  if (round === 3) {
+    const status = AppState.progress.words[word]?.status;
+    const isPractice = status === 'practice';
+    const preferredExampleIndex = isPractice ? pickPracticeGapExampleIndex(word) : 0;
+    return Exercises.renderGapFill(word, AllWords, 0, { isPractice, preferredExampleIndex });
+  }
   if (round === 4) {
     return wordIndex % 2 === 0
       ? Exercises.renderSentenceBuilder(word, AllWords)
       : Exercises.renderTranslationMC(word, AllWords);
   }
-  return Production.renderProduction(word, AllWords);
+  if (round === 5) {
+    return Exercises.renderContextMatch(word, AllWords);
+  }
+  if (round === 6) {
+    return Exercises.renderMultiGap(word, AppState.session.queue, AllWords);
+  }
+  if (round === 7) {
+    return Exercises.renderFreeTypeGap(word, AllWords);
+  }
+  // Fallback
+  return Exercises.renderDefinition(word, AllWords);
+}
+
+function getMaxRound() {
+  const queue = AppState.session.queue || [];
+  const hasRound5 = queue.some(w => Exercises.hasContextMatchData(w, AllWords));
+  const hasRound6 = queue.length >= 2;
+
+  // Round 7 (Free-type Gap) always available
+  return 7;
+}
+
+function shouldSkipRound(round, word) {
+  if (round === 5) {
+    return !Exercises.hasContextMatchData(word, AllWords);
+  }
+  if (round === 6) {
+    return AppState.session.queue.length < 2;
+  }
+  return false;
 }
 
 function startRoundExercise() {
   const queueItem = currentQueueItem();
   if (!queueItem) {
-    if (AppState.session.round >= 5) {
-      const reviewedWords = [...new Set(AppState.session.words || [])];
-      const newlyUnlocked = applySecondaryMeaningUnlocks(AppState.progress, AllWords, reviewedWords);
-      dispatch({ type: 'SET_NEWLY_UNLOCKED', payload: newlyUnlocked });
+    const maxRound = getMaxRound();
+    if (AppState.session.round >= maxRound) {
       dispatch({ type: 'SET_SCREEN', payload: 'summary' });
       return;
     }
@@ -580,7 +728,24 @@ function startRoundExercise() {
     return;
   }
 
+  const word = typeof queueItem === 'string' ? queueItem : queueItem.word;
+
+  // Skip this word for this round if exercise not available
+  if (shouldSkipRound(AppState.session.round, word)) {
+    dispatch({ type: 'ADVANCE_SESSION_INDEX' });
+    startRoundExercise();
+    return;
+  }
+
   const exercise = buildExercise(queueItem, AppState.session.round, AppState.session.current);
+
+  // If exercise couldn't be built (e.g. renderContextMatch returned null), skip
+  if (!exercise) {
+    dispatch({ type: 'ADVANCE_SESSION_INDEX' });
+    startRoundExercise();
+    return;
+  }
+
   dispatch({ type: 'SET_CURRENT_EXERCISE', payload: exercise });
 }
 
@@ -592,105 +757,28 @@ function recordPosError(word) {
   AppState.progress.words[word] = { ...existing, posErrors };
 }
 
-function applyUnlockedDecision(nextStatus) {
-  const items = AppState.session.newlyUnlocked || [];
-  const pendingAt = toLocalDate(0);
-
-  items.forEach((item) => {
-    dispatch({
-      type: 'SET_MEANING_STATUS',
-      payload: {
-        word: item.word,
-        meaningIndex: item.meaningIndex,
-        status: nextStatus,
-        pendingAt,
-      },
-    });
-  });
-
-  dispatch({ type: 'SET_NEWLY_UNLOCKED', payload: [] });
-}
-
-function moveSecondaryQueueToPhase(phase) {
-  const item = currentQueueItem();
-  if (!isSecondaryQueueItem(item)) return;
-  AppState.session.queue[AppState.session.current] = { ...item, phase };
-}
-
-function markSecondaryMeaningLearned(item) {
-  dispatch({
-    type: 'SET_MEANING_STATUS',
-    payload: {
-      word: item.word,
-      meaningIndex: item.meaningIndex,
-      status: 'learned',
-      interval: 1,
-      nextReview: toLocalDate(1),
-    },
-  });
-}
-
 function resetRoundInteractionState() {
   dispatch({ type: 'SET_OPTION', payload: null });
   dispatch({ type: 'SET_REVEAL', payload: null });
   dispatch({ type: 'SET_LOCKED', payload: false });
   dispatch({ type: 'SET_PENDING_RESULT', payload: null });
+  dispatch({ type: 'SET_SB_PREFIX', payload: 0 });
+  dispatch({ type: 'SET_SB_SHAKE', payload: false });
   dispatch({ type: 'SET_FEEDBACK', payload: '' });
-}
-
-function finalizeSecondaryOutcome(item, correct) {
-  if (item.phase === 'definition') {
-    moveSecondaryQueueToPhase('gap');
-    resetRoundInteractionState();
-    startRoundExercise();
-    return;
-  }
-
-  if (item.phase === 'gap') {
-    if (correct) {
-      markSecondaryMeaningLearned(item);
-      dispatch({ type: 'ADVANCE_SESSION_INDEX' });
-      startRoundExercise();
-      return;
-    }
-
-    moveSecondaryQueueToPhase('mc');
-    resetRoundInteractionState();
-    dispatch({ type: 'SET_FEEDBACK', payload: 'Let\'s reinforce this meaning with a quick MC question.' });
-    startRoundExercise();
-    return;
-  }
-
-  // MC stage
-  if (correct) {
-    markSecondaryMeaningLearned(item);
-    dispatch({ type: 'ADVANCE_SESSION_INDEX' });
-    startRoundExercise();
-    return;
-  }
-
-  moveSecondaryQueueToPhase('gap');
-  resetRoundInteractionState();
-  dispatch({ type: 'SET_FEEDBACK', payload: 'Try the gap fill again for this meaning.' });
-  startRoundExercise();
+  dispatch({ type: 'SET_FREE_TYPE_SECOND_CHANCE', payload: false });
 }
 
 function finalizeRoundAnswer(correct) {
-  const queueItem = currentQueueItem();
-  if (isSecondaryQueueItem(queueItem)) {
-    finalizeSecondaryOutcome(queueItem, correct);
-    return;
-  }
-
   const word = currentWord();
   const round = AppState.session.round;
+  const maxRound = getMaxRound();
 
   dispatch({ type: 'SAVE_RESULT', payload: { word, round, correct } });
 
   if (!correct) {
     recordPosError(word);
     dispatch({ type: 'MARK_PRACTICE', payload: word });
-  } else if (round >= 5) {
+  } else if (round >= maxRound) {
     const allCorrect = Object.values(AppState.session.results[word] || {}).every(Boolean);
     dispatch({ type: allCorrect ? 'MARK_LEARNED' : 'MARK_PRACTICE', payload: word });
   }
@@ -715,58 +803,125 @@ async function submitExerciseAnswer() {
     return;
   }
 
-  if (exercise.type === 'SENTENCE_BUILDER') {
-    if (AppState.ui.sbRetryMode) {
-      // Reset retry mode - clear chips and let them try again
-      dispatch({ type: 'SET_SB_RETRY', payload: false });
-      dispatch({ type: 'SET_CHIPS', payload: [] });
-      dispatch({ type: 'SET_CHIP_INDEXES', payload: [] });
-      dispatch({ type: 'SET_FEEDBACK', payload: '' });
+  if (exercise.type === 'FREE_TYPE_GAP') {
+    const inputEl = document.getElementById('freeTypeInput');
+    const userInput = (inputEl?.value || AppState.ui.freeTypeInput || '').trim().toLowerCase();
+    if (!userInput) {
+      dispatch({ type: 'SET_FEEDBACK', payload: 'Type your answer first.' });
       return;
     }
-    const userAnswer = AppState.ui.selectedChips.join(' ');
-    const isCorrect = userAnswer.trim() === exercise.correct.trim();
+    const correct = exercise.correct.toLowerCase();
+    const isCorrect = userInput === correct || userInput === correct.replace(/'/g, "'");
     if (isCorrect) {
-      dispatch({ type: 'SET_FEEDBACK', payload: '✓ Correct!' });
       dispatch({ type: 'SET_LOCKED', payload: true });
+      dispatch({ type: 'SET_FEEDBACK', payload: '✓ Correct!' });
       dispatch({ type: 'SET_PENDING_RESULT', payload: true });
+    } else if (!AppState.ui.freeTypeSecondChance) {
+      // First wrong: give another chance
+      dispatch({ type: 'SET_FREE_TYPE_SECOND_CHANCE', payload: true });
+      dispatch({ type: 'SET_FEEDBACK', payload: 'Not quite. Try again!' });
+      if (inputEl) inputEl.value = '';
     } else {
-      dispatch({ type: 'SET_FEEDBACK', payload: 'Not quite right.' });
-      dispatch({ type: 'SET_SB_RETRY', payload: true });
+      // Second wrong: lock and show correct answer
+      dispatch({ type: 'SET_LOCKED', payload: true });
+      dispatch({ type: 'SET_FEEDBACK', payload: `Wrong. Correct answer: ${exercise.correct}` });
+      dispatch({ type: 'SET_PENDING_RESULT', payload: false });
     }
     return;
   }
 
-  if (exercise.type === 'PRODUCTION') {
-    const textarea = document.getElementById('productionTextarea');
-    const userSentence = textarea ? textarea.value.trim() : '';
-    if (!userSentence) {
-      dispatch({ type: 'SET_FEEDBACK', payload: 'Please write a sentence first.' });
+  if (exercise.type === 'SENTENCE_BUILDER') {
+    const placed = AppState.ui.selectedChips || [];
+    if (placed.length === 0) {
+      dispatch({ type: 'SET_FEEDBACK', payload: 'Tap words to build the sentence first.' });
       return;
     }
-    const normalizedSentence = Exercises.normalizeToken(userSentence).replace(/\s+/g, ' ').trim();
-    const requiredWord = Exercises.normalizeToken(exercise.word).replace(/_/g, ' ');
-    const escapedWord = requiredWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const wordRegex = new RegExp(`(^|\\s)${escapedWord}(\\s|$)`, 'i');
-    if (!wordRegex.test(normalizedSentence)) {
-      dispatch({ type: 'SET_FEEDBACK', payload: `Please use '${exercise.word}' in your sentence.` });
-      dispatch({ type: 'SET_PRODUCTION_DRAFT', payload: userSentence });
-      return;
+
+    const userAnswer = placed.join(' ');
+    const isCorrect = userAnswer.trim() === exercise.correct.trim();
+    const correctTokens = exercise.correctTokens || exercise.correct.split(/\s+/).filter(Boolean);
+    let prefixMatch = 0;
+    while (
+      prefixMatch < placed.length
+      && prefixMatch < correctTokens.length
+      && placed[prefixMatch] === correctTokens[prefixMatch]
+    ) {
+      prefixMatch += 1;
     }
-    dispatch({ type: 'SET_PRODUCTION_SUBMITTED', payload: userSentence });
-    dispatch({ type: 'SET_PRODUCTION_DRAFT', payload: '' });
-    dispatch({ type: 'SET_LOCKED', payload: true });
-    dispatch({ type: 'SET_FEEDBACK', payload: '⏳ Evaluating...' });
-    const result = await Production.evaluateProduction(exercise.word, userSentence, AllWords);
-    if (result.correct) {
-      dispatch({ type: 'SET_FEEDBACK', payload: result.feedback || '✓ Great sentence!' });
-      dispatch({ type: 'SET_LOCKED', payload: false });
+
+    if (isCorrect) {
+      dispatch({ type: 'SET_FEEDBACK', payload: '✓ Correct!' });
+      dispatch({ type: 'SET_SB_PREFIX', payload: correctTokens.length });
+      dispatch({ type: 'SET_SB_SHAKE', payload: false });
+      dispatch({ type: 'SET_LOCKED', payload: true });
       dispatch({ type: 'SET_PENDING_RESULT', payload: true });
+    } else {
+      dispatch({ type: 'SET_SB_PREFIX', payload: prefixMatch });
+      dispatch({ type: 'SET_SB_SHAKE', payload: true });
+      dispatch({
+        type: 'SET_FEEDBACK',
+        payload: prefixMatch > 0
+          ? `Order is not right yet. First ${prefixMatch} word(s) are correct.`
+          : 'Order is not right yet. Try another sequence.'
+      });
+      window.setTimeout(() => {
+        dispatch({ type: 'SET_SB_SHAKE', payload: false });
+      }, 260);
+    }
+    return;
+  }
+
+  if (exercise.type === 'CONTEXT_MATCH') {
+    const selected = AppState.ui.selectedOption;
+    if (selected === null || selected === undefined) {
+      dispatch({ type: 'SET_FEEDBACK', payload: 'Please select a sentence.' });
       return;
     }
-    const correction = result.correctedSentence ? `\n💡 Suggestion: "${result.correctedSentence}"` : '';
-    dispatch({ type: 'SET_FEEDBACK', payload: `${result.feedback}${correction}` });
-    dispatch({ type: 'SET_LOCKED', payload: false });
+    const isCorrect = selected === exercise.correct;
+    dispatch({ type: 'SET_REVEAL', payload: { selected, correct: exercise.correct } });
+    dispatch({ type: 'SET_FEEDBACK', payload: isCorrect ? '✓ Correct! That sentence uses the word incorrectly.' : `Wrong. The incorrect sentence was: "${exercise.correct}"` });
+    dispatch({ type: 'SET_LOCKED', payload: true });
+    dispatch({ type: 'SET_PENDING_RESULT', payload: isCorrect });
+    return;
+  }
+
+  if (exercise.type === 'MULTI_GAP') {
+    const placed = AppState.ui.selectedChips || [];
+    const gapSentence = exercise.gapSentence;
+
+    if (exercise.mode === 'separate') {
+      // Need 2 chips placed (one per gap)
+      if (placed.length < 2) {
+        dispatch({ type: 'SET_FEEDBACK', payload: 'Place a word in each blank.' });
+        return;
+      }
+      const isCorrect = placed[0] === gapSentence[0].correct && placed[1] === gapSentence[1].correct;
+      dispatch({ type: 'SET_LOCKED', payload: true });
+      if (isCorrect) {
+        dispatch({ type: 'SET_FEEDBACK', payload: '✓ Correct!' });
+        dispatch({ type: 'SET_PENDING_RESULT', payload: true });
+      } else {
+        dispatch({ type: 'SET_FEEDBACK', payload: `Wrong. Correct: ${gapSentence[0].correct} / ${gapSentence[1].correct}` });
+        dispatch({ type: 'SET_PENDING_RESULT', payload: false });
+      }
+    } else {
+      // Single or compound: gaps array
+      const gaps = gapSentence[0].gaps;
+      if (placed.length < gaps.length) {
+        dispatch({ type: 'SET_FEEDBACK', payload: 'Place a word in each blank.' });
+        return;
+      }
+      const isCorrect = gaps.every((gap, i) => placed[i] === gap.correct);
+      dispatch({ type: 'SET_LOCKED', payload: true });
+      if (isCorrect) {
+        dispatch({ type: 'SET_FEEDBACK', payload: '✓ Correct!' });
+        dispatch({ type: 'SET_PENDING_RESULT', payload: true });
+      } else {
+        const correctStr = gaps.map(g => g.correct).join(' / ');
+        dispatch({ type: 'SET_FEEDBACK', payload: `Wrong. Correct: ${correctStr}` });
+        dispatch({ type: 'SET_PENDING_RESULT', payload: false });
+      }
+    }
     return;
   }
 
@@ -778,9 +933,71 @@ async function submitExerciseAnswer() {
 
   const isCorrect = selected === exercise.correct;
   dispatch({ type: 'SET_REVEAL', payload: { selected, correct: exercise.correct } });
-  dispatch({ type: 'SET_FEEDBACK', payload: isCorrect ? 'Correct.' : `Wrong. Correct answer: ${exercise.correct}` });
+
+  if (isCorrect) {
+    dispatch({ type: 'SET_FEEDBACK', payload: 'Correct.' });
+  } else {
+    const word = exercise.word || currentWord();
+    const wordData = AllWords[word] || {};
+    const wrongCount = (AppState.session.results[word] ? Object.values(AppState.session.results[word]).filter(v => !v).length : 0) + 1;
+    let hint = `Wrong. Correct answer: ${exercise.correct}`;
+    if (wrongCount >= 2 && wordData.def) {
+      hint += ` | Hint: ${wordData.def}`;
+      if (wordData.ex && wordData.ex[0]) {
+        hint += ` — e.g. "${wordData.ex[0]}"`;
+      }
+    }
+    dispatch({ type: 'SET_FEEDBACK', payload: hint });
+  }
   dispatch({ type: 'SET_LOCKED', payload: true });
   dispatch({ type: 'SET_PENDING_RESULT', payload: isCorrect });
+}
+
+// ── Streak System ─────────────────────────────────────────────────────────
+
+function getStreakData() {
+  const json = localStorage.getItem('wf_streak');
+  if (!json) return { currentStreak: 0, lastSessionDate: null, longestStreak: 0 };
+  try {
+    return JSON.parse(json);
+  } catch (e) {
+    return { currentStreak: 0, lastSessionDate: null, longestStreak: 0 };
+  }
+}
+
+function saveStreakData(data) {
+  const payload = JSON.stringify(data);
+  const current = localStorage.getItem('wf_streak');
+  if (current === payload) return;
+
+  localStorage.setItem('wf_streak', payload);
+  localStorage.setItem(WF_PROGRESS_UPDATED_KEY, new Date().toISOString());
+
+  if (window.WFCloud) {
+    window.WFCloud.notifyLocalChange();
+  }
+}
+
+function updateStreak() {
+  const today = toLocalDate(0);
+  const yesterday = toLocalDate(-1);
+  const streak = getStreakData();
+
+  if (streak.lastSessionDate === today) return streak;
+
+  if (streak.lastSessionDate === yesterday) {
+    streak.currentStreak += 1;
+  } else {
+    streak.currentStreak = 1;
+  }
+
+  streak.lastSessionDate = today;
+  if (streak.currentStreak > (streak.longestStreak || 0)) {
+    streak.longestStreak = streak.currentStreak;
+  }
+
+  saveStreakData(streak);
+  return streak;
 }
 
 function renderHome(state) {
@@ -792,10 +1009,16 @@ function renderHome(state) {
   const total = Object.keys(AllWords).length;
   const knownOrLearned = known + learned;
   const available = total - knownOrLearned;
+  const streak = getStreakData();
 
   return `
     <div class="home-screen">
       <h1>WordForge</h1>
+      <div class="streak-display">
+        <span class="streak-fire">${streak.currentStreak > 0 ? '🔥' : '⚪'}</span>
+        <span class="streak-count">${streak.currentStreak} day${streak.currentStreak !== 1 ? 's' : ''}</span>
+        <span class="streak-best">Best: ${streak.longestStreak || 0}</span>
+      </div>
       <div class="home-word-stats">
         <span class="home-stat"><span class="home-stat-label">Total</span><span class="home-stat-value">${total}</span></span>
         <span class="home-stat-sep">·</span>
@@ -809,8 +1032,15 @@ function renderHome(state) {
         <button class="card" data-action="open-list" data-filter="review">Review Due: ${reviewDue}</button>
         <button class="card" data-action="open-list" data-filter="practice">Practice: ${practice}</button>
       </div>
+      <div class="session-size-selector">
+        <span class="session-size-label">Session size:</span>
+        <div class="session-size-options">
+          ${[5, 10, 15, 20].map(n => `<button class="session-size-btn ${n === (state.ui.sessionSize || 10) ? 'active' : ''}" data-action="set-session-size" data-size="${n}">${n}</button>`).join('')}
+        </div>
+      </div>
       <div class="actions">
-        <button class="btn" data-action="start-session">Start Session (10 words)</button>
+        <button class="btn" data-action="start-session">Start Session</button>
+        <button class="btn btn-manage" data-action="open-flashcards">Flashcards</button>
         <button class="btn btn-manage" data-action="open-manage-words">Manage Words</button>
         <button class="btn btn-muted" data-action="open-settings">Settings</button>
       </div>
@@ -824,13 +1054,14 @@ function renderPrep(state) {
   const pageSize = 24;
   const levels = ['ALL', 'A1', 'A2', 'B1', 'B2', 'C1'];
 
-  const candidates = Object.keys(AllWords)
-    .filter((word) => isEligibleForLevel(word, level))
+  const baseCandidates = Object.keys(AllWords)
     .filter((word) => {
       const status = state.progress.words[word]?.status;
       return status !== 'known' && status !== 'learned';
     })
     .sort((a, b) => a.localeCompare(b));
+
+  const candidates = baseCandidates.filter((word) => isEligibleForLevel(word, level));
 
   const totalPages = Math.max(1, Math.ceil(candidates.length / pageSize));
   const safePage = Math.min(page, totalPages - 1);
@@ -849,13 +1080,9 @@ function renderPrep(state) {
   const levelCounts = {};
   levels.forEach((l) => {
     if (l === 'ALL') {
-      levelCounts[l] = candidates.length;
+      levelCounts[l] = baseCandidates.length;
     } else {
-      levelCounts[l] = Object.keys(AllWords).filter((w) => {
-        if (AllWords[w]?.level !== l) return false;
-        const st = state.progress.words[w]?.status;
-        return st !== 'known' && st !== 'learned';
-      }).length;
+      levelCounts[l] = baseCandidates.filter((w) => AllWords[w]?.level === l).length;
     }
   });
 
@@ -886,6 +1113,64 @@ function renderPrep(state) {
           <button class="btn btn-muted prep-save-btn" data-action="prep-save" ${(state.ui.prepSelectedKnown || []).length === 0 ? 'disabled' : ''}>Save Known</button>
           <button class="btn prep-continue-btn" data-action="prep-start-session">Start Session →</button>
         </div>
+      </div>
+    </div>
+  `;
+}
+
+// ── Flashcard Mode ────────────────────────────────────────────────────────
+
+function getFlashcardPool() {
+  const progressWords = AppState.progress.words || {};
+  return Object.keys(progressWords).filter((w) => {
+    const status = progressWords[w]?.status;
+    return (status === 'practice' || status === 'learned') && AllWords[w];
+  });
+}
+
+function renderFlashcards(state) {
+  const pool = getFlashcardPool();
+  if (pool.length === 0) {
+    return `
+      <div class="flashcard-screen">
+        <div class="card centered-card">
+          <h2>No Flashcards Available</h2>
+          <p>Complete some sessions first to build your flashcard deck.</p>
+          <button class="btn" data-action="go-home">Back Home</button>
+        </div>
+      </div>
+    `;
+  }
+
+  const idx = state.ui.flashcardIndex || 0;
+  const safeIdx = idx % pool.length;
+  const word = pool[safeIdx];
+  const wordData = AllWords[word] || {};
+  const flipped = state.ui.flashcardFlipped;
+
+  const front = `
+    <div class="flashcard-word">${escapeHtml(word.replace(/_/g, ' '))}</div>
+    <div class="flashcard-pos">${escapeHtml(wordData.pos || '')}</div>
+  `;
+
+  const back = `
+    <div class="flashcard-tr">${escapeHtml(wordData.tr || '')}</div>
+    <div class="flashcard-def">${escapeHtml(wordData.def || '')}</div>
+    ${wordData.ex && wordData.ex[0] ? `<div class="flashcard-ex">"${escapeHtml(wordData.ex[0])}"</div>` : ''}
+  `;
+
+  return `
+    <div class="flashcard-screen">
+      <div class="flashcard-progress">${safeIdx + 1} / ${pool.length}</div>
+      <div class="flashcard-card ${flipped ? 'flipped' : ''}" data-action="flashcard-flip">
+        <div class="flashcard-front">${front}</div>
+        <div class="flashcard-back">${back}</div>
+      </div>
+      <p class="flashcard-hint-text">${flipped ? '' : 'Tap card to reveal'}</p>
+      <div class="flashcard-actions">
+        <button class="btn btn-muted" data-action="flashcard-prev" ${safeIdx <= 0 ? 'disabled' : ''}>← Prev</button>
+        <button class="btn" data-action="flashcard-next">Next →</button>
+        <button class="btn btn-muted" data-action="go-home">Done</button>
       </div>
     </div>
   `;
@@ -932,7 +1217,8 @@ function renderRound(state) {
   }
 
   const exercise = state.session.currentExercise;
-  const progress = `Round ${state.session.round}/5 | Word ${state.session.current + 1}/${state.session.queue.length}`;
+  const maxRound = getMaxRound();
+  const progress = `Round ${state.session.round}/${maxRound} | Word ${state.session.current + 1}/${state.session.queue.length}`;
   const waitingContinue = state.ui.pendingResult !== null;
   const submitLabel = waitingContinue ? 'Continue' : 'Submit';
   let body = '';
@@ -943,16 +1229,6 @@ function renderRound(state) {
       <p>${exercise.def}</p>
       <button class="btn" data-action="submit-answer">Continue</button>
     `;
-  } else if (exercise.type === 'SECONDARY_MEANING_DEFINITION') {
-    body = `
-      <h2>🔁 ${exercise.word} - ${exercise.meaningIndex}. meaning <span class="word-row-meta">${escapeHtml(exercise.meaningPos || '')}</span></h2>
-      <p><strong>💡 Reminder:</strong> ${escapeHtml(exercise.word)} = "${escapeHtml(exercise.primaryTr || '')}" <span class="word-row-meta">${escapeHtml(exercise.primaryPos || '')}</span></p>
-      ${exercise.primaryExample ? `<p>${escapeHtml(exercise.primaryExample)}</p>` : ''}
-      <p><strong>New meaning:</strong> "${escapeHtml(exercise.secondaryTr || '')}"</p>
-      <p>${escapeHtml(exercise.def || '')}</p>
-      ${exercise.secondaryExample ? `<p>${escapeHtml(exercise.secondaryExample)}</p>` : ''}
-      <button class="btn" data-action="submit-answer">Continue</button>
-    `;
   } else if (exercise.type === 'EN_TO_TR_MC') {
     body = `
       <h2>${exercise.prompt}</h2>
@@ -960,74 +1236,120 @@ function renderRound(state) {
       <button class="btn" data-action="submit-answer" ${state.ui.locked && !waitingContinue ? 'disabled' : ''}>${submitLabel}</button>
     `;
   } else if (exercise.type === 'GAP_FILL') {
+    const hintVisible = state.ui.hintVisible;
+    const hintHtml = exercise.hint
+      ? `<div class="gap-hint-area">${hintVisible ? `<p class="gap-hint-text">💡 ${exercise.hint}</p>` : `<button class="btn btn-muted btn-hint" data-action="show-hint">Show Hint</button>`}</div>`
+      : '';
     body = `
       <h2>Fill the blank</h2>
       <p>${exercise.sentence}</p>
+      ${hintHtml}
       <div class="options">${renderOptions(exercise.options, state.ui.selectedOption, state.ui.reveal, state.ui.locked)}</div>
       <button class="btn" data-action="submit-answer" ${state.ui.locked && !waitingContinue ? 'disabled' : ''}>${submitLabel}</button>
     `;
   } else if (exercise.type === 'SENTENCE_BUILDER') {
-    if (state.ui.sbRetryMode) {
-      body = `
-        <h2>Build the sentence</h2>
-        <p>TR: ${exercise.trSentence}</p>
-        <div class="sb-retry-box">
-          <p class="sb-retry-msg">Not quite right. Want to try again?</p>
-          <div class="actions">
-            <button class="btn" data-action="submit-answer">↺ Try Again</button>
-            <button class="btn btn-muted" data-action="sb-skip">Skip →</button>
-          </div>
-        </div>
-      `;
-    } else {
-      const usedIndexes = new Set(state.ui.selectedChipIndexes || []);
-      const chips = exercise.chips
-        .map((chip, index) => {
-          const used = usedIndexes.has(index);
-          return `<button class="option ${used ? 'option-used' : ''}" data-action="add-chip" data-index="${index}" data-value="${chip}" ${state.ui.locked || used ? 'disabled' : ''}>${chip}</button>`;
-        })
-        .join('');
-      body = `
-        <h2>Build the sentence</h2>
-        <p>TR: ${exercise.trSentence}</p>
-        <div class="answer-box">${state.ui.selectedChips.join(' ') || '<span style="opacity:0.4">Tap words below to build the sentence</span>'}</div>
-        <div class="options">${chips}</div>
-        <div class="actions">
-          <button class="btn btn-muted" data-action="remove-chip" ${state.ui.locked ? 'disabled' : ''}>⌫ Undo</button>
-          <button class="btn" data-action="submit-answer" ${state.ui.locked && !waitingContinue ? 'disabled' : ''}>${submitLabel}</button>
-        </div>
-      `;
-    }
+    const usedIndexes = new Set(state.ui.selectedChipIndexes || []);
+    const placedChips = (state.ui.selectedChips || [])
+      .map((chip, index) => `<button class="sb-placed-chip ${index < (state.ui.sbPrefixMatch || 0) ? 'sb-chip-prefix' : ''}" data-action="remove-placed-chip" data-index="${index}" ${state.ui.locked ? 'disabled' : ''}>${chip} ×</button>`)
+      .join('');
+    const availableChips = exercise.chips
+      .map((chip, index) => {
+        const used = usedIndexes.has(index);
+        return `<button class="sb-available-chip ${used ? 'option-used' : ''}" data-action="add-chip" data-index="${index}" data-value="${chip}" ${state.ui.locked || used ? 'disabled' : ''}>${chip}</button>`;
+      })
+      .join('');
+
+    body = `
+      <h2>Build the sentence</h2>
+      <p class="sb-def">Definition: ${exercise.definition}</p>
+      <div class="sb-placed-zone ${state.ui.sbShake ? 'sb-shake' : ''}">
+        ${placedChips || '<span class="sb-placeholder">Tap words to build your sentence.</span>'}
+      </div>
+      <p class="sb-label">Available words</p>
+      <div class="sb-available-zone">${availableChips}</div>
+      <div class="actions">
+        <button class="btn btn-muted" data-action="remove-chip" ${state.ui.locked ? 'disabled' : ''}>↩ Undo</button>
+        <button class="btn" data-action="submit-answer" ${state.ui.locked && !waitingContinue ? 'disabled' : ''}>${submitLabel}</button>
+      </div>
+      <p class="sb-help">Tap an available word to add. Tap a placed chip to remove it.</p>
+    `;
   } else if (exercise.type === 'TRANSLATION_MC') {
     body = `
-      <h2>Choose the correct English sentence</h2>
-      <p>TR: ${exercise.trSentence}</p>
+      <h2>Choose the correct sentence for this word</h2>
+      <p class="sb-def">Word: <strong>${exercise.word.replace(/_/g, ' ')}</strong> — ${exercise.definition}</p>
       <div class="options">${renderOptions(exercise.options, state.ui.selectedOption, state.ui.reveal, state.ui.locked)}</div>
       <button class="btn" data-action="submit-answer" ${state.ui.locked && !waitingContinue ? 'disabled' : ''}>${submitLabel}</button>
     `;
-  } else if (exercise.type === 'PRODUCTION') {
-    const hasFeedback = Boolean(state.ui.feedback) && !String(state.ui.feedback).startsWith('⏳');
-    const isEvaluating = String(state.ui.feedback).startsWith('⏳');
-    const submittedSentence = state.ui.productionSubmitted || '';
-    const draftValue = state.ui.productionDraft || '';
-    const showTryAgain = hasFeedback && !waitingContinue && !state.ui.locked;
+  } else if (exercise.type === 'CONTEXT_MATCH') {
     body = `
       <h2>${exercise.prompt}</h2>
-      ${submittedSentence && !waitingContinue ? `<div class="production-submitted">${submittedSentence.replace(/</g,'&lt;')}</div>` : ''}
-      ${!submittedSentence || waitingContinue ? `<textarea id="productionTextarea" class="modal-input" rows="3" placeholder="Write your sentence...">${draftValue.replace(/</g,'&lt;')}</textarea>` : ''}
+      <div class="options context-match-options">${renderOptions(exercise.sentences, state.ui.selectedOption, state.ui.reveal, state.ui.locked)}</div>
+      <button class="btn" data-action="submit-answer" ${state.ui.locked && !waitingContinue ? 'disabled' : ''}>${submitLabel}</button>
+    `;
+  } else if (exercise.type === 'MULTI_GAP') {
+    const placed = state.ui.selectedChips || [];
+    const usedIndexes = new Set(state.ui.selectedChipIndexes || []);
+
+    let sentenceHtml = '';
+    if (exercise.mode === 'separate') {
+      sentenceHtml = exercise.gapSentence.map((item, i) => {
+        const filledWord = placed[i] || '';
+        const display = item.sentence.replace('___', filledWord ? `<span class="mg-filled">${filledWord}</span>` : `<span class="mg-blank">${i + 1}</span>`);
+        return `<p class="mg-sentence">${display}</p>`;
+      }).join('');
+    } else {
+      let display = exercise.gapSentence[0].sentence;
+      const gaps = exercise.gapSentence[0].gaps;
+      gaps.forEach((gap, i) => {
+        const filledWord = placed[i] || '';
+        const replacement = filledWord ? `<span class="mg-filled">${filledWord}</span>` : `<span class="mg-blank">${gap.id}</span>`;
+        display = display.replace(`___${gap.id}`, replacement);
+      });
+      sentenceHtml = `<p class="mg-sentence">${display}</p>`;
+    }
+
+    const chipHtml = exercise.chips.map((chip, index) => {
+      const used = usedIndexes.has(index);
+      return `<button class="sb-available-chip ${used ? 'option-used' : ''}" data-action="add-chip" data-index="${index}" data-value="${chip}" ${state.ui.locked || used ? 'disabled' : ''}>${chip}</button>`;
+    }).join('');
+
+    body = `
+      <h2>${exercise.prompt}</h2>
+      <div class="mg-sentences">${sentenceHtml}</div>
+      <p class="sb-label">Available words</p>
+      <div class="sb-available-zone">${chipHtml}</div>
       <div class="actions">
-        <button class="btn" data-action="submit-answer" ${state.ui.locked && !waitingContinue ? 'disabled' : ''}>${waitingContinue ? 'Continue →' : (showTryAgain ? '↺ Try Again' : (isEvaluating ? '⏳ Evaluating...' : 'Submit'))}</button>
-        ${showTryAgain ? '<button class="btn btn-muted" data-action="production-practice-later">Skip for now</button>' : ''}
+        <button class="btn btn-muted" data-action="remove-chip" ${state.ui.locked ? 'disabled' : ''}>↩ Undo</button>
+        <button class="btn" data-action="submit-answer" ${state.ui.locked && !waitingContinue ? 'disabled' : ''}>${submitLabel}</button>
       </div>
     `;
+  } else if (exercise.type === 'FREE_TYPE_GAP') {
+    const hintVisible = state.ui.hintVisible;
+    const hintHtml = exercise.hint
+      ? `<div class="gap-hint-area">${hintVisible ? `<p class="gap-hint-text">💡 ${exercise.hint}</p>` : `<button class="btn btn-muted btn-hint" data-action="show-hint">Show Hint</button>`}</div>`
+      : '';
+    const inputVal = state.ui.freeTypeInput || '';
+    body = `
+      <h2>Type the missing word</h2>
+      <p class="ft-sentence">${exercise.sentence}</p>
+      ${hintHtml}
+      <input type="text" class="ft-input" id="freeTypeInput" value="${escapeHtml(inputVal)}" placeholder="Type your answer..." autocomplete="off" ${state.ui.locked ? 'disabled' : ''}>
+      <button class="btn" data-action="submit-answer" ${state.ui.locked && !waitingContinue ? 'disabled' : ''}>${submitLabel}</button>
+    `;
   }
+
+  const totalSteps = state.session.queue.length * getMaxRound();
+  const completedSteps = (state.session.round - 1) * state.session.queue.length + state.session.current;
+  const progressPct = totalSteps > 0 ? Math.round((completedSteps / totalSteps) * 100) : 0;
 
   return `
     <div class="round-screen" role="main" aria-label="Exercise screen">
       <div class="progress" aria-live="polite" aria-label="${progress}">${progress}</div>
+      <div class="progress-bar-container"><div class="progress-bar-fill" style="width:${progressPct}%"></div></div>
       <div class="round-quick-actions">
         <button class="btn btn-muted" data-action="round-back">← Back</button>
         <button class="btn btn-muted" data-action="round-skip">Skip</button>
+        <button class="btn btn-muted" data-action="round-practice">Practice +</button>
         <button class="btn btn-manage" data-action="round-known">Known</button>
       </div>
       <div class="card">${body}</div>
@@ -1040,32 +1362,49 @@ function renderRound(state) {
 function renderSummary(state) {
   const words = state.session.words;
   const perfect = words.filter((w) => Object.values(state.session.results[w] || {}).every(Boolean)).length;
-  const unlocked = state.session.newlyUnlocked || [];
 
-  const unlockedBlock = unlocked.length > 0
-    ? `
-      <div class="card" style="margin-top:12px; text-align:left;">
-        <h3>New meanings unlocked</h3>
-        <ul style="margin: 0 0 12px 18px; padding: 0;">
-          ${unlocked.map((item) => `<li><strong>${escapeHtml(item.word)}</strong> -> ${escapeHtml(item.tr || '')}</li>`).join('')}
-        </ul>
-        <div class="actions">
-          <button class="btn" data-action="summary-accept-unlocked">Evet</button>
-          <button class="btn btn-muted" data-action="summary-defer-unlocked">Sonra</button>
+  if (words.length === 0) {
+    return `
+      <div class="summary-screen">
+        <div class="card centered-card">
+          <h2>No Words Due</h2>
+          <p>There are no eligible words to study right now.</p>
+          <button class="btn" data-action="go-home">Back Home</button>
         </div>
       </div>
-    `
-    : '';
+    `;
+  }
+
+  const wordRows = words.map((w) => {
+    const results = state.session.results[w] || {};
+    const rounds = Object.keys(results).sort();
+    const allCorrect = rounds.length > 0 && rounds.every((r) => results[r]);
+    const dots = rounds.map((r) => results[r]
+      ? '<span class="summary-dot summary-dot-correct">✓</span>'
+      : '<span class="summary-dot summary-dot-wrong">✗</span>'
+    ).join('');
+    const status = allCorrect ? 'learned' : 'practice';
+    const statusClass = allCorrect ? 'summary-status-learned' : 'summary-status-practice';
+    const tr = AllWords[w]?.tr || '';
+    return `<div class="summary-word-row">
+      <div class="summary-word-info"><strong>${escapeHtml(w)}</strong><span class="summary-word-tr">${escapeHtml(tr)}</span></div>
+      <div class="summary-word-dots">${dots}</div>
+      <span class="summary-word-status ${statusClass}">${status}</span>
+    </div>`;
+  }).join('');
 
   return `
     <div class="summary-screen">
       <div class="card centered-card">
         <h2>Session Complete</h2>
-        <p>Total words: ${words.length}</p>
-        <p>Perfect words: ${perfect}</p>
+        <div class="summary-stats">
+          <span class="summary-stat">Total: ${words.length}</span>
+          <span class="summary-stat summary-stat-perfect">Perfect: ${perfect}</span>
+          <span class="summary-stat summary-stat-needs">Needs Practice: ${words.length - perfect}</span>
+        </div>
+        <div class="summary-word-list">${wordRows}</div>
         <button class="btn" data-action="go-home">Back Home</button>
       </div>
-      ${unlockedBlock}
     </div>
   `;
 }
@@ -1077,16 +1416,42 @@ function render(state) {
 
   if (state.ui.screen === 'home') app.innerHTML = renderHome(state);
   if (state.ui.screen === 'preflight') app.innerHTML = renderPrep(state);
+  if (state.ui.screen === 'flashcards') app.innerHTML = renderFlashcards(state);
   if (state.ui.screen === 'gate') app.innerHTML = renderGate(state);
   if (state.ui.screen === 'round') app.innerHTML = renderRound(state);
-  if (state.ui.screen === 'summary') app.innerHTML = renderSummary(state);
+  if (state.ui.screen === 'summary') {
+    updateStreak();
+    app.innerHTML = renderSummary(state);
+  }
 
   modalContainer.innerHTML = state.ui.modal ? UI.renderModal(state.ui.modal, state, AllWords) : '';
 }
 
 function handleAction(action, target) {
+  if (action === 'set-session-size') {
+    const size = Number(target.dataset.size) || 10;
+    dispatch({ type: 'SET_SESSION_SIZE', payload: size });
+    return;
+  }
+  if (action === 'open-flashcards') {
+    dispatch({ type: 'SET_FLASHCARD', payload: { index: 0, flipped: false } });
+    dispatch({ type: 'SET_SCREEN', payload: 'flashcards' });
+    return;
+  }
+  if (action === 'flashcard-flip') {
+    dispatch({ type: 'SET_FLASHCARD', payload: { index: AppState.ui.flashcardIndex, flipped: !AppState.ui.flashcardFlipped } });
+    return;
+  }
+  if (action === 'flashcard-next') {
+    dispatch({ type: 'SET_FLASHCARD', payload: { index: (AppState.ui.flashcardIndex || 0) + 1, flipped: false } });
+    return;
+  }
+  if (action === 'flashcard-prev') {
+    dispatch({ type: 'SET_FLASHCARD', payload: { index: Math.max(0, (AppState.ui.flashcardIndex || 0) - 1), flipped: false } });
+    return;
+  }
   if (action === 'start-session') {
-    initiateSession(SESSION_SIZE, 'ALL', true);
+    initiateSession(AppState.ui.sessionSize || 10, 'ALL', true);
     return;
   }
   if (action === 'open-manage-words') {
@@ -1158,9 +1523,14 @@ function handleAction(action, target) {
     if (AppState.ui.locked) return;
     const exercise = AppState.session.currentExercise;
     const index = Number(target.dataset.index);
-    if (!exercise || !Array.isArray(exercise.options) || Number.isNaN(index)) return;
-    if (exercise.options[index] === undefined) return;
-    dispatch({ type: 'SET_OPTION', payload: exercise.options[index] });
+    const optionsList = exercise?.options || exercise?.sentences;
+    if (!exercise || !Array.isArray(optionsList) || Number.isNaN(index)) return;
+    if (optionsList[index] === undefined) return;
+    dispatch({ type: 'SET_OPTION', payload: optionsList[index] });
+    return;
+  }
+  if (action === 'show-hint') {
+    dispatch({ type: 'SET_HINT_VISIBLE', payload: true });
     return;
   }
   if (action === 'add-chip') {
@@ -1170,6 +1540,8 @@ function handleAction(action, target) {
     const chipIndexes = [...AppState.ui.selectedChipIndexes, chipIndex];
     dispatch({ type: 'SET_CHIPS', payload: chips });
     dispatch({ type: 'SET_CHIP_INDEXES', payload: chipIndexes });
+    dispatch({ type: 'SET_SB_PREFIX', payload: 0 });
+    dispatch({ type: 'SET_SB_SHAKE', payload: false });
     return;
   }
   if (action === 'remove-chip') {
@@ -1179,6 +1551,21 @@ function handleAction(action, target) {
     chipIndexes.pop();
     dispatch({ type: 'SET_CHIPS', payload: chips });
     dispatch({ type: 'SET_CHIP_INDEXES', payload: chipIndexes });
+    dispatch({ type: 'SET_SB_PREFIX', payload: 0 });
+    dispatch({ type: 'SET_SB_SHAKE', payload: false });
+    return;
+  }
+  if (action === 'remove-placed-chip') {
+    const removeIndex = Number(target.dataset.index);
+    if (Number.isNaN(removeIndex)) return;
+    const chips = [...AppState.ui.selectedChips];
+    const chipIndexes = [...AppState.ui.selectedChipIndexes];
+    chips.splice(removeIndex, 1);
+    chipIndexes.splice(removeIndex, 1);
+    dispatch({ type: 'SET_CHIPS', payload: chips });
+    dispatch({ type: 'SET_CHIP_INDEXES', payload: chipIndexes });
+    dispatch({ type: 'SET_SB_PREFIX', payload: 0 });
+    dispatch({ type: 'SET_SB_SHAKE', payload: false });
     return;
   }
   if (action === 'submit-answer') {
@@ -1199,26 +1586,25 @@ function handleAction(action, target) {
     return;
   }
   if (action === 'round-skip') {
-    removeCurrentWordFromSession('practice');
+    deferCurrentWordInSession();
     return;
   }
   if (action === 'round-known') {
     removeCurrentWordFromSession('known');
     return;
   }
-  if (action === 'summary-accept-unlocked') {
-    applyUnlockedDecision('pending');
-    return;
-  }
-  if (action === 'summary-defer-unlocked') {
-    applyUnlockedDecision('queued');
-    return;
-  }
-  if (action === 'production-practice-later') {
-    dispatch({ type: 'SET_SB_RETRY', payload: false });
-    dispatch({ type: 'SET_PRODUCTION_DRAFT', payload: '' });
-    dispatch({ type: 'SET_PRODUCTION_SUBMITTED', payload: '' });
-    finalizeRoundAnswer(false);
+  if (action === 'round-practice') {
+    const word = currentWord();
+    if (!word) return;
+    dispatch({ type: 'MARK_PRACTICE', payload: word });
+
+    if (AppState.session.round === 3) {
+      resetRoundInteractionState();
+      const refreshed = buildExercise(currentQueueItem(), AppState.session.round, AppState.session.current);
+      dispatch({ type: 'SET_CURRENT_EXERCISE', payload: refreshed });
+    }
+
+    dispatch({ type: 'SET_FEEDBACK', payload: 'Word added to practice list.' });
     return;
   }
   if (action === 'go-home') {
@@ -1228,6 +1614,35 @@ function handleAction(action, target) {
 }
 
 function handleUiAction(action, element) {
+  const setStatus = (id, text, ok) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.style.color = ok ? 'var(--success)' : 'var(--error, #f87171)';
+    el.textContent = text;
+  };
+
+  const ensureCloudConfiguredFromInputs = async () => {
+    if (!window.WFCloud) return { ok: false, message: 'Cloud sync module is unavailable.' };
+
+    const urlInput = document.getElementById('supabaseUrlInput');
+    const anonKeyInput = document.getElementById('supabaseAnonKeyInput');
+    const typedUrl = urlInput ? urlInput.value.trim() : '';
+    const typedAnon = anonKeyInput ? anonKeyInput.value.trim() : '';
+
+    if (typedUrl && typedAnon) {
+      window.WFCloud.setConfig(typedUrl, typedAnon);
+    }
+
+    const result = await window.WFCloud.init({
+      onRemoteApplied: (remoteProgress) => {
+        dispatch({ type: 'LOAD_PROGRESS', payload: remoteProgress });
+      },
+      onStatus: ({ message, ok }) => setStatus('cloud-status', message, ok)
+    });
+
+    return result;
+  };
+
   if (action === 'close-modal') {
     dispatch({ type: 'SET_MODAL', payload: null });
     return;
@@ -1235,9 +1650,97 @@ function handleUiAction(action, element) {
   if (action === 'save-settings') {
     const apiInput = document.getElementById('apiKeyInput');
     const modelInput = document.getElementById('modelInput');
+    const supabaseUrlInput = document.getElementById('supabaseUrlInput');
+    const supabaseAnonKeyInput = document.getElementById('supabaseAnonKeyInput');
+    const gistTokenInput = document.getElementById('gistTokenInput');
     localStorage.setItem('wf_api_key', apiInput ? apiInput.value.trim() : '');
     localStorage.setItem('wf_model', modelInput ? modelInput.value.trim() : 'gemma-4-31b-it');
+    if (window.WFCloud && supabaseUrlInput && supabaseAnonKeyInput) {
+      window.WFCloud.setConfig(supabaseUrlInput.value, supabaseAnonKeyInput.value);
+      window.WFCloud.init({
+        onRemoteApplied: (remoteProgress) => {
+          dispatch({ type: 'LOAD_PROGRESS', payload: remoteProgress });
+        },
+        onStatus: ({ message, ok }) => setStatus('cloud-status', message, ok)
+      }).then((result) => {
+        setStatus('cloud-status', result.message, result.ok);
+      });
+    }
+    if (gistTokenInput && window.WFSync) window.WFSync.setSyncToken(gistTokenInput.value);
     dispatch({ type: 'SET_MODAL', payload: null });
+    return;
+  }
+  if (action === 'cloud-signin') {
+    if (!window.WFCloud) return;
+    setStatus('cloud-status', 'Checking Supabase config…', true);
+    ensureCloudConfiguredFromInputs().then((initResult) => {
+      if (!initResult.ok && /Missing Supabase URL\/Anon key/i.test(initResult.message || '')) {
+        setStatus('cloud-status', 'Please enter Supabase URL and Anon Key first.', false);
+        return;
+      }
+      setStatus('cloud-status', 'Starting GitHub sign-in…', true);
+      window.WFCloud.signInWithGitHub().then((result) => {
+        setStatus('cloud-status', result.message, result.ok);
+      });
+    });
+    return;
+  }
+  if (action === 'cloud-signout') {
+    if (!window.WFCloud) return;
+    window.WFCloud.signOut().then((result) => {
+      setStatus('cloud-status', result.message, result.ok);
+      dispatch({ type: 'SET_MODAL', payload: 'settings' });
+    });
+    return;
+  }
+  if (action === 'cloud-sync-now') {
+    if (!window.WFCloud) return;
+    setStatus('cloud-status', 'Checking Supabase config…', true);
+    ensureCloudConfiguredFromInputs().then((initResult) => {
+      if (!initResult.ok && /Missing Supabase URL\/Anon key/i.test(initResult.message || '')) {
+        setStatus('cloud-status', 'Please enter Supabase URL and Anon Key first.', false);
+        return;
+      }
+      setStatus('cloud-status', 'Syncing…', true);
+      window.WFCloud.syncNow().then((result) => {
+        setStatus('cloud-status', result.message, result.ok);
+        if (result.ok) {
+          dispatch({ type: 'LOAD_PROGRESS', payload: loadProgress() });
+        }
+      });
+    });
+    return;
+  }
+  if (action === 'sync-save') {
+    if (!window.WFSync) return;
+    const tokenInput = document.getElementById('gistTokenInput');
+    if (tokenInput) window.WFSync.setSyncToken(tokenInput.value);
+    const statusEl = document.getElementById('sync-status');
+    if (statusEl) statusEl.textContent = 'Saving…';
+    window.WFSync.saveToGist().then((result) => {
+      const el = document.getElementById('sync-status');
+      if (!el) return;
+      el.style.color = result.ok ? 'var(--success)' : 'var(--error, #f87171)';
+      el.textContent = result.message;
+    });
+    return;
+  }
+  if (action === 'sync-load') {
+    if (!window.WFSync) return;
+    const tokenInput = document.getElementById('gistTokenInput');
+    if (tokenInput) window.WFSync.setSyncToken(tokenInput.value);
+    const statusEl = document.getElementById('sync-status');
+    if (statusEl) statusEl.textContent = 'Loading…';
+    window.WFSync.loadFromGist().then((result) => {
+      const el = document.getElementById('sync-status');
+      if (el) {
+        el.style.color = result.ok ? 'var(--success)' : 'var(--error, #f87171)';
+        el.textContent = result.message;
+      }
+      if (result.ok && result.reload) {
+        setTimeout(() => window.location.reload(), 1500);
+      }
+    });
     return;
   }
   if (action === 'quit-session') {
@@ -1263,6 +1766,12 @@ function handleUiAction(action, element) {
       dispatch({ type: 'DELETE_WORD_PROGRESS', payload: word });
     }
   }
+  if (action === 'remove-from-practice') {
+    const word = element?.dataset?.word;
+    if (word) {
+      dispatch({ type: 'DELETE_WORD_PROGRESS', payload: word });
+    }
+  }
   if (action === 'add-to-known') {
     const word = element?.dataset?.word;
     if (word) {
@@ -1272,25 +1781,20 @@ function handleUiAction(action, element) {
       });
     }
   }
-  if (action === 'activate-queued-meaning') {
-    const word = element?.dataset?.word;
-    if (!word) return;
-
-    const entry = AppState.progress.words[word];
-    if (!entry || !Array.isArray(entry.meanings)) return;
-
-    const queuedIndex = entry.meanings.findIndex((meaning, idx) => idx > 0 && meaning?.status === 'queued');
-    if (queuedIndex === -1) return;
-
-    dispatch({
-      type: 'SET_MEANING_STATUS',
-      payload: {
-        word,
-        meaningIndex: queuedIndex,
-        status: 'pending',
-        pendingAt: toLocalDate(0),
-      },
-    });
+  if (action === 'export-progress') {
+    const data = {
+      progress: AppState.progress,
+      streak: getStreakData(),
+      exportDate: new Date().toISOString()
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `wordforge-progress-${toLocalDate(0)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    return;
   }
 }
 
@@ -1310,10 +1814,11 @@ function handleKeyboardNavigation(event) {
   const exercise = AppState.session.currentExercise;
   if (!exercise) return;
 
-  if (event.key >= '1' && event.key <= '4' && Array.isArray(exercise.options)) {
+  if (event.key >= '1' && event.key <= '4' && Array.isArray(exercise.options || exercise.sentences)) {
+    const optionsList = exercise.options || exercise.sentences;
     const index = Number(event.key) - 1;
-    if (exercise.options[index] !== undefined) {
-      dispatch({ type: 'SET_OPTION', payload: exercise.options[index] });
+    if (optionsList[index] !== undefined) {
+      dispatch({ type: 'SET_OPTION', payload: optionsList[index] });
     }
     event.preventDefault();
     return;
@@ -1325,7 +1830,7 @@ function handleKeyboardNavigation(event) {
     return;
   }
 
-  if (event.key === 'Backspace' && exercise.type === 'SENTENCE_BUILDER') {
+  if (event.key === 'Backspace' && (exercise.type === 'SENTENCE_BUILDER' || exercise.type === 'MULTI_GAP')) {
     const chips = [...AppState.ui.selectedChips];
     const chipIndexes = [...AppState.ui.selectedChipIndexes];
     chips.pop();
@@ -1344,7 +1849,196 @@ document.addEventListener('click', (event) => {
   if (uiTarget) handleUiAction(uiTarget.dataset.uiAction, uiTarget);
 });
 
+document.addEventListener('input', (event) => {
+  if (event.target.id === 'freeTypeInput') {
+    AppState.ui.freeTypeInput = event.target.value;
+  }
+});
+
+document.addEventListener('change', (event) => {
+  if (event.target.id === 'importFileInput') {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const data = JSON.parse(e.target.result);
+        if (data.progress && data.progress.words) {
+          dispatch({ type: 'LOAD_PROGRESS', payload: data.progress });
+          saveProgress(data.progress);
+          if (data.streak) saveStreakData(data.streak);
+          dispatch({ type: 'SET_MODAL', payload: null });
+        } else {
+          alert('Invalid progress file format.');
+        }
+      } catch (err) {
+        alert('Failed to read file. Make sure it is a valid JSON export.');
+      }
+    };
+    reader.readAsText(file);
+  }
+});
+
 document.addEventListener('keydown', handleKeyboardNavigation);
+
+// ── Drag-Reorder for Sentence Builder placed chips ────────────────────────
+
+(function initDragReorder() {
+  let dragState = null;
+
+  function getPlacedChipIndex(el) {
+    const chip = el.closest('.sb-placed-chip');
+    if (!chip) return -1;
+    return Number(chip.dataset.index);
+  }
+
+  function createGhost(el, x, y) {
+    const ghost = el.cloneNode(true);
+    ghost.classList.add('sb-drag-ghost');
+    ghost.style.position = 'fixed';
+    ghost.style.left = `${x - 30}px`;
+    ghost.style.top = `${y - 20}px`;
+    ghost.style.pointerEvents = 'none';
+    ghost.style.zIndex = '100';
+    document.body.appendChild(ghost);
+    return ghost;
+  }
+
+  function moveGhost(ghost, x, y) {
+    ghost.style.left = `${x - 30}px`;
+    ghost.style.top = `${y - 20}px`;
+  }
+
+  function getDropIndex(zone, x, y, dragIndex) {
+    const chips = [...zone.querySelectorAll('.sb-placed-chip')];
+    for (let i = 0; i < chips.length; i++) {
+      const rect = chips[i].getBoundingClientRect();
+      const midX = rect.left + rect.width / 2;
+      if (x < midX) return i;
+    }
+    return chips.length;
+  }
+
+  function finishDrag() {
+    if (!dragState) return;
+    if (dragState.ghost) dragState.ghost.remove();
+    document.querySelectorAll('.sb-drop-indicator').forEach(el => el.remove());
+    dragState = null;
+  }
+
+  function reorderChips(fromIndex, toIndex) {
+    if (fromIndex === toIndex || fromIndex === toIndex - 1) return;
+    const chips = [...AppState.ui.selectedChips];
+    const chipIndexes = [...AppState.ui.selectedChipIndexes];
+    const [movedChip] = chips.splice(fromIndex, 1);
+    const [movedIdx] = chipIndexes.splice(fromIndex, 1);
+    const insertAt = toIndex > fromIndex ? toIndex - 1 : toIndex;
+    chips.splice(insertAt, 0, movedChip);
+    chipIndexes.splice(insertAt, 0, movedIdx);
+    dispatch({ type: 'SET_CHIPS', payload: chips });
+    dispatch({ type: 'SET_CHIP_INDEXES', payload: chipIndexes });
+  }
+
+  // Mouse events
+  document.addEventListener('mousedown', (e) => {
+    if (AppState.ui.locked) return;
+    const exercise = AppState.session?.currentExercise;
+    if (!exercise || exercise.type !== 'SENTENCE_BUILDER') return;
+    const chipEl = e.target.closest('.sb-placed-chip');
+    if (!chipEl) return;
+
+    const index = Number(chipEl.dataset.index);
+    const zone = chipEl.closest('.sb-placed-zone');
+    if (!zone) return;
+
+    dragState = { index, zone, startX: e.clientX, startY: e.clientY, ghost: null, dragging: false };
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (!dragState) return;
+    const dx = Math.abs(e.clientX - dragState.startX);
+    const dy = Math.abs(e.clientY - dragState.startY);
+
+    if (!dragState.dragging && (dx > 5 || dy > 5)) {
+      dragState.dragging = true;
+      const chipEl = dragState.zone.querySelectorAll('.sb-placed-chip')[dragState.index];
+      if (chipEl) {
+        dragState.ghost = createGhost(chipEl, e.clientX, e.clientY);
+        chipEl.classList.add('sb-chip-dragging');
+      }
+    }
+
+    if (dragState.dragging && dragState.ghost) {
+      moveGhost(dragState.ghost, e.clientX, e.clientY);
+    }
+  });
+
+  document.addEventListener('mouseup', (e) => {
+    if (!dragState) return;
+    if (dragState.dragging) {
+      const dropIdx = getDropIndex(dragState.zone, e.clientX, e.clientY, dragState.index);
+      reorderChips(dragState.index, dropIdx);
+      const chipEl = dragState.zone.querySelectorAll('.sb-placed-chip')[dragState.index];
+      if (chipEl) chipEl.classList.remove('sb-chip-dragging');
+    }
+    finishDrag();
+  });
+
+  // Touch events
+  document.addEventListener('touchstart', (e) => {
+    if (AppState.ui.locked) return;
+    const exercise = AppState.session?.currentExercise;
+    if (!exercise || exercise.type !== 'SENTENCE_BUILDER') return;
+    const chipEl = e.target.closest('.sb-placed-chip');
+    if (!chipEl) return;
+
+    const touch = e.touches[0];
+    const index = Number(chipEl.dataset.index);
+    const zone = chipEl.closest('.sb-placed-zone');
+    if (!zone) return;
+
+    dragState = { index, zone, startX: touch.clientX, startY: touch.clientY, ghost: null, dragging: false, touchId: touch.identifier };
+  }, { passive: true });
+
+  document.addEventListener('touchmove', (e) => {
+    if (!dragState) return;
+    const touch = [...e.touches].find(t => t.identifier === dragState.touchId);
+    if (!touch) return;
+
+    const dx = Math.abs(touch.clientX - dragState.startX);
+    const dy = Math.abs(touch.clientY - dragState.startY);
+
+    if (!dragState.dragging && (dx > 8 || dy > 8)) {
+      dragState.dragging = true;
+      const chipEl = dragState.zone.querySelectorAll('.sb-placed-chip')[dragState.index];
+      if (chipEl) {
+        dragState.ghost = createGhost(chipEl, touch.clientX, touch.clientY);
+        chipEl.classList.add('sb-chip-dragging');
+      }
+      e.preventDefault();
+    }
+
+    if (dragState.dragging && dragState.ghost) {
+      moveGhost(dragState.ghost, touch.clientX, touch.clientY);
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  document.addEventListener('touchend', (e) => {
+    if (!dragState) return;
+    if (dragState.dragging) {
+      const touch = e.changedTouches[0];
+      const dropIdx = getDropIndex(dragState.zone, touch.clientX, touch.clientY, dragState.index);
+      reorderChips(dragState.index, dropIdx);
+      const chipEl = dragState.zone.querySelectorAll('.sb-placed-chip')[dragState.index];
+      if (chipEl) chipEl.classList.remove('sb-chip-dragging');
+    }
+    finishDrag();
+  });
+
+  document.addEventListener('touchcancel', () => finishDrag());
+})();
 
 async function init() {
   try {
@@ -1352,6 +2046,15 @@ async function init() {
     await loadWords();
     dispatch({ type: 'LOAD_PROGRESS', payload: loadProgress() });
     dispatch({ type: 'SET_SCREEN', payload: 'home' });
+
+    if (window.WFCloud) {
+      await window.WFCloud.init({
+        onRemoteApplied: (remoteProgress) => {
+          dispatch({ type: 'LOAD_PROGRESS', payload: remoteProgress });
+          render(AppState);
+        },
+      });
+    }
   } catch (error) {
     const app = document.getElementById('app');
     if (app) app.innerHTML = `<div class="card">Failed to initialize: ${error.message}</div>`;

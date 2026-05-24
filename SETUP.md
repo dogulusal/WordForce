@@ -13,6 +13,20 @@
    http://localhost:5501
    ```
 
+## GitHub Pages Deployment
+
+This repo now includes an Actions workflow at [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml).
+
+1. Push your changes to the `main` branch.
+2. Open GitHub -> Repository Settings -> Pages.
+3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+4. Wait for the `Deploy to GitHub Pages` workflow to finish in the Actions tab.
+5. Open your Pages URL:
+   - `https://<username>.github.io/<repo>/`
+   - For this repo: `https://dogulusal.github.io/WordForce/`
+
+If you used a lowercase path before (`/wordForce/`), switch to the repo-cased path (`/WordForce/`).
+
 ## Gemini API Key Setup (Optional)
 
 ### Option 1: Environment Variable (Recommended)
@@ -40,6 +54,62 @@
 - **Translation MC:** Fixed to use English sentences only
 - **Centered Layout:** Responsive design with vertical centering
 - **Auto API Key:** Loads from environment if available
+- **Cloud Sync (Primary):** Supabase + GitHub login (works on phone and desktop)
+- **Fallback Backup:** Optional GitHub Gist export/import
+
+## Supabase Cloud Setup (Recommended)
+
+1. Create a Supabase project (free tier).
+2. In Supabase SQL Editor, run:
+
+```sql
+create table if not exists public.user_progress (
+   user_id uuid primary key references auth.users(id) on delete cascade,
+   level text not null default 'A1',
+   words jsonb not null default '{}'::jsonb,
+   streak jsonb not null default '{"currentStreak":0,"lastSessionDate":null,"longestStreak":0}'::jsonb,
+   updated_at timestamptz not null default now()
+);
+
+alter table public.user_progress enable row level security;
+
+drop policy if exists "select own progress" on public.user_progress;
+drop policy if exists "insert own progress" on public.user_progress;
+drop policy if exists "update own progress" on public.user_progress;
+
+create policy "select own progress"
+on public.user_progress
+for select
+using (auth.uid() = user_id);
+
+create policy "insert own progress"
+on public.user_progress
+for insert
+with check (auth.uid() = user_id);
+
+create policy "update own progress"
+on public.user_progress
+for update
+using (auth.uid() = user_id)
+with check (auth.uid() = user_id);
+```
+
+3. In Supabase Auth -> Providers, enable GitHub provider.
+4. In app Settings, fill:
+    - Supabase URL
+    - Supabase Anon Key
+5. Click **Sign in with GitHub**.
+6. After login, your progress is synced automatically (cloud is primary, localStorage is cache).
+
+### Optional .env entries
+
+```bash
+API_KEY=your-gemini-api-key
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_ANON_KEY=your-anon-key
+```
+
+If set, these values are auto-loaded on startup.
 
 ## Project Structure
 
@@ -67,5 +137,5 @@
 ## Notes
 
 - No npm/build system needed (vanilla JS)
-- All progress saved to localStorage
+- Progress is cached in localStorage and persisted to Supabase when signed in
 - API key never shared (stays local)
