@@ -1,18 +1,2556 @@
 {
-  "generatedAt": "2026-05-24T13:26:42.524Z",
+  "generatedAt": "2026-05-24T20:00:15.739Z",
   "filter": {
     "recent": null,
-    "level": "C1"
+    "level": "A1"
   },
   "summary": {
     "totalInDataset": 3481,
-    "checked": 264,
-    "errors": 0,
-    "warnings": 0,
+    "checked": 842,
+    "errors": 140,
+    "warnings": 366,
     "levelCounts": {
-      "C1": 264
+      "A1": 842
     }
   },
-  "errorsByType": {},
-  "warningsByType": {}
+  "errorsByType": {
+    "alt_missing_ex_distractors": [
+      {
+        "word": "a",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "a",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      },
+      {
+        "word": "about",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "about",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      },
+      {
+        "word": "about",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[2] has no ex_distractors"
+      },
+      {
+        "word": "above",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "across",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "act",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "act",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      },
+      {
+        "word": "act",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[2] has no ex_distractors"
+      },
+      {
+        "word": "action",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "action",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      },
+      {
+        "word": "action",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[2] has no ex_distractors"
+      },
+      {
+        "word": "activity",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "activity",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      },
+      {
+        "word": "actor",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "add",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "afraid",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "afraid",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      },
+      {
+        "word": "after",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "after",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      },
+      {
+        "word": "age",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "age",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      },
+      {
+        "word": "age",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[2] has no ex_distractors"
+      },
+      {
+        "word": "ago",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "agree",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "agree",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      },
+      {
+        "word": "air",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "air",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      },
+      {
+        "word": "all",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "all",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      },
+      {
+        "word": "always",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "always",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      },
+      {
+        "word": "always",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[2] has no ex_distractors"
+      },
+      {
+        "word": "amazing",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "amazing",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      },
+      {
+        "word": "angry",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "animal",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "answer",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "answer",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      },
+      {
+        "word": "answer",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[2] has no ex_distractors"
+      },
+      {
+        "word": "area",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "area",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      },
+      {
+        "word": "area",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[2] has no ex_distractors"
+      },
+      {
+        "word": "around",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "around",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      },
+      {
+        "word": "around",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[2] has no ex_distractors"
+      },
+      {
+        "word": "arrive",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "art",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "art",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      },
+      {
+        "word": "article",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "article",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      },
+      {
+        "word": "article",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[2] has no ex_distractors"
+      },
+      {
+        "word": "as",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "ask",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "ask",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      },
+      {
+        "word": "ask",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[2] has no ex_distractors"
+      },
+      {
+        "word": "baby",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "baby",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      },
+      {
+        "word": "baby",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[2] has no ex_distractors"
+      },
+      {
+        "word": "back",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "back",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      },
+      {
+        "word": "bag",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "bag",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      },
+      {
+        "word": "bag",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[2] has no ex_distractors"
+      },
+      {
+        "word": "basketball",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "basketball",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      },
+      {
+        "word": "beach",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "beautiful",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[0] has no ex_distractors"
+      },
+      {
+        "word": "beautiful",
+        "type": "alt_missing_ex_distractors",
+        "detail": "alt_meanings[1] has no ex_distractors"
+      }
+    ],
+    "alt_missing_sb_distractors": [
+      {
+        "word": "a",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "a",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      },
+      {
+        "word": "about",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "about",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      },
+      {
+        "word": "about",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[2] has no sb_distractors"
+      },
+      {
+        "word": "above",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "across",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "act",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "act",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      },
+      {
+        "word": "act",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[2] has no sb_distractors"
+      },
+      {
+        "word": "action",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "action",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      },
+      {
+        "word": "action",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[2] has no sb_distractors"
+      },
+      {
+        "word": "activity",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "activity",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      },
+      {
+        "word": "actor",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "add",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "afraid",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "afraid",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      },
+      {
+        "word": "after",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "after",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      },
+      {
+        "word": "age",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "age",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      },
+      {
+        "word": "age",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[2] has no sb_distractors"
+      },
+      {
+        "word": "ago",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "agree",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "agree",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      },
+      {
+        "word": "air",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "air",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      },
+      {
+        "word": "all",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "all",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      },
+      {
+        "word": "always",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "always",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      },
+      {
+        "word": "always",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[2] has no sb_distractors"
+      },
+      {
+        "word": "amazing",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "amazing",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      },
+      {
+        "word": "angry",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "animal",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "answer",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "answer",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      },
+      {
+        "word": "answer",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[2] has no sb_distractors"
+      },
+      {
+        "word": "area",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "area",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      },
+      {
+        "word": "area",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[2] has no sb_distractors"
+      },
+      {
+        "word": "around",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "around",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      },
+      {
+        "word": "around",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[2] has no sb_distractors"
+      },
+      {
+        "word": "arrive",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "art",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "art",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      },
+      {
+        "word": "article",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "article",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      },
+      {
+        "word": "article",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[2] has no sb_distractors"
+      },
+      {
+        "word": "as",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "ask",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "ask",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      },
+      {
+        "word": "ask",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[2] has no sb_distractors"
+      },
+      {
+        "word": "baby",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "baby",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      },
+      {
+        "word": "baby",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[2] has no sb_distractors"
+      },
+      {
+        "word": "back",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "back",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      },
+      {
+        "word": "bag",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "bag",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      },
+      {
+        "word": "bag",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[2] has no sb_distractors"
+      },
+      {
+        "word": "basketball",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "basketball",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      },
+      {
+        "word": "beach",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "beautiful",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[0] has no sb_distractors"
+      },
+      {
+        "word": "beautiful",
+        "type": "alt_missing_sb_distractors",
+        "detail": "alt_meanings[1] has no sb_distractors"
+      }
+    ]
+  },
+  "warningsByType": {
+    "short_example": [
+      {
+        "word": "January",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"January is very cold.\""
+      },
+      {
+        "word": "Sunday",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Sunday is a holiday.\""
+      },
+      {
+        "word": "a",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have a dog.\""
+      },
+      {
+        "word": "a",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"She is a teacher.\""
+      },
+      {
+        "word": "act",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"Please act quickly.\""
+      },
+      {
+        "word": "act",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"He always acts kind.\""
+      },
+      {
+        "word": "afternoon",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"See you tomorrow afternoon.\""
+      },
+      {
+        "word": "again",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Please say that again.\""
+      },
+      {
+        "word": "age",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"What is your age?\""
+      },
+      {
+        "word": "agree",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I agree with you.\""
+      },
+      {
+        "word": "always",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"She is always happy.\""
+      },
+      {
+        "word": "amazing",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The movie is amazing.\""
+      },
+      {
+        "word": "anything",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Do you need anything?\""
+      },
+      {
+        "word": "arrive",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"I arrive home late.\""
+      },
+      {
+        "word": "art",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"I like art.\""
+      },
+      {
+        "word": "art",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"He likes art class.\""
+      },
+      {
+        "word": "ask",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I ask a question.\""
+      },
+      {
+        "word": "at",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I am at home.\""
+      },
+      {
+        "word": "at",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"She is at school.\""
+      },
+      {
+        "word": "away",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The cat is away.\""
+      },
+      {
+        "word": "awesome",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"This movie is awesome!\""
+      },
+      {
+        "word": "baby",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The baby is sleeping.\""
+      },
+      {
+        "word": "back",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"My back hurts.\""
+      },
+      {
+        "word": "banana",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The banana is yellow.\""
+      },
+      {
+        "word": "bathroom",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Where is the bathroom?\""
+      },
+      {
+        "word": "bathroom",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The bathroom is clean.\""
+      },
+      {
+        "word": "be",
+        "type": "short_example",
+        "detail": "Example 2 is only 3 words: \"Please be quiet.\""
+      },
+      {
+        "word": "beautiful",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The flower is beautiful.\""
+      },
+      {
+        "word": "beer",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"He wants a beer.\""
+      },
+      {
+        "word": "begin",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The movie begins now.\""
+      },
+      {
+        "word": "behind",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Who is behind you?\""
+      },
+      {
+        "word": "believe",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"I believe you.\""
+      },
+      {
+        "word": "believe",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"They believe in ghosts.\""
+      },
+      {
+        "word": "below",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The fish are below.\""
+      },
+      {
+        "word": "below",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Read the text below.\""
+      },
+      {
+        "word": "better",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"I feel better today.\""
+      },
+      {
+        "word": "bicycle",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The bicycle is red.\""
+      },
+      {
+        "word": "birthday",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Today is my birthday.\""
+      },
+      {
+        "word": "birthday",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"When is your birthday?\""
+      },
+      {
+        "word": "black",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The car is black.\""
+      },
+      {
+        "word": "boring",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The movie is boring.\""
+      },
+      {
+        "word": "boring",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"This book is boring.\""
+      },
+      {
+        "word": "both",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Both books are good.\""
+      },
+      {
+        "word": "both",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Both students are here.\""
+      },
+      {
+        "word": "brother",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have one brother.\""
+      },
+      {
+        "word": "brown",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The dog is brown.\""
+      },
+      {
+        "word": "bus",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The bus is yellow.\""
+      },
+      {
+        "word": "buy",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"They buy fresh fruit.\""
+      },
+      {
+        "word": "bye",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Bye, see you tomorrow!\""
+      },
+      {
+        "word": "cake",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I like chocolate cake.\""
+      },
+      {
+        "word": "call",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Please call me tomorrow.\""
+      },
+      {
+        "word": "can",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"I can swim.\""
+      },
+      {
+        "word": "can",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"She can speak English.\""
+      },
+      {
+        "word": "cannot",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"I cannot swim.\""
+      },
+      {
+        "word": "car",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The car is fast.\""
+      },
+      {
+        "word": "channel",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Change the channel, please.\""
+      },
+      {
+        "word": "child",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"She has one child.\""
+      },
+      {
+        "word": "chocolate",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I love eating chocolate.\""
+      },
+      {
+        "word": "choose",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Please choose a color.\""
+      },
+      {
+        "word": "clean",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The room is clean.\""
+      },
+      {
+        "word": "clean",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"I have clean hands.\""
+      },
+      {
+        "word": "close",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Please close the door.\""
+      },
+      {
+        "word": "cold",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The water is cold.\""
+      },
+      {
+        "word": "come",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"Please come here.\""
+      },
+      {
+        "word": "cook",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Can you cook pasta?\""
+      },
+      {
+        "word": "correct",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Your answer is correct.\""
+      },
+      {
+        "word": "cousin",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"I have one cousin.\""
+      },
+      {
+        "word": "create",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Artists create beautiful paintings.\""
+      },
+      {
+        "word": "cut",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I cut the apple.\""
+      },
+      {
+        "word": "cut",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"She cuts the paper.\""
+      },
+      {
+        "word": "dad",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"I love my dad.\""
+      },
+      {
+        "word": "dancing",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"I love dancing.\""
+      },
+      {
+        "word": "dancing",
+        "type": "short_example",
+        "detail": "Example 2 is only 3 words: \"Dancing is fun.\""
+      },
+      {
+        "word": "dangerous",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Driving fast is dangerous.\""
+      },
+      {
+        "word": "dark",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The room is dark.\""
+      },
+      {
+        "word": "dark",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"It is dark outside.\""
+      },
+      {
+        "word": "daughter",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"She has one daughter.\""
+      },
+      {
+        "word": "day",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"I work every day.\""
+      },
+      {
+        "word": "delicious",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The cake is delicious.\""
+      },
+      {
+        "word": "delicious",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"This apple is delicious.\""
+      },
+      {
+        "word": "describe",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Please describe the man.\""
+      },
+      {
+        "word": "die",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Plants die without water.\""
+      },
+      {
+        "word": "different",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"They are different colors.\""
+      },
+      {
+        "word": "dinner",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"We eat dinner together.\""
+      },
+      {
+        "word": "dirty",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Your hands are dirty.\""
+      },
+      {
+        "word": "door",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Please close the door.\""
+      },
+      {
+        "word": "door",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The door is open.\""
+      },
+      {
+        "word": "down",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"Please sit down.\""
+      },
+      {
+        "word": "draw",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I draw a cat.\""
+      },
+      {
+        "word": "draw",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"She draws a house.\""
+      },
+      {
+        "word": "each",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Each day is different.\""
+      },
+      {
+        "word": "early",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The train arrived early.\""
+      },
+      {
+        "word": "eight",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have eight apples.\""
+      },
+      {
+        "word": "eleven",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have eleven apples.\""
+      },
+      {
+        "word": "enjoy",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I enjoy reading books.\""
+      },
+      {
+        "word": "enjoy",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"They enjoy the party.\""
+      },
+      {
+        "word": "enough",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have enough money.\""
+      },
+      {
+        "word": "euro",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have ten euros.\""
+      },
+      {
+        "word": "everybody",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Everybody is happy today.\""
+      },
+      {
+        "word": "everyone",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Everyone likes ice cream.\""
+      },
+      {
+        "word": "everyone",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Everyone is here today.\""
+      },
+      {
+        "word": "eye",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"She has blue eyes.\""
+      },
+      {
+        "word": "face",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"Wash your face.\""
+      },
+      {
+        "word": "family",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"My family is big.\""
+      },
+      {
+        "word": "father",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"I love my father.\""
+      },
+      {
+        "word": "feel",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I feel happy today.\""
+      },
+      {
+        "word": "fifteen",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have fifteen books.\""
+      },
+      {
+        "word": "fifty",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have fifty books.\""
+      },
+      {
+        "word": "film",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I like this film.\""
+      },
+      {
+        "word": "finish",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Please finish your dinner.\""
+      },
+      {
+        "word": "fire",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The fire is hot.\""
+      },
+      {
+        "word": "fish",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The fish is small.\""
+      },
+      {
+        "word": "five",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have five apples.\""
+      },
+      {
+        "word": "floor",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The floor is dirty.\""
+      },
+      {
+        "word": "flower",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The flower is red.\""
+      },
+      {
+        "word": "follow",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Dogs follow their owners.\""
+      },
+      {
+        "word": "food",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I love Italian food.\""
+      },
+      {
+        "word": "forget",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Don't forget your umbrella.\""
+      },
+      {
+        "word": "forty",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have forty books.\""
+      },
+      {
+        "word": "four",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have four apples.\""
+      },
+      {
+        "word": "fourteen",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have fourteen pencils.\""
+      },
+      {
+        "word": "free",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"This water is free.\""
+      },
+      {
+        "word": "free",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Are you free tomorrow?\""
+      },
+      {
+        "word": "from",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I am from Turkey.\""
+      },
+      {
+        "word": "full",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The glass is full.\""
+      },
+      {
+        "word": "fun",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Playing football is fun.\""
+      },
+      {
+        "word": "funny",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"He tells funny stories.\""
+      },
+      {
+        "word": "future",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The future is exciting.\""
+      },
+      {
+        "word": "goodbye",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Goodbye, see you tomorrow!\""
+      },
+      {
+        "word": "grandfather",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"I love my grandfather.\""
+      },
+      {
+        "word": "great",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"This cake is great!\""
+      },
+      {
+        "word": "green",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The grass is green.\""
+      },
+      {
+        "word": "grow",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Children grow every year.\""
+      },
+      {
+        "word": "happen",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"What will happen tomorrow?\""
+      },
+      {
+        "word": "happen",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Accidents happen every day.\""
+      },
+      {
+        "word": "hate",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I hate cold weather.\""
+      },
+      {
+        "word": "hate",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"They hate this movie.\""
+      },
+      {
+        "word": "he",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"He is a doctor.\""
+      },
+      {
+        "word": "he",
+        "type": "short_example",
+        "detail": "Example 2 is only 3 words: \"He likes apples.\""
+      },
+      {
+        "word": "healthy",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Eating fruit is healthy.\""
+      },
+      {
+        "word": "hello",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Hello, how are you?\""
+      },
+      {
+        "word": "her",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"This is her book.\""
+      },
+      {
+        "word": "her",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"I like her dress.\""
+      },
+      {
+        "word": "here",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"I am here.\""
+      },
+      {
+        "word": "here",
+        "type": "short_example",
+        "detail": "Example 2 is only 3 words: \"Come here, please.\""
+      },
+      {
+        "word": "hey",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Hey, look at this!\""
+      },
+      {
+        "word": "hey",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Hey, how are you?\""
+      },
+      {
+        "word": "hi",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Hi, how are you?\""
+      },
+      {
+        "word": "him",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"I see him.\""
+      },
+      {
+        "word": "his",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"This is his book.\""
+      },
+      {
+        "word": "his",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"His car is red.\""
+      },
+      {
+        "word": "history",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I like history class.\""
+      },
+      {
+        "word": "horse",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The horse is fast.\""
+      },
+      {
+        "word": "hot",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The tea is hot.\""
+      },
+      {
+        "word": "how",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"How are you?\""
+      },
+      {
+        "word": "hungry",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"I am hungry.\""
+      },
+      {
+        "word": "hungry",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The baby is hungry.\""
+      },
+      {
+        "word": "in",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"She lives in London.\""
+      },
+      {
+        "word": "introduce",
+        "type": "short_example",
+        "detail": "Example 2 is only 3 words: \"Please introduce yourself.\""
+      },
+      {
+        "word": "know",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I know the answer.\""
+      },
+      {
+        "word": "know",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Do you know her?\""
+      },
+      {
+        "word": "leg",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"My left leg hurts.\""
+      },
+      {
+        "word": "let",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Please let me go.\""
+      },
+      {
+        "word": "life",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"Life is beautiful.\""
+      },
+      {
+        "word": "like",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"I like apples.\""
+      },
+      {
+        "word": "like",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Do you like music?\""
+      },
+      {
+        "word": "live",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I live in London.\""
+      },
+      {
+        "word": "long",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"She has long hair.\""
+      },
+      {
+        "word": "look",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Look at the picture.\""
+      },
+      {
+        "word": "love",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I love my family.\""
+      },
+      {
+        "word": "love",
+        "type": "short_example",
+        "detail": "Example 2 is only 3 words: \"They love music.\""
+      },
+      {
+        "word": "low",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The table is low.\""
+      },
+      {
+        "word": "low",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The price is low.\""
+      },
+      {
+        "word": "make",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I make a cake.\""
+      },
+      {
+        "word": "make",
+        "type": "short_example",
+        "detail": "Example 2 is only 3 words: \"They make dinner.\""
+      },
+      {
+        "word": "many",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have many books.\""
+      },
+      {
+        "word": "married",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"My sister is married.\""
+      },
+      {
+        "word": "married",
+        "type": "short_example",
+        "detail": "Example 2 is only 3 words: \"Are you married?\""
+      },
+      {
+        "word": "math",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"I like math.\""
+      },
+      {
+        "word": "me",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Can you help me?\""
+      },
+      {
+        "word": "me",
+        "type": "short_example",
+        "detail": "Example 2 is only 3 words: \"She likes me.\""
+      },
+      {
+        "word": "mean",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Red lights mean stop.\""
+      },
+      {
+        "word": "meat",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Do you like meat?\""
+      },
+      {
+        "word": "miss",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I miss my family.\""
+      },
+      {
+        "word": "miss",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"I miss the bus.\""
+      },
+      {
+        "word": "mom",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I love my mom.\""
+      },
+      {
+        "word": "moment",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Wait a moment, please.\""
+      },
+      {
+        "word": "more",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I want more water.\""
+      },
+      {
+        "word": "most",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Most people like music.\""
+      },
+      {
+        "word": "mother",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"I love my mother.\""
+      },
+      {
+        "word": "mouse",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The mouse is small.\""
+      },
+      {
+        "word": "mouth",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Open your mouth, please.\""
+      },
+      {
+        "word": "move",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Please move your chair.\""
+      },
+      {
+        "word": "must",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"You must drink water.\""
+      },
+      {
+        "word": "my",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"This is my book.\""
+      },
+      {
+        "word": "my",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"My name is Ali.\""
+      },
+      {
+        "word": "name",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"What is your name?\""
+      },
+      {
+        "word": "name",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"My name is Ali.\""
+      },
+      {
+        "word": "need",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I need some water.\""
+      },
+      {
+        "word": "never",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I never eat meat.\""
+      },
+      {
+        "word": "never",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"She never arrives late.\""
+      },
+      {
+        "word": "nine",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have nine apples.\""
+      },
+      {
+        "word": "nineteen",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have nineteen books.\""
+      },
+      {
+        "word": "nobody",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Nobody knows the answer.\""
+      },
+      {
+        "word": "now",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I am eating now.\""
+      },
+      {
+        "word": "now",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Where are you now?\""
+      },
+      {
+        "word": "off",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The light is off.\""
+      },
+      {
+        "word": "often",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"They often eat pizza.\""
+      },
+      {
+        "word": "oh",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"Oh, I see!\""
+      },
+      {
+        "word": "oh",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Oh, look at that!\""
+      },
+      {
+        "word": "once",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I visited London once.\""
+      },
+      {
+        "word": "one",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have one apple.\""
+      },
+      {
+        "word": "open",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The window is open.\""
+      },
+      {
+        "word": "orange",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"She likes orange juice.\""
+      },
+      {
+        "word": "our",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"This is our house.\""
+      },
+      {
+        "word": "ours",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"This car is ours.\""
+      },
+      {
+        "word": "out",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"Please go out.\""
+      },
+      {
+        "word": "out",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The cat is out.\""
+      },
+      {
+        "word": "pants",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I wear blue pants.\""
+      },
+      {
+        "word": "path",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The path is long.\""
+      },
+      {
+        "word": "pay",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"They pay the bill.\""
+      },
+      {
+        "word": "pen",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Where is my pen?\""
+      },
+      {
+        "word": "perfect",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"This cake is perfect.\""
+      },
+      {
+        "word": "perfect",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Your English is perfect.\""
+      },
+      {
+        "word": "pet",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"I love my pet.\""
+      },
+      {
+        "word": "phone",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Where is my phone?\""
+      },
+      {
+        "word": "phrase",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Repeat the phrase, please.\""
+      },
+      {
+        "word": "place",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"I like this place.\""
+      },
+      {
+        "word": "please",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Please open the door.\""
+      },
+      {
+        "word": "police",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Call the police now.\""
+      },
+      {
+        "word": "police",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The police are here.\""
+      },
+      {
+        "word": "question",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have a question.\""
+      },
+      {
+        "word": "quickly",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"He runs quickly.\""
+      },
+      {
+        "word": "quickly",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Please come here quickly.\""
+      },
+      {
+        "word": "rain",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I like the rain.\""
+      },
+      {
+        "word": "ready",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Dinner is ready now.\""
+      },
+      {
+        "word": "real",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"He has real problems.\""
+      },
+      {
+        "word": "red",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The apple is red.\""
+      },
+      {
+        "word": "remember",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I remember your name.\""
+      },
+      {
+        "word": "repeat",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Please repeat the word.\""
+      },
+      {
+        "word": "rice",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"She likes white rice.\""
+      },
+      {
+        "word": "room",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"My room is small.\""
+      },
+      {
+        "word": "sad",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"She is sad today.\""
+      },
+      {
+        "word": "salt",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Please pass the salt.\""
+      },
+      {
+        "word": "say",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"What do you say?\""
+      },
+      {
+        "word": "science",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I like science class.\""
+      },
+      {
+        "word": "science",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Science is very interesting.\""
+      },
+      {
+        "word": "sea",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The sea is blue.\""
+      },
+      {
+        "word": "sentence",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Please write one sentence.\""
+      },
+      {
+        "word": "she",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"She is a teacher.\""
+      },
+      {
+        "word": "she",
+        "type": "short_example",
+        "detail": "Example 2 is only 3 words: \"She likes apples.\""
+      },
+      {
+        "word": "shoe",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The shoe is red.\""
+      },
+      {
+        "word": "sick",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I am sick today.\""
+      },
+      {
+        "word": "sing",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I sing a song.\""
+      },
+      {
+        "word": "sing",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"She sings very well.\""
+      },
+      {
+        "word": "sister",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"I have one sister.\""
+      },
+      {
+        "word": "six",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have six apples.\""
+      },
+      {
+        "word": "sixteen",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have sixteen pencils.\""
+      },
+      {
+        "word": "ski",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I ski every winter.\""
+      },
+      {
+        "word": "small",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The cat is small.\""
+      },
+      {
+        "word": "snake",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The snake is green.\""
+      },
+      {
+        "word": "soap",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Where is the soap?\""
+      },
+      {
+        "word": "some",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have some water.\""
+      },
+      {
+        "word": "some",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Some students are here.\""
+      },
+      {
+        "word": "son",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"He has a son.\""
+      },
+      {
+        "word": "song",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I like this song.\""
+      },
+      {
+        "word": "soon",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The train arrives soon.\""
+      },
+      {
+        "word": "soup",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I like tomato soup.\""
+      },
+      {
+        "word": "space",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Astronauts travel into space.\""
+      },
+      {
+        "word": "speak",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"I speak English.\""
+      },
+      {
+        "word": "speak",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Can you speak slowly?\""
+      },
+      {
+        "word": "stay",
+        "type": "short_example",
+        "detail": "Example 2 is only 3 words: \"Please stay here.\""
+      },
+      {
+        "word": "still",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"It is still raining.\""
+      },
+      {
+        "word": "stop",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Please stop the car.\""
+      },
+      {
+        "word": "story",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Tell me a story.\""
+      },
+      {
+        "word": "summer",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"I love summer.\""
+      },
+      {
+        "word": "summer",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Summer is very hot.\""
+      },
+      {
+        "word": "take",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I take the book.\""
+      },
+      {
+        "word": "take",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Please take your bag.\""
+      },
+      {
+        "word": "teacher",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The teacher speaks English.\""
+      },
+      {
+        "word": "telephone",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Please answer the telephone.\""
+      },
+      {
+        "word": "ten",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have ten apples.\""
+      },
+      {
+        "word": "thanks",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Thanks for the gift!\""
+      },
+      {
+        "word": "thanks",
+        "type": "short_example",
+        "detail": "Example 2 is only 2 words: \"No, thanks.\""
+      },
+      {
+        "word": "that",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"That book is red.\""
+      },
+      {
+        "word": "that",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"I want that apple.\""
+      },
+      {
+        "word": "the",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The book is red.\""
+      },
+      {
+        "word": "their",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Their house is big.\""
+      },
+      {
+        "word": "their",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"They love their dog.\""
+      },
+      {
+        "word": "theirs",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"This car is theirs.\""
+      },
+      {
+        "word": "there",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The book is there.\""
+      },
+      {
+        "word": "these",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"These books are heavy.\""
+      },
+      {
+        "word": "these",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"I like these shoes.\""
+      },
+      {
+        "word": "they",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"They are happy.\""
+      },
+      {
+        "word": "they",
+        "type": "short_example",
+        "detail": "Example 2 is only 3 words: \"They play football.\""
+      },
+      {
+        "word": "thing",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"What is that thing?\""
+      },
+      {
+        "word": "thirsty",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I am very thirsty.\""
+      },
+      {
+        "word": "thirsty",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The dog is thirsty.\""
+      },
+      {
+        "word": "thirteen",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have thirteen books.\""
+      },
+      {
+        "word": "thirty",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have thirty books.\""
+      },
+      {
+        "word": "this",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"I like this city.\""
+      },
+      {
+        "word": "those",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Those books are heavy.\""
+      },
+      {
+        "word": "those",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Who are those people?\""
+      },
+      {
+        "word": "three",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have three cats.\""
+      },
+      {
+        "word": "time",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I need more time.\""
+      },
+      {
+        "word": "to",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I go to school.\""
+      },
+      {
+        "word": "together",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"We study together.\""
+      },
+      {
+        "word": "toilet",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Where is the toilet?\""
+      },
+      {
+        "word": "toilet",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The toilet is clean.\""
+      },
+      {
+        "word": "tomato",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"She likes tomato soup.\""
+      },
+      {
+        "word": "tomorrow",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Tomorrow is a holiday.\""
+      },
+      {
+        "word": "tonight",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Are you free tonight?\""
+      },
+      {
+        "word": "tooth",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The tooth is white.\""
+      },
+      {
+        "word": "travel",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"They travel by train.\""
+      },
+      {
+        "word": "true",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Is this story true?\""
+      },
+      {
+        "word": "true",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The answer is true.\""
+      },
+      {
+        "word": "try",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Please try this cake.\""
+      },
+      {
+        "word": "turn",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The wheels turn slowly.\""
+      },
+      {
+        "word": "twelve",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have twelve pencils.\""
+      },
+      {
+        "word": "twenty",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have twenty books.\""
+      },
+      {
+        "word": "two",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I have two cats.\""
+      },
+      {
+        "word": "two",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"She has two brothers.\""
+      },
+      {
+        "word": "understand",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I understand the lesson.\""
+      },
+      {
+        "word": "understand",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Do you understand me?\""
+      },
+      {
+        "word": "us",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"Please help us.\""
+      },
+      {
+        "word": "us",
+        "type": "short_example",
+        "detail": "Example 2 is only 3 words: \"She sees us.\""
+      },
+      {
+        "word": "wait",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Please wait for me.\""
+      },
+      {
+        "word": "wall",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The wall is white.\""
+      },
+      {
+        "word": "warm",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The tea is warm.\""
+      },
+      {
+        "word": "wash",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I wash my hands.\""
+      },
+      {
+        "word": "wash",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"She washes the car.\""
+      },
+      {
+        "word": "we",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"We are students.\""
+      },
+      {
+        "word": "we",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"We live in London.\""
+      },
+      {
+        "word": "welcome",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Welcome to our home!\""
+      },
+      {
+        "word": "welcome",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Welcome to the team!\""
+      },
+      {
+        "word": "well",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"She speaks English well.\""
+      },
+      {
+        "word": "well",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"He plays football well.\""
+      },
+      {
+        "word": "what",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"What is your name?\""
+      },
+      {
+        "word": "what",
+        "type": "short_example",
+        "detail": "Example 2 is only 3 words: \"What is this?\""
+      },
+      {
+        "word": "when",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"When is the party?\""
+      },
+      {
+        "word": "where",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Where is the book?\""
+      },
+      {
+        "word": "where",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Where do you live?\""
+      },
+      {
+        "word": "which",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Which book is yours?\""
+      },
+      {
+        "word": "white",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The cat is white.\""
+      },
+      {
+        "word": "who",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Who is that man?\""
+      },
+      {
+        "word": "who",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Who is your teacher?\""
+      },
+      {
+        "word": "why",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Why are you sad?\""
+      },
+      {
+        "word": "window",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Please close the window.\""
+      },
+      {
+        "word": "window",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"The window is open.\""
+      },
+      {
+        "word": "winter",
+        "type": "short_example",
+        "detail": "Example 1 is only 3 words: \"I love winter.\""
+      },
+      {
+        "word": "word",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Please write one word.\""
+      },
+      {
+        "word": "work",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"They work every day.\""
+      },
+      {
+        "word": "writing",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"I like your writing.\""
+      },
+      {
+        "word": "wrong",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"This answer is wrong.\""
+      },
+      {
+        "word": "year",
+        "type": "short_example",
+        "detail": "Example 2 is only 3 words: \"Happy New Year!\""
+      },
+      {
+        "word": "yellow",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"The sun is yellow.\""
+      },
+      {
+        "word": "yes",
+        "type": "short_example",
+        "detail": "Example 2 is only 2 words: \"Yes, please.\""
+      },
+      {
+        "word": "yesterday",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"I saw him yesterday.\""
+      },
+      {
+        "word": "yesterday",
+        "type": "short_example",
+        "detail": "Example 2 is only 3 words: \"It rained yesterday.\""
+      },
+      {
+        "word": "you",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"You are a student.\""
+      },
+      {
+        "word": "you",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Do you like coffee?\""
+      },
+      {
+        "word": "young",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"She is very young.\""
+      },
+      {
+        "word": "your",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"Where is your book?\""
+      },
+      {
+        "word": "your",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"I like your car.\""
+      },
+      {
+        "word": "yours",
+        "type": "short_example",
+        "detail": "Example 1 is only 4 words: \"This book is yours.\""
+      },
+      {
+        "word": "yours",
+        "type": "short_example",
+        "detail": "Example 2 is only 4 words: \"Is this pen yours?\""
+      }
+    ]
+  }
 }
