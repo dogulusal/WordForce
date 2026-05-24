@@ -11,9 +11,14 @@ function renderSettingsModal() {
   const apiKey = localStorage.getItem('wf_api_key') || '';
   const model = localStorage.getItem('wf_model') || 'gemma-4-31b-it';
   const envApiKey = window.ENV_API_KEY || '';
-  const supabaseUrl = localStorage.getItem('wf_supabase_url') || window.ENV_SUPABASE_URL || '';
-  const supabaseAnonKey = localStorage.getItem('wf_supabase_anon_key') || window.ENV_SUPABASE_ANON_KEY || '';
+  const cloudConfig = window.WFCloud ? window.WFCloud.getConfig() : null;
+  const supabaseUrl = (cloudConfig && cloudConfig.url) || localStorage.getItem('wf_supabase_url') || window.ENV_SUPABASE_URL || '';
+  const hasBuiltInSupabase = Boolean(supabaseUrl);
   const cloudAuth = window.WFCloud ? window.WFCloud.getAuthState() : { configured: false, signedIn: false, userEmail: '' };
+  const quickActionLabel = cloudAuth.signedIn ? 'Sync Now' : 'Connect with GitHub';
+  const quickActionHint = cloudAuth.signedIn
+    ? 'Connected. Use one tap to fetch latest progress from cloud.'
+    : 'One tap sign-in. Supabase config is preloaded.';
   const gistToken = (window.WFSync ? window.WFSync.getSyncToken() : '') || '';
   const gistId = (window.WFSync ? window.WFSync.getSyncGistId() : '') || '';
 
@@ -32,16 +37,16 @@ function renderSettingsModal() {
         </div>
         <hr style="border-color: var(--border); margin: 16px 0;">
         <h3 style="margin-bottom: 8px;">Cloud Sync (Primary: Supabase)</h3>
-        <label class="modal-label" for="supabaseUrlInput">Supabase URL</label>
-        <input id="supabaseUrlInput" type="text" value="${escapeHtml(supabaseUrl)}" placeholder="https://xyzcompany.supabase.co" class="modal-input">
-        <label class="modal-label" for="supabaseAnonKeyInput">Supabase Anon Key</label>
-        <input id="supabaseAnonKeyInput" type="password" value="${escapeHtml(supabaseAnonKey)}" placeholder="eyJ..." class="modal-input">
         <div style="font-size:0.8rem; color: var(--text-muted); margin-bottom:8px;">
           Status: ${cloudAuth.signedIn ? `Signed in as ${escapeHtml(cloudAuth.userEmail)}` : (cloudAuth.configured ? 'Configured, not signed in' : 'Not configured')}
         </div>
+        <div style="font-size:0.8rem; color: var(--text-muted); margin-bottom:8px;">
+          ${hasBuiltInSupabase ? 'Supabase config is ready in this app.' : 'Supabase config is missing. You can still use GitHub Gist backup below.'}
+        </div>
+        <div style="font-size:0.8rem; color: var(--text-muted); margin-bottom:8px;">${escapeHtml(quickActionHint)}</div>
         <div id="cloud-status" style="font-size:0.82rem; min-height:1.2em; margin-bottom:8px;"></div>
         <div class="modal-actions">
-          <button class="btn" data-ui-action="cloud-signin">Sign in with GitHub</button>
+          <button class="btn" data-ui-action="cloud-connect">${quickActionLabel}</button>
           <button class="btn btn-muted" data-ui-action="cloud-sync-now">Sync Now</button>
           <button class="btn btn-muted" data-ui-action="cloud-signout">Sign out</button>
         </div>

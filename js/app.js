@@ -1621,16 +1621,12 @@ function handleUiAction(action, element) {
     el.textContent = text;
   };
 
-  const ensureCloudConfiguredFromInputs = async () => {
+  const ensureCloudReady = async () => {
     if (!window.WFCloud) return { ok: false, message: 'Cloud sync module is unavailable.' };
 
-    const urlInput = document.getElementById('supabaseUrlInput');
-    const anonKeyInput = document.getElementById('supabaseAnonKeyInput');
-    const typedUrl = urlInput ? urlInput.value.trim() : '';
-    const typedAnon = anonKeyInput ? anonKeyInput.value.trim() : '';
-
-    if (typedUrl && typedAnon) {
-      window.WFCloud.setConfig(typedUrl, typedAnon);
+    const cloudConfig = window.WFCloud.getConfig ? window.WFCloud.getConfig() : { url: '', anonKey: '' };
+    if (!cloudConfig.url || !cloudConfig.anonKey) {
+      return { ok: false, message: 'Supabase config is missing in this app build.' };
     }
 
     const result = await window.WFCloud.init({
@@ -1650,13 +1646,10 @@ function handleUiAction(action, element) {
   if (action === 'save-settings') {
     const apiInput = document.getElementById('apiKeyInput');
     const modelInput = document.getElementById('modelInput');
-    const supabaseUrlInput = document.getElementById('supabaseUrlInput');
-    const supabaseAnonKeyInput = document.getElementById('supabaseAnonKeyInput');
     const gistTokenInput = document.getElementById('gistTokenInput');
     localStorage.setItem('wf_api_key', apiInput ? apiInput.value.trim() : '');
     localStorage.setItem('wf_model', modelInput ? modelInput.value.trim() : 'gemma-4-31b-it');
-    if (window.WFCloud && supabaseUrlInput && supabaseAnonKeyInput) {
-      window.WFCloud.setConfig(supabaseUrlInput.value, supabaseAnonKeyInput.value);
+    if (window.WFCloud) {
       window.WFCloud.init({
         onRemoteApplied: (remoteProgress) => {
           dispatch({ type: 'LOAD_PROGRESS', payload: remoteProgress });
@@ -1670,14 +1663,27 @@ function handleUiAction(action, element) {
     dispatch({ type: 'SET_MODAL', payload: null });
     return;
   }
-  if (action === 'cloud-signin') {
+  if (action === 'cloud-connect' || action === 'cloud-signin') {
     if (!window.WFCloud) return;
     setStatus('cloud-status', 'Checking Supabase config…', true);
-    ensureCloudConfiguredFromInputs().then((initResult) => {
-      if (!initResult.ok && /Missing Supabase URL\/Anon key/i.test(initResult.message || '')) {
-        setStatus('cloud-status', 'Please enter Supabase URL and Anon Key first.', false);
+    ensureCloudReady().then((initResult) => {
+      if (!initResult.ok) {
+        setStatus('cloud-status', initResult.message || 'Cloud config is missing.', false);
         return;
       }
+
+      const authState = window.WFCloud.getAuthState ? window.WFCloud.getAuthState() : { signedIn: false };
+      if (authState.signedIn) {
+        setStatus('cloud-status', 'Already signed in. Syncing…', true);
+        window.WFCloud.syncNow().then((result) => {
+          setStatus('cloud-status', result.message, result.ok);
+          if (result.ok) {
+            dispatch({ type: 'LOAD_PROGRESS', payload: loadProgress() });
+          }
+        });
+        return;
+      }
+
       setStatus('cloud-status', 'Starting GitHub sign-in…', true);
       window.WFCloud.signInWithGitHub().then((result) => {
         setStatus('cloud-status', result.message, result.ok);
@@ -1696,9 +1702,9 @@ function handleUiAction(action, element) {
   if (action === 'cloud-sync-now') {
     if (!window.WFCloud) return;
     setStatus('cloud-status', 'Checking Supabase config…', true);
-    ensureCloudConfiguredFromInputs().then((initResult) => {
-      if (!initResult.ok && /Missing Supabase URL\/Anon key/i.test(initResult.message || '')) {
-        setStatus('cloud-status', 'Please enter Supabase URL and Anon Key first.', false);
+    ensureCloudReady().then((initResult) => {
+      if (!initResult.ok) {
+        setStatus('cloud-status', initResult.message || 'Cloud config is missing.', false);
         return;
       }
       setStatus('cloud-status', 'Syncing…', true);
