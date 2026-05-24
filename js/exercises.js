@@ -638,6 +638,117 @@ function renderFreeTypeGap(word, allWords) {
   };
 }
 
+// ── Collocation Match Exercise ────────────────────────────────────────────
+
+function renderCollocationMatch(word, allWords) {
+  const wordData = allWords[word] || {};
+  const displayWord = word.replace(/_/g, ' ');
+  const collocations = Array.isArray(wordData.collocations) ? wordData.collocations : [];
+
+  // Need at least one collocation to work with
+  if (collocations.length === 0) return null;
+
+  // Pick a correct collocation
+  const correctCollocation = collocations[Math.floor(Math.random() * collocations.length)];
+
+  // Build distractors from other words' collocations or related phrases
+  const distractorCandidates = [];
+  const samePosWords = Object.keys(allWords).filter(w => {
+    if (w === word) return false;
+    const d = allWords[w];
+    return d?.pos === wordData.pos && Array.isArray(d.collocations) && d.collocations.length > 0;
+  });
+
+  for (const candidate of shuffleList(samePosWords).slice(0, 15)) {
+    const candidateCollocations = allWords[candidate].collocations || [];
+    for (const colloc of candidateCollocations) {
+      if (colloc !== correctCollocation && !distractorCandidates.includes(colloc)) {
+        distractorCandidates.push(colloc);
+      }
+    }
+  }
+
+  // Fallback: generate plausible-sounding wrong collocations
+  if (distractorCandidates.length < 3) {
+    const randomWords = shuffleList(Object.keys(allWords)).slice(0, 10);
+    randomWords.forEach(w => {
+      const phrase = `${allWords[w]?.pos === 'verb' ? w.replace(/_/g, ' ') : 'make'} ${w.replace(/_/g, ' ')}`;
+      if (phrase !== correctCollocation) distractorCandidates.push(phrase);
+    });
+  }
+
+  const distractors = shuffleList(distractorCandidates).slice(0, 3);
+  const options = shuffleList([correctCollocation, ...distractors]);
+
+  return {
+    type: 'COLLOCATION_MATCH',
+    prompt: `Which phrase correctly collocates with "${displayWord}"?`,
+    options,
+    correct: correctCollocation,
+    word,
+    hint: wordData.def || ''
+  };
+}
+
+// ── Error Correction Exercise ─────────────────────────────────────────────
+
+function renderErrorCorrection(word, allWords) {
+  const wordData = allWords[word] || {};
+  const displayWord = word.replace(/_/g, ' ');
+  const examples = Array.isArray(wordData.ex) ? wordData.ex.filter(Boolean) : [];
+
+  if (examples.length === 0) return null;
+
+  // Pick a correct sentence
+  const correctSentence = examples[Math.floor(Math.random() * examples.length)];
+
+  // Strategy: Create an incorrect version of the sentence by misusing the word
+  let incorrectSentence = null;
+  let errorType = '';
+
+  // Strategy 1: Replace the target word with a confusing similar word
+  const confusables = Object.keys(allWords).filter(w => {
+    if (w === word) return false;
+    const d = allWords[w];
+    return d?.pos === wordData.pos && d?.level === wordData.level;
+  });
+
+  if (confusables.length > 0) {
+    const wrongWord = confusables[Math.floor(Math.random() * confusables.length)];
+    const wrongDisplay = wrongWord.replace(/_/g, ' ');
+    const forms = [word, displayWord, word.replace(/_/g, "'")];
+    for (const form of forms) {
+      const escaped = form.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const regex = new RegExp(`\\b${escaped}\\b`, 'i');
+      if (regex.test(correctSentence)) {
+        incorrectSentence = correctSentence.replace(regex, wrongDisplay);
+        errorType = 'wrong_word';
+        break;
+      }
+    }
+  }
+
+  // Strategy 2: Use wrong_usage if available
+  if (!incorrectSentence && Array.isArray(wordData.wrong_usage) && wordData.wrong_usage.length > 0) {
+    incorrectSentence = wordData.wrong_usage[Math.floor(Math.random() * wordData.wrong_usage.length)];
+    errorType = 'wrong_usage';
+  }
+
+  if (!incorrectSentence) return null;
+
+  // Present: show the INCORRECT sentence, user must identify and correct it
+  return {
+    type: 'ERROR_CORRECTION',
+    prompt: `This sentence has an error. Find and fix it:`,
+    incorrectSentence,
+    correctSentence,
+    correctWord: displayWord,
+    errorType,
+    word,
+    hint: wordData.def || ''
+  };
+}
+
 window.Exercises = {
   renderDefinition,
   renderSecondaryMeaningDefinition,
@@ -648,6 +759,8 @@ window.Exercises = {
   renderTranslationMC,
   renderContextMatch,
   renderMultiGap,
+  renderCollocationMatch,
+  renderErrorCorrection,
   hasContextMatchData,
   normalizeToken
 };

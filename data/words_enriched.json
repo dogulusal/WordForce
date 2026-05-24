@@ -11052,6 +11052,12 @@
         "find",
         "use"
       ]
+    ],
+    "collocations": [
+      "break the news",
+      "break a record",
+      "break the ice",
+      "break a promise"
     ]
   },
   "breakfast": {
@@ -19763,11 +19769,11 @@
     "def": "To damage something so badly that it cannot be used",
     "ex": [
       "The fire destroyed the entire building.",
-      "War destroys people's lives."
+      "The earthquake destroyed hundreds of buildings in the city."
     ],
     "ex_tr": [
       "\"destroy\" kelimesi bu cumlede kullanilmistir.",
-      "\"destroy\" kelimesi bu cumlede kullanilmistir."
+      "Deprem sehirdeki yuzlerce binayi yikti."
     ],
     "ex_distractors": [
       [
@@ -20941,11 +20947,11 @@
     "def": "A clear difference between two things",
     "ex": [
       "There's an important distinction between the two words.",
-      "She graduated with distinction."
+      "She graduated with distinction and received a special award."
     ],
     "ex_tr": [
       "\"distinction\" kelimesi bu cumlede kullanilmistir.",
-      "\"distinction\" kelimesi bu cumlede kullanilmistir."
+      "Ustun basariyla mezun oldu ve ozel bir odul aldi."
     ],
     "ex_distractors": [
       [
@@ -21046,6 +21052,12 @@
         "start",
         "hate"
       ]
+    ],
+    "collocations": [
+      "do homework",
+      "do research",
+      "do business",
+      "do your best"
     ]
   },
   "doctor": {
@@ -21464,6 +21476,12 @@
         "opens",
         "makes"
       ]
+    ],
+    "collocations": [
+      "draw attention",
+      "draw a conclusion",
+      "draw a line",
+      "draw a distinction"
     ]
   },
   "drink": {
@@ -22803,11 +22821,11 @@
     "def": "Having nothing inside",
     "ex": [
       "The room was completely empty.",
-      "Is this seat empty?"
+      "The restaurant was completely empty when we arrived."
     ],
     "ex_tr": [
       "\"empty\" kelimesi bu cumlede kullanilmistir.",
-      "\"empty\" kelimesi bu cumlede kullanilmistir."
+      "Vardigimizda restoran tamamen bostu."
     ],
     "ex_distractors": [
       [
@@ -27059,11 +27077,11 @@
     "def": "For all time, without end",
     "ex": [
       "I will remember this moment forever.",
-      "Nothing lasts forever."
+      "I thought the meeting was going to last forever."
     ],
     "ex_tr": [
       "\"forever\" kelimesi bu cumlede kullanilmistir.",
-      "\"forever\" kelimesi bu cumlede kullanilmistir."
+      "Toplantinin sonsuza dek surecegini dusundum."
     ],
     "ex_distractors": [
       [
@@ -28722,6 +28740,12 @@
         "tell",
         "make"
       ]
+    ],
+    "collocations": [
+      "give advice",
+      "give permission",
+      "give a speech",
+      "give priority"
     ]
   },
   "glad": {
@@ -30356,6 +30380,12 @@
         "buy",
         "love"
       ]
+    ],
+    "collocations": [
+      "have a rest",
+      "have a look",
+      "have a chat",
+      "have a go"
     ]
   },
   "have_to": {
@@ -34013,11 +34043,11 @@
     "def": "The act of traveling from one place to another",
     "ex": [
       "The journey took five hours by train.",
-      "Have a safe journey!"
+      "The journey from London to Paris takes about two hours by train."
     ],
     "ex_tr": [
       "\"journey\" kelimesi bu cumlede kullanilmistir.",
-      "\"journey\" kelimesi bu cumlede kullanilmistir."
+      "Londradan Parise yolculuk trenle yaklasik iki saat surer."
     ],
     "ex_distractors": [
       [
@@ -34194,6 +34224,12 @@
         "take",
         "find"
       ]
+    ],
+    "collocations": [
+      "keep a secret",
+      "keep a promise",
+      "keep in touch",
+      "keep calm"
     ]
   },
   "key": {
@@ -35874,11 +35910,11 @@
     "tr": "güzel",
     "def": "Very attractive or enjoyable",
     "ex": [
-      "What a lovely day!",
+      "What a lovely surprise to see you here today!",
       "She wore a lovely dress to the wedding."
     ],
     "ex_tr": [
-      "\"lovely\" kelimesi bu cumlede kullanilmistir.",
+      "Seni bugun burada gormek ne guzel bir surpriz!",
       "\"lovely\" kelimesi bu cumlede kullanilmistir."
     ],
     "ex_distractors": [
@@ -36208,6 +36244,12 @@
         "like",
         "want"
       ]
+    ],
+    "collocations": [
+      "make a decision",
+      "make progress",
+      "make a mistake",
+      "make sense"
     ]
   },
   "man": {
@@ -36596,11 +36638,11 @@
     "tr": "mesele, konu",
     "def": "A subject or situation being considered",
     "ex": [
-      "It's a personal matter.",
+      "This is a personal matter that I prefer not to discuss at work.",
       "What's the matter? You look upset."
     ],
     "ex_tr": [
-      "\"matter\" kelimesi bu cumlede kullanilmistir.",
+      "Bu is yerinde tartismamamayi tercih ettigim kisisel bir mesele.",
       "\"matter\" kelimesi bu cumlede kullanilmistir."
     ],
     "ex_distractors": [
@@ -42060,6 +42102,12 @@
         "take",
         "send"
       ]
+    ],
+    "collocations": [
+      "pay attention",
+      "pay a visit",
+      "pay a compliment",
+      "pay respect"
     ]
   },
   "peculiar": {
@@ -42866,11 +42914,11 @@
     "tr": "makul, inandırıcı",
     "def": "Seeming reasonable or probable",
     "ex": [
-      "His excuse wasbarely plausible.",
+      "His excuse was barely plausible, and nobody really believed him.",
       "There is no plausible alternative explanation for the data."
     ],
     "ex_tr": [
-      "\"plausible\" kelimesi bu cumlede kullanilmistir.",
+      "Bahanesi pek inandirici degildi ve kimse ona gercekten inanmadi.",
       "\"plausible\" kelimesi bu cumlede kullanilmistir."
     ],
     "ex_distractors": [
@@ -45602,11 +45650,11 @@
     "tr": "iyileşmek, toparlanmak",
     "def": "To get better after an illness or difficult time",
     "ex": [
-      "She's recovering from surgery.",
+      "It took her several weeks to fully recover from the surgery.",
       "The economy is slowly recovering."
     ],
     "ex_tr": [
-      "\"recover\" kelimesi bu cumlede kullanilmistir.",
+      "Ameliyattan tamamen iyilesmesi birkac hafta surdu.",
       "\"recover\" kelimesi bu cumlede kullanilmistir."
     ],
     "ex_distractors": [
@@ -46173,11 +46221,11 @@
     "def": "To act or speak officially for someone",
     "ex": [
       "A lawyer will represent you in court.",
-      "This painting represents freedom."
+      "This painting represents the freedom that the artist longed for."
     ],
     "ex_tr": [
       "\"represent\" kelimesi bu cumlede kullanilmistir.",
-      "\"represent\" kelimesi bu cumlede kullanilmistir."
+      "Bu resim sanatcinin ozlem duydugu ozgurlugu temsil eder."
     ],
     "ex_distractors": [
       [
@@ -46886,6 +46934,12 @@
         "go",
         "dance"
       ]
+    ],
+    "collocations": [
+      "run a business",
+      "run out of time",
+      "run a risk",
+      "run errands"
     ]
   },
   "sad": {
@@ -48300,11 +48354,11 @@
     "tr": "aptalca",
     "def": "Not serious, a little stupid",
     "ex": [
-      "Don't ask silly questions.",
+      "Stop asking such silly questions during the meeting.",
       "It was a silly mistake."
     ],
     "ex_tr": [
-      "\"silly\" kelimesi bu cumlede kullanilmistir.",
+      "Toplanti sirasinda bu kadar sacma sorular sormayi birak.",
       "\"silly\" kelimesi bu cumlede kullanilmistir."
     ],
     "ex_distractors": [
@@ -51104,6 +51158,12 @@
         "find",
         "bring"
       ]
+    ],
+    "collocations": [
+      "take a break",
+      "take a photo",
+      "take notes",
+      "take part"
     ]
   },
   "talk": {
@@ -58940,11 +59000,11 @@
     "tr": "doğru, kesin",
     "def": "correct in all details; exact",
     "ex": [
-      "Is this map accurate?",
+      "Make sure the information in the report is accurate before submitting it.",
       "Her description of the man was accurate."
     ],
     "ex_tr": [
-      "Bu harita doğru mu?",
+      "Rapordaki bilgilerin gondermeden once dogru oldugundan emin ol.",
       "Adam hakkındaki tarifi doğruydu."
     ],
     "ex_distractors": [
@@ -64982,11 +65042,11 @@
     "tr": "belge",
     "def": "an official paper that gives information",
     "ex": [
-      "Please sign this document.",
+      "Please read and sign this document before the end of the day.",
       "I have an important document in my bag."
     ],
     "ex_tr": [
-      "Lütfen bu belgeyi imzalayın.",
+      "Lutfen bu belgeyi gunun sonuna kadar okuyup imzalayin.",
       "Çantamda önemli bir belge var."
     ],
     "ex_distractors": [
@@ -97312,6 +97372,12 @@
         "aberration",
         "abandon"
       ]
+    ],
+    "collocations": [
+      "catch fire",
+      "catch a cold",
+      "catch attention",
+      "catch a bus"
     ]
   },
   "celebrity": {
@@ -107458,6 +107524,12 @@
         "aberration",
         "abandon"
       ]
+    ],
+    "collocations": [
+      "hold a meeting",
+      "hold your breath",
+      "hold an opinion",
+      "hold a conversation"
     ]
   },
   "hole": {
@@ -120302,6 +120374,12 @@
         "aberration",
         "abandon"
       ]
+    ],
+    "collocations": [
+      "raise awareness",
+      "raise a question",
+      "raise money",
+      "raise concerns"
     ]
   },
   "range": {
@@ -120492,6 +120570,12 @@
         "aberration",
         "abandon"
       ]
+    ],
+    "collocations": [
+      "reach a conclusion",
+      "reach an agreement",
+      "reach a goal",
+      "reach a decision"
     ]
   },
   "reader": {
@@ -124900,6 +124984,12 @@
         "aberration",
         "abandon"
       ]
+    ],
+    "collocations": [
+      "set a goal",
+      "set an example",
+      "set a deadline",
+      "set fire to"
     ]
   },
   "setting": {

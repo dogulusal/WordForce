@@ -482,6 +482,62 @@ function pickSessionWords(sessionSize, levelFilter = 'ALL') {
   return picked.slice(0, sessionSize);
 }
 
+function startDemoExercise(type) {
+  // Find words that have the data needed for these exercise types
+  const candidates = Object.keys(AllWords).filter(w => {
+    const d = AllWords[w];
+    if (type === 'COLLOCATION_MATCH') {
+      return Array.isArray(d.collocations) && d.collocations.length >= 1;
+    }
+    if (type === 'ERROR_CORRECTION') {
+      return (Array.isArray(d.wrong_usage) && d.wrong_usage.length > 0) ||
+             (Array.isArray(d.ex) && d.ex.length > 0);
+    }
+    return false;
+  });
+
+  if (candidates.length === 0) {
+    dispatch({ type: 'SET_FEEDBACK', payload: 'No suitable words found for this exercise demo.' });
+    return;
+  }
+
+  // Pick 5 random words for the demo
+  const demoWords = shuffle(candidates).slice(0, 5);
+  const nextSession = {
+    words: demoWords,
+    queue: demoWords,
+    templateHistory: {},
+    skipped: {},
+    levelFilter: 'ALL',
+    round: 1,
+    current: 0,
+    results: {},
+    currentExercise: null
+  };
+
+  dispatch({ type: 'INIT_SESSION', payload: nextSession });
+
+  // Build the demo exercise for the first word
+  let exercise = null;
+  for (const word of demoWords) {
+    if (type === 'COLLOCATION_MATCH') {
+      exercise = Exercises.renderCollocationMatch(word, AllWords);
+    } else if (type === 'ERROR_CORRECTION') {
+      exercise = Exercises.renderErrorCorrection(word, AllWords);
+    }
+    if (exercise) break;
+  }
+
+  if (!exercise) {
+    dispatch({ type: 'SET_FEEDBACK', payload: 'Could not generate demo exercise. Word data insufficient.' });
+    dispatch({ type: 'SET_SCREEN', payload: 'home' });
+    return;
+  }
+
+  dispatch({ type: 'SET_CURRENT_EXERCISE', payload: exercise });
+  dispatch({ type: 'SET_SCREEN', payload: 'round' });
+}
+
 function initiateSession(sessionSize, levelFilter = 'ALL', skipGate = false) {
   const collisionChanged = applyReviewCollisionPolicy(AppState.progress);
   if (collisionChanged) saveProgress(AppState.progress);
@@ -925,6 +981,48 @@ async function submitExerciseAnswer() {
     return;
   }
 
+  if (exercise.type === 'COLLOCATION_MATCH') {
+    const selected = AppState.ui.selectedOption;
+    if (selected === null || selected === undefined) {
+      dispatch({ type: 'SET_FEEDBACK', payload: 'Please select a collocation.' });
+      return;
+    }
+    const isCorrect = selected === exercise.correct;
+    dispatch({ type: 'SET_REVEAL', payload: { selected, correct: exercise.correct } });
+    dispatch({ type: 'SET_FEEDBACK', payload: isCorrect ? '✓ Correct collocation!' : `Wrong. Correct: "${exercise.correct}"` });
+    dispatch({ type: 'SET_LOCKED', payload: true });
+    dispatch({ type: 'SET_PENDING_RESULT', payload: isCorrect });
+    return;
+  }
+
+  if (exercise.type === 'ERROR_CORRECTION') {
+    const inputEl = document.getElementById('freeTypeInput');
+    const userInput = (inputEl?.value || AppState.ui.freeTypeInput || '').trim();
+    if (!userInput) {
+      dispatch({ type: 'SET_FEEDBACK', payload: 'Type the corrected sentence.' });
+      return;
+    }
+    // Normalize for comparison
+    const normalize = (s) => s.toLowerCase().replace(/[.,!?;:'"()\[\]]/g, '').replace(/\s+/g, ' ').trim();
+    const isCorrect = normalize(userInput) === normalize(exercise.correctSentence);
+    // Also accept if user typed just the correct word
+    const wordOnly = normalize(userInput) === normalize(exercise.correctWord);
+    if (isCorrect || wordOnly) {
+      dispatch({ type: 'SET_LOCKED', payload: true });
+      dispatch({ type: 'SET_FEEDBACK', payload: `✓ Correct! The right sentence: "${exercise.correctSentence}"` });
+      dispatch({ type: 'SET_PENDING_RESULT', payload: true });
+    } else if (!AppState.ui.freeTypeSecondChance) {
+      dispatch({ type: 'SET_FREE_TYPE_SECOND_CHANCE', payload: true });
+      dispatch({ type: 'SET_FEEDBACK', payload: 'Not quite. Try again! Hint: look for the misused word.' });
+      if (inputEl) inputEl.value = '';
+    } else {
+      dispatch({ type: 'SET_LOCKED', payload: true });
+      dispatch({ type: 'SET_FEEDBACK', payload: `Correct version: "${exercise.correctSentence}"` });
+      dispatch({ type: 'SET_PENDING_RESULT', payload: false });
+    }
+    return;
+  }
+
   const selected = AppState.ui.selectedOption;
   if (selected === null || selected === undefined) {
     dispatch({ type: 'SET_FEEDBACK', payload: 'Please select an option.' });
@@ -1000,6 +1098,91 @@ function updateStreak() {
   return streak;
 }
 
+// ── Gamification Helpers ───────────────────────────────────────────────────
+
+function getXP() {
+  const json = localStorage.getItem('wf_xp');
+  if (!json) return { total: 0, today: 0, lastDate: null };
+  try { return JSON.parse(json); } catch { return { total: 0, today: 0, lastDate: null }; }
+}
+
+function addXP(amount) {
+  const xp = getXP();
+  const today = toLocalDate(0);
+  if (xp.lastDate !== today) { xp.today = 0; xp.lastDate = today; }
+  xp.today += amount;
+  xp.total += amount;
+  localStorage.setItem('wf_xp', JSON.stringify(xp));
+  return xp;
+}
+
+function getWeeklyActivity() {
+  const json = localStorage.getItem('wf_weekly_activity');
+  if (!json) return {};
+  try { return JSON.parse(json); } catch { return {}; }
+}
+
+function recordDailyActivity(wordsCompleted) {
+  const today = toLocalDate(0);
+  const activity = getWeeklyActivity();
+  activity[today] = (activity[today] || 0) + wordsCompleted;
+  // Keep only last 14 days
+  const cutoff = toLocalDate(-14);
+  Object.keys(activity).forEach(d => { if (d < cutoff) delete activity[d]; });
+  localStorage.setItem('wf_weekly_activity', JSON.stringify(activity));
+}
+
+function buildWeeklyHeatmap() {
+  const activity = getWeeklyActivity();
+  const days = [];
+  const dayLabels = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+  for (let i = 6; i >= 0; i--) {
+    const date = toLocalDate(-i);
+    const count = activity[date] || 0;
+    const intensity = count === 0 ? 0 : count <= 3 ? 1 : count <= 7 ? 2 : count <= 12 ? 3 : 4;
+    const isToday = i === 0;
+    const dayIndex = new Date(date + 'T00:00:00').getDay();
+    const label = dayLabels[(dayIndex + 6) % 7]; // Mon=0
+    days.push({ date, intensity, isToday, label });
+  }
+  return days;
+}
+
+function buildLevelProgress(progress) {
+  const levels = ['A1', 'A2', 'B1', 'B2', 'C1'];
+  return levels.map(level => {
+    const totalInLevel = Object.keys(AllWords).filter(w => AllWords[w]?.level === level).length;
+    const knownInLevel = Object.keys(progress.words).filter(w => {
+      const s = progress.words[w]?.status;
+      return (s === 'known' || s === 'learned') && AllWords[w]?.level === level;
+    }).length;
+    const fill = totalInLevel > 0 ? (knownInLevel / totalInLevel) : 0;
+    return { level, total: totalInLevel, known: knownInLevel, fill };
+  });
+}
+
+function getDailyGoals(progress) {
+  const xp = getXP();
+  const today = toLocalDate(0);
+  const activity = getWeeklyActivity();
+  const wordsToday = activity[today] || 0;
+  const reviewDue = getReviewDue(progress).length;
+  return [
+    { icon: '📚', title: 'Learn 5 words', current: wordsToday, target: 5 },
+    { icon: '⭐', title: 'Earn 50 XP', current: xp.today, target: 50 },
+    { icon: '🔄', title: 'Clear reviews', current: Math.max(0, 5 - reviewDue), target: 5 }
+  ];
+}
+
+function triggerConfetti() {
+  const container = document.getElementById('confetti-container');
+  if (!container) return;
+  container.innerHTML = '<div class="confetti-container">' +
+    Array.from({ length: 10 }, (_, i) => `<div class="confetti-piece"></div>`).join('') +
+    '</div>';
+  setTimeout(() => { container.innerHTML = ''; }, 3500);
+}
+
 function renderHome(state) {
   const words = state.progress.words;
   const learned = Object.keys(words).filter((w) => words[w].status === 'learned').length;
@@ -1010,15 +1193,55 @@ function renderHome(state) {
   const knownOrLearned = known + learned;
   const available = total - knownOrLearned;
   const streak = getStreakData();
+  const xp = getXP();
+
+  // Level progress
+  const levelData = buildLevelProgress(state.progress);
+  const levelProgressHtml = `
+    <div class="level-progress">
+      ${levelData.map(l => `<div class="level-progress-segment" data-level="${l.level}" style="--fill:${l.fill.toFixed(3)}" title="${l.level}: ${l.known}/${l.total}"></div>`).join('')}
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:var(--text-secondary);margin:-8px 0 8px;">
+      ${levelData.map(l => `<span>${l.level}</span>`).join('')}
+    </div>`;
+
+  // Weekly heatmap
+  const weekDays = buildWeeklyHeatmap();
+  const heatmapHtml = `
+    <div class="weekly-heatmap" style="margin-bottom:12px;">
+      ${weekDays.map(d => `<div class="heatmap-day ${d.isToday ? 'today' : ''}" data-intensity="${d.intensity}" title="${d.date}: ${d.intensity > 0 ? d.intensity + ' sessions' : 'no activity'}"></div>`).join('')}
+    </div>
+    <div style="display:flex;gap:4px;margin:-8px 0 10px;">
+      ${weekDays.map(d => `<span class="heatmap-label" style="width:18px;">${d.label}</span>`).join('')}
+    </div>`;
+
+  // Daily goals
+  const goals = getDailyGoals(state.progress);
+  const goalsHtml = goals.map(g => {
+    const pct = Math.min(100, Math.round((g.current / g.target) * 100));
+    return `<div class="daily-goal">
+      <span class="daily-goal-icon">${g.icon}</span>
+      <div class="daily-goal-info">
+        <span class="daily-goal-title">${g.title}</span>
+        <div class="daily-goal-bar"><div class="daily-goal-bar-fill" style="width:${pct}%"></div></div>
+      </div>
+      <span class="daily-goal-count">${g.current}/${g.target}</span>
+    </div>`;
+  }).join('');
 
   return `
-    <div class="home-screen">
-      <h1>WordForge</h1>
+    <div class="home-screen card-slide-enter">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+        <h1>WordForge</h1>
+        <div class="xp-display"><span class="xp-icon">⚡</span>${xp.total} XP</div>
+      </div>
       <div class="streak-display">
         <span class="streak-fire">${streak.currentStreak > 0 ? '🔥' : '⚪'}</span>
         <span class="streak-count">${streak.currentStreak} day${streak.currentStreak !== 1 ? 's' : ''}</span>
         <span class="streak-best">Best: ${streak.longestStreak || 0}</span>
       </div>
+      ${heatmapHtml}
+      ${levelProgressHtml}
       <div class="home-word-stats">
         <span class="home-stat"><span class="home-stat-label">Total</span><span class="home-stat-value">${total}</span></span>
         <span class="home-stat-sep">·</span>
@@ -1026,23 +1249,31 @@ function renderHome(state) {
         <span class="home-stat-sep">·</span>
         <span class="home-stat"><span class="home-stat-label">Available</span><span class="home-stat-value home-stat-available">${available}</span></span>
       </div>
+      ${goalsHtml}
       <div class="stats-grid">
-        <button class="card" data-action="open-list" data-filter="learned">Learned: ${learned}</button>
-        <button class="card" data-action="open-list" data-filter="known">Known: ${known}</button>
-        <button class="card" data-action="open-list" data-filter="review">Review Due: ${reviewDue}</button>
-        <button class="card" data-action="open-list" data-filter="practice">Practice: ${practice}</button>
+        <button class="card btn-press" data-action="open-list" data-filter="learned">Learned: ${learned}</button>
+        <button class="card btn-press" data-action="open-list" data-filter="known">Known: ${known}</button>
+        <button class="card btn-press" data-action="open-list" data-filter="review">Review Due: ${reviewDue}</button>
+        <button class="card btn-press" data-action="open-list" data-filter="practice">Practice: ${practice}</button>
       </div>
       <div class="session-size-selector">
         <span class="session-size-label">Session size:</span>
         <div class="session-size-options">
-          ${[5, 10, 15, 20].map(n => `<button class="session-size-btn ${n === (state.ui.sessionSize || 10) ? 'active' : ''}" data-action="set-session-size" data-size="${n}">${n}</button>`).join('')}
+          ${[5, 10, 15, 20].map(n => `<button class="session-size-btn chip-bounce ${n === (state.ui.sessionSize || 10) ? 'active' : ''}" data-action="set-session-size" data-size="${n}">${n}</button>`).join('')}
         </div>
       </div>
       <div class="actions">
-        <button class="btn" data-action="start-session">Start Session</button>
-        <button class="btn btn-manage" data-action="open-flashcards">Flashcards</button>
-        <button class="btn btn-manage" data-action="open-manage-words">Manage Words</button>
-        <button class="btn btn-muted" data-action="open-settings">Settings</button>
+        <button class="btn btn-press" data-action="start-session">Start Session</button>
+        <button class="btn btn-manage btn-press" data-action="open-flashcards">Flashcards</button>
+        <button class="btn btn-manage btn-press" data-action="open-manage-words">Manage Words</button>
+        <button class="btn btn-muted btn-press" data-action="open-settings">Settings</button>
+      </div>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">
+        <p style="font-size:0.78rem;color:var(--text-secondary);margin-bottom:8px;">Demo New Exercises</p>
+        <div class="actions">
+          <button class="btn btn-muted btn-press" data-action="demo-collocation">🔗 Collocation Match</button>
+          <button class="btn btn-muted btn-press" data-action="demo-error-correction">✏️ Error Correction</button>
+        </div>
       </div>
     </div>
   `;
@@ -1183,17 +1414,19 @@ function renderGate(state) {
   }
 
   return `
-    <div class="gate-screen">
+    <div class="gate-screen card-slide-enter" style="position:relative;">
       <div class="card centered-card">
         <h2>Do you know this word?</h2>
         <div class="word-display">${word}</div>
         <div class="actions">
-          <button class="btn" data-action="gate-known">Yes, I know it</button>
-          <button class="btn" data-action="gate-learn">No, teach me</button>
-          <button class="btn btn-muted" data-action="gate-back">← Back</button>
+          <button class="btn btn-press" data-action="gate-known">Yes, I know it</button>
+          <button class="btn btn-press" data-action="gate-learn">No, teach me</button>
+          <button class="btn btn-muted btn-press" data-action="gate-back">← Back</button>
         </div>
         <p>${state.session.current + 1} / ${state.session.queue.length}</p>
       </div>
+      <div class="gesture-hint gesture-hint-right"><span class="gesture-hint-arrow">→</span> Know it</div>
+      <div class="gesture-hint gesture-hint-left">Learn <span class="gesture-hint-arrow">←</span></div>
     </div>
   `;
 }
@@ -1334,7 +1567,31 @@ function renderRound(state) {
       <p class="ft-sentence">${exercise.sentence}</p>
       ${hintHtml}
       <input type="text" class="ft-input" id="freeTypeInput" value="${escapeHtml(inputVal)}" placeholder="Type your answer..." autocomplete="off" ${state.ui.locked ? 'disabled' : ''}>
-      <button class="btn" data-action="submit-answer" ${state.ui.locked && !waitingContinue ? 'disabled' : ''}>${submitLabel}</button>
+      <button class="btn btn-press" data-action="submit-answer" ${state.ui.locked && !waitingContinue ? 'disabled' : ''}>${submitLabel}</button>
+    `;
+  } else if (exercise.type === 'COLLOCATION_MATCH') {
+    const hintVisible = state.ui.hintVisible;
+    const hintHtml = exercise.hint
+      ? `<div class="gap-hint-area">${hintVisible ? `<p class="gap-hint-text">💡 ${exercise.hint}</p>` : `<button class="btn btn-muted btn-hint" data-action="show-hint">Show Hint</button>`}</div>`
+      : '';
+    body = `
+      <h2>${exercise.prompt}</h2>
+      ${hintHtml}
+      <div class="options">${renderOptions(exercise.options, state.ui.selectedOption, state.ui.reveal, state.ui.locked)}</div>
+      <button class="btn btn-press" data-action="submit-answer" ${state.ui.locked && !waitingContinue ? 'disabled' : ''}>${submitLabel}</button>
+    `;
+  } else if (exercise.type === 'ERROR_CORRECTION') {
+    const hintVisible = state.ui.hintVisible;
+    const hintHtml = exercise.hint
+      ? `<div class="gap-hint-area">${hintVisible ? `<p class="gap-hint-text">💡 ${exercise.hint}</p>` : `<button class="btn btn-muted btn-hint" data-action="show-hint">Show Hint</button>`}</div>`
+      : '';
+    const inputVal = state.ui.freeTypeInput || '';
+    body = `
+      <h2>${exercise.prompt}</h2>
+      <p class="ft-sentence" style="color:var(--error);border-left:3px solid var(--error);padding-left:12px;">${exercise.incorrectSentence}</p>
+      ${hintHtml}
+      <input type="text" class="ft-input" id="freeTypeInput" value="${escapeHtml(inputVal)}" placeholder="Type the corrected sentence..." autocomplete="off" ${state.ui.locked ? 'disabled' : ''}>
+      <button class="btn btn-press" data-action="submit-answer" ${state.ui.locked && !waitingContinue ? 'disabled' : ''}>${submitLabel}</button>
     `;
   }
 
@@ -1342,19 +1599,36 @@ function renderRound(state) {
   const completedSteps = (state.session.round - 1) * state.session.queue.length + state.session.current;
   const progressPct = totalSteps > 0 ? Math.round((completedSteps / totalSteps) * 100) : 0;
 
+  // Segmented progress (one segment per round)
+  const segmentedHtml = `<div class="segmented-progress">${
+    Array.from({ length: maxRound }, (_, i) => {
+      const roundNum = i + 1;
+      let cls = '';
+      if (roundNum < state.session.round) cls = 'completed';
+      else if (roundNum === state.session.round) cls = 'current';
+      return `<div class="segmented-progress-item ${cls}"></div>`;
+    }).join('')
+  }</div>`;
+
+  // Feedback with animation class
+  const feedbackClass = state.ui.feedback
+    ? (state.ui.feedback.startsWith('✓') || state.ui.feedback.startsWith('Correct') ? 'correct-pulse' : 
+       (state.ui.feedback.startsWith('Wrong') || state.ui.feedback.startsWith('Not quite') ? 'wrong-shake' : ''))
+    : '';
+
   return `
-    <div class="round-screen" role="main" aria-label="Exercise screen">
+    <div class="round-screen card-slide-enter" role="main" aria-label="Exercise screen">
       <div class="progress" aria-live="polite" aria-label="${progress}">${progress}</div>
-      <div class="progress-bar-container"><div class="progress-bar-fill" style="width:${progressPct}%"></div></div>
+      ${segmentedHtml}
       <div class="round-quick-actions">
-        <button class="btn btn-muted" data-action="round-back">← Back</button>
-        <button class="btn btn-muted" data-action="round-skip">Skip</button>
-        <button class="btn btn-muted" data-action="round-practice">Practice +</button>
-        <button class="btn btn-manage" data-action="round-known">Known</button>
+        <button class="btn btn-muted btn-press" data-action="round-back">← Back</button>
+        <button class="btn btn-muted btn-press" data-action="round-skip">Skip</button>
+        <button class="btn btn-muted btn-press" data-action="round-practice">Practice +</button>
+        <button class="btn btn-manage btn-press" data-action="round-known">Known</button>
       </div>
       <div class="card">${body}</div>
-      <p>${state.ui.feedback || ''}</p>
-      <button class="btn" data-action="open-quit">End Session</button>
+      <p class="${feedbackClass}">${state.ui.feedback || ''}</p>
+      <button class="btn btn-press" data-action="open-quit">End Session</button>
     </div>
   `;
 }
@@ -1420,11 +1694,18 @@ function render(state) {
   if (state.ui.screen === 'gate') app.innerHTML = renderGate(state);
   if (state.ui.screen === 'round') app.innerHTML = renderRound(state);
   if (state.ui.screen === 'summary') {
-    updateStreak();
+    const streakData = updateStreak();
     app.innerHTML = renderSummary(state);
+    // Record activity and celebrate milestones
+    const wordsCompleted = state.session.words.length;
+    if (wordsCompleted > 0) recordDailyActivity(wordsCompleted);
+    if (streakData.currentStreak > 0 && streakData.currentStreak % 5 === 0) triggerConfetti();
+    const perfect = state.session.words.filter(w => Object.values(state.session.results[w] || {}).every(Boolean)).length;
+    if (perfect === wordsCompleted && wordsCompleted > 0) triggerConfetti();
   }
 
   modalContainer.innerHTML = state.ui.modal ? UI.renderModal(state.ui.modal, state, AllWords) : '';
+  updateBottomNav(state.ui.screen);
 }
 
 function handleAction(action, target) {
@@ -1461,6 +1742,14 @@ function handleAction(action, target) {
   }
   if (action === 'open-settings') {
     dispatch({ type: 'SET_MODAL', payload: 'settings' });
+    return;
+  }
+  if (action === 'demo-collocation') {
+    startDemoExercise('COLLOCATION_MATCH');
+    return;
+  }
+  if (action === 'demo-error-correction') {
+    startDemoExercise('ERROR_CORRECTION');
     return;
   }
   if (action === 'open-list') {
@@ -2040,8 +2329,105 @@ document.addEventListener('keydown', handleKeyboardNavigation);
   document.addEventListener('touchcancel', () => finishDrag());
 })();
 
+// ── Theme Toggle ──────────────────────────────────────────────────────────
+
+function initTheme() {
+  const saved = localStorage.getItem('wf_theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+  updateThemeIcon(saved);
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('wf_theme', next);
+  updateThemeIcon(next);
+  // Update PWA theme-color meta
+  const metaTheme = document.querySelector('meta[name="theme-color"]');
+  if (metaTheme) metaTheme.content = next === 'dark' ? '#10141e' : '#f8f9fa';
+}
+
+function updateThemeIcon(theme) {
+  const btn = document.getElementById('themeToggle');
+  if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+}
+
+document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+
+// ── Bottom Nav ────────────────────────────────────────────────────────────
+
+function updateBottomNav(screen) {
+  const nav = document.getElementById('bottomNav');
+  if (!nav) return;
+  const items = nav.querySelectorAll('.bottom-nav-item');
+  items.forEach(item => {
+    const navTarget = item.dataset.nav;
+    let isActive = false;
+    if (navTarget === 'home' && (screen === 'home' || screen === 'preflight' || screen === 'flashcards')) isActive = true;
+    if (navTarget === 'session' && (screen === 'gate' || screen === 'round')) isActive = true;
+    if (navTarget === 'stats' && screen === 'stats') isActive = true;
+    if (navTarget === 'settings' && screen === 'settings') isActive = true;
+    item.classList.toggle('active', isActive);
+  });
+}
+
+document.getElementById('bottomNav')?.addEventListener('click', (e) => {
+  const item = e.target.closest('.bottom-nav-item');
+  if (!item) return;
+  const nav = item.dataset.nav;
+  if (nav === 'home') dispatch({ type: 'SET_SCREEN', payload: 'home' });
+  if (nav === 'session') {
+    if (AppState.ui.screen === 'round' || AppState.ui.screen === 'gate') return; // already in session
+    initiateSession(AppState.ui.sessionSize || 10, 'ALL', true);
+  }
+  if (nav === 'stats') {
+    dispatch({ type: 'SET_WORD_LIST_FILTER', payload: 'learned' });
+    dispatch({ type: 'SET_MODAL', payload: 'wordList' });
+  }
+  if (nav === 'settings') dispatch({ type: 'SET_MODAL', payload: 'settings' });
+});
+
+// ── Touch Gestures for Gate Screen ────────────────────────────────────────
+
+(function initGateGestures() {
+  let touchStartX = 0;
+  let touchStartY = 0;
+
+  document.addEventListener('touchstart', (e) => {
+    if (AppState.ui.screen !== 'gate') return;
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  document.addEventListener('touchend', (e) => {
+    if (AppState.ui.screen !== 'gate') return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(dx) < 80 || Math.abs(dy) > Math.abs(dx)) return; // not a clear horizontal swipe
+    if (dx > 0) gateKnown();  // swipe right = know it
+    else gateLearn();          // swipe left = learn
+  }, { passive: true });
+})();
+
+// ── XP Integration in finalizeRoundAnswer ─────────────────────────────────
+
+const originalFinalizeRoundAnswer = finalizeRoundAnswer;
+finalizeRoundAnswer = function(correct) {
+  if (correct) {
+    const round = AppState.session.round;
+    const xpAmount = round >= 5 ? 15 : round >= 3 ? 10 : 5;
+    addXP(xpAmount);
+  }
+  originalFinalizeRoundAnswer(correct);
+};
+
+// ── Enhanced render with nav + activity tracking ──────────────────────────
+// (updateBottomNav is called directly inside the main render function)
+
 async function init() {
   try {
+    initTheme();
     await loadEnvApiKey();
     await loadWords();
     dispatch({ type: 'LOAD_PROGRESS', payload: loadProgress() });
@@ -2057,9 +2443,8 @@ async function init() {
     }
   } catch (error) {
     const app = document.getElementById('app');
-    if (app) app.innerHTML = `<div class="card">Failed to initialize: ${error.message}</div>`;
+    if (app) app.innerHTML = `<div class="card">Failed to initialize: ${escapeHtml(error.message)}</div>`;
   }
 }
 
 init();
-
