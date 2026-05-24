@@ -86,8 +86,8 @@
     ],
     "alt_meanings_merged": [],
     "alt_meanings_meta": {
-      "wordnetSenseCount": 3,
-      "selectedSenseCount": 1,
+      "wordnetSenseCount": 2,
+      "selectedSenseCount": 0,
       "mergeCandidateCount": 0
     },
     "alt_meanings": []
@@ -1117,9 +1117,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "a.noun.6",
-          "wordnetRank": 6,
+          "wordnetRank": 1,
           "llmRank": 1,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -1134,9 +1134,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "a.noun.5",
-          "wordnetRank": 5,
+          "wordnetRank": 2,
           "llmRank": 2,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       }
@@ -1329,9 +1329,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "about.adv.2",
-          "wordnetRank": 2,
+          "wordnetRank": 1,
           "llmRank": 1,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -1346,9 +1346,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "about.adv.8",
-          "wordnetRank": 8,
+          "wordnetRank": 2,
           "llmRank": 2,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -1437,9 +1437,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "above.adv.3",
-          "wordnetRank": 3,
+          "wordnetRank": 1,
           "llmRank": 1,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       }
@@ -1907,9 +1907,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "act.verb.6",
-          "wordnetRank": 6,
+          "wordnetRank": 1,
           "llmRank": 1,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -1924,9 +1924,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "act.verb.7",
-          "wordnetRank": 7,
+          "wordnetRank": 2,
           "llmRank": 2,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -2034,9 +2034,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "action.noun.3",
-          "wordnetRank": 3,
+          "wordnetRank": 1,
           "llmRank": 1,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -2051,9 +2051,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "action.noun.4",
-          "wordnetRank": 4,
+          "wordnetRank": 2,
           "llmRank": 2,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -2424,9 +2424,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "add.verb.2",
-          "wordnetRank": 2,
+          "wordnetRank": 1,
           "llmRank": 1,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       }
@@ -3191,9 +3191,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "after.adv.2",
-          "wordnetRank": 2,
+          "wordnetRank": 1,
           "llmRank": 1,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -3208,9 +3208,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "after.adv.3",
-          "wordnetRank": 3,
+          "wordnetRank": 2,
           "llmRank": 2,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       }
@@ -3378,9 +3378,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "age.noun.4",
-          "wordnetRank": 4,
+          "wordnetRank": 1,
           "llmRank": 1,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -3794,9 +3794,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "air.noun.8",
-          "wordnetRank": 8,
-          "llmRank": 2,
-          "orderChanged": true,
+          "wordnetRank": 1,
+          "llmRank": 1,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -3811,9 +3811,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "air.noun.15",
-          "wordnetRank": 15,
-          "llmRank": 3,
-          "orderChanged": true,
+          "wordnetRank": 2,
+          "llmRank": 2,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       }
@@ -3994,9 +3994,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "all.adj.2",
-          "wordnetRank": 2,
+          "wordnetRank": 1,
           "llmRank": 1,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -4011,9 +4011,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "all.adv.1",
-          "wordnetRank": 1,
+          "wordnetRank": 2,
           "llmRank": 2,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       }
@@ -4293,9 +4293,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "always.adv.5",
-          "wordnetRank": 5,
+          "wordnetRank": 2,
           "llmRank": 2,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -4374,9 +4374,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "amazing.adj.2",
-          "wordnetRank": 2,
+          "wordnetRank": 1,
           "llmRank": 1,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -4391,9 +4391,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "amazing.adj.1",
-          "wordnetRank": 1,
+          "wordnetRank": 2,
           "llmRank": 2,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       }
@@ -4837,9 +4837,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "animal.noun.2",
-          "wordnetRank": 2,
+          "wordnetRank": 1,
           "llmRank": 1,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       }
@@ -5077,9 +5077,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "answer.verb.6",
-          "wordnetRank": 6,
+          "wordnetRank": 2,
           "llmRank": 2,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -5953,9 +5953,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "area.noun.6",
-          "wordnetRank": 6,
+          "wordnetRank": 2,
           "llmRank": 2,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -6065,8 +6065,8 @@
     ],
     "alt_meanings_merged": [],
     "alt_meanings_meta": {
-      "wordnetSenseCount": 8,
-      "selectedSenseCount": 3,
+      "wordnetSenseCount": 2,
+      "selectedSenseCount": 0,
       "mergeCandidateCount": 0
     },
     "alt_meanings": []
@@ -6140,9 +6140,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "around.adv.5",
-          "wordnetRank": 5,
+          "wordnetRank": 1,
           "llmRank": 1,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -6157,9 +6157,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "around.adv.1",
-          "wordnetRank": 1,
+          "wordnetRank": 2,
           "llmRank": 2,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -6444,9 +6444,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "article.noun.2",
-          "wordnetRank": 2,
+          "wordnetRank": 1,
           "llmRank": 1,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -6461,9 +6461,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "article.noun.5",
-          "wordnetRank": 5,
+          "wordnetRank": 2,
           "llmRank": 2,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -6704,9 +6704,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "ask.verb.4",
-          "wordnetRank": 4,
+          "wordnetRank": 1,
           "llmRank": 1,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -6721,9 +6721,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "ask.verb.1",
-          "wordnetRank": 1,
+          "wordnetRank": 2,
           "llmRank": 2,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -7706,9 +7706,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "baby.noun.2",
-          "wordnetRank": 2,
+          "wordnetRank": 1,
           "llmRank": 1,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -7723,9 +7723,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "baby.verb.1",
-          "wordnetRank": 1,
+          "wordnetRank": 2,
           "llmRank": 2,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -8051,9 +8051,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "bag.noun.6",
-          "wordnetRank": 6,
+          "wordnetRank": 1,
           "llmRank": 1,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -8068,9 +8068,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "bag.noun.9",
-          "wordnetRank": 9,
+          "wordnetRank": 2,
           "llmRank": 2,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       },
@@ -8144,8 +8144,8 @@
       }
     ],
     "alt_meanings_meta": {
-      "wordnetSenseCount": 13,
-      "selectedSenseCount": 3,
+      "wordnetSenseCount": 2,
+      "selectedSenseCount": 0,
       "mergeCandidateCount": 0
     },
     "alt_meanings": []
@@ -8685,9 +8685,9 @@
         "source": {
           "lexicon": "wordnet",
           "senseId": "beach.noun.2",
-          "wordnetRank": 2,
+          "wordnetRank": 1,
           "llmRank": 1,
-          "orderChanged": true,
+          "orderChanged": false,
           "selectionReason": "top_k_spoken"
         }
       }

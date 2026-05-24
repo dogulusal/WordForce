@@ -11,6 +11,11 @@ function renderSettingsModal() {
   const apiKey = localStorage.getItem('wf_api_key') || '';
   const model = localStorage.getItem('wf_model') || 'gemma-4-31b-it';
   const envApiKey = window.ENV_API_KEY || '';
+  const supabaseUrl = localStorage.getItem('wf_supabase_url') || window.ENV_SUPABASE_URL || '';
+  const supabaseAnonKey = localStorage.getItem('wf_supabase_anon_key') || window.ENV_SUPABASE_ANON_KEY || '';
+  const cloudAuth = window.WFCloud ? window.WFCloud.getAuthState() : { configured: false, signedIn: false, userEmail: '' };
+  const gistToken = (window.WFSync ? window.WFSync.getSyncToken() : '') || '';
+  const gistId = (window.WFSync ? window.WFSync.getSyncGistId() : '') || '';
 
   return `
     <div class="modal-overlay" onclick="if(event.target===this) handleUiAction('close-modal')">
@@ -24,6 +29,34 @@ function renderSettingsModal() {
         <div class="modal-actions">
           <button class="btn" data-ui-action="save-settings">Save</button>
           <button class="btn" data-ui-action="close-modal">Close</button>
+        </div>
+        <hr style="border-color: var(--border); margin: 16px 0;">
+        <h3 style="margin-bottom: 8px;">Cloud Sync (Primary: Supabase)</h3>
+        <label class="modal-label" for="supabaseUrlInput">Supabase URL</label>
+        <input id="supabaseUrlInput" type="text" value="${escapeHtml(supabaseUrl)}" placeholder="https://xyzcompany.supabase.co" class="modal-input">
+        <label class="modal-label" for="supabaseAnonKeyInput">Supabase Anon Key</label>
+        <input id="supabaseAnonKeyInput" type="password" value="${escapeHtml(supabaseAnonKey)}" placeholder="eyJ..." class="modal-input">
+        <div style="font-size:0.8rem; color: var(--text-muted); margin-bottom:8px;">
+          Status: ${cloudAuth.signedIn ? `Signed in as ${escapeHtml(cloudAuth.userEmail)}` : (cloudAuth.configured ? 'Configured, not signed in' : 'Not configured')}
+        </div>
+        <div id="cloud-status" style="font-size:0.82rem; min-height:1.2em; margin-bottom:8px;"></div>
+        <div class="modal-actions">
+          <button class="btn" data-ui-action="cloud-signin">Sign in with GitHub</button>
+          <button class="btn btn-muted" data-ui-action="cloud-sync-now">Sync Now</button>
+          <button class="btn btn-muted" data-ui-action="cloud-signout">Sign out</button>
+        </div>
+        <hr style="border-color: var(--border); margin: 16px 0;">
+        <h3 style="margin-bottom: 8px;">Cloud Sync (GitHub Gist)</h3>
+        <p style="font-size:0.8rem; color: var(--text-muted); margin-bottom: 8px;">
+          Optional fallback backup. Create a token at <strong>github.com → Settings → Developer settings → Personal access tokens</strong> with <code>gist</code> scope only.
+        </p>
+        <label class="modal-label" for="gistTokenInput">Personal Access Token</label>
+        <input id="gistTokenInput" type="password" value="${escapeHtml(gistToken)}" placeholder="ghp_..." class="modal-input">
+        ${gistId ? `<div style="font-size:0.75rem; color: var(--text-muted); margin-bottom:6px;">Gist ID: ${escapeHtml(gistId)}</div>` : ''}
+        <div id="sync-status" style="font-size:0.82rem; min-height:1.2em; margin-bottom:8px;"></div>
+        <div class="modal-actions">
+          <button class="btn" data-ui-action="sync-save">Save to Cloud</button>
+          <button class="btn btn-muted" data-ui-action="sync-load">Load from Cloud</button>
         </div>
         <hr style="border-color: var(--border); margin: 16px 0;">
         <h3 style="margin-bottom: 8px;">Data</h3>

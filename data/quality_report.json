@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-05-24T13:26:42.524Z",
+  "filter": {
+    "recent": null,
+    "level": "C1"
+  },
+  "summary": {
+    "totalInDataset": 3481,
+    "checked": 264,
+    "errors": 0,
+    "warnings": 0,
+    "levelCounts": {
+      "C1": 264
+    }
+  },
+  "errorsByType": {},
+  "warningsByType": {}
+}

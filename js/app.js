@@ -48,6 +48,9 @@ let AppState = {
 };
 
 const SESSION_SIZE = 10;
+const PRIMARY_PROGRESS_KEY = 'wf_progress';
+const LEGACY_PROGRESS_KEYS = ['wordforge_progress', 'progress'];
+const WF_PROGRESS_UPDATED_KEY = 'wf_local_updated_at';
 
 function toLocalDate(daysToAdd = 0) {
   return new Date(Date.now() + daysToAdd * 24 * 60 * 60 * 1000).toLocaleDateString('en-CA');
@@ -121,13 +124,34 @@ async function loadEnvApiKey() {
     const response = await fetch('.env', { cache: 'no-store' });
     if (!response.ok) return;
     const content = await response.text();
-    const match = content.match(/^API_KEY\s*=\s*(.+)$/m);
-    if (!match) return;
-    const key = match[1].trim();
-    if (!key) return;
-    window.ENV_API_KEY = key;
-    if (!localStorage.getItem('wf_api_key')) {
-      localStorage.setItem('wf_api_key', key);
+
+    const readEnvValue = (name) => {
+      const match = content.match(new RegExp(`^${name}\\s*=\\s*(.+)$`, 'm'));
+      return match ? match[1].trim() : '';
+    };
+
+    const key = readEnvValue('API_KEY');
+    if (key) {
+      window.ENV_API_KEY = key;
+      if (!localStorage.getItem('wf_api_key')) {
+        localStorage.setItem('wf_api_key', key);
+      }
+    }
+
+    const supabaseUrl = readEnvValue('SUPABASE_URL');
+    if (supabaseUrl) {
+      window.ENV_SUPABASE_URL = supabaseUrl;
+      if (!localStorage.getItem('wf_supabase_url')) {
+        localStorage.setItem('wf_supabase_url', supabaseUrl);
+      }
+    }
+
+    const supabaseAnonKey = readEnvValue('SUPABASE_ANON_KEY');
+    if (supabaseAnonKey) {
+      window.ENV_SUPABASE_ANON_KEY = supabaseAnonKey;
+      if (!localStorage.getItem('wf_supabase_anon_key')) {
+        localStorage.setItem('wf_supabase_anon_key', supabaseAnonKey);
+      }
     }
   } catch (error) {
     // .env may be absent in some environments; ignore silently.
@@ -135,18 +159,48 @@ async function loadEnvApiKey() {
 }
 
 function saveProgress(progress) {
-  localStorage.setItem('wf_progress', JSON.stringify(progress));
+  const payload = JSON.stringify(progress);
+  const currentPayload = localStorage.getItem(PRIMARY_PROGRESS_KEY);
+  if (currentPayload === payload) return;
+
+  localStorage.setItem(PRIMARY_PROGRESS_KEY, payload);
+  // Mirror to legacy keys so older app variants can still read the same progress.
+  LEGACY_PROGRESS_KEYS.forEach((key) => localStorage.setItem(key, payload));
+  localStorage.setItem(WF_PROGRESS_UPDATED_KEY, new Date().toISOString());
+
+  if (window.WFCloud) {
+    window.WFCloud.notifyLocalChange();
+  }
+}
+
+function parseProgressJSON(json) {
+  if (!json) return null;
+  try {
+    const parsed = JSON.parse(json);
+    if (!parsed || typeof parsed !== 'object') return null;
+    if (!parsed.words || typeof parsed.words !== 'object') return null;
+    return parsed;
+  } catch {
+    return null;
+  }
 }
 
 function loadProgress() {
-  const json = localStorage.getItem('wf_progress');
-  if (!json) return { level: 'A1', words: {} };
-  try {
-    return JSON.parse(json);
-  } catch (e) {
-    localStorage.removeItem('wf_progress');
-    return { level: 'A1', words: {} };
+  const keysToTry = [PRIMARY_PROGRESS_KEY, ...LEGACY_PROGRESS_KEYS];
+
+  for (const key of keysToTry) {
+    const parsed = parseProgressJSON(localStorage.getItem(key));
+    if (!parsed) continue;
+
+    if (key !== PRIMARY_PROGRESS_KEY) {
+      // Self-heal: migrate legacy storage into the primary key.
+      localStorage.setItem(PRIMARY_PROGRESS_KEY, JSON.stringify(parsed));
+    }
+
+    return parsed;
   }
+
+  return { level: 'A1', words: {} };
 }
 
 function updateState(currentState, action) {
@@ -912,7 +966,16 @@ function getStreakData() {
 }
 
 function saveStreakData(data) {
-  localStorage.setItem('wf_streak', JSON.stringify(data));
+  const payload = JSON.stringify(data);
+  const current = localStorage.getItem('wf_streak');
+  if (current === payload) return;
+
+  localStorage.setItem('wf_streak', payload);
+  localStorage.setItem(WF_PROGRESS_UPDATED_KEY, new Date().toISOString());
+
+  if (window.WFCloud) {
+    window.WFCloud.notifyLocalChange();
+  }
 }
 
 function updateStreak() {
@@ -991,13 +1054,14 @@ function renderPrep(state) {
   const pageSize = 24;
   const levels = ['ALL', 'A1', 'A2', 'B1', 'B2', 'C1'];
 
-  const candidates = Object.keys(AllWords)
-    .filter((word) => isEligibleForLevel(word, level))
+  const baseCandidates = Object.keys(AllWords)
     .filter((word) => {
       const status = state.progress.words[word]?.status;
       return status !== 'known' && status !== 'learned';
     })
     .sort((a, b) => a.localeCompare(b));
+
+  const candidates = baseCandidates.filter((word) => isEligibleForLevel(word, level));
 
   const totalPages = Math.max(1, Math.ceil(candidates.length / pageSize));
   const safePage = Math.min(page, totalPages - 1);
@@ -1016,13 +1080,9 @@ function renderPrep(state) {
   const levelCounts = {};
   levels.forEach((l) => {
     if (l === 'ALL') {
-      levelCounts[l] = candidates.length;
+      levelCounts[l] = baseCandidates.length;
     } else {
-      levelCounts[l] = Object.keys(AllWords).filter((w) => {
-        if (AllWords[w]?.level !== l) return false;
-        const st = state.progress.words[w]?.status;
-        return st !== 'known' && st !== 'learned';
-      }).length;
+      levelCounts[l] = baseCandidates.filter((w) => AllWords[w]?.level === l).length;
     }
   });
 
@@ -1554,6 +1614,35 @@ function handleAction(action, target) {
 }
 
 function handleUiAction(action, element) {
+  const setStatus = (id, text, ok) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.style.color = ok ? 'var(--success)' : 'var(--error, #f87171)';
+    el.textContent = text;
+  };
+
+  const ensureCloudConfiguredFromInputs = async () => {
+    if (!window.WFCloud) return { ok: false, message: 'Cloud sync module is unavailable.' };
+
+    const urlInput = document.getElementById('supabaseUrlInput');
+    const anonKeyInput = document.getElementById('supabaseAnonKeyInput');
+    const typedUrl = urlInput ? urlInput.value.trim() : '';
+    const typedAnon = anonKeyInput ? anonKeyInput.value.trim() : '';
+
+    if (typedUrl && typedAnon) {
+      window.WFCloud.setConfig(typedUrl, typedAnon);
+    }
+
+    const result = await window.WFCloud.init({
+      onRemoteApplied: (remoteProgress) => {
+        dispatch({ type: 'LOAD_PROGRESS', payload: remoteProgress });
+      },
+      onStatus: ({ message, ok }) => setStatus('cloud-status', message, ok)
+    });
+
+    return result;
+  };
+
   if (action === 'close-modal') {
     dispatch({ type: 'SET_MODAL', payload: null });
     return;
@@ -1561,9 +1650,97 @@ function handleUiAction(action, element) {
   if (action === 'save-settings') {
     const apiInput = document.getElementById('apiKeyInput');
     const modelInput = document.getElementById('modelInput');
+    const supabaseUrlInput = document.getElementById('supabaseUrlInput');
+    const supabaseAnonKeyInput = document.getElementById('supabaseAnonKeyInput');
+    const gistTokenInput = document.getElementById('gistTokenInput');
     localStorage.setItem('wf_api_key', apiInput ? apiInput.value.trim() : '');
     localStorage.setItem('wf_model', modelInput ? modelInput.value.trim() : 'gemma-4-31b-it');
+    if (window.WFCloud && supabaseUrlInput && supabaseAnonKeyInput) {
+      window.WFCloud.setConfig(supabaseUrlInput.value, supabaseAnonKeyInput.value);
+      window.WFCloud.init({
+        onRemoteApplied: (remoteProgress) => {
+          dispatch({ type: 'LOAD_PROGRESS', payload: remoteProgress });
+        },
+        onStatus: ({ message, ok }) => setStatus('cloud-status', message, ok)
+      }).then((result) => {
+        setStatus('cloud-status', result.message, result.ok);
+      });
+    }
+    if (gistTokenInput && window.WFSync) window.WFSync.setSyncToken(gistTokenInput.value);
     dispatch({ type: 'SET_MODAL', payload: null });
+    return;
+  }
+  if (action === 'cloud-signin') {
+    if (!window.WFCloud) return;
+    setStatus('cloud-status', 'Checking Supabase config…', true);
+    ensureCloudConfiguredFromInputs().then((initResult) => {
+      if (!initResult.ok && /Missing Supabase URL\/Anon key/i.test(initResult.message || '')) {
+        setStatus('cloud-status', 'Please enter Supabase URL and Anon Key first.', false);
+        return;
+      }
+      setStatus('cloud-status', 'Starting GitHub sign-in…', true);
+      window.WFCloud.signInWithGitHub().then((result) => {
+        setStatus('cloud-status', result.message, result.ok);
+      });
+    });
+    return;
+  }
+  if (action === 'cloud-signout') {
+    if (!window.WFCloud) return;
+    window.WFCloud.signOut().then((result) => {
+      setStatus('cloud-status', result.message, result.ok);
+      dispatch({ type: 'SET_MODAL', payload: 'settings' });
+    });
+    return;
+  }
+  if (action === 'cloud-sync-now') {
+    if (!window.WFCloud) return;
+    setStatus('cloud-status', 'Checking Supabase config…', true);
+    ensureCloudConfiguredFromInputs().then((initResult) => {
+      if (!initResult.ok && /Missing Supabase URL\/Anon key/i.test(initResult.message || '')) {
+        setStatus('cloud-status', 'Please enter Supabase URL and Anon Key first.', false);
+        return;
+      }
+      setStatus('cloud-status', 'Syncing…', true);
+      window.WFCloud.syncNow().then((result) => {
+        setStatus('cloud-status', result.message, result.ok);
+        if (result.ok) {
+          dispatch({ type: 'LOAD_PROGRESS', payload: loadProgress() });
+        }
+      });
+    });
+    return;
+  }
+  if (action === 'sync-save') {
+    if (!window.WFSync) return;
+    const tokenInput = document.getElementById('gistTokenInput');
+    if (tokenInput) window.WFSync.setSyncToken(tokenInput.value);
+    const statusEl = document.getElementById('sync-status');
+    if (statusEl) statusEl.textContent = 'Saving…';
+    window.WFSync.saveToGist().then((result) => {
+      const el = document.getElementById('sync-status');
+      if (!el) return;
+      el.style.color = result.ok ? 'var(--success)' : 'var(--error, #f87171)';
+      el.textContent = result.message;
+    });
+    return;
+  }
+  if (action === 'sync-load') {
+    if (!window.WFSync) return;
+    const tokenInput = document.getElementById('gistTokenInput');
+    if (tokenInput) window.WFSync.setSyncToken(tokenInput.value);
+    const statusEl = document.getElementById('sync-status');
+    if (statusEl) statusEl.textContent = 'Loading…';
+    window.WFSync.loadFromGist().then((result) => {
+      const el = document.getElementById('sync-status');
+      if (el) {
+        el.style.color = result.ok ? 'var(--success)' : 'var(--error, #f87171)';
+        el.textContent = result.message;
+      }
+      if (result.ok && result.reload) {
+        setTimeout(() => window.location.reload(), 1500);
+      }
+    });
     return;
   }
   if (action === 'quit-session') {
@@ -1865,9 +2042,19 @@ document.addEventListener('keydown', handleKeyboardNavigation);
 
 async function init() {
   try {
+    await loadEnvApiKey();
     await loadWords();
     dispatch({ type: 'LOAD_PROGRESS', payload: loadProgress() });
     dispatch({ type: 'SET_SCREEN', payload: 'home' });
+
+    if (window.WFCloud) {
+      await window.WFCloud.init({
+        onRemoteApplied: (remoteProgress) => {
+          dispatch({ type: 'LOAD_PROGRESS', payload: remoteProgress });
+          render(AppState);
+        },
+      });
+    }
   } catch (error) {
     const app = document.getElementById('app');
     if (app) app.innerHTML = `<div class="card">Failed to initialize: ${error.message}</div>`;
