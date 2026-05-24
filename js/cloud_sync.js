@@ -208,7 +208,12 @@ async function init(options = {}) {
 async function signInWithGitHub() {
   if (!CloudState.client) return { ok: false, message: 'Configure Supabase first.' };
 
-  const redirectTo = window.location.href;
+  // Use a stable callback URL without hash/query so OAuth callback params are readable.
+  const redirectUrl = new URL(window.location.href);
+  redirectUrl.search = '';
+  redirectUrl.hash = '';
+  const redirectTo = redirectUrl.toString();
+
   const { error } = await CloudState.client.auth.signInWithOAuth({
     provider: 'github',
     options: { redirectTo },
