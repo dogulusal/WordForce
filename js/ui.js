@@ -12,10 +12,9 @@ function renderSettingsModal() {
   const supabaseUrl = (cloudConfig && cloudConfig.url) || localStorage.getItem('wf_supabase_url') || window.ENV_SUPABASE_URL || '';
   const hasBuiltInSupabase = Boolean(supabaseUrl);
   const cloudAuth = window.WFCloud ? window.WFCloud.getAuthState() : { configured: false, signedIn: false, userEmail: '' };
-  const quickActionLabel = cloudAuth.signedIn ? 'Sync Now' : 'Connect with GitHub';
   const quickActionHint = cloudAuth.signedIn
-    ? 'Connected. Use one tap to fetch latest progress from cloud.'
-    : 'One tap sign-in. Supabase config is preloaded.';
+    ? 'You are signed in. Use Sync Now to fetch latest progress.'
+    : 'Sign in once with GitHub, then use Sync Now anytime.';
 
   return `
     <div class="modal-overlay" onclick="if(event.target===this) handleUiAction('close-modal')">
@@ -35,7 +34,7 @@ function renderSettingsModal() {
         <div style="font-size:0.8rem; color: var(--text-muted); margin-bottom:8px;">${escapeHtml(quickActionHint)}</div>
         <div id="cloud-status" style="font-size:0.82rem; min-height:1.2em; margin-bottom:8px;"></div>
         <div class="modal-actions">
-          <button class="btn" data-ui-action="cloud-connect">${quickActionLabel}</button>
+          <button class="btn" data-ui-action="cloud-connect">Connect with GitHub</button>
           <button class="btn btn-muted" data-ui-action="cloud-sync-now">Sync Now</button>
           <button class="btn btn-muted" data-ui-action="cloud-signout">Sign out</button>
         </div>

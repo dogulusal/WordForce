@@ -1674,13 +1674,7 @@ function handleUiAction(action, element) {
 
       const authState = window.WFCloud.getAuthState ? window.WFCloud.getAuthState() : { signedIn: false };
       if (authState.signedIn) {
-        setStatus('cloud-status', 'Already signed in. Syncing…', true);
-        window.WFCloud.syncNow().then((result) => {
-          setStatus('cloud-status', result.message, result.ok);
-          if (result.ok) {
-            dispatch({ type: 'LOAD_PROGRESS', payload: loadProgress() });
-          }
-        });
+        setStatus('cloud-status', 'Already signed in. Use Sync Now to refresh.', true);
         return;
       }
 
