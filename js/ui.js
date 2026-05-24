@@ -8,9 +8,6 @@ function escapeHtml(text) {
 }
 
 function renderSettingsModal() {
-  const apiKey = localStorage.getItem('wf_api_key') || '';
-  const model = localStorage.getItem('wf_model') || 'gemma-4-31b-it';
-  const envApiKey = window.ENV_API_KEY || '';
   const cloudConfig = window.WFCloud ? window.WFCloud.getConfig() : null;
   const supabaseUrl = (cloudConfig && cloudConfig.url) || localStorage.getItem('wf_supabase_url') || window.ENV_SUPABASE_URL || '';
   const hasBuiltInSupabase = Boolean(supabaseUrl);
@@ -19,20 +16,12 @@ function renderSettingsModal() {
   const quickActionHint = cloudAuth.signedIn
     ? 'Connected. Use one tap to fetch latest progress from cloud.'
     : 'One tap sign-in. Supabase config is preloaded.';
-  const gistToken = (window.WFSync ? window.WFSync.getSyncToken() : '') || '';
-  const gistId = (window.WFSync ? window.WFSync.getSyncGistId() : '') || '';
 
   return `
     <div class="modal-overlay" onclick="if(event.target===this) handleUiAction('close-modal')">
       <div class="modal" role="dialog" aria-label="Settings">
         <h2>Settings</h2>
-        ${envApiKey ? `<div style="padding: 8px; margin-bottom: 10px; background: rgba(46,207,149,0.15); border-radius: 8px; font-size: 0.85rem; color: var(--success);">✓ API key loaded from system</div>` : ''}
-        <label class="modal-label" for="apiKeyInput">Gemini API Key (optional)</label>
-        <input id="apiKeyInput" type="password" value="${escapeHtml(apiKey)}" placeholder="AIza..." class="modal-input">
-        <label class="modal-label" for="modelInput">Model</label>
-        <input id="modelInput" type="text" value="${escapeHtml(model)}" class="modal-input">
         <div class="modal-actions">
-          <button class="btn" data-ui-action="save-settings">Save</button>
           <button class="btn" data-ui-action="close-modal">Close</button>
         </div>
         <hr style="border-color: var(--border); margin: 16px 0;">
@@ -49,19 +38,6 @@ function renderSettingsModal() {
           <button class="btn" data-ui-action="cloud-connect">${quickActionLabel}</button>
           <button class="btn btn-muted" data-ui-action="cloud-sync-now">Sync Now</button>
           <button class="btn btn-muted" data-ui-action="cloud-signout">Sign out</button>
-        </div>
-        <hr style="border-color: var(--border); margin: 16px 0;">
-        <h3 style="margin-bottom: 8px;">Cloud Sync (GitHub Gist)</h3>
-        <p style="font-size:0.8rem; color: var(--text-muted); margin-bottom: 8px;">
-          Optional fallback backup. Create a token at <strong>github.com → Settings → Developer settings → Personal access tokens</strong> with <code>gist</code> scope only.
-        </p>
-        <label class="modal-label" for="gistTokenInput">Personal Access Token</label>
-        <input id="gistTokenInput" type="password" value="${escapeHtml(gistToken)}" placeholder="ghp_..." class="modal-input">
-        ${gistId ? `<div style="font-size:0.75rem; color: var(--text-muted); margin-bottom:6px;">Gist ID: ${escapeHtml(gistId)}</div>` : ''}
-        <div id="sync-status" style="font-size:0.82rem; min-height:1.2em; margin-bottom:8px;"></div>
-        <div class="modal-actions">
-          <button class="btn" data-ui-action="sync-save">Save to Cloud</button>
-          <button class="btn btn-muted" data-ui-action="sync-load">Load from Cloud</button>
         </div>
         <hr style="border-color: var(--border); margin: 16px 0;">
         <h3 style="margin-bottom: 8px;">Data</h3>
