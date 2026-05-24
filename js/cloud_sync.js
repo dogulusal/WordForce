@@ -4,6 +4,10 @@ const WF_LOCAL_UPDATED_KEY = 'wf_local_updated_at';
 const WF_SUPABASE_URL_KEY = 'wf_supabase_url';
 const WF_SUPABASE_ANON_KEY = 'wf_supabase_anon_key';
 
+// Default project config — anon key is public by design, RLS protects user data
+const BUILTIN_SUPABASE_URL = 'https://iubqmclazvkdcyzfgxkg.supabase.co';
+const BUILTIN_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml1YnFtY2xhenZrZGN5emZneGtnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2Mjc0MzUsImV4cCI6MjA5NTIwMzQzNX0.xc64QzxqID2GoXjf-sA1A3TeB9RZVTxqd8GCMPi5v5M';
+
 const DEFAULT_STREAK = { currentStreak: 0, lastSessionDate: null, longestStreak: 0 };
 
 const CloudState = {
@@ -17,8 +21,8 @@ const CloudState = {
 
 function getConfig() {
   return {
-    url: localStorage.getItem(WF_SUPABASE_URL_KEY) || '',
-    anonKey: localStorage.getItem(WF_SUPABASE_ANON_KEY) || '',
+    url: localStorage.getItem(WF_SUPABASE_URL_KEY) || BUILTIN_SUPABASE_URL,
+    anonKey: localStorage.getItem(WF_SUPABASE_ANON_KEY) || BUILTIN_SUPABASE_ANON_KEY,
   };
 }
 
