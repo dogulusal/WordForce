@@ -674,16 +674,201 @@ button.card {
 }
 
 @media (max-width: 640px) {
-  #app {
+  body {
+    justify-content: flex-start;
     padding: 14px;
+  }
+
+  #app {
+    width: 100%;
+    padding: 0;
   }
 
   .stats-grid {
     grid-template-columns: 1fr;
   }
 
+  .card,
+  .prep-screen {
+    padding: 16px;
+  }
+
+  .home-word-stats,
+  .session-size-selector,
+  .prep-header,
+  .prep-footer,
+  .prep-pagination,
+  .summary-word-row,
+  .word-row {
+    flex-wrap: wrap;
+  }
+
+  .home-word-stats {
+    gap: 8px;
+  }
+
+  .home-stat,
+  .home-stat-sep {
+    margin-top: 0;
+  }
+
+  .session-size-selector,
+  .prep-header,
+  .prep-footer {
+    align-items: flex-start;
+  }
+
+  .session-size-selector {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .session-size-options,
+  .prep-actions,
+  .flashcard-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .actions .btn,
+  .round-quick-actions .btn,
+  .session-size-options .session-size-btn,
+  .prep-actions .btn,
+  .flashcard-actions .btn {
+    flex: 1 1 140px;
+  }
+
+  .word-row-meta,
+  .summary-word-status {
+    white-space: normal;
+  }
+
+  .modal {
+    padding: 14px;
+  }
+
+  .prep-grid {
+    grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  }
+
+  .flashcard-card {
+    min-height: 220px;
+    padding: 24px 18px;
+  }
+
+  .flashcard-word {
+    font-size: 1.9rem;
+  }
+
+  .flashcard-tr {
+    font-size: 1.3rem;
+  }
+
+  .summary-word-row,
+  .word-row {
+    align-items: flex-start;
+  }
+
   .word-display {
     font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 12px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .streak-display {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .home-word-stats {
+    justify-content: space-between;
+  }
+
+  .home-stat {
+    flex: 1 1 30%;
+  }
+
+  .home-stat-sep {
+    display: none;
+  }
+
+  .btn,
+  .session-size-btn,
+  .prep-level,
+  .prep-chip,
+  .option,
+  .sb-placed-chip,
+  .sb-available-chip {
+    font-size: 0.95rem;
+  }
+
+  .actions .btn,
+  .round-quick-actions .btn,
+  .prep-actions .btn,
+  .flashcard-actions .btn,
+  .modal-actions .btn {
+    width: 100%;
+    flex-basis: 100%;
+  }
+
+  .session-size-options .session-size-btn,
+  .prep-pagination .btn {
+    flex: 1 1 calc(50% - 6px);
+  }
+
+  .modal-actions,
+  .prep-actions,
+  .prep-pagination,
+  .summary-stats {
+    gap: 8px;
+  }
+
+  .prep-footer,
+  .prep-pagination,
+  .summary-word-row,
+  .word-row {
+    flex-direction: column;
+  }
+
+  .prep-count,
+  .word-row-meta,
+  .summary-word-status {
+    font-size: 0.8rem;
+  }
+
+  .mg-sentence,
+  .ft-sentence {
+    font-size: 1rem;
+  }
+
+  .flashcard-card {
+    min-height: 200px;
+    padding: 20px 16px;
+  }
+
+  .flashcard-word {
+    font-size: 1.65rem;
+  }
+
+  .flashcard-tr {
+    font-size: 1.15rem;
+  }
+
+  .flashcard-def,
+  .flashcard-ex {
+    font-size: 0.9rem;
+  }
+
+  .word-display {
+    font-size: 1.55rem;
   }
 }
 
