@@ -23,6 +23,7 @@ function renderSettingsModal() {
     : `
       <button class="btn" data-ui-action="cloud-connect">Connect with GitHub</button>
     `;
+  const activeTheme = localStorage.getItem('wf_theme') || 'dark';
 
   return `
     <div class="modal-overlay" onclick="if(event.target===this) handleUiAction('close-modal')">
@@ -30,6 +31,13 @@ function renderSettingsModal() {
         <h2>Settings</h2>
         <div class="modal-actions">
           <button class="btn" data-ui-action="close-modal">Close</button>
+        </div>
+        <hr style="border-color: var(--border); margin: 16px 0;">
+        <h3 style="margin-bottom: 8px;">Appearance</h3>
+        <div style="font-size:0.8rem; color: var(--text-muted); margin-bottom:8px;">Choose app theme:</div>
+        <div class="modal-actions" style="margin-bottom:8px;">
+          <button class="btn ${activeTheme === 'dark' ? '' : 'btn-muted'}" data-ui-action="set-theme" data-theme="dark">Dark</button>
+          <button class="btn ${activeTheme === 'light' ? '' : 'btn-muted'}" data-ui-action="set-theme" data-theme="light">Light</button>
         </div>
         <hr style="border-color: var(--border); margin: 16px 0;">
         <h3 style="margin-bottom: 8px;">Cloud Sync (Primary: Supabase)</h3>
@@ -55,6 +63,29 @@ function renderSettingsModal() {
   `;
 }
 
+function renderSessionSizeModal(state) {
+  const currentSize = state.ui.sessionSize || 10;
+  const options = [5, 10, 15, 20].map((size) => {
+    const activeClass = size === currentSize ? '' : 'btn-muted';
+    return `<button class="btn ${activeClass}" data-ui-action="select-session-size" data-size="${size}">${size} words</button>`;
+  }).join('');
+
+  return `
+    <div class="modal-overlay" onclick="if(event.target===this) handleUiAction('close-modal')">
+      <div class="modal" role="dialog" aria-label="Session size">
+        <h2>Start Session</h2>
+        <p>Select how many words you want in this session.</p>
+        <div class="modal-actions" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          ${options}
+        </div>
+        <div class="modal-actions" style="margin-top:12px;">
+          <button class="btn btn-muted" data-ui-action="close-modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function renderWordListModal(state, allWords) {
   const filter = state.ui.wordListFilter || 'practice';
   const progressWords = state.progress.words || {};
@@ -62,50 +93,83 @@ function renderWordListModal(state, allWords) {
 
   function getWordRowAction(activeFilter) {
     if (activeFilter === 'known') {
-      return { label: 'Remove', action: 'remove-from-known' };
+      return { label: 'Remove', action: 'remove-from-known', btnClass: 'btn-muted' };
     }
     if (activeFilter === 'practice') {
-      return { label: 'Remove', action: 'remove-from-practice' };
+      return { label: 'Remove', action: 'remove-from-practice', btnClass: 'btn-muted' };
     }
-    return { label: 'Move to Known', action: 'add-to-known' };
+    return { label: 'Move to Known', action: 'add-to-known', btnClass: '' };
   }
 
   const rowAction = getWordRowAction(filter);
-  const actionHelp = filter === 'practice'
-    ? 'Remove clears this word from the practice list.'
-    : filter === 'known'
-      ? 'Remove sends this word back to the active pool.'
-      : 'Move to Known marks the word as known and removes it from active study.';
 
-  const rows = Object.entries(progressWords)
+  const filterDescriptions = {
+    practice: 'Words currently in your practice queue.',
+    known: 'Words you marked as already known.',
+    learned: 'Words you mastered through exercises.',
+    review: 'Words due for spaced repetition review.'
+  };
+
+  const filterIcons = {
+    practice: '🔄',
+    known: '✅',
+    learned: '🎓',
+    review: '📋'
+  };
+
+  const filteredEntries = Object.entries(progressWords)
     .filter(([_, data]) => {
       if (filter === 'review') {
         return (data.status === 'learned' || data.status === 'practice') && data.nextReview && data.nextReview <= today;
       }
       return data.status === filter;
     })
+    .sort((a, b) => a[0].localeCompare(b[0]));
+
+  const wordCount = filteredEntries.length;
+
+  const rows = filteredEntries
     .map(([word, data]) => {
       const tr = allWords[word]?.tr || '';
+      const level = allWords[word]?.level || '';
+      const levelColor = { A1: '#4caf50', A2: '#8bc34a', B1: '#ffc107', B2: '#ff9800', C1: '#f44336' }[level] || 'var(--text-secondary)';
       return `
         <div class="word-row">
-          <div style="flex:1;">
-            <div><strong>${escapeHtml(word)}</strong> - ${escapeHtml(tr)}</div>
+          <div style="flex:1;min-width:0;">
+            <div style="display:flex;align-items:center;gap:6px;">
+              <strong style="white-space:nowrap;">${escapeHtml(word)}</strong>
+              <span style="font-size:0.65rem;padding:1px 5px;border-radius:4px;background:${levelColor}20;color:${levelColor};font-weight:600;">${level}</span>
+            </div>
+            <div style="font-size:0.8rem;color:var(--text-secondary);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHtml(tr)}</div>
           </div>
-          <div class="word-row-meta">${escapeHtml(data.status || '')}</div>
-          <button class="btn" style="padding: 6px 10px; min-height: 34px; font-size: 0.85rem; margin-left: 8px;" data-ui-action="${rowAction.action}" data-word="${escapeHtml(word)}">${rowAction.label}</button>
+          <button class="btn ${rowAction.btnClass} btn-press" style="padding:6px 10px;min-height:34px;font-size:0.82rem;white-space:nowrap;" data-ui-action="${rowAction.action}" data-word="${escapeHtml(word)}">${rowAction.label}</button>
         </div>
       `;
     })
-    .join('') || '<p>No words in this list.</p>';
+    .join('') || '<p style="padding:20px;text-align:center;color:var(--text-secondary);">No words in this list.</p>';
+
+  // Tab buttons for switching between filters
+  const tabs = ['learned', 'known', 'review', 'practice'].map(f => {
+    const isActive = f === filter;
+    const count = Object.entries(progressWords).filter(([_, d]) => {
+      if (f === 'review') return (d.status === 'learned' || d.status === 'practice') && d.nextReview && d.nextReview <= today;
+      return d.status === f;
+    }).length;
+    return `<button class="session-size-btn ${isActive ? 'active' : ''}" style="font-size:0.75rem;padding:5px 10px;min-height:30px;" data-ui-action="switch-word-filter" data-filter="${f}">${filterIcons[f]} ${f} <span style="opacity:0.7;">${count}</span></button>`;
+  }).join('');
 
   return `
     <div class="modal-overlay" onclick="if(event.target===this) handleUiAction('close-modal')">
-      <div class="modal" role="dialog" aria-label="Word list">
-        <h2>${escapeHtml(filter)} words</h2>
-        <p>${escapeHtml(actionHelp)}</p>
-        <div class="word-list">${rows}</div>
-        <div class="modal-actions">
-          <button class="btn" data-ui-action="close-modal">Close</button>
+      <div class="modal" role="dialog" aria-label="Word list" style="max-height:85vh;display:flex;flex-direction:column;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+          <h2 style="margin:0;">${filterIcons[filter] || ''} ${escapeHtml(filter)} words</h2>
+          <span style="font-size:0.8rem;color:var(--text-secondary);">${wordCount} word${wordCount !== 1 ? 's' : ''}</span>
+        </div>
+        <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px;">${tabs}</div>
+        <p style="font-size:0.8rem;color:var(--text-secondary);margin:0 0 10px;">${filterDescriptions[filter] || ''}</p>
+        <div class="word-list" style="flex:1;overflow-y:auto;">${rows}</div>
+        <div class="modal-actions" style="margin-top:12px;">
+          <button class="btn btn-press" data-ui-action="close-modal">Close</button>
         </div>
       </div>
     </div>
@@ -151,6 +215,8 @@ function renderModal(modalType, state, allWords) {
   switch (modalType) {
     case 'settings':
       return renderSettingsModal();
+    case 'sessionSize':
+      return renderSessionSizeModal(state);
     case 'wordList':
       return renderWordListModal(state, allWords);
     case 'quitConfirm':

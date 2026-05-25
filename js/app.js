@@ -43,7 +43,8 @@ let AppState = {
     prepLevel: 'ALL',
     prepPage: 0,
     prepSelectedKnown: [],
-    prepPendingAction: null
+    prepPendingAction: null,
+    demoAnswerOpen: false
   }
 };
 
@@ -300,8 +301,12 @@ function updateState(currentState, action) {
     case 'SET_PREP_PENDING_ACTION':
       newState.ui.prepPendingAction = action.payload;
       break;
+    case 'SET_DEMO_ANSWER_OPEN':
+      newState.ui.demoAnswerOpen = Boolean(action.payload);
+      break;
     case 'INIT_SESSION':
       newState.session = action.payload;
+      newState.ui.demoAnswerOpen = false;
       break;
     case 'ADVANCE_SESSION_INDEX':
       newState.session.current += 1;
@@ -320,6 +325,7 @@ function updateState(currentState, action) {
       newState.ui.sbShake = false;
       newState.ui.productionDraft = '';
       newState.ui.productionSubmitted = '';
+      newState.ui.demoAnswerOpen = false;
       break;
     case 'SET_ROUND':
       newState.session.round = action.payload;
@@ -339,9 +345,11 @@ function updateState(currentState, action) {
       newState.ui.sbShake = false;
       newState.ui.productionDraft = '';
       newState.ui.productionSubmitted = '';
+      newState.ui.demoAnswerOpen = false;
       break;
     case 'SET_CURRENT_EXERCISE':
       newState.session.currentExercise = action.payload;
+      newState.ui.demoAnswerOpen = false;
       break;
     case 'MARK_KNOWN':
       newState.progress.words[action.payload] = {
@@ -512,7 +520,9 @@ function startDemoExercise(type) {
     round: 1,
     current: 0,
     results: {},
-    currentExercise: null
+    currentExercise: null,
+    demoType: type,
+    isDemo: true
   };
 
   dispatch({ type: 'INIT_SESSION', payload: nextSession });
@@ -552,7 +562,9 @@ function initiateSession(sessionSize, levelFilter = 'ALL', skipGate = false) {
     round: 0,
     current: 0,
     results: {},
-    currentExercise: null
+    currentExercise: null,
+    demoType: null,
+    isDemo: false
   };
 
   dispatch({ type: 'INIT_SESSION', payload: nextSession });
@@ -726,6 +738,14 @@ function pickPracticeGapExampleIndex(word) {
 
 function buildExercise(queueItem, round, wordIndex) {
   const word = queueItem;
+  if (AppState.session.isDemo) {
+    if (AppState.session.demoType === 'COLLOCATION_MATCH') {
+      return Exercises.renderCollocationMatch(word, AllWords);
+    }
+    if (AppState.session.demoType === 'ERROR_CORRECTION') {
+      return Exercises.renderErrorCorrection(word, AllWords);
+    }
+  }
   if (round === 1) return Exercises.renderDefinition(word, AllWords);
   if (round === 2) return Exercises.renderENtoTRMC(word, AllWords);
   if (round === 3) {
@@ -753,6 +773,7 @@ function buildExercise(queueItem, round, wordIndex) {
 }
 
 function getMaxRound() {
+  if (AppState.session.isDemo) return 1;
   const queue = AppState.session.queue || [];
   const hasRound5 = queue.some(w => Exercises.hasContextMatchData(w, AllWords));
   const hasRound6 = queue.length >= 2;
@@ -830,6 +851,12 @@ function finalizeRoundAnswer(correct) {
   const maxRound = getMaxRound();
 
   dispatch({ type: 'SAVE_RESULT', payload: { word, round, correct } });
+
+  if (AppState.session.isDemo) {
+    dispatch({ type: 'ADVANCE_SESSION_INDEX' });
+    startRoundExercise();
+    return;
+  }
 
   if (!correct) {
     recordPosError(word);
@@ -1187,6 +1214,50 @@ function renderHome(state) {
   const words = state.progress.words;
   const learned = Object.keys(words).filter((w) => words[w].status === 'learned').length;
   const known = Object.keys(words).filter((w) => words[w].status === 'known').length;
+  const reviewDue = getReviewDue(state.progress).length;
+  const today = toLocalDate(0);
+  const wordsToday = getWeeklyActivity()[today] || 0;
+  const focusPool = Math.max(0, Object.keys(AllWords).length - (known + learned));
+
+  return `
+    <div class="home-screen card-slide-enter">
+      <div class="home-headline" style="margin-bottom:14px;">
+        <h1 style="margin-bottom:6px;">WordForge</h1>
+        <p style="margin:0;color:var(--text-secondary);">Build momentum daily with short, focused sessions.</p>
+      </div>
+      <div class="home-quick-grid" style="margin-bottom:14px;">
+        <div class="home-quick-card">
+          <div class="home-quick-label">Today</div>
+          <div class="home-quick-value">${wordsToday} words</div>
+        </div>
+        <div class="home-quick-card">
+          <div class="home-quick-label">Due for review</div>
+          <div class="home-quick-value">${reviewDue}</div>
+        </div>
+        <div class="home-quick-card">
+          <div class="home-quick-label">Focus Pool</div>
+          <div class="home-quick-value">${focusPool}</div>
+        </div>
+        <div class="home-quick-card">
+          <div class="home-quick-label">Session Size</div>
+          <div class="home-quick-value">${state.ui.sessionSize || 10}</div>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-press btn-home-start" data-action="start-session">Start Session</button>
+        <button class="btn btn-manage btn-press" data-action="open-manage-words">Manage Words</button>
+        <button class="btn btn-press btn-home-progress" data-action="open-progress">📊 Progress</button>
+        <button class="btn btn-press btn-home-practice" data-action="open-extras">🎯 Practice</button>
+        <button class="btn btn-press btn-home-settings" data-action="open-settings">⚙️ Settings</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderProgress(state) {
+  const words = state.progress.words;
+  const learned = Object.keys(words).filter((w) => words[w].status === 'learned').length;
+  const known = Object.keys(words).filter((w) => words[w].status === 'known').length;
   const practice = Object.keys(words).filter((w) => words[w].status === 'practice').length;
   const reviewDue = getReviewDue(state.progress).length;
   const total = Object.keys(AllWords).length;
@@ -1195,7 +1266,6 @@ function renderHome(state) {
   const streak = getStreakData();
   const xp = getXP();
 
-  // Level progress
   const levelData = buildLevelProgress(state.progress);
   const levelProgressHtml = `
     <div class="level-progress">
@@ -1208,10 +1278,11 @@ function renderHome(state) {
   // Weekly heatmap
   const weekDays = buildWeeklyHeatmap();
   const heatmapHtml = `
+    <div style="margin-bottom:6px;font-size:0.78rem;color:var(--text-secondary);font-weight:600;">This Week</div>
     <div class="weekly-heatmap" style="margin-bottom:12px;">
-      ${weekDays.map(d => `<div class="heatmap-day ${d.isToday ? 'today' : ''}" data-intensity="${d.intensity}" title="${d.date}: ${d.intensity > 0 ? d.intensity + ' sessions' : 'no activity'}"></div>`).join('')}
+      ${weekDays.map(d => `<div class="heatmap-day ${d.isToday ? 'today' : ''}" data-intensity="${d.intensity}" title="${d.date}"></div>`).join('')}
     </div>
-    <div style="display:flex;gap:4px;margin:-8px 0 10px;">
+    <div style="display:flex;gap:4px;margin:-8px 0 14px;">
       ${weekDays.map(d => `<span class="heatmap-label" style="width:18px;">${d.label}</span>`).join('')}
     </div>`;
 
@@ -1231,49 +1302,61 @@ function renderHome(state) {
 
   return `
     <div class="home-screen card-slide-enter">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-        <h1>WordForge</h1>
-        <div class="xp-display"><span class="xp-icon">⚡</span>${xp.total} XP</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+        <h2>Progress</h2>
+        <button class="btn btn-muted btn-press" data-action="go-home">← Back</button>
       </div>
-      <div class="streak-display">
-        <span class="streak-fire">${streak.currentStreak > 0 ? '🔥' : '⚪'}</span>
-        <span class="streak-count">${streak.currentStreak} day${streak.currentStreak !== 1 ? 's' : ''}</span>
-        <span class="streak-best">Best: ${streak.longestStreak || 0}</span>
+      <div class="card" style="padding:12px;margin-bottom:14px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+          <div class="streak-display" style="margin-bottom:0;">
+            <span class="streak-fire">${streak.currentStreak > 0 ? '🔥' : '⚪'}</span>
+            <span class="streak-count">${streak.currentStreak} day${streak.currentStreak !== 1 ? 's' : ''}</span>
+            <span class="streak-best">Best: ${streak.longestStreak || 0}</span>
+          </div>
+          <div class="xp-display"><span class="xp-icon">⚡</span>${xp.total} XP</div>
+        </div>
+        ${levelProgressHtml}
+        <div class="home-word-stats" style="margin-top:8px;">
+          <span class="home-stat"><span class="home-stat-label">Total</span><span class="home-stat-value">${total}</span></span>
+          <span class="home-stat-sep">·</span>
+          <span class="home-stat"><span class="home-stat-label">Known</span><span class="home-stat-value home-stat-known">${knownOrLearned}</span></span>
+          <span class="home-stat-sep">·</span>
+          <span class="home-stat"><span class="home-stat-label">Available</span><span class="home-stat-value home-stat-available">${available}</span></span>
+        </div>
       </div>
+      <p class="progress-explainer">Due for review means words whose next review date is today or earlier.</p>
       ${heatmapHtml}
-      ${levelProgressHtml}
-      <div class="home-word-stats">
-        <span class="home-stat"><span class="home-stat-label">Total</span><span class="home-stat-value">${total}</span></span>
-        <span class="home-stat-sep">·</span>
-        <span class="home-stat"><span class="home-stat-label">Known</span><span class="home-stat-value home-stat-known">${knownOrLearned}</span></span>
-        <span class="home-stat-sep">·</span>
-        <span class="home-stat"><span class="home-stat-label">Available</span><span class="home-stat-value home-stat-available">${available}</span></span>
-      </div>
-      ${goalsHtml}
+      <div style="margin-bottom:16px;">${goalsHtml}</div>
       <div class="stats-grid">
         <button class="card btn-press" data-action="open-list" data-filter="learned">Learned: ${learned}</button>
         <button class="card btn-press" data-action="open-list" data-filter="known">Known: ${known}</button>
-        <button class="card btn-press" data-action="open-list" data-filter="review">Review Due: ${reviewDue}</button>
+        <button class="card btn-press" data-action="open-list" data-filter="review">Due for review: ${reviewDue}</button>
         <button class="card btn-press" data-action="open-list" data-filter="practice">Practice: ${practice}</button>
       </div>
-      <div class="session-size-selector">
-        <span class="session-size-label">Session size:</span>
-        <div class="session-size-options">
-          ${[5, 10, 15, 20].map(n => `<button class="session-size-btn chip-bounce ${n === (state.ui.sessionSize || 10) ? 'active' : ''}" data-action="set-session-size" data-size="${n}">${n}</button>`).join('')}
-        </div>
+    </div>
+  `;
+}
+
+function renderExtras(state) {
+  return `
+    <div class="home-screen card-slide-enter">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+        <h2>Practice & Tools</h2>
+        <button class="btn btn-muted btn-press" data-action="go-home">← Back</button>
       </div>
-      <div class="actions">
-        <button class="btn btn-press" data-action="start-session">Start Session</button>
-        <button class="btn btn-manage btn-press" data-action="open-flashcards">Flashcards</button>
-        <button class="btn btn-manage btn-press" data-action="open-manage-words">Manage Words</button>
-        <button class="btn btn-muted btn-press" data-action="open-settings">Settings</button>
-      </div>
-      <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">
-        <p style="font-size:0.78rem;color:var(--text-secondary);margin-bottom:8px;">Demo New Exercises</p>
-        <div class="actions">
-          <button class="btn btn-muted btn-press" data-action="demo-collocation">🔗 Collocation Match</button>
-          <button class="btn btn-muted btn-press" data-action="demo-error-correction">✏️ Error Correction</button>
-        </div>
+      <div class="stats-grid" style="grid-template-columns:1fr;">
+        <button class="card btn-press" data-action="open-flashcards" style="display:flex;align-items:center;gap:12px;">
+          <span style="font-size:1.5rem;">🃏</span>
+          <div style="text-align:left;"><strong>Flashcards</strong><br><span style="font-size:0.8rem;color:var(--text-secondary);">Review learned words with flip cards</span></div>
+        </button>
+        <button class="card btn-press" data-action="demo-collocation" style="display:flex;align-items:center;gap:12px;">
+          <span style="font-size:1.5rem;">🔗</span>
+          <div style="text-align:left;"><strong>Collocation Match</strong><br><span style="font-size:0.8rem;color:var(--text-secondary);">Test word partnerships and natural pairings</span></div>
+        </button>
+        <button class="card btn-press" data-action="demo-error-correction" style="display:flex;align-items:center;gap:12px;">
+          <span style="font-size:1.5rem;">✏️</span>
+          <div style="text-align:left;"><strong>Error Correction</strong><br><span style="font-size:0.8rem;color:var(--text-secondary);">Find and fix word usage mistakes</span></div>
+        </button>
       </div>
     </div>
   `;
@@ -1327,13 +1410,16 @@ function renderPrep(state) {
 
   return `
     <div class="prep-screen card">
-      <h2>Select words you already know</h2>
+      <h2 style="margin-bottom:6px;">Select words you already know</h2>
+      <p class="prep-subtitle">Mark words you already know to keep sessions focused on new learning.</p>
       <div class="prep-header">
         <button class="btn btn-muted" data-action="prep-back">← Back</button>
         <span class="prep-count">✓ Known: ${totalMarked}</span>
       </div>
       <div class="prep-levels">${levelButtons}</div>
-      <div class="prep-grid">${chips || '<p>No words for this filter.</p>'}</div>
+      <div class="prep-grid-wrap">
+        <div class="prep-grid">${chips || '<p class="prep-empty">No words for this filter.</p>'}</div>
+      </div>
       <div class="prep-footer">
         <div class="prep-pagination">
           <button class="btn btn-muted" data-action="prep-prev" ${safePage <= 0 ? 'disabled' : ''}>← Prev</button>
@@ -1444,11 +1530,40 @@ function renderOptions(options, selected, reveal, locked) {
   }).join('');
 }
 
-function renderRound(state) {
-  if (!state.session.currentExercise) {
-    return '<div class="card">Loading exercise...</div>';
-  }
+function renderRoundFrame(state, body, maxRound, progress) {
+  const roundPct = maxRound > 0 ? Math.round((state.session.round / maxRound) * 100) : 0;
+  const roundProgressHtml = `
+    <div class="round-progress-wrap" aria-hidden="true">
+      <div class="round-progress-track">
+        <div class="round-progress-fill" style="width:${roundPct}%"></div>
+      </div>
+      <div class="round-progress-stops">${Array.from({ length: maxRound }, (_, i) => `<span class="round-progress-stop ${i + 1 <= state.session.round ? 'active' : ''}"></span>`).join('')}</div>
+    </div>
+  `;
 
+  const feedbackClass = state.ui.feedback
+    ? (state.ui.feedback.startsWith('✓') || state.ui.feedback.startsWith('Correct') ? 'correct-pulse' :
+       (state.ui.feedback.startsWith('Wrong') || state.ui.feedback.startsWith('Not quite') ? 'wrong-shake' : ''))
+    : '';
+
+  return `
+    <div class="round-screen card-slide-enter" role="main" aria-label="Exercise screen">
+      <div class="progress" aria-live="polite" aria-label="${progress}">${progress}</div>
+      ${roundProgressHtml}
+      <div class="round-quick-actions round-toolbar">
+        <button class="btn btn-muted btn-press" data-action="round-back">← Back</button>
+        <button class="btn btn-muted btn-press" data-action="round-skip">Skip</button>
+        <button class="btn btn-muted btn-press" data-action="round-practice">Practice</button>
+        <button class="btn btn-manage btn-press" data-action="round-known">Known</button>
+      </div>
+      <div class="card round-exercise-card">${body}</div>
+      <p class="${feedbackClass}">${state.ui.feedback || ''}</p>
+      <button class="btn btn-press" data-action="open-quit">End Session</button>
+    </div>
+  `;
+}
+
+function renderRoundSession(state) {
   const exercise = state.session.currentExercise;
   const maxRound = getMaxRound();
   const progress = `Round ${state.session.round}/${maxRound} | Word ${state.session.current + 1}/${state.session.queue.length}`;
@@ -1595,42 +1710,68 @@ function renderRound(state) {
     `;
   }
 
-  const totalSteps = state.session.queue.length * getMaxRound();
-  const completedSteps = (state.session.round - 1) * state.session.queue.length + state.session.current;
-  const progressPct = totalSteps > 0 ? Math.round((completedSteps / totalSteps) * 100) : 0;
+  return renderRoundFrame(state, body, maxRound, progress);
+}
 
-  // Segmented progress (one segment per round)
-  const segmentedHtml = `<div class="segmented-progress">${
-    Array.from({ length: maxRound }, (_, i) => {
-      const roundNum = i + 1;
-      let cls = '';
-      if (roundNum < state.session.round) cls = 'completed';
-      else if (roundNum === state.session.round) cls = 'current';
-      return `<div class="segmented-progress-item ${cls}"></div>`;
-    }).join('')
-  }</div>`;
+function renderRoundDemo(state) {
+  const exercise = state.session.currentExercise;
+  const maxRound = getMaxRound();
+  const progress = `Round ${state.session.round}/${maxRound} | Word ${state.session.current + 1}/${state.session.queue.length}`;
+  const waitingContinue = state.ui.pendingResult !== null;
+  const submitLabel = waitingContinue ? 'Continue' : 'Submit';
+  const answerOpen = state.ui.demoAnswerOpen;
 
-  // Feedback with animation class
-  const feedbackClass = state.ui.feedback
-    ? (state.ui.feedback.startsWith('✓') || state.ui.feedback.startsWith('Correct') ? 'correct-pulse' : 
-       (state.ui.feedback.startsWith('Wrong') || state.ui.feedback.startsWith('Not quite') ? 'wrong-shake' : ''))
-    : '';
-
-  return `
-    <div class="round-screen card-slide-enter" role="main" aria-label="Exercise screen">
-      <div class="progress" aria-live="polite" aria-label="${progress}">${progress}</div>
-      ${segmentedHtml}
-      <div class="round-quick-actions">
-        <button class="btn btn-muted btn-press" data-action="round-back">← Back</button>
-        <button class="btn btn-muted btn-press" data-action="round-skip">Skip</button>
-        <button class="btn btn-muted btn-press" data-action="round-practice">Practice +</button>
-        <button class="btn btn-manage btn-press" data-action="round-known">Known</button>
-      </div>
-      <div class="card">${body}</div>
-      <p class="${feedbackClass}">${state.ui.feedback || ''}</p>
-      <button class="btn btn-press" data-action="open-quit">End Session</button>
+  const renderAnswerControl = (text) => `
+    <div class="demo-answer-zone">
+      <button class="demo-answer-link" data-action="toggle-demo-answer">${answerOpen ? 'Hide answer' : 'Show answer'}</button>
+      ${answerOpen ? `<div class="demo-answer-inline">${escapeHtml(text)}</div>` : ''}
     </div>
   `;
+
+  let body = '';
+  if (exercise.type === 'COLLOCATION_MATCH') {
+    const hintVisible = state.ui.hintVisible;
+    const hintHtml = exercise.hint
+      ? `<div class="gap-hint-area">${hintVisible ? `<p class="gap-hint-text">💡 ${exercise.hint}</p>` : `<button class="btn btn-muted btn-hint" data-action="show-hint">Show Hint</button>`}</div>`
+      : '';
+    body = `
+      <h2>${exercise.prompt}</h2>
+      ${hintHtml}
+      <div class="options">${renderOptions(exercise.options, state.ui.selectedOption, state.ui.reveal, state.ui.locked)}</div>
+      <button class="btn btn-press" data-action="submit-answer" ${state.ui.locked && !waitingContinue ? 'disabled' : ''}>${submitLabel}</button>
+      ${renderAnswerControl(exercise.correct)}
+    `;
+  } else if (exercise.type === 'ERROR_CORRECTION') {
+    const hintVisible = state.ui.hintVisible;
+    const hintHtml = exercise.hint
+      ? `<div class="gap-hint-area">${hintVisible ? `<p class="gap-hint-text">💡 ${exercise.hint}</p>` : `<button class="btn btn-muted btn-hint" data-action="show-hint">Show Hint</button>`}</div>`
+      : '';
+    const inputVal = state.ui.freeTypeInput || '';
+    body = `
+      <h2>${exercise.prompt}</h2>
+      <p class="ft-sentence" style="color:var(--error);border-left:3px solid var(--error);padding-left:12px;">${exercise.incorrectSentence}</p>
+      ${hintHtml}
+      <input type="text" class="ft-input" id="freeTypeInput" value="${escapeHtml(inputVal)}" placeholder="Type the corrected sentence..." autocomplete="off" ${state.ui.locked ? 'disabled' : ''}>
+      <button class="btn btn-press" data-action="submit-answer" ${state.ui.locked && !waitingContinue ? 'disabled' : ''}>${submitLabel}</button>
+      ${renderAnswerControl(exercise.correctSentence)}
+    `;
+  } else {
+    body = `
+      <h2>Demo Exercise</h2>
+      <p>This demo supports collocation and error-correction cards.</p>
+      <button class="btn btn-press" data-action="submit-answer">Continue</button>
+    `;
+  }
+
+  return renderRoundFrame(state, body, maxRound, progress);
+}
+
+function renderRound(state) {
+  if (!state.session.currentExercise) {
+    return '<div class="card">Loading exercise...</div>';
+  }
+  if (state.session.isDemo) return renderRoundDemo(state);
+  return renderRoundSession(state);
 }
 
 function renderSummary(state) {
@@ -1689,6 +1830,8 @@ function render(state) {
   if (!app || !modalContainer) return;
 
   if (state.ui.screen === 'home') app.innerHTML = renderHome(state);
+  if (state.ui.screen === 'progress') app.innerHTML = renderProgress(state);
+  if (state.ui.screen === 'extras') app.innerHTML = renderExtras(state);
   if (state.ui.screen === 'preflight') app.innerHTML = renderPrep(state);
   if (state.ui.screen === 'flashcards') app.innerHTML = renderFlashcards(state);
   if (state.ui.screen === 'gate') app.innerHTML = renderGate(state);
@@ -1705,7 +1848,7 @@ function render(state) {
   }
 
   modalContainer.innerHTML = state.ui.modal ? UI.renderModal(state.ui.modal, state, AllWords) : '';
-  updateBottomNav(state.ui.screen);
+  updateBottomNav(state.ui.screen, state.ui.modal);
 }
 
 function handleAction(action, target) {
@@ -1732,12 +1875,20 @@ function handleAction(action, target) {
     return;
   }
   if (action === 'start-session') {
-    initiateSession(AppState.ui.sessionSize || 10, 'ALL', true);
+    dispatch({ type: 'SET_MODAL', payload: 'sessionSize' });
     return;
   }
   if (action === 'open-manage-words') {
     dispatch({ type: 'RESET_PREP' });
     dispatch({ type: 'SET_SCREEN', payload: 'preflight' });
+    return;
+  }
+  if (action === 'open-progress') {
+    dispatch({ type: 'SET_SCREEN', payload: 'progress' });
+    return;
+  }
+  if (action === 'open-extras') {
+    dispatch({ type: 'SET_SCREEN', payload: 'extras' });
     return;
   }
   if (action === 'open-settings') {
@@ -1822,6 +1973,10 @@ function handleAction(action, target) {
     dispatch({ type: 'SET_HINT_VISIBLE', payload: true });
     return;
   }
+  if (action === 'toggle-demo-answer') {
+    dispatch({ type: 'SET_DEMO_ANSWER_OPEN', payload: !AppState.ui.demoAnswerOpen });
+    return;
+  }
   if (action === 'add-chip') {
     const chipIndex = Number(target.dataset.index);
     if (Number.isNaN(chipIndex) || AppState.ui.selectedChipIndexes.includes(chipIndex)) return;
@@ -1875,14 +2030,48 @@ function handleAction(action, target) {
     return;
   }
   if (action === 'round-skip') {
+    if (AppState.session.isDemo) {
+      const queue = AppState.session.queue || [];
+      if (queue.length <= 1) {
+        dispatch({ type: 'SET_FEEDBACK', payload: 'Demo has one item left.' });
+        return;
+      }
+      const [currentItem] = queue.splice(AppState.session.current, 1);
+      queue.push(currentItem);
+      AppState.session.currentExercise = null;
+      resetRoundInteractionState();
+      startRoundExercise();
+      dispatch({ type: 'SET_FEEDBACK', payload: 'Skipped in demo mode.' });
+      return;
+    }
     deferCurrentWordInSession();
     return;
   }
   if (action === 'round-known') {
+    if (AppState.session.isDemo) {
+      AppState.session.queue.splice(AppState.session.current, 1);
+      AppState.session.words = [...AppState.session.queue];
+      AppState.session.currentExercise = null;
+      if (AppState.session.queue.length === 0) {
+        dispatch({ type: 'SET_SCREEN', payload: 'extras' });
+        return;
+      }
+      if (AppState.session.current >= AppState.session.queue.length) {
+        AppState.session.current = 0;
+      }
+      resetRoundInteractionState();
+      startRoundExercise();
+      dispatch({ type: 'SET_FEEDBACK', payload: 'Marked known in demo only (not saved).' });
+      return;
+    }
     removeCurrentWordFromSession('known');
     return;
   }
   if (action === 'round-practice') {
+    if (AppState.session.isDemo) {
+      dispatch({ type: 'SET_FEEDBACK', payload: 'Demo note: this word needs practice (not saved).' });
+      return;
+    }
     const word = currentWord();
     if (!word) return;
     dispatch({ type: 'MARK_PRACTICE', payload: word });
@@ -2055,6 +2244,12 @@ function handleUiAction(action, element) {
       dispatch({ type: 'DELETE_WORD_PROGRESS', payload: word });
     }
   }
+  if (action === 'switch-word-filter') {
+    const newFilter = element?.dataset?.filter;
+    if (newFilter) {
+      dispatch({ type: 'SET_WORD_LIST_FILTER', payload: newFilter });
+    }
+  }
   if (action === 'remove-from-practice') {
     const word = element?.dataset?.word;
     if (word) {
@@ -2083,6 +2278,20 @@ function handleUiAction(action, element) {
     a.download = `wordforge-progress-${toLocalDate(0)}.json`;
     a.click();
     URL.revokeObjectURL(url);
+    return;
+  }
+  if (action === 'set-theme') {
+    const nextTheme = element?.dataset?.theme;
+    if (!nextTheme || (nextTheme !== 'dark' && nextTheme !== 'light')) return;
+    applyTheme(nextTheme);
+    dispatch({ type: 'SET_MODAL', payload: 'settings' });
+    return;
+  }
+  if (action === 'select-session-size') {
+    const size = Number(element?.dataset?.size) || 10;
+    dispatch({ type: 'SET_SESSION_SIZE', payload: size });
+    dispatch({ type: 'SET_MODAL', payload: null });
+    initiateSession(size, 'ALL', true);
     return;
   }
 }
@@ -2333,41 +2542,31 @@ document.addEventListener('keydown', handleKeyboardNavigation);
 
 function initTheme() {
   const saved = localStorage.getItem('wf_theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', saved);
-  updateThemeIcon(saved);
+  applyTheme(saved);
 }
 
-function toggleTheme() {
-  const current = document.documentElement.getAttribute('data-theme') || 'dark';
-  const next = current === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', next);
-  localStorage.setItem('wf_theme', next);
-  updateThemeIcon(next);
+function applyTheme(theme) {
+  const safeTheme = theme === 'light' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', safeTheme);
+  localStorage.setItem('wf_theme', safeTheme);
   // Update PWA theme-color meta
   const metaTheme = document.querySelector('meta[name="theme-color"]');
-  if (metaTheme) metaTheme.content = next === 'dark' ? '#10141e' : '#f8f9fa';
+  if (metaTheme) metaTheme.content = safeTheme === 'dark' ? '#10141e' : '#f8f9fa';
 }
-
-function updateThemeIcon(theme) {
-  const btn = document.getElementById('themeToggle');
-  if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
-}
-
-document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
 
 // ── Bottom Nav ────────────────────────────────────────────────────────────
 
-function updateBottomNav(screen) {
+function updateBottomNav(screen, modal) {
   const nav = document.getElementById('bottomNav');
   if (!nav) return;
   const items = nav.querySelectorAll('.bottom-nav-item');
   items.forEach(item => {
     const navTarget = item.dataset.nav;
     let isActive = false;
-    if (navTarget === 'home' && (screen === 'home' || screen === 'preflight' || screen === 'flashcards')) isActive = true;
+    if (navTarget === 'home' && (screen === 'home' || screen === 'preflight')) isActive = true;
     if (navTarget === 'session' && (screen === 'gate' || screen === 'round')) isActive = true;
-    if (navTarget === 'stats' && screen === 'stats') isActive = true;
-    if (navTarget === 'settings' && screen === 'settings') isActive = true;
+    if (navTarget === 'stats' && screen === 'progress') isActive = true;
+    if (navTarget === 'settings' && modal === 'settings') isActive = true;
     item.classList.toggle('active', isActive);
   });
 }
@@ -2378,13 +2577,10 @@ document.getElementById('bottomNav')?.addEventListener('click', (e) => {
   const nav = item.dataset.nav;
   if (nav === 'home') dispatch({ type: 'SET_SCREEN', payload: 'home' });
   if (nav === 'session') {
-    if (AppState.ui.screen === 'round' || AppState.ui.screen === 'gate') return; // already in session
-    initiateSession(AppState.ui.sessionSize || 10, 'ALL', true);
+    if (AppState.ui.screen === 'round' || AppState.ui.screen === 'gate') return;
+    dispatch({ type: 'SET_MODAL', payload: 'sessionSize' });
   }
-  if (nav === 'stats') {
-    dispatch({ type: 'SET_WORD_LIST_FILTER', payload: 'learned' });
-    dispatch({ type: 'SET_MODAL', payload: 'wordList' });
-  }
+  if (nav === 'stats') dispatch({ type: 'SET_SCREEN', payload: 'progress' });
   if (nav === 'settings') dispatch({ type: 'SET_MODAL', payload: 'settings' });
 });
 
