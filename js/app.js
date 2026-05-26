@@ -47,7 +47,8 @@ let AppState = {
     prepSelectedKnown: [],
     prepSelectedSession: [],
     prepPendingAction: null,
-    demoAnswerOpen: false
+    demoAnswerOpen: false,
+    errorCorrectionRevealPrompt: false
   }
 };
 
@@ -243,6 +244,9 @@ function updateState(currentState, action) {
       break;
     case 'SET_FREE_TYPE_SECOND_CHANCE':
       newState.ui.freeTypeSecondChance = action.payload;
+      break;
+    case 'SET_EC_REVEAL_PROMPT':
+      newState.ui.errorCorrectionRevealPrompt = action.payload;
       break;
     case 'SET_PENDING_RESULT':
       newState.ui.pendingResult = action.payload;
@@ -944,6 +948,7 @@ function resetRoundInteractionState() {
   dispatch({ type: 'SET_SB_SHAKE', payload: false });
   dispatch({ type: 'SET_FEEDBACK', payload: '' });
   dispatch({ type: 'SET_FREE_TYPE_SECOND_CHANCE', payload: false });
+  dispatch({ type: 'SET_EC_REVEAL_PROMPT', payload: false });
 }
 
 function finalizeRoundAnswer(correct) {
@@ -1147,8 +1152,8 @@ async function submitExerciseAnswer() {
       dispatch({ type: 'SET_FEEDBACK', payload: `✓ Correct! The right sentence: "${exercise.correctSentence}"` });
       dispatch({ type: 'SET_PENDING_RESULT', payload: true });
     } else if (!AppState.ui.freeTypeSecondChance) {
-      dispatch({ type: 'SET_FREE_TYPE_SECOND_CHANCE', payload: true });
-      dispatch({ type: 'SET_FEEDBACK', payload: 'Not quite. Try again! Hint: look for the misused word.' });
+      // First wrong: ask if they want the answer
+      dispatch({ type: 'SET_EC_REVEAL_PROMPT', payload: true });
       if (inputEl) inputEl.value = '';
     } else {
       dispatch({ type: 'SET_LOCKED', payload: true });
@@ -1715,13 +1720,25 @@ function renderOptions(options, selected, reveal, locked) {
 }
 
 function renderRoundFrame(state, body, maxRound, progress) {
-  const roundPct = maxRound > 0 ? Math.round((state.session.round / maxRound) * 100) : 0;
+  const totalWords = state.session.queue.length;
+  const wordPct = totalWords > 0 ? Math.round((state.session.current / totalWords) * 100) : 0;
+
+  const roundStepsHtml = Array.from({ length: maxRound }, (_, i) => {
+    const roundNum = i + 1;
+    const isDone = roundNum < state.session.round;
+    const isActive = roundNum === state.session.round;
+    const label = isDone ? '✓' : `${roundNum}`;
+    const cls = `rp-step${isDone ? ' done' : ''}${isActive ? ' active' : ''}`;
+    const connectorHtml = i > 0 ? `<div class="rp-connector${isDone ? ' done' : ''}"></div>` : '';
+    return `${connectorHtml}<div class="${cls}"><span class="rp-step-label">${label}</span><span class="rp-step-name">Round ${roundNum}</span></div>`;
+  }).join('');
+
   const roundProgressHtml = `
     <div class="round-progress-wrap" aria-hidden="true">
-      <div class="round-progress-track">
-        <div class="round-progress-fill" style="width:${roundPct}%"></div>
+      <div class="rp-steps">${roundStepsHtml}</div>
+      <div class="rp-word-track">
+        <div class="rp-word-fill" style="width:${wordPct}%"></div>
       </div>
-      <div class="round-progress-stops">${Array.from({ length: maxRound }, (_, i) => `<span class="round-progress-stop ${i + 1 <= state.session.round ? 'active' : ''}"></span>`).join('')}</div>
     </div>
   `;
 
@@ -1885,13 +1902,28 @@ function renderRoundSession(state) {
       ? `<div class="gap-hint-area">${hintVisible ? `<p class="gap-hint-text">💡 ${exercise.hint}</p>` : `<button class="btn btn-muted btn-hint" data-action="show-hint">Show Hint</button>`}</div>`
       : '';
     const inputVal = state.ui.freeTypeInput || '';
-    body = `
-      <h2>${exercise.prompt}</h2>
-      <p class="ft-sentence" style="color:var(--error);border-left:3px solid var(--error);padding-left:12px;">${exercise.incorrectSentence}</p>
-      ${hintHtml}
-      <input type="text" class="ft-input" id="freeTypeInput" value="${escapeHtml(inputVal)}" placeholder="Type the corrected sentence..." autocomplete="off" ${state.ui.locked ? 'disabled' : ''}>
-      <button class="btn btn-press" data-action="submit-answer" ${state.ui.locked && !waitingContinue ? 'disabled' : ''}>${submitLabel}</button>
-    `;
+    const revealPrompt = state.ui.errorCorrectionRevealPrompt;
+    if (revealPrompt) {
+      body = `
+        <h2>${exercise.prompt}</h2>
+        <p class="ft-sentence" style="color:var(--error);border-left:3px solid var(--error);padding-left:12px;">${exercise.incorrectSentence}</p>
+        <div class="ec-reveal-prompt">
+          <p class="ec-reveal-question">Not quite. Do you want to see the answer?</p>
+          <div class="ec-reveal-actions">
+            <button class="btn btn-muted btn-press" data-action="ec-try-again">↩ Try Again</button>
+            <button class="btn btn-press" data-action="ec-show-answer">Show Answer</button>
+          </div>
+        </div>
+      `;
+    } else {
+      body = `
+        <h2>${exercise.prompt}</h2>
+        <p class="ft-sentence" style="color:var(--error);border-left:3px solid var(--error);padding-left:12px;">${exercise.incorrectSentence}</p>
+        ${hintHtml}
+        <input type="text" class="ft-input" id="freeTypeInput" value="${escapeHtml(inputVal)}" placeholder="Type the corrected sentence..." autocomplete="off" ${state.ui.locked ? 'disabled' : ''}>
+        <button class="btn btn-press" data-action="submit-answer" ${state.ui.locked && !waitingContinue ? 'disabled' : ''}>${submitLabel}</button>
+      `;
+    }
   }
 
   return renderRoundFrame(state, body, maxRound, progress);
@@ -2090,6 +2122,20 @@ function handleAction(action, target) {
   }
   if (action === 'open-settings') {
     dispatch({ type: 'SET_MODAL', payload: 'settings' });
+    return;
+  }
+  if (action === 'ec-show-answer') {
+    const ex = AppState.session.currentExercise;
+    dispatch({ type: 'SET_EC_REVEAL_PROMPT', payload: false });
+    dispatch({ type: 'SET_LOCKED', payload: true });
+    dispatch({ type: 'SET_FEEDBACK', payload: `Correct version: "${ex.correctSentence}"` });
+    dispatch({ type: 'SET_PENDING_RESULT', payload: false });
+    return;
+  }
+  if (action === 'ec-try-again') {
+    dispatch({ type: 'SET_EC_REVEAL_PROMPT', payload: false });
+    dispatch({ type: 'SET_FREE_TYPE_SECOND_CHANCE', payload: true });
+    dispatch({ type: 'SET_FEEDBACK', payload: '' });
     return;
   }
   if (action === 'demo-collocation') {

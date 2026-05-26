@@ -2268,45 +2268,121 @@ button.card {
 }
 
 /* ======================================================
-   ROUND PROGRESS BAR
+   ROUND PROGRESS — stepped round indicator + word fill
    ====================================================== */
 .round-progress-wrap {
-  margin: 0 0 10px;
+  margin: 0 0 12px;
 }
 
-.round-progress-track {
+/* Step row */
+.rp-steps {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 8px;
+}
+
+.rp-connector {
+  flex: 1;
+  height: 2px;
+  background: var(--border);
+  border-radius: 1px;
+  transition: background 0.35s ease;
+}
+
+.rp-connector.done {
+  background: var(--success);
+}
+
+.rp-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  position: relative;
+}
+
+.rp-step-label {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--bg-surface);
+  border: 2px solid var(--border);
+  color: var(--text-secondary);
+  transition: background 0.35s, border-color 0.35s, box-shadow 0.35s;
+}
+
+.rp-step.active .rp-step-label {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #1a1208;
+  box-shadow: 0 0 12px rgba(243, 165, 49, 0.45);
+}
+
+.rp-step.done .rp-step-label {
+  background: rgba(46, 207, 149, 0.15);
+  border-color: var(--success);
+  color: var(--success);
+}
+
+.rp-step-name {
+  font-size: 0.52rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.rp-step.active .rp-step-name {
+  color: var(--accent);
+}
+
+.rp-step.done .rp-step-name {
+  color: var(--success);
+  opacity: 0.7;
+}
+
+/* Word progress bar (secondary, below steps) */
+.rp-word-track {
   width: 100%;
-  height: 6px;
+  height: 3px;
   border-radius: 999px;
-  background: rgba(64, 82, 117, 0.45);
+  background: rgba(64, 82, 117, 0.35);
   overflow: hidden;
 }
 
-.round-progress-fill {
+.rp-word-fill {
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, #e8a63a, #f3b13f);
-  box-shadow: 0 0 12px rgba(243, 165, 49, 0.3);
+  background: var(--accent);
+  opacity: 0.45;
   transition: width 220ms ease;
 }
 
-.round-progress-stops {
+/* ======================================================
+   ERROR CORRECTION — reveal prompt
+   ====================================================== */
+.ec-reveal-prompt {
   display: flex;
-  justify-content: space-between;
-  margin-top: -8px;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 0 4px;
 }
 
-.round-progress-stop {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #2c3a55;
-  border: 1px solid #3a4a6a;
+.ec-reveal-question {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
 }
 
-.round-progress-stop.active {
-  background: #f3b13f;
-  border-color: #f7c46b;
+.ec-reveal-actions {
+  display: flex;
+  gap: 10px;
 }
 
 /* ======================================================
@@ -2389,7 +2465,8 @@ button.card {
     animation: none !important;
   }
 
-  .round-progress-fill {
+  .rp-word-fill,
+  .rp-step-label {
     transition: none;
   }
 
