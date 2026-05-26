@@ -161,6 +161,13 @@ function renderWordListModal(state, allWords) {
     })
     .join('') || '<p style="padding:20px;text-align:center;color:var(--text-secondary);">No words in this list.</p>';
 
+  const filterTabLabels = {
+    practice: 'In Training',
+    known: 'known',
+    learned: 'learned',
+    review: 'review'
+  };
+
   // Tab buttons for switching between filters
   const tabs = ['learned', 'known', 'review', 'practice'].map(f => {
     const isActive = f === filter;
@@ -168,7 +175,7 @@ function renderWordListModal(state, allWords) {
       if (f === 'review') return (d.status === 'learned' || d.status === 'practice') && d.nextReview && d.nextReview <= today;
       return d.status === f;
     }).length;
-    return `<button class="session-size-btn ${isActive ? 'active' : ''}" style="font-size:0.75rem;padding:5px 10px;min-height:30px;" data-ui-action="switch-word-filter" data-filter="${f}">${filterIcons[f]} ${f} <span style="opacity:0.7;">${count}</span></button>`;
+    return `<button class="session-size-btn ${isActive ? 'active' : ''}" style="font-size:0.75rem;padding:5px 10px;min-height:30px;" data-ui-action="switch-word-filter" data-filter="${f}">${filterIcons[f]} ${filterTabLabels[f]} <span style="opacity:0.7;">${count}</span></button>`;
   }).join('');
 
   return `

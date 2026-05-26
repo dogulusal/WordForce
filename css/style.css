@@ -1176,6 +1176,18 @@ button.card {
   margin-bottom: 16px;
 }
 
+.word-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 4px;
+  border-bottom: 1px solid rgba(185, 195, 209, 0.07);
+}
+
+.word-row:last-child {
+  border-bottom: none;
+}
+
 .summary-word-row {
   display: flex;
   align-items: center;

@@ -1324,7 +1324,7 @@ function getDailyGoals(progress) {
   return [
     { icon: '📚', title: 'Learn 5 words', current: wordsToday, target: 5 },
     { icon: '⭐', title: 'Earn 50 XP', current: xp.today, target: 50 },
-    { icon: '🔁', title: 'Review words', current: getReviewsCleared(), target: 5 }
+    { icon: '🔔', title: 'Review words', current: getReviewsCleared(), target: 5 }
   ];
 }
 
