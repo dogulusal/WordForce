@@ -1151,14 +1151,10 @@ async function submitExerciseAnswer() {
       dispatch({ type: 'SET_LOCKED', payload: true });
       dispatch({ type: 'SET_FEEDBACK', payload: `✓ Correct! The right sentence: "${exercise.correctSentence}"` });
       dispatch({ type: 'SET_PENDING_RESULT', payload: true });
-    } else if (!AppState.ui.freeTypeSecondChance) {
-      // First wrong: ask if they want the answer
+    } else {
+      // Every wrong attempt: ask if they want the answer
       dispatch({ type: 'SET_EC_REVEAL_PROMPT', payload: true });
       if (inputEl) inputEl.value = '';
-    } else {
-      dispatch({ type: 'SET_LOCKED', payload: true });
-      dispatch({ type: 'SET_FEEDBACK', payload: `Correct version: "${exercise.correctSentence}"` });
-      dispatch({ type: 'SET_PENDING_RESULT', payload: false });
     }
     return;
   }
@@ -2134,7 +2130,6 @@ function handleAction(action, target) {
   }
   if (action === 'ec-try-again') {
     dispatch({ type: 'SET_EC_REVEAL_PROMPT', payload: false });
-    dispatch({ type: 'SET_FREE_TYPE_SECOND_CHANCE', payload: true });
     dispatch({ type: 'SET_FEEDBACK', payload: '' });
     return;
   }
