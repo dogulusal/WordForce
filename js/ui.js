@@ -124,7 +124,7 @@ function renderWordListModal(state, allWords) {
   };
 
   const filterIcons = {
-    practice: '🔄',
+    practice: '🏓',
     known: '✅',
     learned: '🎓',
     review: '📋'

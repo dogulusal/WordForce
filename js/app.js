@@ -1741,7 +1741,7 @@ function renderRoundFrame(state, body, maxRound, progress) {
         <button class="btn btn-manage btn-press" data-action="round-known">Known</button>
       </div>
       <div class="card round-exercise-card">${body}</div>
-      <p class="${feedbackClass}">${state.ui.feedback || ''}</p>
+      ${state.ui.feedback ? `<div class="feedback-bar ${feedbackClass}">${state.ui.feedback}</div>` : '<div class="feedback-bar-empty"></div>'}
       <button class="btn btn-press" data-action="open-quit">End Session</button>
     </div>
   `;

@@ -645,36 +645,47 @@ function renderCollocationMatch(word, allWords) {
   const displayWord = word.replace(/_/g, ' ');
   const collocations = Array.isArray(wordData.collocations) ? wordData.collocations : [];
 
-  // Need at least one collocation to work with
   if (collocations.length === 0) return null;
 
-  // Pick a correct collocation
   const correctCollocation = collocations[Math.floor(Math.random() * collocations.length)];
+  const realCollocSet = new Set(collocations.map(c => c.toLowerCase().trim()));
 
-  // Build distractors from other words' collocations or related phrases
   const distractorCandidates = [];
-  const samePosWords = Object.keys(allWords).filter(w => {
-    if (w === word) return false;
-    const d = allWords[w];
-    return d?.pos === wordData.pos && Array.isArray(d.collocations) && d.collocations.length > 0;
-  });
 
-  for (const candidate of shuffleList(samePosWords).slice(0, 15)) {
-    const candidateCollocations = allWords[candidate].collocations || [];
-    for (const colloc of candidateCollocations) {
-      if (colloc !== correctCollocation && !distractorCandidates.includes(colloc)) {
-        distractorCandidates.push(colloc);
+  // Strategy 1: swap other words into their own collocations with our target word
+  // e.g. "break a record" → "set a record", "give advice" → "set advice"
+  const otherWordList = shuffleList(
+    Object.keys(allWords).filter(w => w !== word && Array.isArray(allWords[w]?.collocations) && allWords[w].collocations.length > 0)
+  ).slice(0, 50);
+
+  for (const otherWord of otherWordList) {
+    const otherDisplay = otherWord.replace(/_/g, ' ');
+    const escaped = otherDisplay.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const otherRx = new RegExp(`\\b${escaped}\\b`, 'i');
+    for (const colloc of allWords[otherWord].collocations || []) {
+      if (!otherRx.test(colloc)) continue;
+      const fake = colloc.replace(otherRx, displayWord).toLowerCase().trim();
+      if (!realCollocSet.has(fake) && fake !== correctCollocation.toLowerCase() && !distractorCandidates.includes(fake)) {
+        distractorCandidates.push(fake);
       }
+      if (distractorCandidates.length >= 12) break;
     }
+    if (distractorCandidates.length >= 12) break;
   }
 
-  // Fallback: generate plausible-sounding wrong collocations
+  // Fallback: same-POS words' collocations (original approach)
   if (distractorCandidates.length < 3) {
-    const randomWords = shuffleList(Object.keys(allWords)).slice(0, 10);
-    randomWords.forEach(w => {
-      const phrase = `${allWords[w]?.pos === 'verb' ? w.replace(/_/g, ' ') : 'make'} ${w.replace(/_/g, ' ')}`;
-      if (phrase !== correctCollocation) distractorCandidates.push(phrase);
+    const samePosWords = Object.keys(allWords).filter(w => {
+      if (w === word) return false;
+      return allWords[w]?.pos === wordData.pos && Array.isArray(allWords[w].collocations) && allWords[w].collocations.length > 0;
     });
+    for (const candidate of shuffleList(samePosWords).slice(0, 15)) {
+      for (const colloc of allWords[candidate].collocations || []) {
+        if (colloc !== correctCollocation && !distractorCandidates.includes(colloc)) {
+          distractorCandidates.push(colloc);
+        }
+      }
+    }
   }
 
   const distractors = shuffleList(distractorCandidates).slice(0, 3);

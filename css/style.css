@@ -1990,6 +1990,68 @@ button.card {
   80% { transform: translateX(4px); }
 }
 
+/* ── Feedback bar (below exercise card) ── */
+.feedback-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  min-height: 42px;
+  animation: feedbackSlideIn 0.2s ease;
+}
+
+.feedback-bar.correct-pulse {
+  background: rgba(46, 207, 149, 0.1);
+  border-color: var(--success);
+  color: var(--success);
+  animation: feedbackSlideIn 0.2s ease;
+}
+
+.feedback-bar.wrong-shake {
+  background: rgba(255, 110, 110, 0.08);
+  border-color: var(--error);
+  color: var(--error);
+  animation: feedbackSlideIn 0.2s ease, wrongShake 0.4s ease;
+}
+
+.feedback-bar-empty {
+  min-height: 42px;
+}
+
+@keyframes feedbackSlideIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Custom scrollbar (modal word list) ── */
+.word-list {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.word-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.word-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.word-list::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+.word-list::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
 /* ======================================================
    GAMIFICATION ELEMENTS
    ====================================================== */
