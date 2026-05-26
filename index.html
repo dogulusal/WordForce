@@ -30,7 +30,9 @@
   <script>
     // Service Worker registration for PWA
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js?v=20260529').catch(() => {});
+      navigator.serviceWorker.register('sw.js?v=20260530').then((reg) => {
+        reg.update();
+      }).catch(() => {});
     }
   </script>
 </body>

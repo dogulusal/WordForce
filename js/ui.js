@@ -73,6 +73,8 @@ function renderSessionSizeModal(state) {
   const levelOptions = ['ALL', 'A1', 'A2', 'B1', 'B2', 'C1'].map((level) => {
     const activeClass = level === currentLevel ? 'active' : '';
     return `<button class="prep-level ${activeClass}" data-action="session-start-select-level" data-level="${level}">${level}</button>`;
+  }).join('');
+
   return `
     <div class="modal-overlay" onclick="if(event.target===this) handleUiAction('close-modal')">
       <div class="modal" role="dialog" aria-label="Start session">
