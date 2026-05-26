@@ -1317,11 +1317,10 @@ function renderProgress(state) {
   // Weekly heatmap
   const weekDays = buildWeeklyHeatmap();
   const heatmapHtml = `
-    <div style="margin-bottom:6px;font-size:0.78rem;color:var(--text-secondary);font-weight:600;">This Week</div>
-    <div class="weekly-heatmap" style="margin-bottom:12px;">
+    <div class="weekly-heatmap">
       ${weekDays.map(d => `<div class="heatmap-day ${d.isToday ? 'today' : ''}" data-intensity="${d.intensity}" title="${d.date}"></div>`).join('')}
     </div>
-    <div style="display:flex;gap:4px;margin:-8px 0 14px;">
+    <div style="display:flex;gap:4px;margin-top:6px;">
       ${weekDays.map(d => `<span class="heatmap-label" style="width:18px;">${d.label}</span>`).join('')}
     </div>`;
 
@@ -1329,7 +1328,8 @@ function renderProgress(state) {
   const goals = getDailyGoals(state.progress);
   const goalsHtml = goals.map(g => {
     const pct = Math.min(100, Math.round((g.current / g.target) * 100));
-    return `<div class="daily-goal">
+    const done = pct >= 100;
+    return `<div class="daily-goal ${done ? 'daily-goal-done' : ''}">
       <span class="daily-goal-icon">${g.icon}</span>
       <div class="daily-goal-info">
         <span class="daily-goal-title">${g.title}</span>
@@ -1341,12 +1341,13 @@ function renderProgress(state) {
 
   return `
     <div class="home-screen card-slide-enter">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
         <h2>Progress</h2>
         <button class="btn btn-muted btn-press" data-action="go-home">← Back</button>
       </div>
-      <div class="card" style="padding:12px;margin-bottom:14px;">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+
+      <div class="card" style="padding:16px;margin-bottom:12px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
           <div class="streak-display" style="margin-bottom:0;">
             <span class="streak-fire">${streak.currentStreak > 0 ? '🔥' : '⚪'}</span>
             <span class="streak-count">${streak.currentStreak} day${streak.currentStreak !== 1 ? 's' : ''}</span>
@@ -1355,7 +1356,7 @@ function renderProgress(state) {
           <div class="xp-display"><span class="xp-icon">⚡</span>${xp.total} XP</div>
         </div>
         ${levelProgressHtml}
-        <div class="home-word-stats" style="margin-top:8px;">
+        <div class="home-word-stats" style="margin-top:4px;">
           <span class="home-stat"><span class="home-stat-label">Total</span><span class="home-stat-value">${total}</span></span>
           <span class="home-stat-sep">·</span>
           <span class="home-stat"><span class="home-stat-label">Known</span><span class="home-stat-value home-stat-known">${knownOrLearned}</span></span>
@@ -1363,14 +1364,38 @@ function renderProgress(state) {
           <span class="home-stat"><span class="home-stat-label">Available</span><span class="home-stat-value home-stat-available">${available}</span></span>
         </div>
       </div>
-      <p class="progress-explainer">Due for review means words whose next review date is today or earlier.</p>
-      ${heatmapHtml}
-      <div style="margin-bottom:16px;">${goalsHtml}</div>
+
+      <div class="card" style="padding:14px;margin-bottom:12px;">
+        <div class="progress-section-title">This Week</div>
+        ${heatmapHtml}
+      </div>
+
+      <div class="card" style="padding:14px;margin-bottom:12px;">
+        <div class="progress-section-title">Today's Goals</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">${goalsHtml}</div>
+      </div>
+
       <div class="stats-grid">
-        <button class="card btn-press" data-action="open-list" data-filter="learned">Learned: ${learned}</button>
-        <button class="card btn-press" data-action="open-list" data-filter="known">Known: ${known}</button>
-        <button class="card btn-press" data-action="open-list" data-filter="review">Due for review: ${reviewDue}</button>
-        <button class="card btn-press" data-action="open-list" data-filter="practice">Practice: ${practice}</button>
+        <button class="stat-card btn-press" data-action="open-list" data-filter="learned">
+          <span class="stat-card-icon">📚</span>
+          <span class="stat-card-value" style="color:var(--accent)">${learned}</span>
+          <span class="stat-card-label">Learned</span>
+        </button>
+        <button class="stat-card btn-press" data-action="open-list" data-filter="known">
+          <span class="stat-card-icon">✓</span>
+          <span class="stat-card-value" style="color:var(--success)">${known}</span>
+          <span class="stat-card-label">Known</span>
+        </button>
+        <button class="stat-card btn-press" data-action="open-list" data-filter="review">
+          <span class="stat-card-icon">🔁</span>
+          <span class="stat-card-value" style="color:${reviewDue > 0 ? 'var(--warning, #f59e0b)' : 'var(--text-secondary)'}">${reviewDue}</span>
+          <span class="stat-card-label">Due review</span>
+        </button>
+        <button class="stat-card btn-press" data-action="open-list" data-filter="practice">
+          <span class="stat-card-icon">🏋️</span>
+          <span class="stat-card-value" style="color:var(--text-secondary)">${practice}</span>
+          <span class="stat-card-label">Practice</span>
+        </button>
       </div>
     </div>
   `;
@@ -1446,12 +1471,9 @@ function renderPrep(state) {
     .map((l) => `<button class="prep-level ${l === level ? 'active' : ''}" data-action="prep-select-level" data-level="${l}">${l} <span class="prep-level-count">${levelCounts[l]}</span></button>`)
     .join('');
 
-  const modeButtons = `
-    <div class="prep-levels" style="margin-bottom:10px;">
-      <button class="prep-level ${selectionMode === 'known' ? 'active' : ''}" data-action="prep-set-mode" data-mode="known">Known Mode <span class="prep-level-count">${selectedKnown.size}</span></button>
-      <button class="prep-level ${selectionMode === 'session' ? 'active' : ''}" data-action="prep-set-mode" data-mode="session">Session Mode <span class="prep-level-count">${selectedSession.size}</span></button>
-    </div>
-  `;
+  const modeSubtitle = selectionMode === 'session'
+    ? 'Tap words to pick them for your next session.'
+    : 'Tap words to mark them as known — they won\'t appear in new sessions.';
 
   const chips = pageItems
     .map((word) => {
@@ -1465,13 +1487,15 @@ function renderPrep(state) {
 
   return `
     <div class="prep-screen card">
-      <h2 style="margin-bottom:6px;">Select words you already know</h2>
-      <p class="prep-subtitle">Known Mode marks words as known. Session Mode picks exact words for the next session.</p>
       <div class="prep-header">
         <button class="btn btn-muted" data-action="prep-back">← Back</button>
-        <span class="prep-count">✓ Known: ${totalMarked} | 🎯 Session picks: ${selectedSession.size}</span>
+        <div class="prep-mode-toggle">
+          <button class="prep-mode-btn ${selectionMode === 'known' ? 'active' : ''}" data-action="prep-set-mode" data-mode="known">Known</button>
+          <button class="prep-mode-btn ${selectionMode === 'session' ? 'active' : ''}" data-action="prep-set-mode" data-mode="session">Session</button>
+        </div>
+        <span class="prep-count">${selectedSession.size > 0 ? `🎯 ${selectedSession.size} picks` : `✓ ${totalMarked}`}</span>
       </div>
-      ${modeButtons}
+      <p class="prep-subtitle">${modeSubtitle}</p>
       <div class="prep-levels">${levelButtons}</div>
       <div class="prep-grid-wrap">
         <div class="prep-grid">${chips || '<p class="prep-empty">No words for this filter.</p>'}</div>
@@ -2389,8 +2413,6 @@ function handleUiAction(action, element) {
   if (action === 'select-session-size') {
     const size = Number(element?.dataset?.size) || 10;
     dispatch({ type: 'SET_SESSION_SIZE', payload: size });
-    dispatch({ type: 'SET_MODAL', payload: null });
-    initiateSession(size, 'ALL', true);
     return;
   }
 }

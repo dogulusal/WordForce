@@ -72,9 +72,7 @@ function renderSessionSizeModal(state) {
   }).join('');
   const levelOptions = ['ALL', 'A1', 'A2', 'B1', 'B2', 'C1'].map((level) => {
     const activeClass = level === currentLevel ? 'active' : '';
-    return `<button class="prep-level ${activeClass}" data-ui-action="session-start-select-level" data-level="${level}">${level}</button>`;
-  }).join('');
-
+    return `<button class="prep-level ${activeClass}" data-action="session-start-select-level" data-level="${level}">${level}</button>`;
   return `
     <div class="modal-overlay" onclick="if(event.target===this) handleUiAction('close-modal')">
       <div class="modal" role="dialog" aria-label="Start session">
@@ -92,7 +90,7 @@ function renderSessionSizeModal(state) {
         </div>
         <div class="modal-actions" style="margin-top:12px;justify-content:space-between;">
           <button class="btn btn-muted" data-ui-action="close-modal">Cancel</button>
-          <button class="btn" data-ui-action="session-start-confirm">Start</button>
+          <button class="btn" data-action="session-start-confirm">Start</button>
         </div>
       </div>
     </div>

@@ -161,8 +161,63 @@ p {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
-  margin: 18px 0;
+  margin: 0 0 16px;
 }
+
+.stat-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--bg-surface), var(--bg-elevated));
+  color: var(--text-primary);
+  box-shadow: var(--shadow);
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.stat-card-icon {
+  font-size: 1.3rem;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.stat-card-value {
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.stat-card-label {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.progress-section-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+
+.daily-goal-done {
+  border-color: var(--success);
+  background: rgba(46, 207, 149, 0.06);
+}
+
+.daily-goal-done .daily-goal-bar-fill {
+  background: var(--success);
+}
+
+
 
 .card {
   border: 1px solid var(--border);
@@ -619,14 +674,45 @@ button.card {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 14px;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 .prep-count {
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   color: var(--success);
   font-weight: 600;
+  white-space: nowrap;
 }
+
+.prep-mode-toggle {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.prep-mode-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  padding: 5px 14px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.prep-mode-btn.active {
+  background: var(--accent);
+  color: #000;
+  font-weight: 700;
+}
+
+.prep-mode-btn:first-child { border-radius: 999px 0 0 999px; }
+.prep-mode-btn:last-child  { border-radius: 0 999px 999px 0; }
 
 .prep-levels {
   display: flex;
