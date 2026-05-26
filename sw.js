@@ -1,5 +1,5 @@
-// WordForge Service Worker — Offline-first caching
-const CACHE_NAME = 'wordforge-v2';
+// WordForge Service Worker — cache strategy tuned to avoid stale UI
+const CACHE_NAME = 'wordforge-v3';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -36,6 +36,22 @@ self.addEventListener('fetch', (event) => {
   if (event.request.url.includes('supabase.co') || event.request.url.includes('api.github.com')) {
     event.respondWith(
       fetch(event.request).catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
+  // Network-first for app shell/navigation so index.html updates are not stuck.
+  if (event.request.mode === 'navigate' || event.request.destination === 'document') {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          if (response.ok) {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+          }
+          return response;
+        })
+        .catch(() => caches.match(event.request).then((cached) => cached || caches.match('/index.html')))
     );
     return;
   }
