@@ -225,6 +225,27 @@ function renderPrepUnsavedModal(state) {
   `;
 }
 
+function renderPrepSessionConfirmModal(state) {
+  const picks = [...(state.ui.prepSelectedSession || [])].sort();
+  const count = picks.length;
+  const chips = picks.map(w =>
+    `<button class="session-confirm-chip" data-action="remove-session-pick" data-word="${escapeHtml(w)}" title="Remove">${escapeHtml(w)} ✕</button>`
+  ).join('');
+  return `
+    <div class="modal-overlay" onclick="if(event.target===this) handleUiAction('close-modal')">
+      <div class="modal" role="dialog" aria-label="Confirm session picks" style="max-height:80vh;display:flex;flex-direction:column;">
+        <h2 style="margin-bottom:4px;">Start Session</h2>
+        <p style="margin-bottom:12px;">You picked <strong>${count}</strong> word${count !== 1 ? 's' : ''}. Tap any word to remove it before starting.</p>
+        <div class="session-confirm-chips">${chips || '<p style="color:var(--text-secondary);">No picks — use Back to add words.</p>'}</div>
+        <div class="modal-actions" style="margin-top:14px;justify-content:space-between;">
+          <button class="btn btn-muted" data-ui-action="close-modal">← Back</button>
+          <button class="btn" data-action="confirm-session-picks" ${count === 0 ? 'disabled' : ''}>Start (${count} words)</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function renderModal(modalType, state, allWords) {
   switch (modalType) {
     case 'settings':
@@ -237,6 +258,8 @@ function renderModal(modalType, state, allWords) {
       return renderQuitConfirmModal();
     case 'prepUnsaved':
       return renderPrepUnsavedModal(state);
+    case 'prepSessionConfirm':
+      return renderPrepSessionConfirmModal(state);
     default:
       return '';
   }

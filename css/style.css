@@ -1580,6 +1580,116 @@ button.card {
 }
 
 /* ======================================================
+   WEEK BAR CHART (Progress screen — This Week)
+   ====================================================== */
+.week-bars {
+  display: flex;
+  gap: 6px;
+  align-items: flex-end;
+  height: 80px;
+}
+
+.week-bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  height: 100%;
+}
+
+.week-bar-num {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  min-height: 14px;
+  line-height: 14px;
+}
+
+.week-bar-col.today .week-bar-num {
+  color: var(--accent);
+}
+
+.week-bar-track {
+  flex: 1;
+  width: 100%;
+  background: var(--bg-primary);
+  border-radius: 4px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  min-height: 8px;
+}
+
+.week-bar-fill {
+  width: 100%;
+  min-height: 3px;
+  background: var(--success);
+  border-radius: 4px;
+  transition: height 0.4s ease;
+  opacity: 0.7;
+}
+
+.week-bar-col.today .week-bar-fill {
+  background: var(--accent);
+  opacity: 1;
+}
+
+.week-bar-day {
+  font-size: 0.62rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.week-bar-col.today .week-bar-day {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ======================================================
+   SESSION CONFIRM MODAL (Prep picks review)
+   ====================================================== */
+.session-confirm-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 4px 0;
+}
+
+.session-confirm-chip {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(46, 207, 149, 0.08);
+  color: var(--text-primary);
+  padding: 4px 10px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.session-confirm-chip:hover {
+  background: rgba(255, 110, 110, 0.15);
+  border-color: var(--error);
+  color: var(--error);
+}
+
+/* XP today badge */
+.xp-today {
+  font-size: 0.68rem;
+  color: var(--success);
+  font-weight: 600;
+  background: rgba(46, 207, 149, 0.12);
+  border-radius: 999px;
+  padding: 1px 6px;
+  margin-left: 4px;
+}
+
+
+
+/* ======================================================
    SKELETON LOADING (Shimmer)
    ====================================================== */
 .skeleton {

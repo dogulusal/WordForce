@@ -520,6 +520,59 @@ function pickSessionWords(sessionSize, levelFilter = 'ALL', customWords = null) 
   return picked.slice(0, sessionSize);
 }
 
+function startTypedSession(type) {
+  // Prefer words from the user's practice/learned pool that support this exercise type
+  const practicePool = Object.keys(AppState.progress.words).filter(w => {
+    const status = AppState.progress.words[w]?.status;
+    if (status !== 'practice' && status !== 'learned') return false;
+    if (!AllWords[w]) return false;
+    if (type === 'COLLOCATION_MATCH') return Array.isArray(AllWords[w].collocations) && AllWords[w].collocations.length >= 1;
+    if (type === 'ERROR_CORRECTION') return (Array.isArray(AllWords[w].wrong_usage) && AllWords[w].wrong_usage.length > 0) || (Array.isArray(AllWords[w].ex) && AllWords[w].ex.length > 0);
+    return true;
+  });
+
+  // Fall back to all words supporting this type if practice pool too small
+  let sessionWords;
+  if (practicePool.length >= 3) {
+    sessionWords = shuffle(practicePool).slice(0, AppState.ui.sessionSize || 10);
+  } else {
+    const broader = Object.keys(AllWords).filter(w => {
+      if (type === 'COLLOCATION_MATCH') return Array.isArray(AllWords[w].collocations) && AllWords[w].collocations.length >= 1;
+      if (type === 'ERROR_CORRECTION') return (Array.isArray(AllWords[w].wrong_usage) && AllWords[w].wrong_usage.length > 0) || (Array.isArray(AllWords[w].ex) && AllWords[w].ex.length > 0);
+      return true;
+    });
+    sessionWords = shuffle(broader).slice(0, AppState.ui.sessionSize || 10);
+  }
+
+  if (sessionWords.length === 0) {
+    dispatch({ type: 'SET_FEEDBACK', payload: 'No words available for this exercise type.' });
+    return;
+  }
+
+  const nextSession = {
+    words: sessionWords,
+    queue: shuffle([...sessionWords]),
+    templateHistory: {},
+    skipped: {},
+    levelFilter: 'ALL',
+    round: 1,
+    current: 0,
+    results: {},
+    currentExercise: null,
+    demoType: null,
+    isDemo: false,
+    forceType: type
+  };
+
+  dispatch({ type: 'INIT_SESSION', payload: nextSession });
+  AppState.session.words = sessionWords;
+  AppState.session.queue = [...nextSession.queue];
+  AppState.session.current = 0;
+  dispatch({ type: 'SET_ROUND', payload: 1 });
+  startRoundExercise();
+  dispatch({ type: 'SET_SCREEN', payload: 'round' });
+}
+
 function startDemoExercise(type) {
   // Find words that have the data needed for these exercise types
   const candidates = Object.keys(AllWords).filter(w => {
@@ -785,6 +838,13 @@ function buildExercise(queueItem, round, wordIndex) {
       return Exercises.renderErrorCorrection(word, AllWords);
     }
   }
+  // Typed session: force a specific exercise type for all rounds
+  if (AppState.session.forceType === 'COLLOCATION_MATCH') {
+    return Exercises.renderCollocationMatch(word, AllWords) || Exercises.renderDefinition(word, AllWords);
+  }
+  if (AppState.session.forceType === 'ERROR_CORRECTION') {
+    return Exercises.renderErrorCorrection(word, AllWords) || Exercises.renderDefinition(word, AllWords);
+  }
   if (round === 1) return Exercises.renderDefinition(word, AllWords);
   if (round === 2) return Exercises.renderENtoTRMC(word, AllWords);
   if (round === 3) {
@@ -813,6 +873,7 @@ function buildExercise(queueItem, round, wordIndex) {
 
 function getMaxRound() {
   if (AppState.session.isDemo) return 1;
+  if (AppState.session.forceType) return 3;
   const queue = AppState.session.queue || [];
   const hasRound5 = queue.some(w => Exercises.hasContextMatchData(w, AllWords));
   const hasRound6 = queue.length >= 2;
@@ -822,6 +883,7 @@ function getMaxRound() {
 }
 
 function shouldSkipRound(round, word) {
+  if (AppState.session.forceType) return false;
   if (round === 5) {
     return !Exercises.hasContextMatchData(word, AllWords);
   }
@@ -1209,7 +1271,7 @@ function buildWeeklyHeatmap() {
     const isToday = i === 0;
     const dayIndex = new Date(date + 'T00:00:00').getDay();
     const label = dayLabels[(dayIndex + 6) % 7]; // Mon=0
-    days.push({ date, intensity, isToday, label });
+    days.push({ date, count, intensity, isToday, label });
   }
   return days;
 }
@@ -1314,14 +1376,21 @@ function renderProgress(state) {
       ${levelData.map(l => `<span>${l.level}</span>`).join('')}
     </div>`;
 
-  // Weekly heatmap
+  // Weekly bar chart
   const weekDays = buildWeeklyHeatmap();
+  const maxCount = Math.max(1, ...weekDays.map(d => d.count));
   const heatmapHtml = `
-    <div class="weekly-heatmap">
-      ${weekDays.map(d => `<div class="heatmap-day ${d.isToday ? 'today' : ''}" data-intensity="${d.intensity}" title="${d.date}"></div>`).join('')}
-    </div>
-    <div style="display:flex;gap:4px;margin-top:6px;">
-      ${weekDays.map(d => `<span class="heatmap-label" style="width:18px;">${d.label}</span>`).join('')}
+    <div class="week-bars">
+      ${weekDays.map(d => {
+        const heightPct = Math.round((d.count / maxCount) * 100);
+        return `<div class="week-bar-col${d.isToday ? ' today' : ''}">
+          <div class="week-bar-num">${d.count > 0 ? d.count : ''}</div>
+          <div class="week-bar-track">
+            <div class="week-bar-fill" style="height:${heightPct}%"></div>
+          </div>
+          <div class="week-bar-day">${d.label}</div>
+        </div>`;
+      }).join('')}
     </div>`;
 
   // Daily goals
@@ -1353,7 +1422,7 @@ function renderProgress(state) {
             <span class="streak-count">${streak.currentStreak} day${streak.currentStreak !== 1 ? 's' : ''}</span>
             <span class="streak-best">Best: ${streak.longestStreak || 0}</span>
           </div>
-          <div class="xp-display"><span class="xp-icon">⚡</span>${xp.total} XP</div>
+          <div class="xp-display" title="Total XP earned"><span class="xp-icon">⚡</span><span>${xp.total} XP</span>${xp.today > 0 ? `<span class="xp-today">+${xp.today}</span>` : ''}</div>
         </div>
         ${levelProgressHtml}
         <div class="home-word-stats" style="margin-top:4px;">
@@ -1387,7 +1456,7 @@ function renderProgress(state) {
           <span class="stat-card-label">Known</span>
         </button>
         <button class="stat-card btn-press" data-action="open-list" data-filter="review">
-          <span class="stat-card-icon">🔁</span>
+          <span class="stat-card-icon">�</span>
           <span class="stat-card-value" style="color:${reviewDue > 0 ? 'var(--warning, #f59e0b)' : 'var(--text-secondary)'}">${reviewDue}</span>
           <span class="stat-card-label">Due review</span>
         </button>
@@ -1415,11 +1484,11 @@ function renderExtras(state) {
         </button>
         <button class="card btn-press" data-action="demo-collocation" style="display:flex;align-items:center;gap:12px;">
           <span style="font-size:1.5rem;">🔗</span>
-          <div style="text-align:left;"><strong>Collocation Match</strong><br><span style="font-size:0.8rem;color:var(--text-secondary);">Test word partnerships and natural pairings</span></div>
+          <div style="text-align:left;"><strong>Collocation Match</strong><br><span style="font-size:0.8rem;color:var(--text-secondary);">Practice word partnerships from your learned pool</span></div>
         </button>
         <button class="card btn-press" data-action="demo-error-correction" style="display:flex;align-items:center;gap:12px;">
           <span style="font-size:1.5rem;">✏️</span>
-          <div style="text-align:left;"><strong>Error Correction</strong><br><span style="font-size:0.8rem;color:var(--text-secondary);">Find and fix word usage mistakes</span></div>
+          <div style="text-align:left;"><strong>Error Correction</strong><br><span style="font-size:0.8rem;color:var(--text-secondary);">Spot and fix word usage mistakes in real sentences</span></div>
         </button>
       </div>
     </div>
@@ -1493,7 +1562,7 @@ function renderPrep(state) {
           <button class="prep-mode-btn ${selectionMode === 'known' ? 'active' : ''}" data-action="prep-set-mode" data-mode="known">Known</button>
           <button class="prep-mode-btn ${selectionMode === 'session' ? 'active' : ''}" data-action="prep-set-mode" data-mode="session">Session</button>
         </div>
-        <span class="prep-count">${selectedSession.size > 0 ? `🎯 ${selectedSession.size} picks` : `✓ ${totalMarked}`}</span>
+        <span class="prep-count">${selectionMode === 'session' ? `🎯 ${selectedSession.size} picks` : `✓ ${totalMarked}`}</span>
       </div>
       <p class="prep-subtitle">${modeSubtitle}</p>
       <div class="prep-levels">${levelButtons}</div>
@@ -1904,27 +1973,35 @@ function renderSummary(state) {
   `;
 }
 
+let _lastRenderedScreen = null;
 function render(state) {
   const app = document.getElementById('app');
   const modalContainer = document.getElementById('modal-container');
   if (!app || !modalContainer) return;
 
-  if (state.ui.screen === 'home') app.innerHTML = renderHome(state);
-  if (state.ui.screen === 'progress') app.innerHTML = renderProgress(state);
-  if (state.ui.screen === 'extras') app.innerHTML = renderExtras(state);
-  if (state.ui.screen === 'preflight') app.innerHTML = renderPrep(state);
-  if (state.ui.screen === 'flashcards') app.innerHTML = renderFlashcards(state);
-  if (state.ui.screen === 'gate') app.innerHTML = renderGate(state);
-  if (state.ui.screen === 'round') app.innerHTML = renderRound(state);
+  // Skip re-rendering main content when a modal is open and screen didn't change
+  // This prevents visible background flicker during modal interactions.
+  const skipAppRender = state.ui.modal && state.ui.screen === _lastRenderedScreen;
+  if (!skipAppRender) {
+    _lastRenderedScreen = state.ui.screen;
+    if (state.ui.screen === 'home') app.innerHTML = renderHome(state);
+    if (state.ui.screen === 'progress') app.innerHTML = renderProgress(state);
+    if (state.ui.screen === 'extras') app.innerHTML = renderExtras(state);
+    if (state.ui.screen === 'preflight') app.innerHTML = renderPrep(state);
+    if (state.ui.screen === 'flashcards') app.innerHTML = renderFlashcards(state);
+    if (state.ui.screen === 'gate') app.innerHTML = renderGate(state);
+    if (state.ui.screen === 'round') app.innerHTML = renderRound(state);
+  }
   if (state.ui.screen === 'summary') {
-    const streakData = updateStreak();
-    app.innerHTML = renderSummary(state);
-    // Record activity and celebrate milestones
-    const wordsCompleted = state.session.words.length;
-    if (wordsCompleted > 0) recordDailyActivity(wordsCompleted);
-    if (streakData.currentStreak > 0 && streakData.currentStreak % 5 === 0) triggerConfetti();
-    const perfect = state.session.words.filter(w => Object.values(state.session.results[w] || {}).every(Boolean)).length;
-    if (perfect === wordsCompleted && wordsCompleted > 0) triggerConfetti();
+    if (!skipAppRender) {
+      const streakData = updateStreak();
+      app.innerHTML = renderSummary(state);
+      const wordsCompleted = state.session.words.length;
+      if (wordsCompleted > 0) recordDailyActivity(wordsCompleted);
+      if (streakData.currentStreak > 0 && streakData.currentStreak % 5 === 0) triggerConfetti();
+      const perfect = state.session.words.filter(w => Object.values(state.session.results[w] || {}).every(Boolean)).length;
+      if (perfect === wordsCompleted && wordsCompleted > 0) triggerConfetti();
+    }
   }
 
   modalContainer.innerHTML = state.ui.modal ? UI.renderModal(state.ui.modal, state, AllWords) : '';
@@ -1981,11 +2058,11 @@ function handleAction(action, target) {
     return;
   }
   if (action === 'demo-collocation') {
-    startDemoExercise('COLLOCATION_MATCH');
+    startTypedSession('COLLOCATION_MATCH');
     return;
   }
   if (action === 'demo-error-correction') {
-    startDemoExercise('ERROR_CORRECTION');
+    startTypedSession('ERROR_CORRECTION');
     return;
   }
   if (action === 'open-list') {
@@ -2045,12 +2122,27 @@ function handleAction(action, target) {
     return;
   }
   if (action === 'prep-start-session') {
+    // If session picks exist, show confirmation modal first
+    if ((AppState.ui.prepSelectedSession || []).length > 0) {
+      dispatch({ type: 'SET_MODAL', payload: 'prepSessionConfirm' });
+      return;
+    }
     if ((AppState.ui.prepSelectedKnown || []).length > 0) {
       dispatch({ type: 'SET_PREP_PENDING_ACTION', payload: 'start' });
       dispatch({ type: 'SET_MODAL', payload: 'prepUnsaved' });
       return;
     }
     startSessionFromPrep();
+    return;
+  }
+  if (action === 'confirm-session-picks') {
+    dispatch({ type: 'SET_MODAL', payload: null });
+    startSessionFromPrep();
+    return;
+  }
+  if (action === 'remove-session-pick') {
+    const word = target?.dataset?.word;
+    if (word) dispatch({ type: 'TOGGLE_PREP_SESSION_WORD', payload: word });
     return;
   }
   if (action === 'session-start-confirm') {
