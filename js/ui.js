@@ -155,7 +155,7 @@ function renderWordListModal(state, allWords) {
             </div>
             <div style="font-size:0.8rem;color:var(--text-secondary);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHtml(tr)}</div>
           </div>
-          <button class="btn ${rowAction.btnClass} btn-press" style="padding:6px 10px;min-height:34px;font-size:0.82rem;white-space:nowrap;" data-ui-action="${rowAction.action}" data-word="${escapeHtml(word)}">${rowAction.label}</button>
+          <button class="btn-word-action btn-press" data-ui-action="${rowAction.action}" data-word="${escapeHtml(word)}">${rowAction.label}</button>
         </div>
       `;
     })
@@ -182,7 +182,7 @@ function renderWordListModal(state, allWords) {
         <p style="font-size:0.8rem;color:var(--text-secondary);margin:0 0 10px;">${filterDescriptions[filter] || ''}</p>
         <div class="word-list" style="flex:1;overflow-y:auto;">${rows}</div>
         <div class="modal-actions" style="margin-top:12px;justify-content:space-between;flex-wrap:wrap;">
-          <button class="btn btn-press" data-ui-action="start-filter-session" ${wordCount === 0 ? 'disabled' : ''}>Start Session from This List</button>
+          ${(filter === 'review' || filter === 'practice') ? `<button class="btn btn-press" data-ui-action="start-filter-session" ${wordCount === 0 ? 'disabled' : ''}>Start ${filter === 'review' ? 'Review' : 'Practice'} Session</button>` : '<span></span>'}
           <button class="btn btn-muted" data-ui-action="close-modal">Close</button>
         </div>
       </div>

@@ -1580,72 +1580,82 @@ button.card {
 }
 
 /* ======================================================
-   WEEK BAR CHART (Progress screen — This Week)
+   STREAK DAYS (Progress screen — This Week, Duolingo style)
    ====================================================== */
-.week-bars {
+.streak-days {
   display: flex;
-  gap: 6px;
-  align-items: flex-end;
-  height: 80px;
+  gap: 4px;
+  justify-content: space-between;
+  padding: 4px 0 2px;
 }
 
-.week-bar-col {
+.streak-day-col {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  height: 100%;
 }
 
-.week-bar-num {
-  font-size: 0.65rem;
-  font-weight: 700;
+.streak-day-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  background: var(--bg-primary);
+  border: 2px solid var(--border);
+  transition: transform 0.2s ease;
+}
+
+.streak-day-circle.done {
+  background: rgba(243, 165, 49, 0.12);
+  border-color: var(--accent);
+  box-shadow: 0 0 8px rgba(243, 165, 49, 0.25);
+}
+
+.streak-day-circle.pending {
+  background: var(--bg-primary);
+  border-color: var(--accent);
+  border-style: dashed;
+  opacity: 0.75;
+}
+
+.streak-day-circle.missed {
+  opacity: 0.35;
+  filter: grayscale(0.4);
+}
+
+.streak-day-col.today .streak-day-circle.done {
+  transform: scale(1.08);
+  box-shadow: 0 0 14px rgba(243, 165, 49, 0.4);
+}
+
+.streak-day-label {
+  font-size: 0.6rem;
   color: var(--text-secondary);
-  min-height: 14px;
-  line-height: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
-.week-bar-col.today .week-bar-num {
+.streak-day-col.today .streak-day-label {
   color: var(--accent);
 }
 
-.week-bar-track {
-  flex: 1;
-  width: 100%;
-  background: var(--bg-primary);
-  border-radius: 4px;
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  min-height: 8px;
-}
-
-.week-bar-fill {
-  width: 100%;
-  min-height: 3px;
-  background: var(--success);
-  border-radius: 4px;
-  transition: height 0.4s ease;
-  opacity: 0.7;
-}
-
-.week-bar-col.today .week-bar-fill {
-  background: var(--accent);
-  opacity: 1;
-}
-
-.week-bar-day {
+.streak-day-count {
   font-size: 0.62rem;
   color: var(--text-secondary);
-  font-weight: 500;
-  text-transform: uppercase;
-}
-
-.week-bar-col.today .week-bar-day {
-  color: var(--accent);
+  min-height: 11px;
   font-weight: 700;
 }
+
+.streak-day-col.today .streak-day-count {
+  color: var(--accent);
+}
+
 
 /* ======================================================
    SESSION CONFIRM MODAL (Prep picks review)
@@ -1685,6 +1695,26 @@ button.card {
   border-radius: 999px;
   padding: 1px 6px;
   margin-left: 4px;
+}
+
+/* Word list row action button (subtle text-style) */
+.btn-word-action {
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.btn-word-action:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(243, 165, 49, 0.07);
 }
 
 

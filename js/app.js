@@ -964,6 +964,13 @@ function finalizeRoundAnswer(correct) {
     dispatch({ type: 'MARK_PRACTICE', payload: word });
   } else if (round >= maxRound) {
     const allCorrect = Object.values(AppState.session.results[word] || {}).every(Boolean);
+    // Track review completions for the daily goal
+    if (allCorrect) {
+      const wp = AppState.progress.words[word];
+      if (wp && wp.status === 'learned' && wp.nextReview && wp.nextReview <= toLocalDate(0)) {
+        recordReviewCleared();
+      }
+    }
     dispatch({ type: allCorrect ? 'MARK_LEARNED' : 'MARK_PRACTICE', payload: word });
   }
 
@@ -1230,8 +1237,13 @@ function updateStreak() {
 
 function getXP() {
   const json = localStorage.getItem('wf_xp');
-  if (!json) return { total: 0, today: 0, lastDate: null };
-  try { return JSON.parse(json); } catch { return { total: 0, today: 0, lastDate: null }; }
+  const today = toLocalDate(0);
+  let xp;
+  try { xp = json ? JSON.parse(json) : null; } catch { xp = null; }
+  if (!xp) xp = { total: 0, today: 0, lastDate: null };
+  // Lazy daily reset — fires whenever XP is read on a new day
+  if (xp.lastDate !== today) { xp.today = 0; xp.lastDate = today; localStorage.setItem('wf_xp', JSON.stringify(xp)); }
+  return xp;
 }
 
 function addXP(amount) {
@@ -1242,6 +1254,20 @@ function addXP(amount) {
   xp.total += amount;
   localStorage.setItem('wf_xp', JSON.stringify(xp));
   return xp;
+}
+
+function getReviewsCleared() {
+  const today = toLocalDate(0);
+  try {
+    const data = JSON.parse(localStorage.getItem('wf_reviews_cleared') || 'null');
+    return (data && data.date === today) ? (data.count || 0) : 0;
+  } catch { return 0; }
+}
+
+function recordReviewCleared() {
+  const today = toLocalDate(0);
+  const count = getReviewsCleared() + 1;
+  localStorage.setItem('wf_reviews_cleared', JSON.stringify({ date: today, count }));
 }
 
 function getWeeklyActivity() {
@@ -1298,7 +1324,7 @@ function getDailyGoals(progress) {
   return [
     { icon: '📚', title: 'Learn 5 words', current: wordsToday, target: 5 },
     { icon: '⭐', title: 'Earn 50 XP', current: xp.today, target: 50 },
-    { icon: '🔄', title: 'Clear reviews', current: Math.max(0, 5 - reviewDue), target: 5 }
+    { icon: '🔁', title: 'Review words', current: getReviewsCleared(), target: 5 }
   ];
 }
 
@@ -1376,19 +1402,28 @@ function renderProgress(state) {
       ${levelData.map(l => `<span>${l.level}</span>`).join('')}
     </div>`;
 
-  // Weekly bar chart
+  // Weekly streak bubbles (Duolingo style)
   const weekDays = buildWeeklyHeatmap();
-  const maxCount = Math.max(1, ...weekDays.map(d => d.count));
   const heatmapHtml = `
-    <div class="week-bars">
+    <div class="streak-days">
       ${weekDays.map(d => {
-        const heightPct = Math.round((d.count / maxCount) * 100);
-        return `<div class="week-bar-col${d.isToday ? ' today' : ''}">
-          <div class="week-bar-num">${d.count > 0 ? d.count : ''}</div>
-          <div class="week-bar-track">
-            <div class="week-bar-fill" style="height:${heightPct}%"></div>
-          </div>
-          <div class="week-bar-day">${d.label}</div>
+        const done = d.count > 0;
+        const isPast = !d.isToday;
+        let circleContent, circleClass;
+        if (done) {
+          circleContent = '🔥';
+          circleClass = 'done';
+        } else if (d.isToday) {
+          circleContent = '🕯️';
+          circleClass = 'pending';
+        } else {
+          circleContent = '❄️';
+          circleClass = 'missed';
+        }
+        return `<div class="streak-day-col${d.isToday ? ' today' : ''}">
+          <div class="streak-day-circle ${circleClass}">${circleContent}</div>
+          <div class="streak-day-label">${d.label}</div>
+          <div class="streak-day-count">${d.count > 0 ? d.count : ''}</div>
         </div>`;
       }).join('')}
     </div>`;
@@ -1456,14 +1491,14 @@ function renderProgress(state) {
           <span class="stat-card-label">Known</span>
         </button>
         <button class="stat-card btn-press" data-action="open-list" data-filter="review">
-          <span class="stat-card-icon">�</span>
+          <span class="stat-card-icon">🔔</span>
           <span class="stat-card-value" style="color:${reviewDue > 0 ? 'var(--warning, #f59e0b)' : 'var(--text-secondary)'}">${reviewDue}</span>
           <span class="stat-card-label">Due review</span>
         </button>
         <button class="stat-card btn-press" data-action="open-list" data-filter="practice">
           <span class="stat-card-icon">🏋️</span>
           <span class="stat-card-value" style="color:var(--text-secondary)">${practice}</span>
-          <span class="stat-card-label">Practice</span>
+          <span class="stat-card-label">In Training</span>
         </button>
       </div>
     </div>
