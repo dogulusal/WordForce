@@ -40,9 +40,12 @@ let AppState = {
     productionDraft: '',
     productionSubmitted: '',
     sessionSize: 10,
+    sessionStartLevel: 'ALL',
     prepLevel: 'ALL',
     prepPage: 0,
+    prepSelectionMode: 'known',
     prepSelectedKnown: [],
+    prepSelectedSession: [],
     prepPendingAction: null,
     demoAnswerOpen: false
   }
@@ -262,6 +265,12 @@ function updateState(currentState, action) {
     case 'SET_SESSION_SIZE':
       newState.ui.sessionSize = action.payload;
       break;
+    case 'SET_SESSION_START_LEVEL':
+      newState.ui.sessionStartLevel = action.payload;
+      break;
+    case 'RESET_SESSION_START_SELECTION':
+      newState.ui.sessionStartLevel = 'ALL';
+      break;
     case 'SET_HINT_VISIBLE':
       newState.ui.hintVisible = Boolean(action.payload);
       break;
@@ -276,6 +285,9 @@ function updateState(currentState, action) {
       newState.ui.prepLevel = action.payload;
       newState.ui.prepPage = 0;
       break;
+    case 'SET_PREP_SELECTION_MODE':
+      newState.ui.prepSelectionMode = action.payload === 'session' ? 'session' : 'known';
+      break;
     case 'SET_PREP_PAGE':
       newState.ui.prepPage = action.payload;
       break;
@@ -288,15 +300,29 @@ function updateState(currentState, action) {
         newState.ui.prepSelectedKnown = [...selected];
       }
       break;
+    case 'TOGGLE_PREP_SESSION_WORD':
+      {
+        const word = action.payload;
+        const selected = new Set(newState.ui.prepSelectedSession);
+        if (selected.has(word)) selected.delete(word);
+        else selected.add(word);
+        newState.ui.prepSelectedSession = [...selected];
+      }
+      break;
     case 'RESET_PREP':
       newState.ui.prepLevel = 'ALL';
       newState.ui.prepPage = 0;
+      newState.ui.prepSelectionMode = 'known';
       newState.ui.prepSelectedKnown = [];
+      newState.ui.prepSelectedSession = [];
       newState.ui.prepPendingAction = null;
       break;
     case 'CLEAR_PREP_SELECTION':
       newState.ui.prepSelectedKnown = [];
       newState.ui.prepPendingAction = null;
+      break;
+    case 'CLEAR_PREP_SESSION_SELECTION':
+      newState.ui.prepSelectedSession = [];
       break;
     case 'SET_PREP_PENDING_ACTION':
       newState.ui.prepPendingAction = action.payload;
@@ -454,7 +480,11 @@ function getActiveLevel(progress) {
   return null;
 }
 
-function pickSessionWords(sessionSize, levelFilter = 'ALL') {
+function pickSessionWords(sessionSize, levelFilter = 'ALL', customWords = null) {
+  if (Array.isArray(customWords) && customWords.length > 0) {
+    return shuffle(customWords).slice(0, sessionSize);
+  }
+
   const reviewDue = getReviewDue(AppState.progress);
   const today = toLocalDate(0);
   const practiceWords = Object.keys(AppState.progress.words).filter((w) => {
@@ -548,11 +578,11 @@ function startDemoExercise(type) {
   dispatch({ type: 'SET_SCREEN', payload: 'round' });
 }
 
-function initiateSession(sessionSize, levelFilter = 'ALL', skipGate = false) {
+function initiateSession(sessionSize, levelFilter = 'ALL', skipGate = false, customWords = null) {
   const collisionChanged = applyReviewCollisionPolicy(AppState.progress);
   if (collisionChanged) saveProgress(AppState.progress);
 
-  const sessionWords = pickSessionWords(sessionSize, levelFilter);
+  const sessionWords = pickSessionWords(sessionSize, levelFilter, customWords);
   const nextSession = {
     words: sessionWords,
     queue: shuffle(sessionWords),
@@ -612,7 +642,16 @@ function gateLearn() {
 
 function startSessionFromPrep() {
   const chosenLevel = AppState.ui.prepLevel || 'ALL';
-  initiateSession(SESSION_SIZE, chosenLevel, true);
+  const sessionSize = AppState.ui.sessionSize || SESSION_SIZE;
+  const selectedSessionWords = AppState.ui.prepSelectedSession || [];
+
+  if (selectedSessionWords.length > 0) {
+    dispatch({ type: 'CLEAR_PREP_SESSION_SELECTION' });
+    initiateSession(sessionSize, 'ALL', true, selectedSessionWords);
+    return;
+  }
+
+  initiateSession(sessionSize, chosenLevel, true);
 }
 
 function savePrepSelection() {
@@ -1364,6 +1403,7 @@ function renderExtras(state) {
 
 function renderPrep(state) {
   const level = state.ui.prepLevel || 'ALL';
+  const selectionMode = state.ui.prepSelectionMode || 'known';
   const page = state.ui.prepPage || 0;
   const pageSize = 24;
   const levels = ['ALL', 'A1', 'A2', 'B1', 'B2', 'C1'];
@@ -1385,11 +1425,13 @@ function renderPrep(state) {
   }
 
   const pageItems = candidates.slice(safePage * pageSize, safePage * pageSize + pageSize);
-  const selected = new Set(state.ui.prepSelectedKnown || []);
+  const selectedKnown = new Set(state.ui.prepSelectedKnown || []);
+  const selectedSession = new Set(state.ui.prepSelectedSession || []);
+  const selected = selectionMode === 'session' ? selectedSession : selectedKnown;
   const persistentKnownCount = Object.keys(state.progress.words).filter(
     (w) => state.progress.words[w]?.status === 'known' || state.progress.words[w]?.status === 'learned'
   ).length;
-  const totalMarked = persistentKnownCount + selected.size;
+  const totalMarked = persistentKnownCount + selectedKnown.size;
 
   const levelCounts = {};
   levels.forEach((l) => {
@@ -1404,18 +1446,32 @@ function renderPrep(state) {
     .map((l) => `<button class="prep-level ${l === level ? 'active' : ''}" data-action="prep-select-level" data-level="${l}">${l} <span class="prep-level-count">${levelCounts[l]}</span></button>`)
     .join('');
 
+  const modeButtons = `
+    <div class="prep-levels" style="margin-bottom:10px;">
+      <button class="prep-level ${selectionMode === 'known' ? 'active' : ''}" data-action="prep-set-mode" data-mode="known">Known Mode <span class="prep-level-count">${selectedKnown.size}</span></button>
+      <button class="prep-level ${selectionMode === 'session' ? 'active' : ''}" data-action="prep-set-mode" data-mode="session">Session Mode <span class="prep-level-count">${selectedSession.size}</span></button>
+    </div>
+  `;
+
   const chips = pageItems
-    .map((word) => `<button class="prep-chip ${selected.has(word) ? 'selected' : ''}" data-action="prep-toggle-word" data-word="${word}">${word}</button>`)
+    .map((word) => {
+      const classes = ['prep-chip'];
+      if (selectedKnown.has(word)) classes.push('selected-known');
+      if (selectedSession.has(word)) classes.push('selected-session');
+      if (selected.has(word)) classes.push('selected');
+      return `<button class="${classes.join(' ')}" data-action="prep-toggle-word" data-word="${word}">${word}</button>`;
+    })
     .join('');
 
   return `
     <div class="prep-screen card">
       <h2 style="margin-bottom:6px;">Select words you already know</h2>
-      <p class="prep-subtitle">Mark words you already know to keep sessions focused on new learning.</p>
+      <p class="prep-subtitle">Known Mode marks words as known. Session Mode picks exact words for the next session.</p>
       <div class="prep-header">
         <button class="btn btn-muted" data-action="prep-back">← Back</button>
-        <span class="prep-count">✓ Known: ${totalMarked}</span>
+        <span class="prep-count">✓ Known: ${totalMarked} | 🎯 Session picks: ${selectedSession.size}</span>
       </div>
+      ${modeButtons}
       <div class="prep-levels">${levelButtons}</div>
       <div class="prep-grid-wrap">
         <div class="prep-grid">${chips || '<p class="prep-empty">No words for this filter.</p>'}</div>
@@ -1875,7 +1931,12 @@ function handleAction(action, target) {
     return;
   }
   if (action === 'start-session') {
+    dispatch({ type: 'RESET_SESSION_START_SELECTION' });
     dispatch({ type: 'SET_MODAL', payload: 'sessionSize' });
+    return;
+  }
+  if (action === 'session-start-select-level') {
+    dispatch({ type: 'SET_SESSION_START_LEVEL', payload: target.dataset.level || 'ALL' });
     return;
   }
   if (action === 'open-manage-words') {
@@ -1924,9 +1985,18 @@ function handleAction(action, target) {
     dispatch({ type: 'SET_PREP_LEVEL', payload: target.dataset.level || 'ALL' });
     return;
   }
+  if (action === 'prep-set-mode') {
+    dispatch({ type: 'SET_PREP_SELECTION_MODE', payload: target.dataset.mode || 'known' });
+    return;
+  }
   if (action === 'prep-toggle-word') {
     const word = target.dataset.word;
-    if (word) dispatch({ type: 'TOGGLE_PREP_KNOWN', payload: word });
+    if (!word) return;
+    if ((AppState.ui.prepSelectionMode || 'known') === 'session') {
+      dispatch({ type: 'TOGGLE_PREP_SESSION_WORD', payload: word });
+      return;
+    }
+    dispatch({ type: 'TOGGLE_PREP_KNOWN', payload: word });
     return;
   }
   if (action === 'prep-prev') {
@@ -1957,6 +2027,35 @@ function handleAction(action, target) {
       return;
     }
     startSessionFromPrep();
+    return;
+  }
+  if (action === 'session-start-confirm') {
+    const startLevel = AppState.ui.sessionStartLevel || 'ALL';
+    const size = AppState.ui.sessionSize || 10;
+    dispatch({ type: 'SET_MODAL', payload: null });
+    initiateSession(size, startLevel, true);
+    return;
+  }
+  if (action === 'start-filter-session') {
+    const filter = AppState.ui.wordListFilter || 'practice';
+    const today = toLocalDate(0);
+    const allProgressWords = AppState.progress.words || {};
+    const filteredWords = Object.entries(allProgressWords)
+      .filter(([_, data]) => {
+        if (filter === 'review') {
+          return (data.status === 'learned' || data.status === 'practice') && data.nextReview && data.nextReview <= today;
+        }
+        return data.status === filter;
+      })
+      .map(([word]) => word);
+
+    if (filteredWords.length === 0) {
+      dispatch({ type: 'SET_FEEDBACK', payload: 'No words available in this list.' });
+      return;
+    }
+
+    dispatch({ type: 'SET_MODAL', payload: null });
+    initiateSession(AppState.ui.sessionSize || 10, 'ALL', true, filteredWords);
     return;
   }
   if (action === 'select-option-index') {

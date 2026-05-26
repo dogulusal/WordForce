@@ -1,5 +1,5 @@
 // WordForge Service Worker — Offline-first caching
-const CACHE_NAME = 'wordforge-v1';
+const CACHE_NAME = 'wordforge-v2';
 const STATIC_ASSETS = [
   '/',
   '/index.html',

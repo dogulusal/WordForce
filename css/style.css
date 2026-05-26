@@ -696,6 +696,16 @@ button.card {
   border-color: rgba(79, 126, 240, 0.55);
 }
 
+.prep-chip.selected-known {
+  border-color: rgba(46, 207, 149, 0.55);
+  box-shadow: 0 0 0 1px rgba(46, 207, 149, 0.22) inset;
+}
+
+.prep-chip.selected-session {
+  border-color: rgba(79, 126, 240, 0.62);
+  box-shadow: 0 0 0 1px rgba(79, 126, 240, 0.24) inset;
+}
+
 .prep-chip.selected {
   opacity: 0.68;
   border-color: var(--success);

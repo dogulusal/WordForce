@@ -65,21 +65,34 @@ function renderSettingsModal() {
 
 function renderSessionSizeModal(state) {
   const currentSize = state.ui.sessionSize || 10;
-  const options = [5, 10, 15, 20].map((size) => {
+  const currentLevel = state.ui.sessionStartLevel || 'ALL';
+  const sizeOptions = [5, 10, 15, 20].map((size) => {
     const activeClass = size === currentSize ? '' : 'btn-muted';
     return `<button class="btn ${activeClass}" data-ui-action="select-session-size" data-size="${size}">${size} words</button>`;
+  }).join('');
+  const levelOptions = ['ALL', 'A1', 'A2', 'B1', 'B2', 'C1'].map((level) => {
+    const activeClass = level === currentLevel ? 'active' : '';
+    return `<button class="prep-level ${activeClass}" data-ui-action="session-start-select-level" data-level="${level}">${level}</button>`;
   }).join('');
 
   return `
     <div class="modal-overlay" onclick="if(event.target===this) handleUiAction('close-modal')">
-      <div class="modal" role="dialog" aria-label="Session size">
+      <div class="modal" role="dialog" aria-label="Start session">
         <h2>Start Session</h2>
-        <p>Select how many words you want in this session.</p>
-        <div class="modal-actions" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-          ${options}
+        <p>Choose a level and session size.</p>
+        <div style="margin-bottom:14px;">
+          <div style="font-size:0.8rem;color:var(--text-secondary);margin-bottom:8px;">Level</div>
+          <div class="prep-levels" style="margin-bottom:0;">${levelOptions}</div>
         </div>
-        <div class="modal-actions" style="margin-top:12px;">
+        <div style="margin-bottom:14px;">
+          <div style="font-size:0.8rem;color:var(--text-secondary);margin-bottom:8px;">Session size</div>
+          <div class="modal-actions" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+            ${sizeOptions}
+          </div>
+        </div>
+        <div class="modal-actions" style="margin-top:12px;justify-content:space-between;">
           <button class="btn btn-muted" data-ui-action="close-modal">Cancel</button>
+          <button class="btn" data-ui-action="session-start-confirm">Start</button>
         </div>
       </div>
     </div>
@@ -168,8 +181,9 @@ function renderWordListModal(state, allWords) {
         <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px;">${tabs}</div>
         <p style="font-size:0.8rem;color:var(--text-secondary);margin:0 0 10px;">${filterDescriptions[filter] || ''}</p>
         <div class="word-list" style="flex:1;overflow-y:auto;">${rows}</div>
-        <div class="modal-actions" style="margin-top:12px;">
-          <button class="btn btn-press" data-ui-action="close-modal">Close</button>
+        <div class="modal-actions" style="margin-top:12px;justify-content:space-between;flex-wrap:wrap;">
+          <button class="btn btn-press" data-ui-action="start-filter-session" ${wordCount === 0 ? 'disabled' : ''}>Start Session from This List</button>
+          <button class="btn btn-muted" data-ui-action="close-modal">Close</button>
         </div>
       </div>
     </div>
