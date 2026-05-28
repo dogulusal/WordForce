@@ -12,51 +12,50 @@ function renderSettingsModal() {
   const supabaseUrl = (cloudConfig && cloudConfig.url) || localStorage.getItem('wf_supabase_url') || window.ENV_SUPABASE_URL || '';
   const hasBuiltInSupabase = Boolean(supabaseUrl);
   const cloudAuth = window.WFCloud ? window.WFCloud.getAuthState() : { configured: false, signedIn: false, userEmail: '' };
-  const quickActionHint = cloudAuth.signedIn
-    ? 'You are signed in. Use Sync Now to fetch latest progress.'
-    : 'Sign in once with GitHub, then use Sync Now anytime.';
-  const cloudActionButtons = cloudAuth.signedIn
-    ? `
-      <button class="btn" data-ui-action="cloud-sync-now">Sync Now</button>
-      <button class="btn btn-muted" data-ui-action="cloud-signout">Sign out</button>
-    `
-    : `
-      <button class="btn" data-ui-action="cloud-connect">Connect with GitHub</button>
-    `;
   const activeTheme = localStorage.getItem('wf_theme') || 'dark';
+
+  const cloudStatusText = cloudAuth.signedIn
+    ? `Signed in as ${escapeHtml(cloudAuth.userEmail)}`
+    : cloudAuth.configured ? 'Not signed in' : 'Not configured';
+  const cloudStatusDot = cloudAuth.signedIn ? 'green' : 'gray';
+
+  const cloudActionButtons = cloudAuth.signedIn
+    ? `<button class="btn settings-cloud-btn" data-ui-action="cloud-sync-now">Sync Now</button>
+       <button class="btn btn-muted settings-cloud-btn" data-ui-action="cloud-signout">Sign out</button>`
+    : `<button class="btn settings-cloud-btn" data-ui-action="cloud-connect">Connect with GitHub</button>`;
 
   return `
     <div class="modal-overlay" onclick="if(event.target===this) handleUiAction('close-modal')">
-      <div class="modal" role="dialog" aria-label="Settings">
-        <h2>Settings</h2>
-        <div class="modal-actions">
-          <button class="btn" data-ui-action="close-modal">Close</button>
+      <div class="modal settings-modal" role="dialog" aria-label="Settings">
+        <div class="settings-header">
+          <h2 style="margin:0;font-size:1.1rem;">Settings</h2>
+          <button class="settings-close-btn" data-ui-action="close-modal">✕</button>
         </div>
-        <hr style="border-color: var(--border); margin: 16px 0;">
-        <h3 style="margin-bottom: 8px;">Appearance</h3>
-        <div style="font-size:0.8rem; color: var(--text-muted); margin-bottom:8px;">Choose app theme:</div>
-        <div class="modal-actions" style="margin-bottom:8px;">
-          <button class="btn ${activeTheme === 'dark' ? '' : 'btn-muted'}" data-ui-action="set-theme" data-theme="dark">Dark</button>
-          <button class="btn ${activeTheme === 'light' ? '' : 'btn-muted'}" data-ui-action="set-theme" data-theme="light">Light</button>
+
+        <div class="settings-section">
+          <div class="settings-section-label">Appearance</div>
+          <div class="settings-theme-row">
+            <button class="settings-theme-btn ${activeTheme === 'dark' ? 'active' : ''}" data-ui-action="set-theme" data-theme="dark">🌙 Dark</button>
+            <button class="settings-theme-btn ${activeTheme === 'light' ? 'active' : ''}" data-ui-action="set-theme" data-theme="light">☀️ Light</button>
+          </div>
         </div>
-        <hr style="border-color: var(--border); margin: 16px 0;">
-        <h3 style="margin-bottom: 8px;">Cloud Sync (Primary: Supabase)</h3>
-        <div style="font-size:0.8rem; color: var(--text-muted); margin-bottom:8px;">
-          Status: ${cloudAuth.signedIn ? `Signed in as ${escapeHtml(cloudAuth.userEmail)}` : (cloudAuth.configured ? 'Configured, not signed in' : 'Not configured')}
+
+        <div class="settings-section">
+          <div class="settings-section-label">Cloud Sync</div>
+          <div class="settings-status-row">
+            <span class="settings-status-dot ${cloudStatusDot}"></span>
+            <span style="font-size:0.82rem;color:var(--text-secondary);">${cloudStatusText}</span>
+          </div>
+          <div id="cloud-status" style="font-size:0.78rem;min-height:1em;margin-bottom:10px;color:var(--text-secondary);"></div>
+          <div class="settings-cloud-btns">${cloudActionButtons}</div>
         </div>
-        <div style="font-size:0.8rem; color: var(--text-muted); margin-bottom:8px;">
-          ${hasBuiltInSupabase ? 'Supabase config is ready in this app.' : 'Supabase config is missing. You can still use GitHub Gist backup below.'}
-        </div>
-        <div style="font-size:0.8rem; color: var(--text-muted); margin-bottom:8px;">${escapeHtml(quickActionHint)}</div>
-        <div id="cloud-status" style="font-size:0.82rem; min-height:1.2em; margin-bottom:8px;"></div>
-        <div class="modal-actions">
-          ${cloudActionButtons}
-        </div>
-        <hr style="border-color: var(--border); margin: 16px 0;">
-        <h3 style="margin-bottom: 8px;">Data</h3>
-        <div class="modal-actions">
-          <button class="btn btn-muted" data-ui-action="export-progress">Export Progress</button>
-          <label class="btn btn-muted" style="cursor:pointer;">Import Progress<input type="file" id="importFileInput" accept=".json" style="display:none;"></label>
+
+        <div class="settings-section">
+          <div class="settings-section-label">Data</div>
+          <div class="settings-data-row">
+            <button class="btn btn-muted settings-data-btn" data-ui-action="export-progress">⬇ Export</button>
+            <label class="btn btn-muted settings-data-btn" style="cursor:pointer;">⬆ Import<input type="file" id="importFileInput" accept=".json" style="display:none;"></label>
+          </div>
         </div>
       </div>
     </div>

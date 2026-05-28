@@ -1357,6 +1357,22 @@ function renderHome(state) {
     ? `<div class="home-streak-pill"><span>🔥</span><span class="home-streak-num">${streak.currentStreak}</span></div>`
     : '';
 
+  const goals = getDailyGoals(state.progress);
+  const goalsHtml = goals.map(g => {
+    const pct = Math.min(100, Math.round((g.current / g.target) * 100));
+    const done = pct >= 100;
+    return `<div class="home-goal-item">
+      <span class="home-goal-icon">${g.icon}</span>
+      <div style="flex:1;min-width:0;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span class="home-goal-label">${g.title}</span>
+          <span class="home-goal-count ${done ? 'done' : ''}">${g.current}/${g.target}</span>
+        </div>
+        <div class="home-goal-bar"><div class="home-goal-bar-fill" style="width:${pct}%;${done ? 'background:var(--success)' : ''}"></div></div>
+      </div>
+    </div>`;
+  }).join('');
+
   return `
     <div class="home-screen card-slide-enter">
       <div class="home-header">
@@ -1398,6 +1414,10 @@ function renderHome(state) {
         </div>
         <span class="home-manage-arrow">›</span>
       </button>
+      <div class="home-goals-section">
+        <div class="home-goals-title">Today's Goals</div>
+        ${goalsHtml}
+      </div>
     </div>
   `;
 }
@@ -2122,12 +2142,25 @@ function render(state) {
 
   modalContainer.innerHTML = state.ui.modal ? UI.renderModal(state.ui.modal, state, AllWords) : '';
   updateBottomNav(state.ui.screen, state.ui.modal);
+  updateTopNav(state.ui.screen, state.ui.modal);
 }
 
 function handleAction(action, target) {
   if (action === 'set-session-size') {
     const size = Number(target.dataset.size) || 10;
-    dispatch({ type: 'SET_SESSION_SIZE', payload: size });
+    AppState.ui.sessionSize = size;
+    // Update only the affected DOM elements — no full re-render to avoid flash
+    document.querySelectorAll('[data-action="set-session-size"]').forEach(btn => {
+      btn.classList.toggle('active', Number(btn.dataset.size) === size);
+    });
+    // Update Session Size card on home screen if visible
+    document.querySelectorAll('.home-quick-card').forEach(card => {
+      const lbl = card.querySelector('.home-quick-label');
+      if (lbl && lbl.textContent.trim() === 'Session Size') {
+        const val = card.querySelector('.home-quick-value');
+        if (val) val.textContent = size;
+      }
+    });
     return;
   }
   if (action === 'open-flashcards') {
@@ -2913,8 +2946,36 @@ function updateBottomNav(screen, modal) {
   });
 }
 
+function updateTopNav(screen, modal) {
+  const nav = document.getElementById('topNav');
+  if (!nav) return;
+  const items = nav.querySelectorAll('.top-nav-item');
+  items.forEach(item => {
+    const navTarget = item.dataset.nav;
+    let isActive = false;
+    if (navTarget === 'home' && (screen === 'home' || screen === 'preflight')) isActive = true;
+    if (navTarget === 'session' && (screen === 'gate' || screen === 'round' || screen === 'train' || screen === 'extras' || screen === 'flashcards')) isActive = true;
+    if (navTarget === 'stats' && screen === 'progress') isActive = true;
+    if (navTarget === 'settings' && modal === 'settings') isActive = true;
+    item.classList.toggle('active', isActive);
+  });
+}
+
 document.getElementById('bottomNav')?.addEventListener('click', (e) => {
   const item = e.target.closest('.bottom-nav-item');
+  if (!item) return;
+  const nav = item.dataset.nav;
+  if (nav === 'home') dispatch({ type: 'SET_SCREEN', payload: 'home' });
+  if (nav === 'session') {
+    if (AppState.ui.screen === 'round' || AppState.ui.screen === 'gate') return;
+    dispatch({ type: 'SET_SCREEN', payload: 'train' });
+  }
+  if (nav === 'stats') dispatch({ type: 'SET_SCREEN', payload: 'progress' });
+  if (nav === 'settings') dispatch({ type: 'SET_MODAL', payload: 'settings' });
+});
+
+document.getElementById('topNav')?.addEventListener('click', (e) => {
+  const item = e.target.closest('.top-nav-item');
   if (!item) return;
   const nav = item.dataset.nav;
   if (nav === 'home') dispatch({ type: 'SET_SCREEN', payload: 'home' });

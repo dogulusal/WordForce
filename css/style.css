@@ -1394,6 +1394,78 @@ button.card {
 }
 
 /* ======================================================
+   TOP NAVIGATION BAR (Desktop)
+   ====================================================== */
+.top-nav {
+  display: none;
+}
+
+@media (min-width: 641px) {
+  body {
+    justify-content: flex-start;
+    padding-top: 70px;
+  }
+
+  .top-nav {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 52px;
+    align-items: center;
+    justify-content: center;
+    background: rgba(12, 16, 26, 0.97);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 900;
+  }
+
+  [data-theme="light"] .top-nav {
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.07);
+  }
+
+  .top-nav-inner {
+    width: min(720px, 100%);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 4px;
+    gap: 2px;
+  }
+
+  .top-nav-item {
+    border: 0;
+    background: transparent;
+    color: var(--text-secondary);
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+
+  .top-nav-item:hover {
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--text-primary);
+  }
+
+  [data-theme="light"] .top-nav-item:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  .top-nav-item.active {
+    background: rgba(243, 165, 49, 0.14);
+    color: var(--accent);
+    font-weight: 600;
+  }
+}
+
+/* ======================================================
    HOME PAGE REDESIGN
    ====================================================== */
 .home-header {
@@ -1527,6 +1599,76 @@ button.card {
   opacity: 0.8;
 }
 
+.home-goals-section {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.018);
+}
+
+[data-theme="light"] .home-goals-section {
+  background: rgba(0, 0, 0, 0.018);
+}
+
+.home-goals-title {
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+
+.home-goal-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 9px;
+}
+
+.home-goal-item:last-child {
+  margin-bottom: 0;
+}
+
+.home-goal-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  width: 20px;
+  text-align: center;
+  line-height: 1;
+}
+
+.home-goal-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.home-goal-count {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.home-goal-count.done {
+  color: var(--success);
+}
+
+.home-goal-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--bg-elevated);
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.home-goal-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--accent);
+  transition: width 0.5s ease;
+}
+
 /* ======================================================
    TRAIN / LEARN SCREEN
    ====================================================== */
@@ -1620,6 +1762,147 @@ button.card {
   color: var(--text-secondary);
   font-weight: 500;
   white-space: nowrap;
+}
+
+/* ======================================================
+   SETTINGS MODAL COMPACT
+   ====================================================== */
+.settings-modal {
+  max-height: 84vh;
+  overflow-y: auto;
+  padding: 0 !important;
+}
+
+.settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 18px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: linear-gradient(180deg, #1b2233, #212b3f);
+  z-index: 1;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+[data-theme="light"] .settings-header {
+  background: var(--bg-elevated);
+}
+
+.settings-close-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+}
+
+.settings-close-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .settings-close-btn {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.settings-section {
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(54, 67, 91, 0.45);
+}
+
+.settings-section:last-child {
+  border-bottom: none;
+}
+
+.settings-section-label {
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+
+.settings-theme-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.settings-theme-btn {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 8px;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: all 0.15s;
+  text-align: center;
+}
+
+.settings-theme-btn.active {
+  border-color: var(--accent);
+  background: rgba(243, 165, 49, 0.14);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.settings-status-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.settings-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.settings-status-dot.green {
+  background: var(--success);
+  box-shadow: 0 0 6px rgba(46, 207, 149, 0.5);
+}
+
+.settings-status-dot.gray {
+  background: var(--text-secondary);
+  opacity: 0.4;
+}
+
+.settings-cloud-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.settings-cloud-btn {
+  width: 100%;
+  text-align: center;
+}
+
+.settings-data-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.settings-data-btn {
+  text-align: center;
+  font-size: 0.86rem;
 }
 
 /* ======================================================
@@ -1758,8 +2041,8 @@ button.card {
     justify-content: center;
     gap: 3px;
     text-decoration: none;
-    color: rgba(185, 195, 209, 0.42);
-    font-size: 0.63rem;
+    color: rgba(185, 195, 209, 0.62);
+    font-size: 0.66rem;
     font-weight: 500;
     padding: 6px 0;
     transition: color 0.15s, opacity 0.15s;
@@ -1768,7 +2051,7 @@ button.card {
   }
 
   [data-theme="light"] .bottom-nav-item {
-    color: rgba(90, 100, 120, 0.45);
+    color: rgba(60, 75, 100, 0.62);
   }
 
   .bottom-nav-item .nav-icon {
