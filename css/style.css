@@ -851,10 +851,6 @@ button.card {
     grid-template-columns: 1fr;
   }
 
-  .home-quick-grid {
-    grid-template-columns: 1fr;
-  }
-
   .card,
   .prep-screen {
     padding: 16px;
@@ -1398,6 +1394,288 @@ button.card {
 }
 
 /* ======================================================
+   HOME PAGE REDESIGN
+   ====================================================== */
+.home-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.home-headline h1 {
+  margin-bottom: 4px;
+}
+
+.home-streak-pill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(243, 165, 49, 0.12);
+  border: 1px solid rgba(243, 165, 49, 0.35);
+  border-radius: 999px;
+  padding: 5px 12px;
+  flex-shrink: 0;
+  font-size: 0.88rem;
+  margin-top: 4px;
+}
+
+.home-streak-num {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.home-level-row {
+  margin-bottom: 16px;
+}
+
+.home-level-bar {
+  display: flex;
+  gap: 4px;
+  height: 6px;
+  margin-bottom: 4px;
+}
+
+.home-level-segment {
+  flex: 1;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--bg-surface);
+  overflow: hidden;
+  position: relative;
+}
+
+.home-level-segment::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  transform: scaleX(var(--fill, 0));
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+
+.home-level-segment[data-level="A1"]::after { background: #4caf50; }
+.home-level-segment[data-level="A2"]::after { background: #8bc34a; }
+.home-level-segment[data-level="B1"]::after { background: #ffc107; }
+.home-level-segment[data-level="B2"]::after { background: #ff9800; }
+.home-level-segment[data-level="C1"]::after { background: #f44336; }
+
+.home-level-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.03em;
+}
+
+.home-manage-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border: 1px solid rgba(44, 143, 129, 0.45);
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, rgba(44, 143, 129, 0.12), rgba(33, 109, 98, 0.06));
+  cursor: pointer;
+  text-align: left;
+  margin-top: 4px;
+  color: var(--text-primary);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.home-manage-card:hover {
+  filter: brightness(1.05);
+}
+
+[data-theme="light"] .home-manage-card {
+  background: linear-gradient(135deg, rgba(44, 143, 129, 0.1), rgba(33, 109, 98, 0.05));
+  border-color: rgba(44, 143, 129, 0.35);
+}
+
+.home-manage-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.home-manage-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.home-manage-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+
+.home-manage-desc {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.home-manage-arrow {
+  color: var(--success);
+  font-size: 1.6rem;
+  font-weight: 300;
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+/* ======================================================
+   TRAIN / LEARN SCREEN
+   ====================================================== */
+.train-screen {
+  animation: fade-in 220ms ease-out;
+  padding-top: 4px;
+}
+
+.train-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--bg-surface), var(--bg-elevated));
+  cursor: pointer;
+  text-align: left;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+  color: var(--text-primary);
+  transition: transform 0.12s ease, filter 0.12s ease;
+}
+
+.train-card:hover {
+  filter: brightness(1.04);
+}
+
+.train-card-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.train-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.train-card-title {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.train-card-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.train-card-start {
+  border-color: rgba(243, 165, 49, 0.45);
+  background: linear-gradient(135deg, rgba(243, 165, 49, 0.1), rgba(196, 120, 15, 0.04));
+}
+
+[data-theme="light"] .train-card-start {
+  background: linear-gradient(135deg, rgba(243, 165, 49, 0.08), rgba(196, 120, 15, 0.03));
+}
+
+.train-card-practice {
+  border-color: rgba(138, 98, 227, 0.4);
+  background: linear-gradient(135deg, rgba(138, 98, 227, 0.1), rgba(100, 66, 186, 0.04));
+}
+
+[data-theme="light"] .train-card-practice {
+  background: linear-gradient(135deg, rgba(138, 98, 227, 0.08), rgba(100, 66, 186, 0.03));
+}
+
+.train-size-config {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.02);
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+[data-theme="light"] .train-size-config {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.train-size-label {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ======================================================
+   ROUND TOOLBAR BUTTON VARIANTS
+   ====================================================== */
+.btn-round-back {
+  background: transparent;
+  border: 1px solid rgba(185, 195, 209, 0.2);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+.btn-round-back:hover {
+  border-color: rgba(185, 195, 209, 0.45);
+  filter: none;
+}
+
+.btn-round-skip {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(185, 195, 209, 0.22);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.btn-round-skip:hover {
+  background: rgba(255, 255, 255, 0.09);
+  filter: none;
+}
+
+.btn-round-practice {
+  background: rgba(243, 165, 49, 0.14);
+  border: 1px solid rgba(243, 165, 49, 0.38);
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.btn-round-practice:hover {
+  background: rgba(243, 165, 49, 0.22);
+  filter: none;
+}
+
+[data-theme="light"] .btn-round-back,
+[data-theme="light"] .btn-round-skip {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(90, 100, 120, 0.25);
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .btn-round-practice {
+  background: rgba(232, 138, 26, 0.1);
+  border-color: rgba(232, 138, 26, 0.35);
+  color: var(--accent-deep);
+}
+
+/* ======================================================
    THEME TOGGLE — Light Mode
    ====================================================== */
 [data-theme="light"] {
@@ -1457,11 +1735,19 @@ button.card {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 56px;
-    background: var(--bg-elevated);
-    border-top: 1px solid var(--border);
+    height: 60px;
+    background: rgba(12, 16, 26, 0.97);
+    border-top: 1px solid rgba(54, 67, 91, 0.6);
     z-index: 900;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  [data-theme="light"] .bottom-nav {
+    background: rgba(255, 255, 255, 0.97);
+    border-top: 1px solid rgba(226, 230, 237, 0.9);
+    box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.08);
   }
 
   .bottom-nav-item {
@@ -1470,24 +1756,39 @@ button.card {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2px;
+    gap: 3px;
     text-decoration: none;
-    color: var(--text-secondary);
-    font-size: 0.65rem;
+    color: rgba(185, 195, 209, 0.42);
+    font-size: 0.63rem;
     font-weight: 500;
     padding: 6px 0;
-    transition: color 0.15s;
+    transition: color 0.15s, opacity 0.15s;
     -webkit-tap-highlight-color: transparent;
+    position: relative;
+  }
+
+  [data-theme="light"] .bottom-nav-item {
+    color: rgba(90, 100, 120, 0.45);
   }
 
   .bottom-nav-item .nav-icon {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     line-height: 1;
+    transition: transform 0.15s ease;
   }
 
-  .bottom-nav-item.active,
+  .bottom-nav-item.active {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .bottom-nav-item.active .nav-icon {
+    transform: scale(1.1);
+  }
+
   .bottom-nav-item:active {
     color: var(--accent);
+    opacity: 0.8;
   }
 
   .bottom-nav-item.active::after {
@@ -1496,18 +1797,15 @@ button.card {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 28px;
+    width: 32px;
     height: 3px;
     border-radius: 3px 3px 0 0;
     background: var(--accent);
-  }
-
-  .bottom-nav-item {
-    position: relative;
+    box-shadow: 0 0 8px rgba(243, 165, 49, 0.5);
   }
 
   body {
-    padding-bottom: 72px !important;
+    padding-bottom: 76px !important;
   }
 }
 

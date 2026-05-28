@@ -1346,12 +1346,25 @@ function renderHome(state) {
   const today = toLocalDate(0);
   const wordsToday = getWeeklyActivity()[today] || 0;
   const focusPool = Math.max(0, Object.keys(AllWords).length - (known + learned));
+  const streak = getStreakData();
+
+  const levelData = buildLevelProgress(state.progress);
+  const levelBarHtml = levelData.map(l =>
+    `<div class="home-level-segment" data-level="${l.level}" style="--fill:${l.fill.toFixed(3)}" title="${l.level}: ${l.known}/${l.total}"></div>`
+  ).join('');
+
+  const streakHtml = streak.currentStreak > 0
+    ? `<div class="home-streak-pill"><span>🔥</span><span class="home-streak-num">${streak.currentStreak}</span></div>`
+    : '';
 
   return `
     <div class="home-screen card-slide-enter">
-      <div class="home-headline" style="margin-bottom:14px;">
-        <h1 style="margin-bottom:6px;">WordForge</h1>
-        <p style="margin:0;color:var(--text-secondary);">Build momentum daily with short, focused sessions.</p>
+      <div class="home-header">
+        <div class="home-headline">
+          <h1 style="margin-bottom:4px;">WordForge</h1>
+          <p style="margin:0;color:var(--text-secondary);font-size:0.88rem;">Build momentum daily with short, focused sessions.</p>
+        </div>
+        ${streakHtml}
       </div>
       <div class="home-quick-grid" style="margin-bottom:14px;">
         <div class="home-quick-card">
@@ -1360,7 +1373,7 @@ function renderHome(state) {
         </div>
         <div class="home-quick-card">
           <div class="home-quick-label">Due for review</div>
-          <div class="home-quick-value">${reviewDue}</div>
+          <div class="home-quick-value" style="${reviewDue > 0 ? 'color:var(--accent)' : ''}">${reviewDue}</div>
         </div>
         <div class="home-quick-card">
           <div class="home-quick-label">Focus Pool</div>
@@ -1371,13 +1384,20 @@ function renderHome(state) {
           <div class="home-quick-value">${state.ui.sessionSize || 10}</div>
         </div>
       </div>
-      <div class="actions">
-        <button class="btn btn-press btn-home-start" data-action="start-session">Start Session</button>
-        <button class="btn btn-manage btn-press" data-action="open-manage-words">Manage Words</button>
-        <button class="btn btn-press btn-home-progress" data-action="open-progress">📊 Progress</button>
-        <button class="btn btn-press btn-home-practice" data-action="open-extras">🎯 Practice</button>
-        <button class="btn btn-press btn-home-settings" data-action="open-settings">⚙️ Settings</button>
+      <div class="home-level-row">
+        <div class="home-level-bar">${levelBarHtml}</div>
+        <div class="home-level-labels">
+          ${levelData.map(l => `<span>${l.level}</span>`).join('')}
+        </div>
       </div>
+      <button class="home-manage-card btn-press" data-action="open-manage-words">
+        <span class="home-manage-icon">📚</span>
+        <div class="home-manage-body">
+          <div class="home-manage-title">Manage Words</div>
+          <div class="home-manage-desc">Browse vocabulary, mark known words, or hand-pick for your next session.</div>
+        </div>
+        <span class="home-manage-arrow">›</span>
+      </button>
     </div>
   `;
 }
@@ -1510,8 +1530,8 @@ function renderExtras(state) {
   return `
     <div class="home-screen card-slide-enter">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-        <h2>Practice & Tools</h2>
-        <button class="btn btn-muted btn-press" data-action="go-home">← Back</button>
+        <h2>Practice &amp; Tools</h2>
+        <button class="btn btn-muted btn-press" data-action="go-train">← Back</button>
       </div>
       <div class="stats-grid" style="grid-template-columns:1fr;">
         <button class="card btn-press" data-action="open-flashcards" style="display:flex;align-items:center;gap:12px;">
@@ -1526,6 +1546,39 @@ function renderExtras(state) {
           <span style="font-size:1.5rem;">✏️</span>
           <div style="text-align:left;"><strong>Error Correction</strong><br><span style="font-size:0.8rem;color:var(--text-secondary);">Spot and fix word usage mistakes in real sentences</span></div>
         </button>
+      </div>
+    </div>
+  `;
+}
+
+function renderTrain(state) {
+  const sessionSize = state.ui.sessionSize || 10;
+  const reviewDue = getReviewDue(state.progress).length;
+  const sizeOptions = [5, 10, 15, 20].map(size =>
+    `<button class="session-size-btn btn-press ${size === sessionSize ? 'active' : ''}" data-action="set-session-size" data-size="${size}">${size}</button>`
+  ).join('');
+
+  return `
+    <div class="train-screen card-slide-enter">
+      <h2 style="margin-bottom:4px;">Learn</h2>
+      <p style="color:var(--text-secondary);margin-bottom:20px;font-size:0.88rem;">Choose how you want to practice today.</p>
+      <button class="train-card train-card-start btn-press" data-action="start-session">
+        <span class="train-card-icon">▶️</span>
+        <div class="train-card-body">
+          <div class="train-card-title">Start Session</div>
+          <div class="train-card-desc">${reviewDue > 0 ? `<strong style="color:var(--accent)">${reviewDue}</strong> words due for review · ` : ''}New vocabulary &amp; spaced repetition</div>
+        </div>
+      </button>
+      <button class="train-card train-card-practice btn-press" data-action="open-extras">
+        <span class="train-card-icon">🎯</span>
+        <div class="train-card-body">
+          <div class="train-card-title">Practice Exercises</div>
+          <div class="train-card-desc">Collocations, error correction, flashcards</div>
+        </div>
+      </button>
+      <div class="train-size-config">
+        <span class="train-size-label">Session size</span>
+        <div class="session-size-options">${sizeOptions}</div>
       </div>
     </div>
   `;
@@ -1748,14 +1801,13 @@ function renderRoundFrame(state, body, maxRound, progress) {
       <div class="progress" aria-live="polite" aria-label="${progress}">${progress}</div>
       ${roundProgressHtml}
       <div class="round-quick-actions round-toolbar">
-        <button class="btn btn-muted btn-press" data-action="round-back">← Back</button>
-        <button class="btn btn-muted btn-press" data-action="round-skip">Skip</button>
-        <button class="btn btn-muted btn-press" data-action="round-practice">Practice</button>
-        <button class="btn btn-manage btn-press" data-action="round-known">Known</button>
+        <button class="btn btn-round-back btn-press" data-action="round-back" title="End session">← Back</button>
+        <button class="btn btn-round-skip btn-press" data-action="round-skip">Skip</button>
+        <button class="btn btn-round-practice btn-press" data-action="round-practice">Practice</button>
+        <button class="btn btn-manage btn-press" data-action="round-known">Known ✓</button>
       </div>
       <div class="card round-exercise-card">${body}</div>
-      ${state.ui.feedback ? `<div class="feedback-bar ${feedbackClass}">${state.ui.feedback}</div>` : '<div class="feedback-bar-empty"></div>'}
-      <button class="btn btn-press" data-action="open-quit">End Session</button>
+      ${state.ui.feedback ? `<div class="feedback-bar ${feedbackClass}">${state.ui.feedback}</div>` : '<div style="min-height:10px;"></div>'}
     </div>
   `;
 }
@@ -2050,6 +2102,7 @@ function render(state) {
     if (state.ui.screen === 'home') app.innerHTML = renderHome(state);
     if (state.ui.screen === 'progress') app.innerHTML = renderProgress(state);
     if (state.ui.screen === 'extras') app.innerHTML = renderExtras(state);
+    if (state.ui.screen === 'train') app.innerHTML = renderTrain(state);
     if (state.ui.screen === 'preflight') app.innerHTML = renderPrep(state);
     if (state.ui.screen === 'flashcards') app.innerHTML = renderFlashcards(state);
     if (state.ui.screen === 'gate') app.innerHTML = renderGate(state);
@@ -2114,10 +2167,6 @@ function handleAction(action, target) {
   }
   if (action === 'open-extras') {
     dispatch({ type: 'SET_SCREEN', payload: 'extras' });
-    return;
-  }
-  if (action === 'open-settings') {
-    dispatch({ type: 'SET_MODAL', payload: 'settings' });
     return;
   }
   if (action === 'ec-show-answer') {
@@ -2378,6 +2427,10 @@ function handleAction(action, target) {
   }
   if (action === 'go-home') {
     dispatch({ type: 'SET_SCREEN', payload: 'home' });
+    return;
+  }
+  if (action === 'go-train') {
+    dispatch({ type: 'SET_SCREEN', payload: 'train' });
     return;
   }
 }
@@ -2853,7 +2906,7 @@ function updateBottomNav(screen, modal) {
     const navTarget = item.dataset.nav;
     let isActive = false;
     if (navTarget === 'home' && (screen === 'home' || screen === 'preflight')) isActive = true;
-    if (navTarget === 'session' && (screen === 'gate' || screen === 'round')) isActive = true;
+    if (navTarget === 'session' && (screen === 'gate' || screen === 'round' || screen === 'train' || screen === 'extras' || screen === 'flashcards')) isActive = true;
     if (navTarget === 'stats' && screen === 'progress') isActive = true;
     if (navTarget === 'settings' && modal === 'settings') isActive = true;
     item.classList.toggle('active', isActive);
@@ -2867,7 +2920,7 @@ document.getElementById('bottomNav')?.addEventListener('click', (e) => {
   if (nav === 'home') dispatch({ type: 'SET_SCREEN', payload: 'home' });
   if (nav === 'session') {
     if (AppState.ui.screen === 'round' || AppState.ui.screen === 'gate') return;
-    dispatch({ type: 'SET_MODAL', payload: 'sessionSize' });
+    dispatch({ type: 'SET_SCREEN', payload: 'train' });
   }
   if (nav === 'stats') dispatch({ type: 'SET_SCREEN', payload: 'progress' });
   if (nav === 'settings') dispatch({ type: 'SET_MODAL', payload: 'settings' });
