@@ -1,5 +1,5 @@
 // WordForge Service Worker — cache strategy tuned to avoid stale UI
-const CACHE_NAME = 'wordforge-v7';
+const CACHE_NAME = 'wordforge-v8';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -60,6 +60,22 @@ self.addEventListener('fetch', (event) => {
 
   // Network-first for scripts/styles so app code updates land immediately.
   if (event.request.destination === 'script' || event.request.destination === 'style') {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          if (response.ok) {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+          }
+          return response;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
+  // Network-first for word data so exercise fixes are never hidden by stale JSON.
+  if (event.request.url.includes('/data/')) {
     event.respondWith(
       fetch(event.request)
         .then((response) => {

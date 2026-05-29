@@ -119,7 +119,7 @@ function applyReviewCollisionPolicy(progress) {
 }
 
 async function loadWords() {
-  const response = await fetch('data/words_enriched.json', { cache: 'no-store' });
+  const response = await fetch('data/words_enriched.json?v=20260533', { cache: 'no-store' });
   AllWords = await response.json();
   window.AllWords = AllWords;
 }

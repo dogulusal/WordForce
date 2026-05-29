@@ -7,6 +7,9 @@ const enrichedPath = path.join(__dirname, '../data/words_enriched.json');
 const raw = JSON.parse(fs.readFileSync(rawPath, 'utf8'));
 const enriched = JSON.parse(fs.readFileSync(enrichedPath, 'utf8'));
 
+const MISSING_EX_TR_SENTINEL = '__MISSING_EX_TR__';
+const MISSING_EX_DISTRACTOR_SENTINEL = '__MISSING_EX_DISTRACTOR__';
+
 function getPosPool(rawData) {
   const pool = new Map();
   for (const [word, item] of Object.entries(rawData)) {
@@ -33,36 +36,45 @@ function pickDistractors(word, pos, posPool) {
 
 function buildDefinition(word, pos, tr) {
   const safeTr = String(tr || '').trim();
-  if (pos === 'verb') return `To perform an action related to "${safeTr}".`;
-  if (pos === 'adjective') return `Describing something that can be understood as "${safeTr}".`;
-  if (pos === 'adverb') return `In a way related to "${safeTr}".`;
-  if (pos === 'conjunction') return `A linking word used with a meaning close to "${safeTr}".`;
-  return `A word used with a meaning close to "${safeTr}".`;
+  return safeTr ? `Turkish meaning: ${safeTr}.` : 'This word needs a dictionary meaning before advanced exercises.';
 }
 
 function buildExamples(word, pos) {
   const w = String(word);
   if (pos === 'verb') {
     return [
-      `People often ${w} when they practice English.`,
-      `I try to ${w} in short daily conversations.`,
+      `We need to ${w} today.`,
+      `They will ${w} when necessary.`,
     ];
   }
   if (pos === 'adjective') {
     return [
-      `This lesson is ${w} for beginners.`,
-      `Her explanation was ${w} and easy to follow.`,
+      `This example is ${w}.`,
+      `The answer seems ${w}.`,
     ];
   }
   if (pos === 'adverb') {
     return [
-      `She spoke ${w} during the meeting.`,
-      `He answered ${w} and continued the task.`,
+      `She answered ${w}.`,
+      `They worked ${w}.`,
+    ];
+  }
+  if (pos === 'prep' || pos === 'preposition') {
+    return [
+      `The book is ${w} the table.`,
+      `She walked ${w} the road.`,
+    ];
+  }
+  if (pos === 'conj' || pos === 'conjunction') {
+    const cap = w.charAt(0).toUpperCase() + w.slice(1);
+    return [
+      `${cap} it was difficult, we continued.`,
+      `${cap} the plan changed, we stayed calm.`,
     ];
   }
   return [
-    `The word ${w} appears in today's vocabulary set.`,
-    `I saw ${w} in a sentence and wrote it down.`,
+    `The ${w} is important here.`,
+    `I noticed the ${w} today.`,
   ];
 }
 
@@ -80,12 +92,12 @@ function buildEntry(word, source, posPool) {
     def: buildDefinition(word, pos, tr),
     ex,
     ex_tr: [
-      `"${word}" kelimesi bugunku kelime setinde geciyor.`,
-      `"${word}" kelimesini bir cumlede gordum ve not ettim.`,
+      MISSING_EX_TR_SENTINEL,
+      MISSING_EX_TR_SENTINEL,
     ],
     ex_distractors: [
-      ['Anlam farklidir.', 'Cumle zamani farklidir.', 'Dogru ceviri degildir.'],
-      ['Ozneyi degistirir.', 'Anlami kaydirir.', 'Dogru ceviri degildir.'],
+      [MISSING_EX_DISTRACTOR_SENTINEL, MISSING_EX_DISTRACTOR_SENTINEL, MISSING_EX_DISTRACTOR_SENTINEL],
+      [MISSING_EX_DISTRACTOR_SENTINEL, MISSING_EX_DISTRACTOR_SENTINEL, MISSING_EX_DISTRACTOR_SENTINEL],
     ],
     sb_distractors: [sb1, sb2],
   };
@@ -115,7 +127,7 @@ function normalizeEntry(word, entry, source, posPool) {
     ? entry.ex_tr.filter((s) => typeof s === 'string' && s.trim())
     : [];
   while (exTr.length < ex.length) {
-    exTr.push(`"${word}" kelimesi bu cumlede kullanilmistir.`);
+    exTr.push(MISSING_EX_TR_SENTINEL);
   }
 
   const exDistractors = Array.isArray(entry?.ex_distractors) ? entry.ex_distractors : [];
@@ -125,7 +137,7 @@ function normalizeEntry(word, entry, source, posPool) {
   const normalizedSbDistractors = [];
   for (let i = 0; i < ex.length; i++) {
     normalizedExDistractors.push(
-      ensureRowOfThree(exDistractors[i], ['Anlam farklidir.', 'Cumle zamani farklidir.', 'Dogru ceviri degildir.'])
+      ensureRowOfThree(exDistractors[i], [MISSING_EX_DISTRACTOR_SENTINEL, MISSING_EX_DISTRACTOR_SENTINEL, MISSING_EX_DISTRACTOR_SENTINEL])
     );
     normalizedSbDistractors.push(
       ensureRowOfThree(sbDistractors[i], pickDistractors(word, pos, posPool))

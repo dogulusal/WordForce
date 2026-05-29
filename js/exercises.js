@@ -68,6 +68,12 @@ const TRANSLATION_OVERRIDES = {
   abandon: 'terk etmek, bırakmak'
 };
 
+const MISSING_EX_TR_SENTINEL = '__MISSING_EX_TR__';
+const MISSING_EX_DISTRACTOR_SENTINEL = '__MISSING_EX_DISTRACTOR__';
+const MAX_SEMANTIC_DISTRACTOR_CANDIDATES = 120;
+const semanticDistractorCache = new WeakMap();
+const distractorPoolCache = new WeakMap();
+
 function displayWord(word) {
   return String(word || '').replace(/_/g, ' ');
 }
@@ -84,9 +90,27 @@ function isPlaceholderText(text, word) {
   const value = String(text || '').toLowerCase();
   const wordText = displayWord(word).toLowerCase();
   if (!value.trim()) return true;
+  if (value.includes(MISSING_EX_TR_SENTINEL.toLowerCase()) || value.includes(MISSING_EX_DISTRACTOR_SENTINEL.toLowerCase())) return true;
   return value.includes(`a word used with a meaning close to "${wordText}"`) ||
+    value.includes('to perform an action related to') ||
+    value.includes('describing something that can be understood as') ||
+    value.includes('in a way related to') ||
+    value.includes('a linking word used with a meaning close to') ||
     value.includes(`the word ${wordText} appears in today's vocabulary set`) ||
     value.includes(`i saw ${wordText} in a sentence and wrote it down`) ||
+    value.includes('bugunku kelime setinde') ||
+    value.includes('bugünkü kelime setinde') ||
+    value.includes('kelime setinde geciyor') ||
+    value.includes('kelime setinde geçiyor') ||
+    value.includes('bir cumlede gordum') ||
+    value.includes('bir cümlede gördüm') ||
+    value.includes('not ettim') ||
+    /people often .* when they practice english/i.test(value) ||
+    /i try to .* in short daily conversations/i.test(value) ||
+    /this lesson is .* for beginners/i.test(value) ||
+    /her explanation was .* and easy to follow/i.test(value) ||
+    /she spoke .* during the meeting/i.test(value) ||
+    /he answered .* and continued the task/i.test(value) ||
     value.includes(`"${wordText}" kelimesi bu cumlede kullanilmistir`) ||
     value.includes(`"${wordText}" kelimesi bu cümlede kullanılmıştır`) ||
     value.includes(`${wordText} kelimesi bu cumlede kullanilmistir`) ||
@@ -126,6 +150,10 @@ function getUsefulExamples(word, wordData = {}) {
   return examples.filter((example) => !isPlaceholderText(example, word));
 }
 
+function hasMeaningfulSentenceBuilderLength(sentence) {
+  return String(sentence || '').split(/\s+/).map(normalizeToken).filter(Boolean).length >= 3;
+}
+
 function getFirstUsefulExample(word, wordData = {}) {
   return getUsefulExamples(word, wordData)[0] || '';
 }
@@ -163,15 +191,29 @@ function tokenOverlapScore(aTokens, bTokens) {
   return base > 0 ? overlap / base : 0;
 }
 
+function getPerDatasetCache(store, allWords) {
+  let cache = store.get(allWords);
+  if (!cache) {
+    cache = new Map();
+    store.set(allWords, cache);
+  }
+  return cache;
+}
+
 function rankSemanticDistractorKeys(word, allWords) {
   const target = allWords[word];
   if (!target) return [];
 
+  const cache = getPerDatasetCache(semanticDistractorCache, allWords);
+  if (cache.has(word)) {
+    return cache.get(word);
+  }
+
   const targetRank = CEFR_RANK[target.level] || 1;
   const targetTokens = contextTokensForItem(target);
 
-  const scored = Object.keys(allWords)
-    .filter((candidateWord) => candidateWord !== word)
+  const candidateWords = buildDistractorPool(word, allWords).slice(0, MAX_SEMANTIC_DISTRACTOR_CANDIDATES);
+  const scored = candidateWords
     .map((candidateWord) => ({ key: candidateWord, item: allWords[candidateWord] }))
     .filter(({ item }) => item?.pos === target.pos)
     .map(({ key, item }) => {
@@ -194,26 +236,38 @@ function rankSemanticDistractorKeys(word, allWords) {
     })
     .sort((a, b) => b.score - a.score);
 
-  return scored.map((row) => row.key);
+  const rankedKeys = scored.map((row) => row.key);
+  cache.set(word, rankedKeys);
+  return rankedKeys;
 }
 
 function buildDistractorPool(word, allWords) {
   const target = allWords[word];
   if (!target) return [];
 
+  const cache = getPerDatasetCache(distractorPoolCache, allWords);
+  if (cache.has(word)) {
+    return cache.get(word);
+  }
+
   const samePosSameLevel = Object.keys(allWords)
     .filter((w) => w !== word && allWords[w].pos === target.pos && allWords[w].level === target.level);
 
-  if (samePosSameLevel.length >= 3) return samePosSameLevel;
+  if (samePosSameLevel.length >= 3) {
+    cache.set(word, samePosSameLevel);
+    return samePosSameLevel;
+  }
 
   const targetRank = CEFR_RANK[target.level] || 1;
-  return Object.keys(allWords)
+  const fallbackPool = Object.keys(allWords)
     .filter((w) => {
       if (w === word) return false;
       const item = allWords[w];
       const rank = CEFR_RANK[item.level] || 1;
       return item.pos === target.pos && Math.abs(rank - targetRank) <= 1;
     });
+  cache.set(word, fallbackPool);
+  return fallbackPool;
 }
 
 function selectDistractors(word, allWords, count, valueSelector) {
@@ -287,18 +341,18 @@ function renderENtoTRMC(word, allWords, meaningIndex = 0) {
   const correctAnswer = getUsefulTranslation(word, wordData, meaningData);
   if (!correctAnswer) return null;
 
-  // Build distractors from Turkish translations of semantically similar words
-  const semanticKeys = rankSemanticDistractorKeys(word, allWords);
-  const trDistractors = semanticKeys
-    .map((key) => getUsefulTranslation(key, allWords[key], getMeaningData(key, allWords)))
-    .filter((d) => d && normalizeToken(d) !== normalizeToken(correctAnswer));
+  const candidateKeys = uniqueValues([...buildDistractorPool(word, allWords), ...Object.keys(allWords)]).filter((key) => key !== word);
+  const distractors = [];
+  for (const key of candidateKeys) {
+    const candidate = getUsefulTranslation(key, allWords[key], getMeaningData(key, allWords));
+    if (!candidate || normalizeToken(candidate) === normalizeToken(correctAnswer)) continue;
+    if (distractors.some((item) => normalizeToken(item) === normalizeToken(candidate))) continue;
+    distractors.push(candidate);
+    if (distractors.length === 3) break;
+  }
 
-  const fallbackTr = selectDistractors(word, allWords, 12, (item, key) => getUsefulTranslation(key, item)).filter(Boolean)
-    .filter((d) => normalizeToken(d) !== normalizeToken(correctAnswer));
-
-  const pool = uniqueValues([...trDistractors, ...fallbackTr]);
-  const distractors = pool.slice(0, 3);
   const options = shuffleList(uniqueValues([correctAnswer, ...distractors])).slice(0, 4);
+  if (options.length < 4) return null;
 
   return {
     type: 'EN_TO_TR_MC',
@@ -374,7 +428,7 @@ function renderSentenceBuilder(word, allWords) {
   const translations = Array.isArray(wordData.ex_tr) ? wordData.ex_tr : [];
   const usefulIndexes = examples
     .map((example, index) => ({ example, index, translation: translations[index] || '' }))
-    .filter(({ example, translation }) => !isPlaceholderText(example, word) && !isPlaceholderText(translation, word))
+    .filter(({ example, translation }) => !isPlaceholderText(example, word) && !isPlaceholderText(translation, word) && hasMeaningfulSentenceBuilderLength(example))
     .map(({ index }) => index);
   if (usefulIndexes.length === 0) return null;
 
@@ -426,9 +480,12 @@ function renderTranslationMC(word, allWords) {
     distractors = shuffleList(explicitDistr).slice(0, 3);
   } else {
     // Priority 2: Build distractors by swapping target word
-    const sbWords = Array.isArray(wordData.sb_distractors?.[sentenceIndex])
-      ? wordData.sb_distractors[sentenceIndex]
-      : (Array.isArray(wordData.sb_distractors?.[0]) ? wordData.sb_distractors[0] : []);
+    const hasReliableExampleTranslation = Array.isArray(wordData.ex_tr) && wordData.ex_tr[sentenceIndex] && !isPlaceholderText(wordData.ex_tr[sentenceIndex], word);
+    const sbWords = hasReliableExampleTranslation
+      ? (Array.isArray(wordData.sb_distractors?.[sentenceIndex])
+        ? wordData.sb_distractors[sentenceIndex]
+        : (Array.isArray(wordData.sb_distractors?.[0]) ? wordData.sb_distractors[0] : []))
+      : [];
 
     const displayWord = word.replace(/_/g, ' ');
     const swapped = sbWords
@@ -446,11 +503,15 @@ function renderTranslationMC(word, allWords) {
 
     // Priority 3: Fallback to random English sentences from other words
     if (distractors.length < 3) {
-      const candidateWords = Object.keys(allWords).filter(w => w !== word && allWords[w].ex?.length > 0);
-      const fallback = shuffleList(candidateWords)
-        .map(w => getFirstUsefulExample(w, allWords[w]))
-        .filter(s => s && s !== correctEN && !distractors.includes(s))
-        .slice(0, 12);
+      const candidateWords = uniqueValues([...buildDistractorPool(word, allWords), ...Object.keys(allWords)])
+        .filter(w => w !== word && allWords[w].ex?.length > 0);
+      const fallback = [];
+      for (const candidateWord of candidateWords) {
+        const sentence = getFirstUsefulExample(candidateWord, allWords[candidateWord]);
+        if (!sentence || sentence === correctEN || distractors.includes(sentence) || fallback.includes(sentence)) continue;
+        fallback.push(sentence);
+        if (fallback.length >= 12) break;
+      }
       distractors = [...distractors, ...fallback];
     }
     distractors = uniqueValues(distractors).slice(0, 3);

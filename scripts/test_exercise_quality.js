@@ -15,13 +15,34 @@ const Exercises = context.window.Exercises;
 
 const BAD_PATTERNS = [
   /a word used with a meaning close to/i,
+  /to perform an action related to/i,
+  /describing something that can be understood as/i,
+  /in a way related to/i,
+  /a linking word used with a meaning close to/i,
   /appears in today's vocabulary set/i,
   /i saw .* in a sentence and wrote it down/i,
+  /bugunku kelime setinde/i,
+  /bugünkü kelime setinde/i,
+  /kelime setinde geciyor/i,
+  /kelime setinde geçiyor/i,
+  /bir cumlede gordum/i,
+  /bir cümlede gördüm/i,
+  /not ettim/i,
+  /people often .* when they practice english/i,
+  /i try to .* in short daily conversations/i,
+  /this lesson is .* for beginners/i,
+  /her explanation was .* and easy to follow/i,
+  /she spoke .* during the meeting/i,
+  /he answered .* and continued the task/i,
+  /kelimesi bu cumlede kullanilmistir/i,
+  /kelimesi bu cümlede kullanılmıştır/i,
   /dogru ceviri degildir/i,
   /anlam farklidir/i,
   /cumle zamani farklidir/i,
   /ozneyi degistirir/i,
-  /anlami kaydirir/i
+  /anlami kaydirir/i,
+  /__missing_ex_tr__/i,
+  /__missing_ex_distractor__/i
 ];
 
 function normalize(value) {
@@ -52,10 +73,6 @@ function assertTargetWordNotAnswer(word, value, label) {
 
 function readyWords() {
   return Object.keys(allWords).filter((word) => Exercises.isExerciseReadyWord(word, allWords));
-}
-
-function sample(list, count) {
-  return list.slice(0, count);
 }
 
 function testDefinition(word) {
@@ -143,15 +160,35 @@ function testErrorCorrection(word) {
 const ready = readyWords();
 assert.ok(ready.length >= 100, `expected many ready words, got ${ready.length}`);
 
-const commonSample = sample(ready, 150);
+['alarm', 'ignite', 'analyze'].forEach((word) => {
+  assert.ok(Exercises.isExerciseReadyWord(word, allWords), `${word} should be exercise-ready`);
+});
+
+function testReportedWordRegressions() {
+  const alarmTranslation = Exercises.renderTranslationMC('alarm', allWords);
+  assert.ok(alarmTranslation, 'alarm should build a translation multiple-choice exercise');
+  ['CD', 'April', 'August'].forEach((badOptionToken) => {
+    assert.ok(
+      alarmTranslation.options.every((option) => !normalize(option).includes(normalize(badOptionToken))),
+      `alarm translation options should not use fallback sb distractor token: ${badOptionToken}`
+    );
+  });
+
+  ['ignite', 'analyze'].forEach((word) => {
+    assert.strictEqual(Exercises.renderSentenceBuilder(word, allWords), null, `${word} should not build sentence-builder without real ex_tr`);
+  });
+}
+
+testReportedWordRegressions();
+
 const sentenceBuilderSupported = ready.filter((word) => Boolean(Exercises.renderSentenceBuilder(word, allWords)));
 assert.ok(sentenceBuilderSupported.length >= 100, `expected many sentence-builder capable words, got ${sentenceBuilderSupported.length}`);
 
-commonSample.forEach(testDefinition);
-commonSample.forEach(testEnToTr);
-commonSample.forEach(testGapFill);
-sample(sentenceBuilderSupported, 150).forEach(testSentenceBuilder);
-commonSample.forEach(testTranslationMc);
+ready.forEach(testDefinition);
+ready.forEach(testEnToTr);
+ready.forEach(testGapFill);
+sentenceBuilderSupported.forEach(testSentenceBuilder);
+ready.forEach(testTranslationMc);
 
 const contextCount = ready.reduce((count, word) => count + (testContextMatch(word) ? 1 : 0), 0);
 const multiGapCount = ready.reduce((count, word) => count + (testMultiGap(word, ready.slice(0, 20)) ? 1 : 0), 0);
@@ -163,4 +200,4 @@ assert.ok(multiGapCount >= 10, `expected at least 10 multi-gap exercises, got ${
 assert.ok(collocationCount >= 10, `expected at least 10 collocation exercises, got ${collocationCount}`);
 assert.ok(errorCorrectionCount >= 10, `expected at least 10 error-correction exercises, got ${errorCorrectionCount}`);
 
-console.log(`exercise quality tests passed: ready=${ready.length}, sentenceBuilder=${sentenceBuilderSupported.length}, sampled=${commonSample.length}, context=${contextCount}, multiGap=${multiGapCount}, collocation=${collocationCount}, errorCorrection=${errorCorrectionCount}`);
+console.log(`exercise quality tests passed: ready=${ready.length}, sentenceBuilder=${sentenceBuilderSupported.length}, context=${contextCount}, multiGap=${multiGapCount}, collocation=${collocationCount}, errorCorrection=${errorCorrectionCount}`);
