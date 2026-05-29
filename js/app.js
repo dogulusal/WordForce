@@ -1417,14 +1417,6 @@ function renderHome(state) {
         <div class="progress-section-title">This Week</div>
         ${heatmapHtml}
       </div>
-      <button class="home-manage-card btn-press" data-action="open-manage-words">
-        <span class="home-manage-icon">📚</span>
-        <div class="home-manage-body">
-          <div class="home-manage-title">Manage Words</div>
-          <div class="home-manage-desc">Browse vocabulary, mark known words, or hand-pick for your next session.</div>
-        </div>
-        <span class="home-manage-arrow">›</span>
-      </button>
       <div class="home-goals-section">
         <div class="home-goals-title">Today's Goals</div>
         ${goalsHtml}
@@ -1454,21 +1446,6 @@ function renderProgress(state) {
       ${levelData.map(l => `<span>${l.level}</span>`).join('')}
     </div>`;
 
-  // Daily goals
-  const goals = getDailyGoals(state.progress);
-  const goalsHtml = goals.map(g => {
-    const pct = Math.min(100, Math.round((g.current / g.target) * 100));
-    const done = pct >= 100;
-    return `<div class="daily-goal ${done ? 'daily-goal-done' : ''}">
-      <span class="daily-goal-icon">${g.icon}</span>
-      <div class="daily-goal-info">
-        <span class="daily-goal-title">${g.title}</span>
-        <div class="daily-goal-bar"><div class="daily-goal-bar-fill" style="width:${pct}%"></div></div>
-      </div>
-      <span class="daily-goal-count">${g.current}/${g.target}</span>
-    </div>`;
-  }).join('');
-
   return `
     <div class="home-screen card-slide-enter">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
@@ -1493,11 +1470,6 @@ function renderProgress(state) {
           <span class="home-stat-sep">·</span>
           <span class="home-stat"><span class="home-stat-label">Available</span><span class="home-stat-value home-stat-available">${available}</span></span>
         </div>
-      </div>
-
-      <div class="card" style="padding:14px;margin-bottom:12px;">
-        <div class="progress-section-title">Today's Goals</div>
-        <div style="display:flex;flex-direction:column;gap:8px;">${goalsHtml}</div>
       </div>
 
       <div class="stats-grid">
@@ -1570,6 +1542,13 @@ function renderTrain(state) {
         <div class="train-card-body">
           <div class="train-card-title">Practice Exercises</div>
           <div class="train-card-desc">Collocations, error correction, flashcards</div>
+        </div>
+      </button>
+      <button class="train-card train-card-manage btn-press" data-action="open-manage-words">
+        <span class="train-card-icon">📚</span>
+        <div class="train-card-body">
+          <div class="train-card-title">Manage Words</div>
+          <div class="train-card-desc">Browse vocabulary, mark known words, or hand-pick your next session</div>
         </div>
       </button>
     </div>

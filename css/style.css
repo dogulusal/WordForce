@@ -566,7 +566,10 @@ button.card {
 }
 
 .sb-chip-prefix {
-  box-shadow: 0 0 0 1px rgba(243, 165, 49, 0.55) inset;
+  border-color: rgba(46, 207, 149, 0.9);
+  background: linear-gradient(180deg, rgba(46, 207, 149, 0.32), rgba(31, 165, 115, 0.18));
+  color: #eafff6;
+  box-shadow: 0 0 0 2px rgba(46, 207, 149, 0.24) inset, 0 0 10px rgba(46, 207, 149, 0.16);
 }
 
 .sb-help {
@@ -1766,6 +1769,15 @@ button.card {
   background: linear-gradient(135deg, rgba(138, 98, 227, 0.08), rgba(100, 66, 186, 0.03));
 }
 
+.train-card-manage {
+  border-color: rgba(44, 143, 129, 0.42);
+  background: linear-gradient(135deg, rgba(44, 143, 129, 0.13), rgba(33, 109, 98, 0.06));
+}
+
+[data-theme="light"] .train-card-manage {
+  background: linear-gradient(135deg, rgba(44, 143, 129, 0.09), rgba(33, 109, 98, 0.04));
+}
+
 .train-size-config {
   display: flex;
   align-items: center;
@@ -2100,6 +2112,13 @@ button.card {
 [data-theme="light"] .sb-placed-chip {
   border-color: rgba(31, 165, 115, 0.55);
   background: rgba(31, 165, 115, 0.07);
+}
+
+[data-theme="light"] .sb-placed-chip.sb-chip-prefix {
+  border-color: rgba(31, 165, 115, 0.9);
+  background: rgba(31, 165, 115, 0.18);
+  color: var(--text-primary);
+  box-shadow: 0 0 0 2px rgba(31, 165, 115, 0.22) inset, 0 0 10px rgba(31, 165, 115, 0.12);
 }
 
 [data-theme="light"] .sb-available-chip:hover:not(:disabled) {

@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "echo \"No test suite configured. See Phase 5 verification steps.\" && exit 0",
+    "test:exercises": "node scripts/test_exercise_quality.js",
     "validate:data": "node scripts/validate.js",
     "quality:report": "node scripts/quality_report.js",
     "audit:alt": "node scripts/audit_alt_coverage.js",

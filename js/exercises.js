@@ -88,7 +88,15 @@ function isPlaceholderText(text, word) {
     value.includes(`the word ${wordText} appears in today's vocabulary set`) ||
     value.includes(`i saw ${wordText} in a sentence and wrote it down`) ||
     value.includes('dogru ceviri degildir') ||
-    value.includes('anlam farklidir');
+    value.includes('doğru çeviri değildir') ||
+    value.includes('anlam farklidir') ||
+    value.includes('anlam farklıdır') ||
+    value.includes('cumle zamani farklidir') ||
+    value.includes('cümle zamanı farklıdır') ||
+    value.includes('ozneyi degistirir') ||
+    value.includes('özneyi değiştirir') ||
+    value.includes('anlami kaydirir') ||
+    value.includes('anlamı kaydırır');
 }
 
 function getUsefulTranslation(word, wordData = {}, meaningData = null) {
@@ -107,6 +115,15 @@ function getUsefulDefinition(word, wordData = {}, meaningData = null) {
 function getUsefulExampleIndex(word, wordData = {}) {
   const examples = Array.isArray(wordData.ex) ? wordData.ex : [];
   return examples.findIndex((example) => !isPlaceholderText(example, word));
+}
+
+function getUsefulExamples(word, wordData = {}) {
+  const examples = Array.isArray(wordData.ex) ? wordData.ex : [];
+  return examples.filter((example) => !isPlaceholderText(example, word));
+}
+
+function getFirstUsefulExample(word, wordData = {}) {
+  return getUsefulExamples(word, wordData)[0] || '';
 }
 
 function isExerciseReadyWord(word, allWords) {
@@ -233,11 +250,13 @@ function getMeaningData(word, allWords, meaningIndex = 0) {
 
 function renderDefinition(word, allWords) {
   const data = getMeaningData(word, allWords, 0);
+  const wordData = allWords[word] || {};
+  const def = getUsefulDefinition(word, wordData, data) || getUsefulTranslation(word, wordData, data);
   return {
     type: 'DEFINITION',
     word,
     prompt: `Learn this word: ${word}`,
-    def: data?.def || 'No definition available yet.'
+    def: def || 'No definition available yet.'
   };
 }
 
@@ -290,14 +309,15 @@ function renderENtoTRMC(word, allWords, meaningIndex = 0) {
 function chooseGapSentence(word, allWords, options = {}) {
   const { isPractice = false, preferredExampleIndex = null } = options;
   const wordData = allWords[word] || {};
-  const examples = Array.isArray(wordData.ex) ? wordData.ex.filter(Boolean) : [];
+  const examples = getUsefulExamples(word, wordData);
 
   if (!isPractice) {
     return examples[0] || `${word} is useful.`;
   }
 
-  if (Number.isInteger(preferredExampleIndex) && examples[preferredExampleIndex]) {
-    return examples[preferredExampleIndex];
+  const rawExamples = Array.isArray(wordData.ex) ? wordData.ex : [];
+  if (Number.isInteger(preferredExampleIndex) && rawExamples[preferredExampleIndex] && !isPlaceholderText(rawExamples[preferredExampleIndex], word)) {
+    return rawExamples[preferredExampleIndex];
   }
 
   const pos = wordData.pos || '';
@@ -331,7 +351,7 @@ function renderGapFill(word, allWords, meaningIndex = 0, options = {}) {
   const shuffledOptions = shuffleList([word.replace(/_/g, ' '), ...distractors]);
 
   // Use definition as hint (English only)
-  const hint = wordData.def || '';
+  const hint = getUsefulDefinition(word, wordData, meaningData) || getUsefulTranslation(word, wordData, meaningData);
 
   return {
     type: 'GAP_FILL',
@@ -382,14 +402,21 @@ function renderSentenceBuilder(word, allWords) {
 
 function renderTranslationMC(word, allWords) {
   const wordData = allWords[word];
-  const sentenceIndex = Math.floor(Math.random() * (wordData.ex?.length || 1));
-  const correctEN = wordData.ex?.[sentenceIndex] || `${word} is useful.`;
-  const def = wordData.def || `meaning of ${word.replace(/_/g, ' ')}`;
+  const examples = Array.isArray(wordData.ex) ? wordData.ex : [];
+  const usefulIndexes = examples
+    .map((example, index) => ({ example, index }))
+    .filter(({ example }) => !isPlaceholderText(example, word))
+    .map(({ index }) => index);
+  if (usefulIndexes.length === 0) return null;
+
+  const sentenceIndex = usefulIndexes[Math.floor(Math.random() * usefulIndexes.length)];
+  const correctEN = examples[sentenceIndex];
+  const def = getUsefulDefinition(word, wordData, getMeaningData(word, allWords, 0)) || `meaning of ${word.replace(/_/g, ' ')}`;
 
   // Build English sentence distractors
   // Priority 1: Use pre-authored English distractors
   const explicitDistr = Array.isArray(wordData.ex_distractors?.[sentenceIndex])
-    ? wordData.ex_distractors[sentenceIndex].filter(s => s && s !== correctEN)
+    ? wordData.ex_distractors[sentenceIndex].filter(s => s && s !== correctEN && !isPlaceholderText(s, word))
     : [];
 
   let distractors;
@@ -419,15 +446,16 @@ function renderTranslationMC(word, allWords) {
     if (distractors.length < 3) {
       const candidateWords = Object.keys(allWords).filter(w => w !== word && allWords[w].ex?.length > 0);
       const fallback = shuffleList(candidateWords)
-        .slice(0, 10)
-        .map(w => allWords[w].ex[0])
-        .filter(s => s && s !== correctEN && !distractors.includes(s));
+        .map(w => getFirstUsefulExample(w, allWords[w]))
+        .filter(s => s && s !== correctEN && !distractors.includes(s))
+        .slice(0, 12);
       distractors = [...distractors, ...fallback];
     }
-    distractors = distractors.slice(0, 3);
+    distractors = uniqueValues(distractors).slice(0, 3);
   }
 
-  const options = shuffleList([correctEN, ...distractors]).slice(0, 4);
+  const options = shuffleList(uniqueValues([correctEN, ...distractors])).slice(0, 4);
+  if (options.length < 4) return null;
 
   return {
     type: 'TRANSLATION_MC',
@@ -485,7 +513,7 @@ function renderContextMatch(word, allWords) {
   const displayWord = word.replace(/_/g, ' ');
 
   // Get correct sentences (from ex array)
-  const correctSentences = (wordData.ex || []).filter(Boolean).slice(0, 3);
+  const correctSentences = getUsefulExamples(word, wordData).slice(0, 3);
   if (correctSentences.length < 2) return null;
 
   // Generate wrong sentence
@@ -518,13 +546,13 @@ function findCoOccurrence(wordA, wordB, allWords) {
   const normA = normalizeToken(wordA.replace(/_/g, ' '));
 
   // Check if wordB appears in any of wordA's examples
-  for (const sentence of (dataA.ex || [])) {
+  for (const sentence of getUsefulExamples(wordA, dataA)) {
     if (normalizeToken(sentence).includes(normB)) {
       return { sentence, words: [wordA, wordB] };
     }
   }
   // Check if wordA appears in any of wordB's examples
-  for (const sentence of (dataB.ex || [])) {
+  for (const sentence of getUsefulExamples(wordB, dataB)) {
     if (normalizeToken(sentence).includes(normA)) {
       return { sentence, words: [wordB, wordA] };
     }
@@ -536,7 +564,7 @@ function selectSecondWord(currentWord, sessionQueue, allWords) {
   const candidates = sessionQueue.filter(w => {
     if (w === currentWord) return false;
     const data = allWords[w];
-    return data && Array.isArray(data.ex) && data.ex.length > 0;
+    return data && getUsefulExamples(w, data).length > 0;
   });
 
   if (candidates.length === 0) return null;
@@ -578,8 +606,8 @@ function renderMultiGap(word, sessionQueue, allWords) {
     mode = 'single';
   } else {
     // No co-occurrence: show each word's sentence separately (no fake compound joins)
-    const sentA = (allWords[word]?.ex || [])[0] || `I use ${displayA} every day.`;
-    const sentB = (allWords[wordB]?.ex || [])[0] || `I use ${displayB} every day.`;
+    const sentA = getFirstUsefulExample(word, allWords[word]) || `I use ${displayA} every day.`;
+    const sentB = getFirstUsefulExample(wordB, allWords[wordB]) || `I use ${displayB} every day.`;
     sentence = null;
     mode = 'separate';
     gapSentence = [
@@ -615,8 +643,8 @@ function renderMultiGap(word, sessionQueue, allWords) {
 
     if (blankCount < 2) {
       // Couldn't blank both words, fall back to separate
-      const sentA = (allWords[word]?.ex || [])[0] || `I use ${displayA} every day.`;
-      const sentB = (allWords[wordB]?.ex || [])[0] || `I use ${displayB} every day.`;
+      const sentA = getFirstUsefulExample(word, allWords[word]) || `I use ${displayA} every day.`;
+      const sentB = getFirstUsefulExample(wordB, allWords[wordB]) || `I use ${displayB} every day.`;
       mode = 'separate';
       gapSentence = [
         { sentence: blankWord(sentA, word), correct: displayA },
@@ -635,12 +663,22 @@ function renderMultiGap(word, sessionQueue, allWords) {
 
   // Build distractors
   const correctWords = [displayA, displayB];
-  const distractorPool = buildDistractorPool(word, allWords)
+  let distractorPool = buildDistractorPool(word, allWords)
     .filter(w => w !== wordB)
     .map(w => w.replace(/_/g, ' '))
     .filter(d => !correctWords.includes(d));
+
+  if (distractorPool.length < 2) {
+    const fallbackPool = Object.keys(allWords)
+      .filter(w => w !== word && w !== wordB)
+      .map(w => w.replace(/_/g, ' '))
+      .filter(d => !correctWords.includes(d));
+    distractorPool = uniqueValues([...distractorPool, ...fallbackPool]);
+  }
+
   const distractors = shuffleList(distractorPool).slice(0, 2);
-  const chips = shuffleList([...correctWords, ...distractors]);
+  const chips = shuffleList(uniqueValues([...correctWords, ...distractors]));
+  if (chips.length < 4) return null;
 
   return {
     type: 'MULTI_GAP',
@@ -771,7 +809,7 @@ function renderCollocationMatch(word, allWords) {
 function renderErrorCorrection(word, allWords) {
   const wordData = allWords[word] || {};
   const displayWord = word.replace(/_/g, ' ');
-  const examples = Array.isArray(wordData.ex) ? wordData.ex.filter(Boolean) : [];
+  const examples = getUsefulExamples(word, wordData);
 
   if (examples.length === 0) return null;
 
@@ -805,8 +843,11 @@ function renderErrorCorrection(word, allWords) {
   }
 
   // Strategy 2: Use wrong_usage if available
-  if (!incorrectSentence && Array.isArray(wordData.wrong_usage) && wordData.wrong_usage.length > 0) {
-    incorrectSentence = wordData.wrong_usage[Math.floor(Math.random() * wordData.wrong_usage.length)];
+  const wrongUsage = Array.isArray(wordData.wrong_usage)
+    ? wordData.wrong_usage.filter((sentence) => !isPlaceholderText(sentence, word))
+    : [];
+  if (!incorrectSentence && wrongUsage.length > 0) {
+    incorrectSentence = wrongUsage[Math.floor(Math.random() * wrongUsage.length)];
     errorType = 'wrong_usage';
   }
 
