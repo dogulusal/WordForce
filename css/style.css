@@ -635,6 +635,13 @@ button.card {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
+.modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
 .demo-answer-zone {
   display: flex;
   flex-direction: column;
@@ -799,6 +806,14 @@ button.card {
   padding: 10px;
   background: rgba(16, 22, 35, 0.5);
   margin-bottom: 10px;
+}
+
+.prep-page-indicator {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-align: right;
+  margin-bottom: 6px;
+  padding: 0 2px;
 }
 
 .prep-chip {
@@ -1045,10 +1060,18 @@ button.card {
   }
 
   .prep-footer,
-  .prep-pagination,
   .summary-word-row,
   .word-row {
     flex-direction: column;
+  }
+
+  .prep-pagination {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .prep-pagination .btn {
+    flex: 1;
   }
 
   .prep-count,

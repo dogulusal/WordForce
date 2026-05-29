@@ -202,9 +202,9 @@ function renderQuitConfirmModal() {
       <div class="modal" role="dialog" aria-label="Quit session">
         <h2>End this session?</h2>
         <p>Progress so far will be saved.</p>
-        <div class="modal-actions">
-          <button class="btn" data-ui-action="quit-session">End Session</button>
-          <button class="btn" data-ui-action="close-modal">Keep Going</button>
+        <div class="modal-actions" style="flex-direction:column;">
+          <button class="btn" style="background:var(--error);border-color:var(--error);color:#fff;" data-ui-action="quit-session">End Session</button>
+          <button class="btn btn-muted" data-ui-action="close-modal">Keep Going</button>
         </div>
       </div>
     </div>

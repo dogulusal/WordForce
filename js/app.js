@@ -1630,16 +1630,16 @@ function renderPrep(state) {
       <p class="prep-subtitle">${modeSubtitle}</p>
       <div class="prep-levels">${levelButtons}</div>
       <div class="prep-grid-wrap">
+        <div class="prep-page-indicator">Page ${safePage + 1} / ${totalPages}</div>
         <div class="prep-grid">${chips || '<p class="prep-empty">No words for this filter.</p>'}</div>
       </div>
       <div class="prep-footer">
         <div class="prep-pagination">
           <button class="btn btn-muted" data-action="prep-prev" ${safePage <= 0 ? 'disabled' : ''}>← Prev</button>
-          <span>Page ${safePage + 1} / ${totalPages}</span>
           <button class="btn btn-muted" data-action="prep-next" ${safePage >= totalPages - 1 ? 'disabled' : ''}>Next →</button>
         </div>
         <div class="prep-actions">
-          <button class="btn btn-muted prep-save-btn" data-action="prep-save" ${(state.ui.prepSelectedKnown || []).length === 0 ? 'disabled' : ''}>Save Known</button>
+          ${selectionMode === 'known' ? `<button class="btn btn-muted prep-save-btn" data-action="prep-save" ${(state.ui.prepSelectedKnown || []).length === 0 ? 'disabled' : ''}>Save Known</button>` : ''}
           <button class="btn prep-continue-btn" data-action="prep-start-session">Start Session →</button>
         </div>
       </div>
