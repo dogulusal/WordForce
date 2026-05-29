@@ -12,8 +12,21 @@
   },
   "abandon": {
     "level": "B1",
-    "pos": "noun",
-    "tr": "abandon"
+    "pos": "verb",
+    "tr": "terk etmek, bırakmak",
+    "def": "To leave someone or something permanently; to give up an activity, plan, or belief.",
+    "ex": [
+      "They had to abandon the old building after the storm.",
+      "She refused to abandon her plan despite the difficulties."
+    ],
+    "ex_tr": [
+      "Fırtınadan sonra eski binayı terk etmek zorunda kaldılar.",
+      "Zorluklara rağmen planından vazgeçmeyi reddetti."
+    ],
+    "sb_distractors": [
+      ["restore", "quietly", "tomorrow"],
+      ["accept", "quickly", "office"]
+    ]
   },
   "abdicate": {
     "level": "C1",

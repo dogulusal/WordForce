@@ -513,6 +513,25 @@ button.card {
   color: #7387a8;
 }
 
+.sb-target-translation {
+  margin: 8px 0 8px;
+  padding: 10px 12px;
+  border: 1px solid rgba(46, 207, 149, 0.34);
+  border-radius: 10px;
+  background: rgba(46, 207, 149, 0.08);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.sb-target-word {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+}
+
 .sb-available-zone {
   display: flex;
   flex-wrap: wrap;
@@ -2098,6 +2117,18 @@ button.card {
 [data-theme="light"] .sb-label {
   color: var(--text-secondary);
 }
+
+[data-theme="light"] .sb-target-translation {
+  background: rgba(31, 165, 115, 0.08);
+  border-color: rgba(31, 165, 115, 0.28);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .sb-target-word {
+  color: var(--text-secondary);
+}
+
+.theme-toggle {
   position: fixed;
   top: 16px;
   right: 16px;

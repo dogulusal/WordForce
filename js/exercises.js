@@ -64,6 +64,56 @@ function flattenSbDistractors(wordData) {
   return wordData.sb_distractors.flat().map((t) => String(t || '').trim()).filter(Boolean);
 }
 
+const TRANSLATION_OVERRIDES = {
+  abandon: 'terk etmek, bırakmak'
+};
+
+function displayWord(word) {
+  return String(word || '').replace(/_/g, ' ');
+}
+
+function normalizedDisplayWord(word) {
+  return normalizeToken(displayWord(word));
+}
+
+function isSameAsEnglishWord(value, word) {
+  return normalizeToken(value) === normalizedDisplayWord(word);
+}
+
+function isPlaceholderText(text, word) {
+  const value = String(text || '').toLowerCase();
+  const wordText = displayWord(word).toLowerCase();
+  if (!value.trim()) return true;
+  return value.includes(`a word used with a meaning close to "${wordText}"`) ||
+    value.includes(`the word ${wordText} appears in today's vocabulary set`) ||
+    value.includes(`i saw ${wordText} in a sentence and wrote it down`) ||
+    value.includes('dogru ceviri degildir') ||
+    value.includes('anlam farklidir');
+}
+
+function getUsefulTranslation(word, wordData = {}, meaningData = null) {
+  const override = TRANSLATION_OVERRIDES[word];
+  if (override) return override;
+
+  const candidates = [meaningData?.tr, wordData.tr].filter(Boolean);
+  return candidates.find((value) => !isSameAsEnglishWord(value, word) && !isPlaceholderText(value, word)) || '';
+}
+
+function getUsefulDefinition(word, wordData = {}, meaningData = null) {
+  const candidates = [meaningData?.def, wordData.def].filter(Boolean);
+  return candidates.find((value) => !isPlaceholderText(value, word)) || '';
+}
+
+function getUsefulExampleIndex(word, wordData = {}) {
+  const examples = Array.isArray(wordData.ex) ? wordData.ex : [];
+  return examples.findIndex((example) => !isPlaceholderText(example, word));
+}
+
+function isExerciseReadyWord(word, allWords) {
+  const wordData = allWords?.[word] || {};
+  return Boolean(getUsefulTranslation(word, wordData)) && getUsefulExampleIndex(word, wordData) >= 0;
+}
+
 function buildWordKeyLookup(allWords) {
   const lookup = {};
   Object.keys(allWords || {}).forEach((key) => {
@@ -211,16 +261,16 @@ function renderSecondaryMeaningDefinition(word, meaningIndex, allWords) {
 function renderENtoTRMC(word, allWords, meaningIndex = 0) {
   const meaningData = getMeaningData(word, allWords, meaningIndex);
   const wordData = allWords[word] || {};
-  // Use Turkish translation as the correct answer — much cleaner than low-quality def fields
-  const correctAnswer = meaningData.tr || wordData.tr || meaningData.def || wordData.def || word;
+  const correctAnswer = getUsefulTranslation(word, wordData, meaningData);
+  if (!correctAnswer) return null;
 
   // Build distractors from Turkish translations of semantically similar words
   const semanticKeys = rankSemanticDistractorKeys(word, allWords);
   const trDistractors = semanticKeys
-    .map((key) => { const d = getMeaningData(key, allWords); return d.tr || allWords[key]?.tr; })
+    .map((key) => getUsefulTranslation(key, allWords[key], getMeaningData(key, allWords)))
     .filter((d) => d && normalizeToken(d) !== normalizeToken(correctAnswer));
 
-  const fallbackTr = selectDistractors(word, allWords, 6, (item) => item.tr).filter(Boolean)
+  const fallbackTr = selectDistractors(word, allWords, 12, (item, key) => getUsefulTranslation(key, item)).filter(Boolean)
     .filter((d) => normalizeToken(d) !== normalizeToken(correctAnswer));
 
   const pool = uniqueValues([...trDistractors, ...fallbackTr]);
@@ -229,7 +279,7 @@ function renderENtoTRMC(word, allWords, meaningIndex = 0) {
 
   return {
     type: 'EN_TO_TR_MC',
-    prompt: `What does '${word.replace(/_/g, ' ')}' mean?`,
+    prompt: `What is the Turkish meaning of '${displayWord(word)}'?`,
     options,
     correct: correctAnswer,
     word,
@@ -296,9 +346,22 @@ function renderGapFill(word, allWords, meaningIndex = 0, options = {}) {
 
 function renderSentenceBuilder(word, allWords) {
   const wordData = allWords[word];
-  const sentenceIndex = Math.floor(Math.random() * (wordData.ex?.length || 1));
-  const enSentence = wordData.ex?.[sentenceIndex] || `${word} is important.`;
-  const def = wordData.def || `meaning of ${word.replace(/_/g, ' ')}`;
+  const examples = Array.isArray(wordData.ex) ? wordData.ex : [];
+  const translations = Array.isArray(wordData.ex_tr) ? wordData.ex_tr : [];
+  const usefulIndexes = examples
+    .map((example, index) => ({ example, index }))
+    .filter(({ example }) => !isPlaceholderText(example, word))
+    .map(({ index }) => index);
+  if (usefulIndexes.length === 0) return null;
+
+  const sentenceIndex = usefulIndexes[Math.floor(Math.random() * usefulIndexes.length)];
+  const enSentence = examples[sentenceIndex];
+  const meaningData = getMeaningData(word, allWords, 0);
+  const tr = getUsefulTranslation(word, wordData, meaningData);
+  const sentenceTr = translations[sentenceIndex] && !isPlaceholderText(translations[sentenceIndex], word)
+    ? translations[sentenceIndex]
+    : '';
+  const def = getUsefulDefinition(word, wordData, meaningData) || `meaning of ${displayWord(word)}`;
 
   const chips = enSentence.split(/\s+/).map(normalizeToken).filter(Boolean);
   const distractors = (wordData.sb_distractors?.[sentenceIndex] || []).map(normalizeToken).filter(Boolean);
@@ -307,7 +370,8 @@ function renderSentenceBuilder(word, allWords) {
   return {
     type: 'SENTENCE_BUILDER',
     definition: def,
-    tr: wordData.tr || '',
+    tr,
+    sentenceTr,
     chips: mixedChips,
     correct: chips.join(' '),
     correctTokens: chips,
@@ -774,5 +838,7 @@ window.Exercises = {
   renderCollocationMatch,
   renderErrorCorrection,
   hasContextMatchData,
+  isExerciseReadyWord,
+  getUsefulTranslation,
   normalizeToken
 };

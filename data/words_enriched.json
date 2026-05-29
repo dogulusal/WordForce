@@ -94032,39 +94032,39 @@
   },
   "abandon": {
     "level": "B1",
-    "pos": "noun",
-    "tr": "abandon",
-    "def": "A word used with a meaning close to \"abandon\".",
+    "pos": "verb",
+    "tr": "terk etmek, bırakmak",
+    "def": "To leave someone or something permanently; to give up an activity, plan, or belief.",
     "ex": [
-      "The word abandon appears in today's vocabulary set.",
-      "I saw abandon in a sentence and wrote it down."
+      "They had to abandon the old building after the storm.",
+      "She refused to abandon her plan despite the difficulties."
     ],
     "ex_tr": [
-      "\"abandon\" kelimesi bugunku kelime setinde geciyor.",
-      "\"abandon\" kelimesini bir cumlede gordum ve not ettim."
+      "Fırtınadan sonra eski binayı terk etmek zorunda kaldılar.",
+      "Zorluklara rağmen planından vazgeçmeyi reddetti."
     ],
     "ex_distractors": [
       [
-        "Anlam farklidir.",
-        "Cumle zamani farklidir.",
-        "Dogru ceviri degildir."
+        "They decided to repair the old building after the storm.",
+        "They moved into the old building before the storm.",
+        "They painted the old building after the storm."
       ],
       [
-        "Ozneyi degistirir.",
-        "Anlami kaydirir.",
-        "Dogru ceviri degildir."
+        "She quickly forgot her plan after the meeting.",
+        "She accepted a completely different plan.",
+        "She explained her plan to the whole team."
       ]
     ],
     "sb_distractors": [
       [
-        "aberration",
-        "ability",
-        "able"
+        "restore",
+        "quietly",
+        "tomorrow"
       ],
       [
-        "able",
-        "ability",
-        "aberration"
+        "accept",
+        "quickly",
+        "office"
       ]
     ]
   },

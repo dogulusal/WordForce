@@ -465,6 +465,14 @@ function getWordLevel(word) {
   return AllWords[word]?.level || 'A1';
 }
 
+function isExerciseReadyWord(word) {
+  if (!AllWords[word]) return false;
+  if (window.Exercises && typeof window.Exercises.isExerciseReadyWord === 'function') {
+    return window.Exercises.isExerciseReadyWord(word, AllWords);
+  }
+  return true;
+}
+
 // Returns the lowest CEFR level that still has unseen or practice words.
 // Used when levelFilter is 'ALL' to ensure level-ordered progression (A1 → A2 → ...).
 function getActiveLevel(progress) {
@@ -472,6 +480,7 @@ function getActiveLevel(progress) {
   const today = toLocalDate(0);
   for (const level of levelOrder) {
     const hasActive = Object.keys(AllWords).some((w) => {
+      if (!isExerciseReadyWord(w)) return false;
       if (getWordLevel(w) !== level) return false;
       const wp = progress.words[w];
       if (!wp) return true; // unseen
@@ -486,7 +495,7 @@ function getActiveLevel(progress) {
 
 function pickSessionWords(sessionSize, levelFilter = 'ALL', customWords = null) {
   if (Array.isArray(customWords) && customWords.length > 0) {
-    return shuffle(customWords).slice(0, sessionSize);
+    return shuffle(customWords.filter(isExerciseReadyWord)).slice(0, sessionSize);
   }
 
   const reviewDue = getReviewDue(AppState.progress);
@@ -499,7 +508,7 @@ function pickSessionWords(sessionSize, levelFilter = 'ALL', customWords = null) 
     const data = AppState.progress.words[w];
     return data.status === 'practice' && data.nextReview && data.nextReview > today;
   });
-  const unseen = Object.keys(AllWords).filter((w) => !AppState.progress.words[w]);
+  const unseen = Object.keys(AllWords).filter((w) => !AppState.progress.words[w] && isExerciseReadyWord(w));
 
   // When ALL is selected, enforce level-ordered progression: finish lower levels first
   const effectiveFilter = levelFilter === 'ALL'
@@ -507,17 +516,17 @@ function pickSessionWords(sessionSize, levelFilter = 'ALL', customWords = null) 
     : levelFilter;
 
   const picked = [
-    ...reviewDue.filter((w) => isEligibleForLevel(w, effectiveFilter)),
-    ...practiceWords.filter((w) => !reviewDue.includes(w) && isEligibleForLevel(w, effectiveFilter)),
+    ...reviewDue.filter((w) => isExerciseReadyWord(w) && isEligibleForLevel(w, effectiveFilter)),
+    ...practiceWords.filter((w) => isExerciseReadyWord(w) && !reviewDue.includes(w) && isEligibleForLevel(w, effectiveFilter)),
     ...unseen.filter((w) => isEligibleForLevel(w, effectiveFilter))
   ];
 
   if (picked.length === 0) {
     // No active words at current level — try review-due words from any level
-    const anyReviewDue = reviewDue.filter((w) => isEligibleForLevel(w, levelFilter));
+    const anyReviewDue = reviewDue.filter((w) => isExerciseReadyWord(w) && isEligibleForLevel(w, levelFilter));
     if (anyReviewDue.length > 0) return anyReviewDue.slice(0, sessionSize);
     return deferredPracticeWords
-      .filter((w) => isEligibleForLevel(w, levelFilter))
+      .filter((w) => isExerciseReadyWord(w) && isEligibleForLevel(w, levelFilter))
       .slice(0, sessionSize);
   }
 
@@ -850,7 +859,7 @@ function buildExercise(queueItem, round, wordIndex) {
     return Exercises.renderErrorCorrection(word, AllWords) || Exercises.renderDefinition(word, AllWords);
   }
   if (round === 1) return Exercises.renderDefinition(word, AllWords);
-  if (round === 2) return Exercises.renderENtoTRMC(word, AllWords);
+  if (round === 2) return Exercises.renderENtoTRMC(word, AllWords) || Exercises.renderDefinition(word, AllWords);
   if (round === 3) {
     const status = AppState.progress.words[word]?.status;
     const isPractice = status === 'practice';
@@ -859,7 +868,7 @@ function buildExercise(queueItem, round, wordIndex) {
   }
   if (round === 4) {
     return wordIndex % 2 === 0
-      ? Exercises.renderSentenceBuilder(word, AllWords)
+      ? (Exercises.renderSentenceBuilder(word, AllWords) || Exercises.renderTranslationMC(word, AllWords))
       : Exercises.renderTranslationMC(word, AllWords);
   }
   if (round === 5) {
@@ -1839,10 +1848,15 @@ function renderRoundSession(state) {
       })
       .join('');
 
-    const trHint = exercise.tr ? ` — <em style="color:var(--success);font-style:normal;">${exercise.tr}</em>` : '';
+    const targetHint = exercise.tr ? `<span class="sb-target-word">Target: <strong>${exercise.word.replace(/_/g, ' ')}</strong> · ${exercise.tr}</span>` : '';
+    const sentencePrompt = exercise.sentenceTr
+      ? `<p class="sb-target-translation">${exercise.sentenceTr}</p>`
+      : `<p class="sb-target-translation">Use <strong>${exercise.word.replace(/_/g, ' ')}</strong> in a natural English sentence.</p>`;
     body = `
       <h2>Build the sentence</h2>
-      <p class="sb-def">Arrange words to form a sentence using: <strong>'${exercise.word.replace(/_/g, ' ')}'</strong>${trHint}</p>
+      <p class="sb-def">Build the English sentence for this meaning:</p>
+      ${sentencePrompt}
+      ${targetHint}
       <div class="sb-placed-zone ${state.ui.sbShake ? 'sb-shake' : ''}">
         ${placedChips || '<span class="sb-placeholder">Tap words to build your sentence.</span>'}
       </div>
