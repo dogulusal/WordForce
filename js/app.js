@@ -1348,14 +1348,18 @@ function renderHome(state) {
   const focusPool = Math.max(0, Object.keys(AllWords).length - (known + learned));
   const streak = getStreakData();
 
-  const levelData = buildLevelProgress(state.progress);
-  const levelBarHtml = levelData.map(l =>
-    `<div class="home-level-segment" data-level="${l.level}" style="--fill:${l.fill.toFixed(3)}" title="${l.level}: ${l.known}/${l.total}"></div>`
-  ).join('');
-
   const streakHtml = streak.currentStreak > 0
     ? `<div class="home-streak-pill"><span>🔥</span><span class="home-streak-num">${streak.currentStreak}</span></div>`
     : '';
+
+  const weekDays = buildWeeklyHeatmap();
+  const heatmapHtml = `<div class="streak-days">${weekDays.map(d => {
+    let cc, cls;
+    if (d.count > 0) { cc = '🔥'; cls = 'done'; }
+    else if (d.isToday) { cc = '🕯️'; cls = 'pending'; }
+    else { cc = '❄️'; cls = 'missed'; }
+    return `<div class="streak-day-col${d.isToday ? ' today' : ''}"><div class="streak-day-circle ${cls}">${cc}</div><div class="streak-day-label">${d.label}</div><div class="streak-day-count">${d.count > 0 ? d.count : ''}</div></div>`;
+  }).join('')}</div>`;
 
   const goals = getDailyGoals(state.progress);
   const goalsHtml = goals.map(g => {
@@ -1400,11 +1404,9 @@ function renderHome(state) {
           <div class="home-quick-value">${state.ui.sessionSize || 10}</div>
         </div>
       </div>
-      <div class="home-level-row">
-        <div class="home-level-bar">${levelBarHtml}</div>
-        <div class="home-level-labels">
-          ${levelData.map(l => `<span>${l.level}</span>`).join('')}
-        </div>
+      <div class="card" style="padding:14px;margin-bottom:14px;">
+        <div class="progress-section-title">This Week</div>
+        ${heatmapHtml}
       </div>
       <button class="home-manage-card btn-press" data-action="open-manage-words">
         <span class="home-manage-icon">📚</span>
@@ -1441,32 +1443,6 @@ function renderProgress(state) {
     </div>
     <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:var(--text-secondary);margin:-8px 0 8px;">
       ${levelData.map(l => `<span>${l.level}</span>`).join('')}
-    </div>`;
-
-  // Weekly streak bubbles (Duolingo style)
-  const weekDays = buildWeeklyHeatmap();
-  const heatmapHtml = `
-    <div class="streak-days">
-      ${weekDays.map(d => {
-        const done = d.count > 0;
-        const isPast = !d.isToday;
-        let circleContent, circleClass;
-        if (done) {
-          circleContent = '🔥';
-          circleClass = 'done';
-        } else if (d.isToday) {
-          circleContent = '🕯️';
-          circleClass = 'pending';
-        } else {
-          circleContent = '❄️';
-          circleClass = 'missed';
-        }
-        return `<div class="streak-day-col${d.isToday ? ' today' : ''}">
-          <div class="streak-day-circle ${circleClass}">${circleContent}</div>
-          <div class="streak-day-label">${d.label}</div>
-          <div class="streak-day-count">${d.count > 0 ? d.count : ''}</div>
-        </div>`;
-      }).join('')}
     </div>`;
 
   // Daily goals
@@ -1508,11 +1484,6 @@ function renderProgress(state) {
           <span class="home-stat-sep">·</span>
           <span class="home-stat"><span class="home-stat-label">Available</span><span class="home-stat-value home-stat-available">${available}</span></span>
         </div>
-      </div>
-
-      <div class="card" style="padding:14px;margin-bottom:12px;">
-        <div class="progress-section-title">This Week</div>
-        ${heatmapHtml}
       </div>
 
       <div class="card" style="padding:14px;margin-bottom:12px;">
@@ -1572,11 +1543,7 @@ function renderExtras(state) {
 }
 
 function renderTrain(state) {
-  const sessionSize = state.ui.sessionSize || 10;
   const reviewDue = getReviewDue(state.progress).length;
-  const sizeOptions = [5, 10, 15, 20].map(size =>
-    `<button class="session-size-btn btn-press ${size === sessionSize ? 'active' : ''}" data-action="set-session-size" data-size="${size}">${size}</button>`
-  ).join('');
 
   return `
     <div class="train-screen card-slide-enter">
@@ -1596,10 +1563,6 @@ function renderTrain(state) {
           <div class="train-card-desc">Collocations, error correction, flashcards</div>
         </div>
       </button>
-      <div class="train-size-config">
-        <span class="train-size-label">Session size</span>
-        <div class="session-size-options">${sizeOptions}</div>
-      </div>
     </div>
   `;
 }
