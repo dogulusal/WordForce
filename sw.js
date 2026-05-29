@@ -1,5 +1,5 @@
 // WordForge Service Worker — cache strategy tuned to avoid stale UI
-const CACHE_NAME = 'wordforge-v6';
+const CACHE_NAME = 'wordforge-v7';
 const STATIC_ASSETS = [
   '/',
   '/index.html',

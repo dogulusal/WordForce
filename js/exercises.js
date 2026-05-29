@@ -87,6 +87,10 @@ function isPlaceholderText(text, word) {
   return value.includes(`a word used with a meaning close to "${wordText}"`) ||
     value.includes(`the word ${wordText} appears in today's vocabulary set`) ||
     value.includes(`i saw ${wordText} in a sentence and wrote it down`) ||
+    value.includes(`"${wordText}" kelimesi bu cumlede kullanilmistir`) ||
+    value.includes(`"${wordText}" kelimesi bu cümlede kullanılmıştır`) ||
+    value.includes(`${wordText} kelimesi bu cumlede kullanilmistir`) ||
+    value.includes(`${wordText} kelimesi bu cümlede kullanılmıştır`) ||
     value.includes('dogru ceviri degildir') ||
     value.includes('doğru çeviri değildir') ||
     value.includes('anlam farklidir') ||
@@ -369,8 +373,8 @@ function renderSentenceBuilder(word, allWords) {
   const examples = Array.isArray(wordData.ex) ? wordData.ex : [];
   const translations = Array.isArray(wordData.ex_tr) ? wordData.ex_tr : [];
   const usefulIndexes = examples
-    .map((example, index) => ({ example, index }))
-    .filter(({ example }) => !isPlaceholderText(example, word))
+    .map((example, index) => ({ example, index, translation: translations[index] || '' }))
+    .filter(({ example, translation }) => !isPlaceholderText(example, word) && !isPlaceholderText(translation, word))
     .map(({ index }) => index);
   if (usefulIndexes.length === 0) return null;
 
@@ -378,9 +382,7 @@ function renderSentenceBuilder(word, allWords) {
   const enSentence = examples[sentenceIndex];
   const meaningData = getMeaningData(word, allWords, 0);
   const tr = getUsefulTranslation(word, wordData, meaningData);
-  const sentenceTr = translations[sentenceIndex] && !isPlaceholderText(translations[sentenceIndex], word)
-    ? translations[sentenceIndex]
-    : '';
+  const sentenceTr = translations[sentenceIndex];
   const def = getUsefulDefinition(word, wordData, meaningData) || `meaning of ${displayWord(word)}`;
 
   const chips = enSentence.split(/\s+/).map(normalizeToken).filter(Boolean);

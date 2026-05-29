@@ -144,10 +144,13 @@ const ready = readyWords();
 assert.ok(ready.length >= 100, `expected many ready words, got ${ready.length}`);
 
 const commonSample = sample(ready, 150);
+const sentenceBuilderSupported = ready.filter((word) => Boolean(Exercises.renderSentenceBuilder(word, allWords)));
+assert.ok(sentenceBuilderSupported.length >= 100, `expected many sentence-builder capable words, got ${sentenceBuilderSupported.length}`);
+
 commonSample.forEach(testDefinition);
 commonSample.forEach(testEnToTr);
 commonSample.forEach(testGapFill);
-commonSample.forEach(testSentenceBuilder);
+sample(sentenceBuilderSupported, 150).forEach(testSentenceBuilder);
 commonSample.forEach(testTranslationMc);
 
 const contextCount = ready.reduce((count, word) => count + (testContextMatch(word) ? 1 : 0), 0);
@@ -160,4 +163,4 @@ assert.ok(multiGapCount >= 10, `expected at least 10 multi-gap exercises, got ${
 assert.ok(collocationCount >= 10, `expected at least 10 collocation exercises, got ${collocationCount}`);
 assert.ok(errorCorrectionCount >= 10, `expected at least 10 error-correction exercises, got ${errorCorrectionCount}`);
 
-console.log(`exercise quality tests passed: ready=${ready.length}, sampled=${commonSample.length}, context=${contextCount}, multiGap=${multiGapCount}, collocation=${collocationCount}, errorCorrection=${errorCorrectionCount}`);
+console.log(`exercise quality tests passed: ready=${ready.length}, sentenceBuilder=${sentenceBuilderSupported.length}, sampled=${commonSample.length}, context=${contextCount}, multiGap=${multiGapCount}, collocation=${collocationCount}, errorCorrection=${errorCorrectionCount}`);
