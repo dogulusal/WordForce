@@ -188,7 +188,7 @@ function renderWordListModal(state, allWords) {
         <p style="font-size:0.8rem;color:var(--text-secondary);margin:0 0 10px;">${filterDescriptions[filter] || ''}</p>
         <div class="word-list" style="flex:1;overflow-y:auto;">${rows}</div>
         <div class="modal-actions" style="margin-top:12px;justify-content:space-between;flex-wrap:wrap;">
-          ${(filter === 'review' || filter === 'practice') ? `<button class="btn btn-press" data-ui-action="start-filter-session" ${wordCount === 0 ? 'disabled' : ''}>Start ${filter === 'review' ? 'Review' : 'Practice'} Session</button>` : '<span></span>'}
+          ${(filter === 'review' || filter === 'practice') ? `<button class="btn btn-press" data-action="start-filter-session" ${wordCount === 0 ? 'disabled' : ''}>Start ${filter === 'review' ? 'Review' : 'Practice'} Session</button>` : '<span></span>'}
           <button class="btn btn-muted" data-ui-action="close-modal">Close</button>
         </div>
       </div>

@@ -56,7 +56,6 @@ p {
 
 .home-screen,
 .gate-screen,
-.round-screen,
 .summary-screen {
   animation: fade-in 220ms ease-out;
 }
@@ -277,11 +276,15 @@ button.card {
   background: linear-gradient(180deg, var(--accent), var(--accent-deep));
   cursor: pointer;
   transition: transform 120ms ease, filter 120ms ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
-.btn:hover {
-  filter: brightness(1.06);
-  transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+  }
 }
 
 .btn:active {
@@ -381,6 +384,8 @@ button.card {
   font-size: 0.9rem;
   font-weight: 500;
   transition: all 100ms;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .session-size-btn.active {
@@ -429,6 +434,8 @@ button.card {
   color: var(--text-primary);
   text-align: left;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .option.selected {
@@ -612,12 +619,13 @@ button.card {
 }
 
 .modal {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
   width: min(560px, 100%);
   background: linear-gradient(180deg, #1b2233, #212b3f);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 18px;
-  color: var(--text-secondary);
+  padding: 20px;
 }
 
 [data-theme="light"] .modal {
@@ -1889,6 +1897,8 @@ button.card {
   padding: 10px 8px;
   background: var(--bg-secondary);
   color: var(--text-secondary);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
   cursor: pointer;
   font-size: 0.88rem;
   font-weight: 500;
@@ -2439,6 +2449,8 @@ button.card {
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s;
 }
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 
 .session-confirm-chip:hover {
   background: rgba(255, 110, 110, 0.15);

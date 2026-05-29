@@ -49,6 +49,55 @@ function normalize(value) {
   return String(value || '').toLowerCase().trim().replace(/[.,!?;:'"()\[\]]/g, '').replace(/\s+/g, ' ');
 }
 
+function buildWordForms(word) {
+  const base = String(word || '').replace(/_/g, ' ').toLowerCase().trim();
+  if (!base) return [];
+  const forms = new Set([base, base.replace(/ /g, "'"), base.replace(/'/g, ' ')]);
+  if (!base.includes(' ')) {
+    const isVowel = (ch) => /[aeiou]/.test(ch);
+    const canDoubleFinal =
+      base.length >= 3 &&
+      !isVowel(base[base.length - 1]) &&
+      isVowel(base[base.length - 2]) &&
+      !isVowel(base[base.length - 3]) &&
+      !/[wxy]/.test(base[base.length - 1]);
+
+    forms.add(`${base}s`);
+    forms.add(`${base}es`);
+    if (base.endsWith('y') && base.length > 2) {
+      forms.add(`${base.slice(0, -1)}ies`);
+      forms.add(`${base.slice(0, -1)}ied`);
+    }
+    if (base.endsWith('e')) {
+      forms.add(`${base}d`);
+      forms.add(`${base.slice(0, -1)}ing`);
+    } else {
+      forms.add(`${base}ed`);
+      forms.add(`${base}ing`);
+      if (canDoubleFinal) {
+        forms.add(`${base}${base[base.length - 1]}ed`);
+        forms.add(`${base}${base[base.length - 1]}ing`);
+      }
+    }
+  }
+  return [...forms].filter(Boolean);
+}
+
+function escapeRegex(text) {
+  return String(text || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function containsWordForm(sentence, word) {
+  const text = String(sentence || '');
+  return buildWordForms(word).some((form) => new RegExp(`\\b${escapeRegex(form)}\\b`, 'i').test(text));
+}
+
+function shouldRequireMaskedTarget(word) {
+  const base = String(word || '').replace(/_/g, ' ').toLowerCase().trim();
+  if (base.length < 4) return false;
+  return !['the', 'this', 'that', 'these', 'those', 'with', 'from', 'into', 'onto'].includes(base);
+}
+
 function hasBadText(value) {
   const text = String(value || '');
   return BAD_PATTERNS.some((pattern) => pattern.test(text));
@@ -95,6 +144,9 @@ function testGapFill(word) {
   const exercise = Exercises.renderGapFill(word, allWords);
   assertCleanText(exercise.sentence, `GAP_FILL ${word} sentence`);
   assert.ok(exercise.sentence.includes('___'), `GAP_FILL ${word} should contain a blank`);
+  if (shouldRequireMaskedTarget(word)) {
+    assert.ok(!containsWordForm(exercise.sentence, word), `GAP_FILL ${word} sentence should hide target form`);
+  }
   assertCleanText(exercise.hint, `GAP_FILL ${word} hint`);
   assertUniqueOptions(exercise.options, `GAP_FILL ${word}`);
   assert.ok(exercise.options.includes(exercise.correct), `GAP_FILL ${word} options should include correct answer`);
@@ -119,6 +171,9 @@ function testTranslationMc(word) {
   assertCleanText(exercise.correct, `TRANSLATION_MC ${word} correct`);
   assertUniqueOptions(exercise.options, `TRANSLATION_MC ${word}`);
   assert.ok(exercise.options.includes(exercise.correct), `TRANSLATION_MC ${word} options should include correct answer`);
+  exercise.options.forEach((option, index) => {
+    assert.ok(containsWordForm(option, word), `TRANSLATION_MC ${word} option[${index}] should include target word form`);
+  });
 }
 
 function testContextMatch(word) {
@@ -165,6 +220,10 @@ assert.ok(ready.length >= 100, `expected many ready words, got ${ready.length}`)
 });
 
 function testReportedWordRegressions() {
+  const acceptGap = Exercises.renderGapFill('accept', allWords);
+  assert.ok(acceptGap.sentence.includes('___'), 'accept gap-fill should include a blank');
+  assert.ok(!containsWordForm(acceptGap.sentence, 'accept'), 'accept gap-fill should not leave accept/accepted visible');
+
   const alarmTranslation = Exercises.renderTranslationMC('alarm', allWords);
   assert.ok(alarmTranslation, 'alarm should build a translation multiple-choice exercise');
   ['CD', 'April', 'August'].forEach((badOptionToken) => {

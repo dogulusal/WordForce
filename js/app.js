@@ -495,7 +495,10 @@ function getActiveLevel(progress) {
 
 function pickSessionWords(sessionSize, levelFilter = 'ALL', customWords = null) {
   if (Array.isArray(customWords) && customWords.length > 0) {
-    return shuffle(customWords.filter(isExerciseReadyWord)).slice(0, sessionSize);
+    // For custom word lists (review/practice sessions), accept any word that exists in the
+    // dictionary — don't filter by isExerciseReadyWord, which can reject words whose data
+    // has minor issues (e.g. TR same as English) even though the user already learned them.
+    return shuffle(customWords.filter((w) => Boolean(AllWords[w]))).slice(0, sessionSize);
   }
 
   const reviewDue = getReviewDue(AppState.progress);
@@ -1768,7 +1771,7 @@ function renderRoundFrame(state, body, maxRound, progress) {
     : '';
 
   return `
-    <div class="round-screen card-slide-enter" role="main" aria-label="Exercise screen">
+    <div class="round-screen" role="main" aria-label="Exercise screen">
       <div class="progress" aria-live="polite" aria-label="${progress}">${progress}</div>
       ${roundProgressHtml}
       <div class="round-quick-actions round-toolbar">
@@ -2066,6 +2069,7 @@ function renderSummary(state) {
 }
 
 let _lastRenderedScreen = null;
+let _lastExerciseKey = null;
 function render(state) {
   const app = document.getElementById('app');
   const modalContainer = document.getElementById('modal-container');
@@ -2075,6 +2079,7 @@ function render(state) {
   // This prevents visible background flicker during modal interactions.
   const skipAppRender = state.ui.modal && state.ui.screen === _lastRenderedScreen;
   if (!skipAppRender) {
+    const prevScreen = _lastRenderedScreen;
     _lastRenderedScreen = state.ui.screen;
     if (state.ui.screen === 'home') app.innerHTML = renderHome(state);
     if (state.ui.screen === 'progress') app.innerHTML = renderProgress(state);
@@ -2083,7 +2088,16 @@ function render(state) {
     if (state.ui.screen === 'preflight') app.innerHTML = renderPrep(state);
     if (state.ui.screen === 'flashcards') app.innerHTML = renderFlashcards(state);
     if (state.ui.screen === 'gate') app.innerHTML = renderGate(state);
-    if (state.ui.screen === 'round') app.innerHTML = renderRound(state);
+    if (state.ui.screen === 'round') {
+      app.innerHTML = renderRound(state);
+      // Only animate when the exercise actually changes — not on every option click / state update
+      const exerciseKey = `${state.session.round}-${state.session.current}`;
+      if (prevScreen !== 'round' || exerciseKey !== _lastExerciseKey) {
+        _lastExerciseKey = exerciseKey;
+        const roundScreenEl = typeof app.querySelector === 'function' ? app.querySelector('.round-screen') : null;
+        if (roundScreenEl) roundScreenEl.classList.add('card-slide-enter');
+      }
+    }
   }
   if (state.ui.screen === 'summary') {
     if (!skipAppRender) {

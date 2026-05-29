@@ -78,6 +78,156 @@ function displayWord(word) {
   return String(word || '').replace(/_/g, ' ');
 }
 
+function escapeRegex(text) {
+  return String(text || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function normalizePos(pos) {
+  const value = String(pos || '').toLowerCase();
+  if (value === 'adjective') return 'adj';
+  if (value === 'adverb') return 'adv';
+  if (value === 'preposition') return 'prep';
+  if (value === 'conjunction') return 'conj';
+  return value || 'other';
+}
+
+function buildWordForms(word) {
+  const base = displayWord(word).toLowerCase().trim();
+  if (!base) return [];
+
+  const forms = new Set([base, base.replace(/ /g, "'"), base.replace(/'/g, ' ')]);
+
+  // Keep phrase handling simple: inflection heuristics are only for single-token words.
+  if (!base.includes(' ')) {
+    const isVowel = (ch) => /[aeiou]/.test(ch);
+    const canDoubleFinal =
+      base.length >= 3 &&
+      !isVowel(base[base.length - 1]) &&
+      isVowel(base[base.length - 2]) &&
+      !isVowel(base[base.length - 3]) &&
+      !/[wxy]/.test(base[base.length - 1]);
+
+    forms.add(`${base}s`);
+    forms.add(`${base}es`);
+
+    if (base.endsWith('y') && base.length > 2) {
+      forms.add(`${base.slice(0, -1)}ies`);
+      forms.add(`${base.slice(0, -1)}ied`);
+    }
+
+    if (base.endsWith('e')) {
+      forms.add(`${base}d`);
+      forms.add(`${base.slice(0, -1)}ing`);
+    } else {
+      forms.add(`${base}ed`);
+      forms.add(`${base}ing`);
+      if (canDoubleFinal) {
+        forms.add(`${base}${base[base.length - 1]}ed`);
+        forms.add(`${base}${base[base.length - 1]}ing`);
+      }
+    }
+  }
+
+  return [...forms].filter(Boolean).sort((a, b) => b.length - a.length);
+}
+
+function containsTargetWordForm(sentence, word) {
+  const text = String(sentence || '');
+  const forms = buildWordForms(word);
+  if (forms.length === 0) return false;
+  return forms.some((form) => new RegExp(`\\b${escapeRegex(form)}\\b`, 'i').test(text));
+}
+
+function gapifySentenceForWord(sentence, word) {
+  const text = String(sentence || '');
+  const forms = buildWordForms(word);
+  for (const form of forms) {
+    const regex = new RegExp(`\\b${escapeRegex(form)}\\b`, 'i');
+    const match = text.match(regex);
+    if (match) {
+      let masked = text;
+      forms.forEach((candidate) => {
+        masked = masked.replace(new RegExp(`\\b${escapeRegex(candidate)}\\b`, 'ig'), '___');
+      });
+      return {
+        sentence: masked,
+        answer: match[0]
+      };
+    }
+  }
+
+  const base = normalizeToken(displayWord(word));
+  const parts = text.split(/\s+/);
+  const fallbackIndex = parts.findIndex((part) => {
+    const token = normalizeToken(part);
+    if (!token) return false;
+    if (token.includes(base) || base.includes(token)) return true;
+    return base.length >= 4 && (token.startsWith(base.slice(0, 4)) || base.startsWith(token.slice(0, 4)));
+  });
+  if (fallbackIndex >= 0) {
+    const answer = parts[fallbackIndex].replace(/^[^A-Za-z']+|[^A-Za-z']+$/g, '') || parts[fallbackIndex];
+    parts[fallbackIndex] = '___';
+    return {
+      sentence: parts.join(' '),
+      answer
+    };
+  }
+
+  return null;
+}
+
+const WORD_USAGE_DISTRACTOR_TEMPLATES = {
+  verb: [
+    'The weather can {word} very blue in winter.',
+    'Please {word} the table to the station.',
+    'They {word} the report under the chair.'
+  ],
+  noun: [
+    'We usually {word} before breakfast every day.',
+    'Please {word} this email to your manager now.',
+    'They {word} the project at seven yesterday.'
+  ],
+  adj: [
+    'Please {word} the meeting before noon.',
+    'She {word} the document every Friday.',
+    'They will {word} the station after dinner.'
+  ],
+  adv: [
+    'They bought a new {word} at the airport.',
+    'Please move the {word} into the kitchen.',
+    'This {word} needs water every morning.'
+  ],
+  prep: [
+    'They can {word} this report after lunch.',
+    'Please {word} the computer to the desk.',
+    'We will {word} the meeting very quickly.'
+  ],
+  conj: [
+    'I bought a {word} from the pharmacy yesterday.',
+    'Please carry the {word} to the office now.',
+    'The {word} is waiting outside the station.'
+  ],
+  other: [
+    'Please {word} the notebook under the lamp.',
+    'They moved the {word} before breakfast.',
+    'Our team can {word} the kitchen tonight.'
+  ]
+};
+
+function generateWordUsageDistractors(word, pos, correctSentence, count) {
+  const key = normalizePos(pos);
+  const templates = WORD_USAGE_DISTRACTOR_TEMPLATES[key] || WORD_USAGE_DISTRACTOR_TEMPLATES.other;
+  const result = [];
+  for (const template of templates) {
+    const sentence = template.replace('{word}', displayWord(word));
+    if (normalizeToken(sentence) === normalizeToken(correctSentence)) continue;
+    if (!containsTargetWordForm(sentence, word)) continue;
+    if (!result.includes(sentence)) result.push(sentence);
+    if (result.length >= count) break;
+  }
+  return result;
+}
+
 function normalizedDisplayWord(word) {
   return normalizeToken(displayWord(word));
 }
@@ -368,9 +518,10 @@ function chooseGapSentence(word, allWords, options = {}) {
   const { isPractice = false, preferredExampleIndex = null } = options;
   const wordData = allWords[word] || {};
   const examples = getUsefulExamples(word, wordData);
+  const containingTarget = examples.filter((example) => containsTargetWordForm(example, word));
 
   if (!isPractice) {
-    return examples[0] || `${word} is useful.`;
+    return containingTarget[0] || examples[0] || `${word} is useful.`;
   }
 
   const rawExamples = Array.isArray(wordData.ex) ? wordData.ex : [];
@@ -380,6 +531,9 @@ function chooseGapSentence(word, allWords, options = {}) {
 
   const pos = wordData.pos || '';
   const generic = GENERIC_GAP_TEMPLATES[pos] || GENERIC_GAP_TEMPLATES.noun;
+  if (containingTarget.length > 0) {
+    return containingTarget[Math.floor(Math.random() * containingTarget.length)];
+  }
   if (examples.length > 0) {
     return examples[Math.floor(Math.random() * examples.length)];
   }
@@ -390,23 +544,13 @@ function renderGapFill(word, allWords, meaningIndex = 0, options = {}) {
   const meaningData = getMeaningData(word, allWords, meaningIndex);
   const wordData = allWords[word] || {};
   const sentence = chooseGapSentence(word, allWords, options);
-  const displayWord = word.replace(/_/g, ' ');
 
-  // Use regex for multi-word support
-  const forms = [word, displayWord, word.replace(/_/g, "'")];
-  let gappedSentence = null;
-  for (const form of forms) {
-    const escaped = form.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const regex = new RegExp(`\\b${escaped}\\b`, 'i');
-    if (regex.test(sentence)) {
-      gappedSentence = sentence.replace(regex, '___');
-      break;
-    }
-  }
-  if (!gappedSentence) gappedSentence = `${sentence} (___)`;
+  const gapped = gapifySentenceForWord(sentence, word);
+  const gappedSentence = gapped ? gapped.sentence : `${sentence} (___)`;
+  const correctAnswer = gapped ? gapped.answer : word.replace(/_/g, ' ');
 
   const distractors = selectDistractors(word, allWords, 3, (_, w) => w.replace(/_/g, ' '));
-  const shuffledOptions = shuffleList([word.replace(/_/g, ' '), ...distractors]);
+  const shuffledOptions = shuffleList(uniqueValues([correctAnswer, ...distractors]));
 
   // Use definition as hint (English only)
   const hint = getUsefulDefinition(word, wordData, meaningData) || getUsefulTranslation(word, wordData, meaningData);
@@ -415,7 +559,7 @@ function renderGapFill(word, allWords, meaningIndex = 0, options = {}) {
     type: 'GAP_FILL',
     sentence: gappedSentence,
     options: shuffledOptions,
-    correct: word.replace(/_/g, ' '),
+    correct: correctAnswer,
     hint,
     word,
     meaningIndex
@@ -459,57 +603,46 @@ function renderSentenceBuilder(word, allWords) {
 function renderTranslationMC(word, allWords) {
   const wordData = allWords[word];
   const examples = Array.isArray(wordData.ex) ? wordData.ex : [];
-  const usefulIndexes = examples
+  const usefulIndexesRaw = examples
     .map((example, index) => ({ example, index }))
     .filter(({ example }) => !isPlaceholderText(example, word))
     .map(({ index }) => index);
-  if (usefulIndexes.length === 0) return null;
+  const usefulIndexes = usefulIndexesRaw.filter((index) => containsTargetWordForm(examples[index], word));
+  const indexPool = usefulIndexes.length > 0 ? usefulIndexes : usefulIndexesRaw;
+  if (indexPool.length === 0) return null;
 
-  const sentenceIndex = usefulIndexes[Math.floor(Math.random() * usefulIndexes.length)];
+  const sentenceIndex = indexPool[Math.floor(Math.random() * indexPool.length)];
   const correctEN = examples[sentenceIndex];
   const def = getUsefulDefinition(word, wordData, getMeaningData(word, allWords, 0)) || `meaning of ${word.replace(/_/g, ' ')}`;
 
   // Build English sentence distractors
   // Priority 1: Use pre-authored English distractors
   const explicitDistr = Array.isArray(wordData.ex_distractors?.[sentenceIndex])
-    ? wordData.ex_distractors[sentenceIndex].filter(s => s && s !== correctEN && !isPlaceholderText(s, word))
+    ? wordData.ex_distractors[sentenceIndex].filter((s) => s && s !== correctEN && !isPlaceholderText(s, word) && containsTargetWordForm(s, word))
     : [];
 
   let distractors;
   if (explicitDistr.length >= 3) {
     distractors = shuffleList(explicitDistr).slice(0, 3);
   } else {
-    // Priority 2: Build distractors by swapping target word
-    const hasReliableExampleTranslation = Array.isArray(wordData.ex_tr) && wordData.ex_tr[sentenceIndex] && !isPlaceholderText(wordData.ex_tr[sentenceIndex], word);
-    const sbWords = hasReliableExampleTranslation
-      ? (Array.isArray(wordData.sb_distractors?.[sentenceIndex])
-        ? wordData.sb_distractors[sentenceIndex]
-        : (Array.isArray(wordData.sb_distractors?.[0]) ? wordData.sb_distractors[0] : []))
-      : [];
+    // Priority 2: Generate target-word distractors so every option includes the target form.
+    distractors = [...explicitDistr, ...generateWordUsageDistractors(word, wordData.pos, correctEN, 3)];
 
-    const displayWord = word.replace(/_/g, ' ');
-    const swapped = sbWords
-      .map(sub => {
-        const regex = new RegExp(`\\b${displayWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
-        if (regex.test(correctEN)) {
-          return correctEN.replace(regex, sub);
-        }
-        return null;
-      })
-      .filter(Boolean)
-      .filter(s => s !== correctEN);
-
-    distractors = [...explicitDistr, ...swapped];
-
-    // Priority 3: Fallback to random English sentences from other words
+    // Priority 3: Fallback using transformed external examples while keeping the target word visible.
     if (distractors.length < 3) {
       const candidateWords = uniqueValues([...buildDistractorPool(word, allWords), ...Object.keys(allWords)])
         .filter(w => w !== word && allWords[w].ex?.length > 0);
       const fallback = [];
       for (const candidateWord of candidateWords) {
         const sentence = getFirstUsefulExample(candidateWord, allWords[candidateWord]);
-        if (!sentence || sentence === correctEN || distractors.includes(sentence) || fallback.includes(sentence)) continue;
-        fallback.push(sentence);
+        if (!sentence) continue;
+        const transformed = containsTargetWordForm(sentence, word)
+          ? sentence
+          : sentence.replace(/\b([A-Za-z']+)\b/, displayWord(word));
+        if (!containsTargetWordForm(transformed, word)) continue;
+        if (normalizeToken(transformed) === normalizeToken(correctEN)) continue;
+        if (distractors.includes(transformed) || fallback.includes(transformed)) continue;
+        fallback.push(transformed);
         if (fallback.length >= 12) break;
       }
       distractors = [...distractors, ...fallback];
@@ -771,33 +904,24 @@ function blankWord(sentence, word) {
 function renderFreeTypeGap(word, allWords) {
   const wordData = allWords[word] || {};
   const examples = Array.isArray(wordData.ex) ? wordData.ex.filter(Boolean) : [];
-  const exTr = Array.isArray(wordData.ex_tr) ? wordData.ex_tr : [];
-
-  // Pick a random example sentence
-  const sentenceIndex = examples.length > 1
-    ? Math.floor(Math.random() * examples.length)
-    : 0;
-  const sentence = examples[sentenceIndex] || `I use ${word.replace(/_/g, ' ')} every day.`;
   const hint = wordData.def || '';
   const displayWord = word.replace(/_/g, ' ');
 
-  // Use regex for multi-word support
-  const forms = [word, displayWord, word.replace(/_/g, "'")];
-  let gappedSentence = null;
-  for (const form of forms) {
-    const escaped = form.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const regex = new RegExp(`\\b${escaped}\\b`, 'i');
-    if (regex.test(sentence)) {
-      gappedSentence = sentence.replace(regex, '___');
-      break;
-    }
-  }
-  if (!gappedSentence) gappedSentence = `${sentence} (___)`;
+  // Prefer sentences that contain the target word (including inflected forms)
+  const containingTarget = examples.filter((ex) => containsTargetWordForm(ex, word));
+  const sentencePool = containingTarget.length > 0 ? containingTarget : examples;
+  const sentenceIndex = sentencePool.length > 1 ? Math.floor(Math.random() * sentencePool.length) : 0;
+  const rawSentence = sentencePool[sentenceIndex] || `I use ${displayWord} every day.`;
+
+  // Inflection-aware masking: replaces all occurrences of any word form with ___
+  const gapped = gapifySentenceForWord(rawSentence, word);
+  const gappedSentence = gapped ? gapped.sentence : `${rawSentence} (___)`;
+  const correctAnswer = gapped ? gapped.answer : displayWord;
 
   return {
     type: 'FREE_TYPE_GAP',
     sentence: gappedSentence,
-    correct: displayWord,
+    correct: correctAnswer,
     hint,
     word,
     def: wordData.def || ''
