@@ -2035,7 +2035,69 @@ button.card {
   opacity: 1;
 }
 
-.theme-toggle {
+/* Manage Words (prep) light theme */
+[data-theme="light"] .prep-grid-wrap {
+  background: rgba(0, 0, 0, 0.025);
+}
+
+[data-theme="light"] .prep-chip {
+  background: var(--bg-secondary);
+  border-color: var(--border);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .prep-chip:hover {
+  border-color: rgba(79, 126, 240, 0.45);
+  background: rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="light"] .prep-chip.selected-known {
+  border-color: rgba(31, 165, 115, 0.6);
+  background: rgba(31, 165, 115, 0.07);
+}
+
+[data-theme="light"] .prep-chip.selected-session {
+  border-color: rgba(79, 126, 240, 0.6);
+  background: rgba(79, 126, 240, 0.07);
+}
+
+[data-theme="light"] .prep-chip.selected {
+  background: rgba(31, 165, 115, 0.1);
+}
+
+/* Sentence Builder light theme */
+[data-theme="light"] .sb-placed-zone {
+  background: rgba(46, 207, 149, 0.04);
+  border-color: rgba(31, 165, 115, 0.45);
+}
+
+[data-theme="light"] .sb-placed-chip,
+[data-theme="light"] .sb-available-chip {
+  background: var(--bg-secondary);
+  border-color: var(--border);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .sb-placed-chip {
+  border-color: rgba(31, 165, 115, 0.55);
+  background: rgba(31, 165, 115, 0.07);
+}
+
+[data-theme="light"] .sb-available-chip:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .sb-placeholder {
+  color: rgba(90, 100, 120, 0.55);
+}
+
+[data-theme="light"] .sb-help {
+  color: rgba(90, 100, 120, 0.7);
+}
+
+[data-theme="light"] .sb-label {
+  color: var(--text-secondary);
+}
   position: fixed;
   top: 16px;
   right: 16px;

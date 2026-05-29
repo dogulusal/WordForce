@@ -211,27 +211,27 @@ function renderSecondaryMeaningDefinition(word, meaningIndex, allWords) {
 function renderENtoTRMC(word, allWords, meaningIndex = 0) {
   const meaningData = getMeaningData(word, allWords, meaningIndex);
   const wordData = allWords[word] || {};
-  const correctDef = meaningData.def || wordData.def || word;
+  // Use Turkish translation as the correct answer — much cleaner than low-quality def fields
+  const correctAnswer = meaningData.tr || wordData.tr || meaningData.def || wordData.def || word;
 
-  // Build distractors from definitions of same-POS words
+  // Build distractors from Turkish translations of semantically similar words
   const semanticKeys = rankSemanticDistractorKeys(word, allWords);
-  const defDistractors = semanticKeys
-    .map((key) => allWords[key]?.def)
-    .filter((d) => d && normalizeToken(d) !== normalizeToken(correctDef));
+  const trDistractors = semanticKeys
+    .map((key) => { const d = getMeaningData(key, allWords); return d.tr || allWords[key]?.tr; })
+    .filter((d) => d && normalizeToken(d) !== normalizeToken(correctAnswer));
 
-  const fallbackDefs = selectDistractors(word, allWords, 6, (item) => item.def).filter(Boolean);
+  const fallbackTr = selectDistractors(word, allWords, 6, (item) => item.tr).filter(Boolean)
+    .filter((d) => normalizeToken(d) !== normalizeToken(correctAnswer));
 
-  const pool = uniqueValues([...defDistractors, ...fallbackDefs])
-    .filter((d) => normalizeToken(d) !== normalizeToken(correctDef));
-
+  const pool = uniqueValues([...trDistractors, ...fallbackTr]);
   const distractors = pool.slice(0, 3);
-  const options = shuffleList(uniqueValues([correctDef, ...distractors])).slice(0, 4);
+  const options = shuffleList(uniqueValues([correctAnswer, ...distractors])).slice(0, 4);
 
   return {
     type: 'EN_TO_TR_MC',
     prompt: `What does '${word.replace(/_/g, ' ')}' mean?`,
     options,
-    correct: correctDef,
+    correct: correctAnswer,
     word,
     meaningIndex
   };
@@ -307,6 +307,7 @@ function renderSentenceBuilder(word, allWords) {
   return {
     type: 'SENTENCE_BUILDER',
     definition: def,
+    tr: wordData.tr || '',
     chips: mixedChips,
     correct: chips.join(' '),
     correctTokens: chips,

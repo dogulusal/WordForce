@@ -1839,9 +1839,10 @@ function renderRoundSession(state) {
       })
       .join('');
 
+    const trHint = exercise.tr ? ` — <em style="color:var(--success);font-style:normal;">${exercise.tr}</em>` : '';
     body = `
       <h2>Build the sentence</h2>
-      <p class="sb-def">Definition: ${exercise.definition}</p>
+      <p class="sb-def">Arrange words to form a sentence using: <strong>'${exercise.word.replace(/_/g, ' ')}'</strong>${trHint}</p>
       <div class="sb-placed-zone ${state.ui.sbShake ? 'sb-shake' : ''}">
         ${placedChips || '<span class="sb-placeholder">Tap words to build your sentence.</span>'}
       </div>
